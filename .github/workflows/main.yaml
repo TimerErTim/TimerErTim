@@ -1,0 +1,44 @@
+name: update profile README.md
+
+on:
+  schedule: # run automatically every 24 hours
+    - cron: "0 */6 * * *"
+  workflow_dispatch: # allows to manually run the job at any time
+  push: # run on every push on the master branch
+    branches:
+      - main
+
+jobs:
+  generate-pacman:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: generate pacman-contribution-graph.svg
+        uses: abozanona/pacman-contribution-graph@main
+        with:
+          github_user_name: ${{ github.repository_owner }}
+
+      # push the content of to a subfolder
+      - name: commit pacman-contribution-graph.svg to main branch
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          branch: main 
+          
+          # OPTIONAL: The path of the files to commit (relative to the repository root)
+          # This will commit only the files inside 'dist/artifacts'
+          commit_options: '--all'
+          
+          # OPTIONAL: The files/paths to include in the commit (defaults to all untracked files)
+          file_pattern: 'dist/**/*'
+          
+          # The commit message for the new branch
+          commit_message: 'ci: rebuild pacman-contribution-graph.svg' 
+          
+          # Configure Git user details
+          commit_user_name: 'GitHub Actions Bot'
+          commit_user_email: 'action-bot@users.noreply.github.com'
