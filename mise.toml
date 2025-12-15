@@ -1,0 +1,26 @@
+[settings]
+experimental = true
+lockfile = true
+
+[env]
+"_".file = "{{ config_root }}/.env.local"
+
+[tasks."generate-snake"]
+tools = { "node" = "latest" }
+description = "Generate snake contribution graph"
+usage = """
+arg "<username>" env="GITHUB_USERNAME" help="Username for pacman contribution graph"
+arg "<github-token>" env="GITHUB_TOKEN" help="GitHub token for snake contribution graph"
+"""
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+mkdir -p out
+INPUT_OUTPUTS="
+  out/snake-contribution-graph-light.svg?color_snake=orange
+  out/snake-contribution-graph-dark.svg?palette=github-dark&color_snake=blue
+" \
+INPUT_GITHUB_USER_NAME="$usage_username" \
+INPUT_GITHUB_TOKEN="$usage_github_token" \
+node processing/snk/index.js
+"""
