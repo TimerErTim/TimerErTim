@@ -4,5 +4,32 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-reflexo-typst = { version = "0.7.0-rc1", features = ["system"] }
+anyhow = "1.0.100"
+reflexo = { version = "0.7.0-rc1" }
+reflexo-typst = { version = "0.7.0-rc1", features = ["no-content-hint", "system"] }
+reflexo-vec2svg = { version = "0.7.0-rc1", features = ["no-content-hint"] }
+typst = "0.14.0"
 
+[patch.crates-io]
+# This patch is used to bundle a locally built frontend (HTML) of `typst-preview`.
+# The shortcoming is that you cannot install tinymist from git source then, i.e. `cargo install --git ..`, with this patch.
+# However, it is not suggested to install it in that way. The suggested ways are:
+# - Installation: https://github.com/Myriad-Dreamin/tinymist?tab=readme-ov-file#installation
+# - Installing pre-built artifacts from GitHub : https://github.com/Myriad-Dreamin/tinymist?tab=readme-ov-file#installing-regularnightly-prebuilds-from-github
+# tinymist-assets = { path = "./crates/tinymist-assets/" }
+
+# These patches use a different version of `typst`, which only exports some private functions and information for code analysis.
+#
+# A regular build MUST use `tag` or `rev` to specify the version of the patched crate to ensure stability.
+typst = { git = "https://github.com/Myriad-Dreamin/typst.git", tag = "tinymist/v0.14.0-rc1" }
+typst-macros = { git = "https://github.com/Myriad-Dreamin/typst.git", tag = "tinymist/v0.14.0-rc1" }
+typst-library = { git = "https://github.com/Myriad-Dreamin/typst.git", tag = "tinymist/v0.14.0-rc1" }
+typst-html = { git = "https://github.com/Myriad-Dreamin/typst.git", tag = "tinymist/v0.14.0-rc1" }
+typst-timing = { git = "https://github.com/Myriad-Dreamin/typst.git", tag = "tinymist/v0.14.0-rc1" }
+typst-svg = { git = "https://github.com/Myriad-Dreamin/typst.git", tag = "tinymist/v0.14.0-rc1" }
+typst-render = { git = "https://github.com/Myriad-Dreamin/typst.git", tag = "tinymist/v0.14.0-rc1" }
+typst-pdf = { git = "https://github.com/Myriad-Dreamin/typst.git", tag = "tinymist/v0.14.0-rc1" }
+typst-syntax = { git = "https://github.com/Myriad-Dreamin/typst.git", tag = "tinymist/v0.14.0-rc1" }
+typst-eval = { git = "https://github.com/Myriad-Dreamin/typst.git", tag = "tinymist/v0.14.0-rc1" }
+
+reflexo-vec2svg = { path = "reflexo-vec2svg" }

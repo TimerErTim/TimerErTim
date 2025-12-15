@@ -16,9 +16,15 @@ run = "processing/compile-typst/compile-typst README.typ dist/"
 [tasks.rebuild]
 description = "Rebuild the README.typ with all dependencies"
 run = [
-  { tasks = ["generate-snake"] },
-  { tasks = ["compile:builder"] },
-  { tasks = ["build"] }
+  { tasks = [
+    "generate-snake",
+  ] },
+  { tasks = [
+    "compile:builder",
+  ] },
+  { tasks = [
+    "build",
+  ] },
 ]
 
 [tasks."compile:builder"]
@@ -27,8 +33,8 @@ dir = "{{ config_root }}/processing/compile-typst"
 sources = ["src/**/*.rs", "Cargo.toml", "Cargo.lock"]
 outputs = ["compile-typst"]
 run = [
-    "cargo build --release",
-    "cp target/release/compile-typst {{ config_root }}/processing/compile-typst/compile-typst",
+  "cargo build --release",
+  "cp target/release/compile-typst {{ config_root }}/processing/compile-typst/compile-typst",
 ]
 
 
