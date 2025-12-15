@@ -5,8 +5,34 @@ lockfile = true
 [env]
 "_".file = "{{ config_root }}/.env.local"
 
+[tools]
+"rust" = "nightly"
+"node" = "latest"
+
+[tasks.build]
+description = "Build README.typ and write to dist/"
+run = "processing/compile-typst/compile-typst README.typ dist/"
+
+[tasks.rebuild]
+description = "Rebuild the README.typ with all dependencies"
+run = [
+  { tasks = ["generate-snake"] },
+  { tasks = ["compile:builder"] },
+  { tasks = ["build"] }
+]
+
+[tasks."compile:builder"]
+description = "Compile the compile-typst crate"
+dir = "{{ config_root }}/processing/compile-typst"
+sources = ["src/**/*.rs", "Cargo.toml", "Cargo.lock"]
+outputs = ["compile-typst"]
+run = [
+    "cargo build --release",
+    "cp target/release/compile-typst {{ config_root }}/processing/compile-typst/compile-typst",
+]
+
+
 [tasks."generate-snake"]
-tools = { "node" = "latest" }
 description = "Generate snake contribution graph"
 usage = """
 arg "<username>" env="GITHUB_USERNAME" help="Username for pacman contribution graph"

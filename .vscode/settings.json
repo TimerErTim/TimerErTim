@@ -1,3 +1,6 @@
 {
-    "git.enabled": false
+    "git.enabled": false,
+    "rust-analyzer.linkedProjects": [
+        "processing/compile-typst/Cargo.toml"
+    ]
 }

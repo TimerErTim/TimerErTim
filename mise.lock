@@ -1,0 +1,12 @@
+[[tools.node]]
+version = "25.2.0"
+backend = "core:node"
+"platforms.linux-arm64" = { checksum = "sha256:da357f65a5a6d9ebe6ba2572e73c3ba2a03e4e39ec54871cf98549cda631dec8", url = "https://nodejs.org/dist/v25.2.0/node-v25.2.0-linux-arm64.tar.gz"}
+"platforms.linux-x64" = { checksum = "sha256:41eb2871bc1fffe872c7a0dc588fccacf2892e563ff3115648a41278fe5b579b", url = "https://nodejs.org/dist/v25.2.0/node-v25.2.0-linux-x64.tar.gz"}
+"platforms.macos-arm64" = { checksum = "sha256:5ce975101e85598d2f1f84b297e8bd7ff315e46fa644be1ffc76f0c48de480bb", url = "https://nodejs.org/dist/v25.2.0/node-v25.2.0-darwin-arm64.tar.gz"}
+"platforms.macos-x64" = { checksum = "sha256:939c948f407a6e06bf6ce4ca9d978d24cf24dddb0714ea4321f548d06baf45c6", url = "https://nodejs.org/dist/v25.2.0/node-v25.2.0-darwin-x64.tar.gz"}
+"platforms.windows-x64" = { checksum = "sha256:d06b49148fa8a0f6d4f0fb9fb5c2a6b66a5a3c5db89a3b4a83448e18237375e1", url = "https://nodejs.org/dist/v25.2.0/node-v25.2.0-win-x64.zip"}
+
+[[tools.rust]]
+version = "nightly"
+backend = "core:rust"
