@@ -11,7 +11,7 @@ lockfile = true
 
 [tasks.build]
 description = "Build README.typ and write to dist/"
-run = "processing/compile-typst/compile-typst README.typ dist/"
+run = "processing/compile-typst/target/release/compile-typst README.typ dist/"
 
 [tasks.rebuild]
 description = "Rebuild the README.typ with all dependencies"
@@ -34,7 +34,6 @@ sources = ["src/**/*.rs", "Cargo.toml", "Cargo.lock"]
 outputs = ["compile-typst"]
 run = [
   "cargo build --release",
-  "cp target/release/compile-typst {{ config_root }}/processing/compile-typst/compile-typst",
 ]
 
 
