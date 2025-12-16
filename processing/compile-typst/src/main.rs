@@ -5,6 +5,7 @@ use std::sync::Arc;
 use reflexo_typst::EntryState;
 use reflexo_typst::LazyHash;
 use reflexo_typst::TaskInputs;
+use reflexo_typst::TypstDatetime;
 use reflexo_typst::TypstPagedDocument;
 use reflexo_typst::TypstSystemUniverse;
 use reflexo_typst::args::CompileFontArgs;
@@ -19,7 +20,10 @@ fn main() -> anyhow::Result<()> {
 
     for theme in ["light", "dark"] {
         let world = verse.snapshot_with(Some(TaskInputs {
-            inputs: Some(Arc::new(LazyHash::new(vec![("theme".into(), theme.into_value())].into_iter().collect()))),
+            inputs: Some(Arc::new(LazyHash::new(vec![
+                ("theme".into(), theme.into_value()),
+                ("now".into(), now().into_value())
+            ].into_iter().collect()))),
             ..Default::default()
         }));
         let pages = typst::compile::<TypstPagedDocument>(&world)
@@ -31,6 +35,64 @@ fn main() -> anyhow::Result<()> {
     }
 
     Ok(())
+}
+
+pub fn now() -> TypstDatetime {
+    let now = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .unwrap();
+    let secs = now.as_secs();
+    
+    // Convert Unix timestamp to date/time components
+    let days_since_epoch = secs / 86400;
+    let seconds_today = secs % 86400;
+    
+    // Calculate year, month, day from days since epoch (1970-01-01)
+    let mut year = 1970;
+    let mut days_remaining = days_since_epoch;
+    
+    // Simple leap year calculation
+    loop {
+        let days_in_year = if year % 4 == 0 && (year % 100 != 0 || year % 400 == 0) { 366 } else { 365 };
+        if days_remaining < days_in_year {
+            break;
+        }
+        days_remaining -= days_in_year;
+        year += 1;
+    }
+    
+    // Days in each month (non-leap year)
+    let days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    let mut month = 1;
+    let mut days_in_current_month;
+    
+    for (i, &days) in days_in_month.iter().enumerate() {
+        days_in_current_month = if i == 1 && year % 4 == 0 && (year % 100 != 0 || year % 400 == 0) {
+            29 // February in leap year
+        } else {
+            days
+        };
+        
+        if days_remaining < days_in_current_month {
+            month = i + 1;
+            break;
+        }
+        days_remaining -= days_in_current_month;
+    }
+    
+    let day = days_remaining + 1;
+    let hour = seconds_today / 3600;
+    let minute = (seconds_today % 3600) / 60;
+    let second = seconds_today % 60;
+    
+    TypstDatetime::from_ymd_hms(
+        year as i32,
+        month as u8,
+        day as u8,
+        hour as u8,
+        minute as u8,
+        second as u8,
+    ).unwrap()
 }
 
 fn build_base_universe(source_path: impl Into<PathBuf>) -> anyhow::Result<TypstSystemUniverse> {
