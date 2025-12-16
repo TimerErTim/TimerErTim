@@ -26,7 +26,7 @@ pub use frontend::{
 pub use frontend::{SvgExporter, SvgTask};
 
 /// Useful transform for SVG Items.
-pub(crate) mod transform;
+pub mod transform;
 
 #[derive(Default)]
 pub struct SvgDataSelection {

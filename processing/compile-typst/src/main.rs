@@ -1,24 +1,18 @@
-use std::default;
 use std::fs;
-use std::path::Path;
 use std::path::PathBuf;
 use std::sync::Arc;
 
 use reflexo_typst::EntryState;
 use reflexo_typst::LazyHash;
-use reflexo_typst::SvgExport;
 use reflexo_typst::TaskInputs;
-use reflexo_typst::TypstDict;
 use reflexo_typst::TypstPagedDocument;
 use reflexo_typst::TypstSystemUniverse;
 use reflexo_typst::args::CompileFontArgs;
 use reflexo_typst::args::CompilePackageArgs;
 use reflexo_typst::system::SystemUniverseBuilder;
 use reflexo_vec2svg::SvgText;
-use reflexo_vec2svg::{ExportFeature, SvgExporter};
+use reflexo_vec2svg::{ExportFeature, SvgExporter, transform};
 use typst::foundations::IntoValue;
-
-mod minify;
 
 fn main() -> anyhow::Result<()> {
     let verse = build_base_universe("README.typ")?;
@@ -84,7 +78,7 @@ pub fn render_svg<EF: ExportFeature>(pages: &TypstPagedDocument) -> String {
     let mut doc = SvgExporter::<EF>::svg_doc(pages);
     doc.module.prepare_glyphs();
     let svg_text = SvgExporter::<EF>::render(&doc.module, &doc.pages, None);
-    generate_text(minify::minify(svg_text))
+    generate_text(transform::minify(svg_text))
 }
 
 /// Concatenate a list of [`SvgText`] into a single string.
