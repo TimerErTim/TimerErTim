@@ -15,16 +15,14 @@ run = "processing/compile-typst/target/release/compile-typst README.typ dist/"
 
 [tasks.rebuild]
 description = "Rebuild the README.typ with all dependencies"
+usage = """
+arg "<github-username>" env="GITHUB_USERNAME" help="GitHub username for snake contribution graph"
+arg "<github-token>" env="GITHUB_TOKEN" help="GitHub token for snake contribution graph"
+"""
 run = [
-  { tasks = [
-    "generate-snake",
-  ] },
-  { tasks = [
-    "compile:builder",
-  ] },
-  { tasks = [
-    "build",
-  ] },
+  'GITHUB_TOKEN="$usage_github_token" GITHUB_USERNAME="$usage_github_username" mise run generate-snake',
+  "mise run compile:builder",
+  "mise run build",
 ]
 
 [tasks."compile:builder"]

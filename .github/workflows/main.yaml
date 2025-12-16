@@ -9,36 +9,44 @@ on:
       - main
 
 jobs:
-  generate-pacman:
+  update-readme:
     permissions:
       contents: write
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: generate pacman-contribution-graph.svg
-        uses: abozanona/pacman-contribution-graph@main
+      - name: Install mise
+        uses: jdx/mise-action@v2
         with:
-          github_user_name: ${{ github.repository_owner }}
+          experimental: true # [default: false] enable experimental features
 
-      # push the content of to a subfolder
-      - name: commit pacman-contribution-graph.svg to main branch
+      - name: Setup Rust cache
+        uses: Swatinem/rust-cache@v2
+        with:
+          # These entries are separated by newlines and have the form
+          # `$workspace -> $target`. The `$target` part is treated as a directory
+          # relative to the `$workspace` and defaults to "target" if not explicitly given.
+          # default: ". -> target"
+          workspaces: "processing/compile-typst"
+      
+      - name: Compile custom typst
+        run: mise run compile:builder
+
+      - name: Update README.md
+        run: mise run rebuild
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: ${{ github.repository_owner }}
+
+      - run: git status
+
+      - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          branch: main 
-          
-          # OPTIONAL: The path of the files to commit (relative to the repository root)
-          # This will commit only the files inside 'dist/artifacts'
+          branch: main
+          commit_message: 'ci: update README.md'
           commit_options: '--all'
-          
-          # OPTIONAL: The files/paths to include in the commit (defaults to all untracked files)
-          file_pattern: 'dist/**/*'
-          
-          # The commit message for the new branch
-          commit_message: 'ci: rebuild pacman-contribution-graph.svg' 
-          
-          # Configure Git user details
-          commit_user_name: 'GitHub Actions Bot'
-          commit_user_email: 'action-bot@users.noreply.github.com'
+          file_pattern: 'dist/'
