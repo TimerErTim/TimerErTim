@@ -20,18 +20,23 @@ fn main() -> anyhow::Result<()> {
 
     for theme in ["light", "dark"] {
         let world = verse.snapshot_with(Some(TaskInputs {
-            inputs: Some(Arc::new(LazyHash::new(vec![
-                ("theme".into(), theme.into_value()),
-                ("now".into(), now().into_value())
-            ].into_iter().collect()))),
+            inputs: Some(Arc::new(LazyHash::new(
+                vec![
+                    ("theme".into(), theme.into_value()),
+                    ("now".into(), now().into_value()),
+                ]
+                .into_iter()
+                .collect(),
+            ))),
             ..Default::default()
         }));
         let pages = typst::compile::<TypstPagedDocument>(&world)
-        .output
-        .map_err(|err| anyhow::anyhow!("Failed to compile typst: {:?}", err))?;
+            .output
+            .map_err(|err| anyhow::anyhow!("Failed to compile typst: {:?}", err))?;
 
         let svg = render(&pages);
-        fs::write(format!("dist/{theme}.svg"), svg).map_err(|err| anyhow::anyhow!("Failed to write SVG: {:?}", err))?;
+        fs::write(format!("dist/{theme}.svg"), svg)
+            .map_err(|err| anyhow::anyhow!("Failed to write SVG: {:?}", err))?;
     }
 
     Ok(())
@@ -42,49 +47,53 @@ pub fn now() -> TypstDatetime {
         .duration_since(std::time::UNIX_EPOCH)
         .unwrap();
     let secs = now.as_secs();
-    
+
     // Convert Unix timestamp to date/time components
     let days_since_epoch = secs / 86400;
     let seconds_today = secs % 86400;
-    
+
     // Calculate year, month, day from days since epoch (1970-01-01)
     let mut year = 1970;
     let mut days_remaining = days_since_epoch;
-    
+
     // Simple leap year calculation
     loop {
-        let days_in_year = if year % 4 == 0 && (year % 100 != 0 || year % 400 == 0) { 366 } else { 365 };
+        let days_in_year = if year % 4 == 0 && (year % 100 != 0 || year % 400 == 0) {
+            366
+        } else {
+            365
+        };
         if days_remaining < days_in_year {
             break;
         }
         days_remaining -= days_in_year;
         year += 1;
     }
-    
+
     // Days in each month (non-leap year)
     let days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     let mut month = 1;
     let mut days_in_current_month;
-    
+
     for (i, &days) in days_in_month.iter().enumerate() {
         days_in_current_month = if i == 1 && year % 4 == 0 && (year % 100 != 0 || year % 400 == 0) {
             29 // February in leap year
         } else {
             days
         };
-        
+
         if days_remaining < days_in_current_month {
             month = i + 1;
             break;
         }
         days_remaining -= days_in_current_month;
     }
-    
+
     let day = days_remaining + 1;
     let hour = seconds_today / 3600;
     let minute = (seconds_today % 3600) / 60;
     let second = seconds_today % 60;
-    
+
     TypstDatetime::from_ymd_hms(
         year as i32,
         month as u8,
@@ -92,17 +101,26 @@ pub fn now() -> TypstDatetime {
         hour as u8,
         minute as u8,
         second as u8,
-    ).unwrap()
+    )
+    .unwrap()
 }
 
 fn build_base_universe(source_path: impl Into<PathBuf>) -> anyhow::Result<TypstSystemUniverse> {
     let path = Arc::from(source_path.into());
-    let fonts = SystemUniverseBuilder::resolve_fonts(CompileFontArgs::default())?;
+    let mut font_paths: Vec<_> = std::env::var("TYPST_FONT_PATHS")
+        .map(|paths| paths.split(':').map(PathBuf::from).collect())
+        .unwrap_or_default();
+    font_paths.push("fonts/".into());
+    let fonts = SystemUniverseBuilder::resolve_fonts(CompileFontArgs {
+        font_paths,
+        ..Default::default()
+    })?;
     let package =
         SystemUniverseBuilder::resolve_package(None, Some(&CompilePackageArgs::default()));
 
     Ok(SystemUniverseBuilder::build(
-        EntryState::new_rooted_by_parent(path).ok_or(anyhow::anyhow!("Failed to build entry state"))?,
+        EntryState::new_rooted_by_parent(path)
+            .ok_or(anyhow::anyhow!("Failed to build entry state"))?,
         Default::default(),
         Arc::new(fonts),
         package,

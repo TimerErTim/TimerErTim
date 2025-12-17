@@ -2,5 +2,8 @@
     "git.enabled": false,
     "rust-analyzer.linkedProjects": [
         "processing/compile-typst/Cargo.toml"
+    ],
+    "tinymist.fontPaths": [
+        "${workspaceFolder}/fonts"
     ]
 }

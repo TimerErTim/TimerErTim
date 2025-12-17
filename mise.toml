@@ -4,6 +4,7 @@ lockfile = true
 
 [env]
 "_".file = "{{ config_root }}/.env.local"
+TYPST_FONT_PATHS = "{{ config_root }}/fonts"
 
 [tools]
 "rust" = "nightly"

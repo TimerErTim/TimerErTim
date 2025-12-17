@@ -1,16 +1,22 @@
-#let dark-theme = sys.inputs.at("theme", default: "") == "dark"
-#let now = sys.inputs.at("now", default: datetime.today(offset: 0))
-#set page(margin: 6pt, height: auto)
-#set text(size: 16pt)
-#set text(fill: if dark-theme { white } else { black })
-
 #import "lib.typ": *
 
-This is a test
+#set page(margin: 6pt, height: auto)
+#set text(size: 16pt, font: "Roboto")
+#show raw: set text(font: "JetBrains Mono")
+#show math.equation: set text(font: "Fira Math")
+#set text(fill: themed(black, white))
 
-#image(if dark-theme { "out/snake-contribution-graph-dark.svg" } else { "out/snake-contribution-graph-light.svg" })
+`> Load successful.`
 
+//#align(center, image(themed("out/typing-banner-light.svg", "out/typing-banner-dark.svg")))
 
+#image(themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"))
+
+#[
+  #set text(fill: green, font: "Fira Math")
+  This is Fira Math #math.sqrt([2])
+  $ E = m c^2, space "Corr"(X, Y) = "Cov"(X, Y) / (sqrt("Var"(X)) sqrt("Var"(Y))) $
+]
 
 #xhtml(```html
 <xhtml:div style="background-color: green;">Hello, world!</xhtml:div>
@@ -22,6 +28,6 @@ This is a test
 ```, outer-width: 500pt, outer-height: 250pt)
 
 #align(center)[
-  #set text(size: 14pt, fill: gray)
-  built on: #now.display() | 
+  #set text(size: 12pt, fill: themed(gray, gray.lighten(50%)))
+  built on: #now.display() | Typst version: custom combiled
 ]
