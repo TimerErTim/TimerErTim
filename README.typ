@@ -8,7 +8,7 @@
 
 `> Load successful.`
 
-//#align(center, image(themed("out/typing-banner-light.svg", "out/typing-banner-dark.svg")))
+#align(center, image(themed("out/typing-banner-light.svg", "out/typing-banner-dark.svg")))
 
 #image(themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"))
 

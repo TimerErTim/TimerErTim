@@ -728,11 +728,11 @@ pub fn inline_svg(image: &ir::Image, size: Size) -> String {
         let mut attributes = caps[1].to_string();
         
         // Remove existing width and height attributes if they exist
-        let width_regex = regex::Regex::new(r#"\s+width\s*=\s*"[^"]*""#).unwrap();
-        let height_regex = regex::Regex::new(r#"\s+height\s*=\s*"[^"]*""#).unwrap();
+        let width_regex = regex::Regex::new(r#"\s+width\s*=\s*["'][^"]*["']"#).unwrap();
+        let height_regex = regex::Regex::new(r#"\s+height\s*=\s*["'][^"]*["']"#).unwrap();
         attributes = width_regex.replace_all(&attributes, "").to_string();
         attributes = height_regex.replace_all(&attributes, "").to_string();
-        
+
         // Add the new width and height attributes
         format!(r#"<svg{attributes}{styles}{cls} width="{w}" height="{h}">"#)
     }).to_string();
