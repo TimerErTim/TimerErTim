@@ -1,9 +1,8 @@
-<div align="center">
+<div align="left">
   <samp>
-    > Initializing bio... <br/>
+    > Initializing bio...
   </samp>
 </div>
-<br/>
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="dist/dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="dist/light.svg" />
