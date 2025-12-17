@@ -1,7 +1,7 @@
 #import "lib.typ": *
 
 #set page(margin: (x: 0pt, top: 4pt, bottom: 0pt), height: auto)
-#set text(size: 16pt, font: "Roboto")
+#set text(size: 14pt, font: "Roboto")
 #show raw: set text(font: "JetBrains Mono")
 #show math.equation: set text(font: "Fira Math")
 #set text(fill: themed(black, white))
