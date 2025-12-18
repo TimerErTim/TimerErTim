@@ -1,8 +1,8 @@
 name: update profile README.md
 
 on:
-  schedule: # run automatically every 24 hours
-    - cron: "0 */6 * * *"
+  schedule: # run automatically every 15 minutes
+    - cron: "*/15 * * * *"
   workflow_dispatch: # allows to manually run the job at any time
   push: # run on every push on the master branch
     branches:
@@ -47,6 +47,6 @@ jobs:
           target_branch: compiled
           build_dir: dist
           commit_message: "ci: update static svg file"
-          keep_history: true
+          keep_history: false #true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
