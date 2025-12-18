@@ -44,7 +44,7 @@ jobs:
       - name: Deploy to compiled branch
         uses: crazy-max/ghaction-github-pages@v4
         with:
-          branch: compiled
+          target_branch: compiled
           build_dir: dist
           commit_message: "ci: update static svg file"
           keep_history: true
