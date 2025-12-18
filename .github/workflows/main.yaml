@@ -46,5 +46,7 @@ jobs:
         with:
           branch: compiled
           build_dir: dist
+          commit_message: "ci: update static svg file"
+          keep_history: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
