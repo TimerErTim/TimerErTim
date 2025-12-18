@@ -62,8 +62,9 @@ node processing/snk/index.js
 description = "Generate typing banner"
 run = """
 mkdir -p out
-curl -o out/typing-banner-light.svg 'https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&duration=2000&pause=1000&color=d66730&center=true&vCenter=true&width=600&lines=Entering+pofile+of+TimerErTim...;impl+Developer+for+TimerErTim;;Compiling+awesome-projects+v1.0...'
-curl -o out/typing-banner-dark.svg 'https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&duration=2000&pause=1000&color=edb76f&center=true&vCenter=true&width=600&lines=Entering+pofile+of+TimerErTim...;impl+Developer+for+TimerErTim;;Compiling+awesome-projects+v1.0...'
+export LINES="Hi+there+👋,+I'm+TimerErTim!;Welcome+on+my+profile!;It's+compiled+with+Typst;https://github.com/TimerErTim"
+curl -o out/typing-banner-light.svg "https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&duration=2000&pause=1000&color=d66730&center=true&vCenter=true&width=600&lines=${LINES}"
+curl -o out/typing-banner-dark.svg "https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&duration=2000&pause=1000&color=edb76f&center=true&vCenter=true&width=600&lines=${LINES}"
 """
 
 [tasks."generate-spotify-playing"]
