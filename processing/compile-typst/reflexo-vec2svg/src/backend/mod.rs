@@ -727,14 +727,30 @@ pub fn inline_svg(image: &ir::Image, size: Size) -> String {
     return svg_regex.replace(&svg_content, |caps: &regex::Captures| {
         let mut attributes = caps[1].to_string();
         
+        // Extract existing width and height values before removing them
+        let width_regex = regex::Regex::new(r#"\s+width\s*=\s*["']([^"']*)["']"#).unwrap();
+        let height_regex = regex::Regex::new(r#"\s+height\s*=\s*["']([^"']*)["']"#).unwrap();
+        
+        let old_width = width_regex.captures(&attributes).and_then(|caps| caps.get(1)).map(|m| m.as_str().to_string());
+        let old_height = height_regex.captures(&attributes).and_then(|caps| caps.get(1)).map(|m| m.as_str().to_string());
+        
         // Remove existing width and height attributes if they exist
-        let width_regex = regex::Regex::new(r#"\s+width\s*=\s*["'][^"]*["']"#).unwrap();
-        let height_regex = regex::Regex::new(r#"\s+height\s*=\s*["'][^"]*["']"#).unwrap();
         attributes = width_regex.replace_all(&attributes, "").to_string();
         attributes = height_regex.replace_all(&attributes, "").to_string();
+        
+        // Check if viewBox already exists
+        let viewbox_regex = regex::Regex::new(r#"\s+viewBox\s*=\s*["'][^"']*["']"#).unwrap();
+        let has_viewbox = viewbox_regex.is_match(&attributes);
+        
+        // If no viewBox exists but we had original width and height, add viewBox
+        let viewbox_attr = if !has_viewbox && old_width.is_some() && old_height.is_some() {
+            format!(r#" viewBox="0 0 {} {}""#, old_width.unwrap(), old_height.unwrap())
+        } else {
+            String::new()
+        };
 
         // Add the new width and height attributes
-        format!(r#"<svg{attributes}{styles}{cls} width="{w}" height="{h}">"#)
+        format!(r#"<svg{attributes}{viewbox_attr}{styles}{cls} width="{w}" height="{h}">"#)
     }).to_string();
 }
 
