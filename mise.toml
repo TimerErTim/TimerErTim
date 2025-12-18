@@ -12,7 +12,10 @@ TYPST_FONT_PATHS = "{{ config_root }}/fonts"
 
 [tasks.build]
 description = "Build README.typ and write to dist/"
-run = "processing/compile-typst/target/release/compile-typst README.typ dist/"
+run = [
+  "mkdir -p dist/",
+  "processing/compile-typst/target/release/compile-typst README.typ dist/"
+]
 
 [tasks.rebuild]
 description = "Rebuild the README.typ with all dependencies"
