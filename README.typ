@@ -5,12 +5,23 @@
 #show raw: set text(font: "JetBrains Mono")
 #show math.equation: set text(font: "Fira Math")
 #set text(fill: themed(black, white))
+#set rect(stroke: themed(black, white))
 
 `> Load successful.`
 
 #align(center, image(themed("out/typing-banner-light.svg", "out/typing-banner-dark.svg")))
 
 #image(themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"))
+
+#pad(x: 2em, grid(
+  columns: (1fr, 1fr),
+  //stroke: 1pt,
+  grid.cell()[
+    #show: rect.with(radius: 6pt)
+    Last seen vibing to:
+    #pad(y: -1em, image(themed("out/spotify-playing.svg", "out/spotify-playing.svg"), width: 9cm))
+  ]
+))
 
 #[
   #set text(fill: green, font: "Fira Math")

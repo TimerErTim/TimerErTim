@@ -24,7 +24,7 @@ arg "<github-username>" env="GITHUB_USERNAME" help="GitHub username for snake co
 arg "<github-token>" env="GITHUB_TOKEN" help="GitHub token for snake contribution graph"
 """
 run = [
-  'GITHUB_TOKEN="$usage_github_token" GITHUB_USERNAME="$usage_github_username" mise run generate-snake ::: generate-typing-banner',
+  'GITHUB_TOKEN="$usage_github_token" GITHUB_USERNAME="$usage_github_username" mise run generate-snake ::: generate-typing-banner ::: generate-spotify-playing',
   "mise run compile:builder",
   "mise run build",
 ]
@@ -65,3 +65,10 @@ mkdir -p out
 curl -o out/typing-banner-light.svg 'https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&duration=2000&pause=1000&color=d66730&center=true&vCenter=true&width=600&lines=Entering+pofile+of+TimerErTim...;impl+Developer+for+TimerErTim;;Compiling+awesome-projects+v1.0...'
 curl -o out/typing-banner-dark.svg 'https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&duration=2000&pause=1000&color=edb76f&center=true&vCenter=true&width=600&lines=Entering+pofile+of+TimerErTim...;impl+Developer+for+TimerErTim;;Compiling+awesome-projects+v1.0...'
 """
+
+[tasks."generate-spotify-playing"]
+description = "Generate spotify playing"
+run = [
+  "mkdir -p out",
+  "curl -o out/spotify-playing.svg 'http://server.timerertim.eu:5000/'",
+]
