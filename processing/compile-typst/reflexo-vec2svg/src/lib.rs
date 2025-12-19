@@ -13,7 +13,7 @@ pub(crate) mod utils;
 
 /// (Text) backend of SVG export.
 pub(crate) mod backend;
-use backend::generate_text;
+pub use backend::generate_text;
 pub use backend::SvgGlyphBuilder;
 pub use backend::SvgText;
 

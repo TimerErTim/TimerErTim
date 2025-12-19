@@ -11,8 +11,8 @@ use reflexo_typst::TypstSystemUniverse;
 use reflexo_typst::args::CompileFontArgs;
 use reflexo_typst::args::CompilePackageArgs;
 use reflexo_typst::system::SystemUniverseBuilder;
-use reflexo_vec2svg::SvgText;
 use reflexo_vec2svg::{ExportFeature, SvgExporter, transform};
+use reflexo_vec2svg::generate_text;
 use typst::foundations::IntoValue;
 
 fn main() -> anyhow::Result<()> {
@@ -159,14 +159,4 @@ pub fn render_svg<EF: ExportFeature>(pages: &TypstPagedDocument) -> String {
     doc.module.prepare_glyphs();
     let svg_text = SvgExporter::<EF>::render(&doc.module, &doc.pages, None);
     generate_text(transform::minify(svg_text))
-}
-
-/// Concatenate a list of [`SvgText`] into a single string.
-pub fn generate_text(text_list: Vec<SvgText>) -> String {
-    let mut string_io = String::new();
-    string_io.reserve(text_list.iter().map(SvgText::estimated_len).sum());
-    for s in text_list {
-        s.write_string_io(&mut string_io);
-    }
-    string_io
 }

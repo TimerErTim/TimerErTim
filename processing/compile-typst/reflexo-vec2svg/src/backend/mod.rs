@@ -19,6 +19,8 @@ use reflexo::vector::{
 };
 use reflexo_typst2vec::utils::ToCssExt;
 
+use crate::utils::clean_svg_header;
+
 pub trait BuildClipPath {
     fn build_clip_path(&mut self, path: &ir::PathItem) -> Fingerprint;
 }
@@ -470,7 +472,8 @@ impl<
     }
 
     fn render_image(&mut self, ctx: &mut C, image_item: &ir::ImageItem) {
-        self.content.push(render_image_item(image_item, ctx.enable_inlined_svg()))
+        self.content
+            .push(render_image_item(image_item, ctx.enable_inlined_svg()))
     }
 
     fn render_content_hint(&mut self, _ctx: &mut C, ch: char) {
@@ -707,13 +710,9 @@ pub fn inline_svg(image: &ir::Image, size: Size) -> String {
 
     let w = size.x.0;
     let h = size.y.0;
-    
-    let cls = if false {
-        r#" class="typst-image""#
-    } else {
-        ""
-    };
-    
+
+    let cls = if false { r#" class="typst-image""# } else { "" };
+
     let styles = image.attrs.iter().map(|attr| match attr {
         ir::ImageAttr::Alt(alt) => {
             format!(r#" alt="{}""#, escape::escape_str::<AttributeEscapes>(alt))
@@ -721,37 +720,48 @@ pub fn inline_svg(image: &ir::Image, size: Size) -> String {
         ir::ImageAttr::ImageRendering(rendering) => format!(r#" image-rendering="{rendering}""#),
     });
     let styles = styles.collect::<Vec<_>>().join(" ");
-    
+
     // Use regex to find and modify the first SVG element's width and height attributes
     let svg_regex = regex::Regex::new(r#"<svg([^>]*)>"#).unwrap();
-    return svg_regex.replace(&svg_content, |caps: &regex::Captures| {
-        let mut attributes = caps[1].to_string();
-        
-        // Extract existing width and height values before removing them
-        let width_regex = regex::Regex::new(r#"\s+width\s*=\s*["']([^"']*)["']"#).unwrap();
-        let height_regex = regex::Regex::new(r#"\s+height\s*=\s*["']([^"']*)["']"#).unwrap();
-        
-        let old_width = width_regex.captures(&attributes).and_then(|caps| caps.get(1)).map(|m| m.as_str().to_string());
-        let old_height = height_regex.captures(&attributes).and_then(|caps| caps.get(1)).map(|m| m.as_str().to_string());
-        
-        // Remove existing width and height attributes if they exist
-        attributes = width_regex.replace_all(&attributes, "").to_string();
-        attributes = height_regex.replace_all(&attributes, "").to_string();
-        
-        // Check if viewBox already exists
-        let viewbox_regex = regex::Regex::new(r#"\s+viewBox\s*=\s*["'][^"']*["']"#).unwrap();
-        let has_viewbox = viewbox_regex.is_match(&attributes);
-        
-        // If no viewBox exists but we had original width and height, add viewBox
-        let viewbox_attr = if !has_viewbox && old_width.is_some() && old_height.is_some() {
-            format!(r#" viewBox="0 0 {} {}""#, old_width.unwrap(), old_height.unwrap())
-        } else {
-            String::new()
-        };
+    return clean_svg_header(svg_regex
+        .replace(&svg_content, |caps: &regex::Captures| {
+            let mut attributes = caps[1].to_string();
 
-        // Add the new width and height attributes
-        format!(r#"<svg{attributes}{viewbox_attr}{styles}{cls} width="{w}" height="{h}">"#)
-    }).to_string();
+            // Extract existing width and height values before removing them
+            let width_regex = regex::Regex::new(r#"\s+width\s*=\s*["']([^"']*)["']"#).unwrap();
+            let height_regex = regex::Regex::new(r#"\s+height\s*=\s*["']([^"']*)["']"#).unwrap();
+
+            let old_width = width_regex
+                .captures(&attributes)
+                .and_then(|caps| caps.get(1))
+                .map(|m| m.as_str().to_string());
+            let old_height = height_regex
+                .captures(&attributes)
+                .and_then(|caps| caps.get(1))
+                .map(|m| m.as_str().to_string());
+
+            // Remove existing width and height attributes if they exist
+            attributes = width_regex.replace_all(&attributes, "").to_string();
+            attributes = height_regex.replace_all(&attributes, "").to_string();
+
+            // Check if viewBox already exists
+            let viewbox_regex = regex::Regex::new(r#"\s+viewBox\s*=\s*["'][^"']*["']"#).unwrap();
+            let has_viewbox = viewbox_regex.is_match(&attributes);
+
+            // If no viewBox exists but we had original width and height, add viewBox
+            let viewbox_attr = if !has_viewbox && old_width.is_some() && old_height.is_some() {
+                format!(
+                    r#" viewBox="0 0 {} {}""#,
+                    old_width.unwrap(),
+                    old_height.unwrap()
+                )
+            } else {
+                String::new()
+            };
+
+            // Add the new width and height attributes
+            format!(r#"<svg{attributes}{viewbox_attr}{styles}{cls} width="{w}" height="{h}">"#)
+        }).as_ref());
 }
 
 /// Render a raster or SVG image into svg text.
