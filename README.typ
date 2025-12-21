@@ -19,7 +19,9 @@
 
 #align(center)[
   #set text(size: 12pt)
-  Early-Adopter *Rustacean* | #link("https://typst.app/")[*Typst*] Enthusiast | *FH Hagenberg* Student
+  Early-Adopter *Rustacean* #box(baseline: 15%, image("assets/Ferris.svg", width: 16pt)) |
+  *Typst* #box(baseline: 15%, image("assets/typst.jpeg", width: 14pt)) Enthusiast | 
+  *FH Hagenberg* #box(baseline: 15%, stroke: 1pt + themed(black, white), radius: 3pt, fill: white, image("assets/fhooe-logo.svg", width: 20pt)) Student 
   #line(length: 98%, stroke: (paint: gradient.linear(color.rgb("#B7410E"), color.rgb("#239DAD"), color.rgb("#5E8036")), thickness: 3pt, cap: "round"))
 ]
 
