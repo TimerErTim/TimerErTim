@@ -1,3 +1,5 @@
+#import "@preview/fletcher:0.5.8" as fletcher: node, edge
+
 #import "lib.typ": *
 
 #set page(margin: (x: 0pt, y: 4pt), height: auto)
@@ -6,8 +8,13 @@
 #show math.equation: set text(font: "Fira Math")
 #set text(fill: themed(black, white))
 #show heading: it => {
+  set block(below: 0.75em)
   set text(size: 16pt - it.level * 1pt)
   it
+  if it.level == 1 {
+    v(-1em)
+    line(length: 100%, stroke: themed(black, white).transparentize(50%))
+  }
 }
 #set rect(stroke: themed(black, white))
 #set par(spacing: 1em)
@@ -20,26 +27,113 @@
 #align(center)[
   #set text(size: 12pt)
   Early-Adopter *Rustacean* #box(baseline: 15%, image("assets/Ferris.svg", width: 16pt)) |
-  *Typst* #box(baseline: 15%, image("assets/typst.jpeg", width: 14pt)) Enthusiast | 
-  *FH Hagenberg* #box(baseline: 15%, stroke: 1pt + themed(black, white), radius: 3pt, fill: white, image("assets/fhooe-logo.svg", width: 20pt)) Student 
-  #line(length: 98%, stroke: (paint: gradient.linear(color.rgb("#B7410E"), color.rgb("#239DAD"), color.rgb("#5E8036")), thickness: 3pt, cap: "round"))
+  *Typst* #box(baseline: 15%, image("assets/typst.jpeg", width: 14pt)) Enthusiast |
+  *FH Hagenberg* #box(baseline: 15%, stroke: 1pt + themed(black, white), radius: 3pt, fill: white, image("assets/fhooe-logo.svg", width: 20pt)) Student
+  #line(length: 98%, stroke: (
+    paint: gradient.linear(color.rgb("#B7410E"), color.rgb("#239DAD"), color.rgb("#5E8036")),
+    thickness: 3pt,
+    cap: "round",
+  ))
 ]
-
-#image(themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"))
-
-#pad(x: 2em, grid(
-  columns: (1fr, 1fr),
-  //stroke: 1pt,
-  grid.cell()[
-    #show: rect.with(radius: 6pt)
-    Last seen vibing to:
-    #pad(y: -1em, image(themed("out/spotify-playing.svg", "out/spotify-playing.svg")))
-  ]
-))
 
 = Github Stats
 
+== Snakey Snek
+
+#pad(1pt, rect(
+  radius: 6pt,
+  inset: (top: -1em, x: -0.25em),
+  fill: themed(white, black).transparentize(90%),
+  image(themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"), width: 100%),
+))
+
+#pad(grid(
+  columns: (1fr, 1fr),
+  stroke: 1pt,
+  grid.cell()[
+    //#image(themed("out/github-stats-light.svg", "out/github-stats-dark.svg"))
+  ],
+  grid.cell()[
+    //#image(themed("out/github-stats-dark.svg", "out/github-stats-dark.svg"))
+  ],
+))
+
+= The Vibes
+
+#pad(1pt, rect(
+  radius: 6pt,
+  inset: (bottom: -1em),
+  image(themed("out/spotify-playing.svg", "out/spotify-playing.svg"), width: 100%),
+))
+
+= How this README works
+
+Using a modified version of the `reflexo-vec2svg` crate, we can embed SVG `#image(...)` elements directly into the compiled Typst document when exported as SVG itself.
+
+#let titled-content-card(
+  title: [],
+  content,
+  width: 1fr,
+) = {
+  grid(
+    columns: (width,),
+    inset: 0.32em,
+    grid.header(
+      grid.cell(
+        inset: 0pt,
+        align: center,
+        box(
+          fill: luma(themed(240, 256 - 240)),
+          stroke: 1pt + luma(themed(120, 256 - 120)),
+          inset: 0.32em,
+          radius: (top-left: 0.32em, top-right: 0.32em),
+          width: 1fr,
+          title,
+        ),
+      ),
+    ),
+    grid.cell(
+      inset: 0pt,
+      align: center,
+      box(
+        fill: luma(themed(256, 256 - 256)),
+        stroke: 1pt + luma(themed(120, 256 - 120)),
+        inset: 0.32em,
+        radius: (bottom-left: 0.32em, bottom-right: 0.32em),
+        width: 1fr,
+        content,
+      ),
+    ),
+  )
+}
+
+#fletcher.diagram(
+  debug: 0,
+  node-inset: 0pt,
+  node((0, 0), titled-content-card(width: 20em, title: [Standard File])[
+    #set align(left)
+    #set text(size: 10pt)
+    #rect(radius: 5pt, fill: themed(black, white).transparentize(95%), lorem(15))
+    #raw(lang: "typst", "#image(\"snake.svg\")")
+    #rect(radius: 5pt, fill: themed(black, white).transparentize(95%), lorem(10))
+  ]),
+  node((0, 1), titled-content-card(width: 20em, title: [`snake.svg`])[
+    #image(themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"), width: 100%)
+  ]),
+  node(enclose: ((1, 0), (1, 1)), titled-content-card(width: 20em, title: [Finished File])[
+    #set align(left)
+    #set text(size: 10pt)
+    #rect(radius: 5pt, fill: themed(black, white).transparentize(95%), lorem(15))
+    #v(-1em)
+    #image(themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"), width: 100%)
+    #rect(radius: 5pt, fill: themed(black, white).transparentize(95%), lorem(10))
+  ]),
+  edge((0, 0), (1, 0), "-|>"),
+  edge((0, 1), (1, 1), "-|>"),
+)
+
+#v(1em)
 #align(center)[
-  #set text(size: 10pt, fill: themed(gray, gray.lighten(50%)))
-  built on: #now.display() | Typst version: custom combiled
+  #set text(size: 10pt, fill: themed(gray.darken(50%), gray.lighten(50%)))
+  Last compilation: *#now.display()* | Typst based on: *#sys.version* | Deployed to: *GitHub*
 ]
