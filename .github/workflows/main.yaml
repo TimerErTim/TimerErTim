@@ -1,12 +1,12 @@
 name: update profile README.md
 
 on:
-  schedule: # run automatically every 15 minutes
-    - cron: "*/15 * * * *"
+  # schedule: # run automatically every 15 minutes
+  #   - cron: "*/15 * * * *"
   workflow_dispatch: # allows to manually run the job at any time
-  push: # run on every push on the master branch
-    branches:
-      - main
+  # push: # run on every push on the master branch
+  #   branches:
+  #     - main
 
 jobs:
   update-readme:
