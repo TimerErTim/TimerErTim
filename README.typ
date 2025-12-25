@@ -83,7 +83,7 @@ Using a modified version of the `reflexo-vec2svg` crate, we can embed SVG `#imag
         inset: 0pt,
         align: center,
         box(
-          fill: luma(themed(240, 256 - 240)),
+          fill: luma(themed(100, 256 - 100)).transparentize(90%),
           stroke: 1pt + luma(themed(120, 256 - 120)),
           inset: 0.32em,
           radius: (top-left: 0.32em, top-right: 0.32em),
@@ -96,7 +96,6 @@ Using a modified version of the `reflexo-vec2svg` crate, we can embed SVG `#imag
       inset: 0pt,
       align: center,
       box(
-        fill: luma(themed(256, 256 - 256)),
         stroke: 1pt + luma(themed(120, 256 - 120)),
         inset: 0.32em,
         radius: (bottom-left: 0.32em, bottom-right: 0.32em),
@@ -107,20 +106,21 @@ Using a modified version of the `reflexo-vec2svg` crate, we can embed SVG `#imag
   )
 }
 
-#fletcher.diagram(
+#align(center, fletcher.diagram(
   debug: 0,
   node-inset: 0pt,
-  node((0, 0), titled-content-card(width: 20em, title: [Standard File])[
+  edge-stroke: themed(black, white),
+  node((0, 0), titled-content-card(width: 17em, title: [Standard File])[
     #set align(left)
     #set text(size: 10pt)
     #rect(radius: 5pt, fill: themed(black, white).transparentize(95%), lorem(15))
     #raw(lang: "typst", "#image(\"snake.svg\")")
     #rect(radius: 5pt, fill: themed(black, white).transparentize(95%), lorem(10))
   ]),
-  node((0, 1), titled-content-card(width: 20em, title: [`snake.svg`])[
+  node((0, 1), titled-content-card(width: 17em, title: [`snake.svg`])[
     #image(themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"), width: 100%)
   ]),
-  node(enclose: ((1, 0), (1, 1)), titled-content-card(width: 20em, title: [Finished File])[
+  node(enclose: ((1, 0), (1, 1)), titled-content-card(width: 17em, title: [Finished File])[
     #set align(left)
     #set text(size: 10pt)
     #rect(radius: 5pt, fill: themed(black, white).transparentize(95%), lorem(15))
@@ -130,7 +130,7 @@ Using a modified version of the `reflexo-vec2svg` crate, we can embed SVG `#imag
   ]),
   edge((0, 0), (1, 0), "-|>"),
   edge((0, 1), (1, 1), "-|>"),
-)
+))
 
 #v(1em)
 #align(center)[
