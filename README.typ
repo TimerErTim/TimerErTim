@@ -3,7 +3,7 @@
 #import "lib.typ": *
 
 #set page(margin: (x: 0pt, y: 4pt), height: auto)
-#set text(size: 14pt, font: "Roboto")
+#set text(size: 14pt, font: ("Roboto", "Noto Color Emoji"))
 #show raw: set text(font: "JetBrains Mono")
 #show math.equation: set text(font: "Fira Math")
 #set text(fill: themed(black, white))
@@ -11,10 +11,6 @@
   set block(below: 0.75em)
   set text(size: 16pt - it.level * 1pt)
   it
-  if it.level == 1 {
-    v(-1em)
-    line(length: 100%, stroke: themed(black, white).transparentize(50%))
-  }
 }
 #set rect(stroke: themed(black, white))
 #set par(spacing: 1em)
@@ -38,7 +34,7 @@
 
 = Github Stats
 
-== Snakey Snek
+== Snakey Snek 🐍
 
 #pad(1pt, rect(
   radius: 6pt,
@@ -58,7 +54,7 @@
   ],
 ))
 
-= The Vibes
+= 🎵 Coding Soundtrack 🎵
 
 #pad(1pt, rect(
   radius: 6pt,
@@ -130,7 +126,7 @@ Using a modified version of the `reflexo-vec2svg` crate, we can embed SVG `#imag
     #rect(radius: 5pt, stroke: themed(red, red), image(
       themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"),
       width: 100%,
-    ), inset: (top: -0.25em))
+    ), inset: (top: -0.5em, rest: 0em))
     #lorem(10)
   ]),
   edge((0, 0), (1, 0), "-|>"),
