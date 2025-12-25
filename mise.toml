@@ -14,7 +14,7 @@ TYPST_FONT_PATHS = "{{ config_root }}/fonts"
 description = "Build README.typ and write to dist/"
 run = [
   "mkdir -p dist/",
-  "processing/compile-typst/target/release/compile-typst README.typ dist/"
+  "processing/compile-typst/target/release/compile-typst README.typ dist/",
 ]
 
 [tasks.rebuild]
@@ -34,9 +34,7 @@ description = "Compile the compile-typst crate"
 dir = "{{ config_root }}/processing/compile-typst"
 sources = ["src/**/*.rs", "Cargo.toml", "Cargo.lock"]
 outputs = ["compile-typst"]
-run = [
-  "cargo build --release",
-]
+run = ["cargo build --release"]
 
 
 [tasks."generate-snake"]
@@ -61,15 +59,81 @@ node processing/snk/index.js
 [tasks."generate-typing-banner"]
 description = "Generate typing banner"
 run = """
-mkdir -p out
+#!/usr/bin/env bash
 export LINES="Hi+there+👋,+I'm+TimerErTim!;Welcome+on+my+profile!;It's+compiled+with+Typst;https://github.com/TimerErTim"
-curl -o out/typing-banner-light.svg "https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&duration=2000&pause=1000&color=d66730&center=true&vCenter=true&width=600&lines=${LINES}"
-curl -o out/typing-banner-dark.svg "https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&duration=2000&pause=1000&color=edb76f&center=true&vCenter=true&width=600&lines=${LINES}"
+mise run download-url "https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&duration=2000&pause=1000&color=d66730&center=true&vCenter=true&width=600&lines=${LINES}" out/typing-banner-light.svg
+mise run download-url "https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&duration=2000&pause=1000&color=edb76f&center=true&vCenter=true&width=600&lines=${LINES}" out/typing-banner-dark.svg
 """
 
 [tasks."generate-spotify-playing"]
 description = "Generate spotify playing"
+run = { tasks = [
+  "download-url http://server.timerertim.eu:5000 out/spotify-playing.svg",
+] }
+
+[tasks."generate-github-stats"]
+description = "Generate github stats"
 run = [
-  "mkdir -p out",
-  "curl -o out/spotify-playing.svg 'http://server.timerertim.eu:5000/'",
+  { tasks = [
+    "download-url https://github-readme-stats.vercel.app/api?username=TimerErTim&show_icons=true&theme=default&hide_border=true&bg_color=000000&title_color=fabd2f out/github-stats-light.svg",
+    "download-url https://github-readme-stats.vercel.app/api?username=TimerErTim&show_icons=true&theme=dark&hide_border=true&bg_color=00000000 out/github-stats-dark.svg",
+  ] },
 ]
+
+[tasks."download-url"]
+description = "Download URL"
+usage = """
+arg "<url>" help="URL to download"
+arg "<file>" help="Filename to save to"
+"""
+run = """
+#!/usr/bin/env node
+const fs = require('fs');
+const path = require('path');
+
+const urlStr = process.env.usage_url.trim();
+const filename = process.env.usage_file.trim();
+
+try {
+  const url = new URL(urlStr);
+  const protocol = url.protocol === 'https:' ? require('https') : require('http');
+
+  protocol.get(urlStr, (response) => {
+    const { statusCode } = response;
+
+    if (statusCode !== 200) {
+      console.error(`Warning: Download failed... Status ${statusCode}`);
+      response.resume(); 
+      process.exit(0);
+    }
+
+    // Ensure parent directory exists only after confirming 200 OK
+    const dir = path.dirname(filename);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+
+    const file = fs.createWriteStream(filename);
+    response.pipe(file);
+
+    file.on('finish', () => {
+      file.close();
+      console.log(`Successfully saved: ${filename}`);
+    });
+
+    file.on('error', (err) => {
+      console.error(`FS Error: ${err.message}`);
+      // Clean up partial file if write fails
+      if (fs.existsSync(filename)) fs.unlinkSync(filename);
+    });
+
+  }).on('error', (err) => {
+    console.error(`Warning: Network Error... ${err.message}`);
+    process.exit(0);
+  });
+
+} catch (err) {
+  console.error(`Error: ${err.message}\n`, `URL: ${urlStr}\n`, `Filename: ${filename}`);
+  process.exit(1);
+}
+"""
