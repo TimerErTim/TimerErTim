@@ -1,4 +1,4 @@
-#import "@preview/fletcher:0.5.8" as fletcher: node, edge
+#import "@preview/fletcher:0.5.8" as fletcher: edge, node
 
 #import "lib.typ": *
 
@@ -110,23 +110,28 @@ Using a modified version of the `reflexo-vec2svg` crate, we can embed SVG `#imag
   debug: 0,
   node-inset: 0pt,
   edge-stroke: themed(black, white),
-  node((0, 0), titled-content-card(width: 17em, title: [Standard File])[
+  spacing: (4em, 1em),
+  node((0, 0), titled-content-card(width: 17em, title: [`source.typ`])[
     #set align(left)
     #set text(size: 10pt)
-    #rect(radius: 5pt, fill: themed(black, white).transparentize(95%), lorem(15))
-    #raw(lang: "typst", "#image(\"snake.svg\")")
-    #rect(radius: 5pt, fill: themed(black, white).transparentize(95%), lorem(10))
+    ```typ
+    #lorem(15)
+    #image("snake.svg")
+    #lorem(10)
+    ```
   ]),
   node((0, 1), titled-content-card(width: 17em, title: [`snake.svg`])[
     #image(themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"), width: 100%)
   ]),
-  node(enclose: ((1, 0), (1, 1)), titled-content-card(width: 17em, title: [Finished File])[
+  node(enclose: ((1, 0), (1, 1)), titled-content-card(width: 17em, title: [`output.svg`])[
     #set align(left)
-    #set text(size: 10pt)
-    #rect(radius: 5pt, fill: themed(black, white).transparentize(95%), lorem(15))
-    #v(-1em)
-    #image(themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"), width: 100%)
-    #rect(radius: 5pt, fill: themed(black, white).transparentize(95%), lorem(10))
+    #set text(size: 10pt, fill: themed(black, white).transparentize(25%))
+    #lorem(15)
+    #rect(radius: 5pt, stroke: themed(red, red), image(
+      themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"),
+      width: 100%,
+    ), inset: (top: -0.25em))
+    #lorem(10)
   ]),
   edge((0, 0), (1, 0), "-|>"),
   edge((0, 1), (1, 1), "-|>"),
