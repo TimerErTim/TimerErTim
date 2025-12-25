@@ -132,6 +132,8 @@ Using a modified version of the `reflexo-vec2svg` crate, we can embed SVG `#imag
   edge((0, 1), (1, 1), "-|>"),
 ))
 
+This effectively allows us to have animated SVGs in the README.
+
 #v(1em)
 #align(center)[
   #set text(size: 10pt, fill: themed(gray.darken(50%), gray.lighten(50%)))
