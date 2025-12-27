@@ -3,14 +3,20 @@
 #import "lib.typ": *
 
 #set page(margin: (x: 0pt, y: 4pt), height: auto)
-#set text(size: 14pt, font: ("Roboto", "Noto Color Emoji"))
+#set text(size: 12pt, font: ("Roboto", "Noto Color Emoji"))
 #show raw: set text(font: "JetBrains Mono")
 #show math.equation: set text(font: "Fira Math")
 #set text(fill: themed(black, white))
 #show heading: it => {
   set block(below: 0.75em)
-  set text(size: 16pt - it.level * 1pt)
+  set text(size: 16pt - it.level * 1.5pt)
   it
+  if it.level == 1 {
+    set align(center)
+    v(-0.5em)
+    line(length: 100%, stroke: themed(gray.lighten(25%), gray).transparentize(50%))
+    v(0.5em)
+  }
 }
 #set rect(stroke: themed(black, white))
 #set par(spacing: 1em)
