@@ -38,34 +38,55 @@
   ))
 ]
 
-= Github Stats
+#v(1em)
+I specialize in writing code that is safe, concurrent, and occasionally panics. I program mainly for fun and learning. Exploring ideas and finding solutions to non-existent problems is my passion.
 
-== Snakey Snek 🐍
+= Overview
+
+#grid(
+  columns: (1fr, 1fr),
+  stroke: 1pt + themed(gray.darken(25%), gray.lighten(25%)),
+  inset: 1em,
+  align: center,
+  grid.cell()[
+    👀 The Metrics 🤌
+    // #image(themed("out/github-stats-light.svg", "out/github-stats-dark.svg"), width: 100%),
+  ],
+  grid.cell()[
+    ⚙️ Tech Stack 🔧
+
+    #pad(image(themed("out/tech-stack-light.svg", "out/tech-stack-dark.svg"), width: 100%), y: -1em, x: -1em)
+
+    🎵 Coding Soundtrack 🎵
+
+    #rect(
+      radius: 6pt,
+      inset: (bottom: -4pt),
+      fill: themed(gray.transparentize(90%), white.transparentize(50%)),
+      stroke: 1pt + themed(gray.darken(25%), gray.lighten(25%)),
+      image(themed("out/spotify-playing.svg", "out/spotify-playing.svg"), width: 100%),
+    )
+    
+    #set align(left)
+    #let done = box(rect(width: 1em, height: 1em, radius: 30%, stroke: themed(gray.darken(25%), gray.lighten(25%)), fill: themed(gray, gray))[
+      #place(center + top, sym.checkmark, clearance: 0pt, dy: -3pt)
+    ], baseline: 1pt)
+    #let pending = box(rect(width: 1em, height: 1em, radius: 30%, stroke: themed(gray.darken(25%), gray.lighten(25%))), baseline: 1pt)
+
+    📝 TODO:\
+    #done Rewrite everything in Rust\
+    #pending Actually finish side projects\
+    #pending Expand this TODO list
+  ],
+)
+
+== Contributions with Snakey Snek 🐍
 
 #pad(1pt, rect(
   radius: 6pt,
   inset: (top: -1em, x: -0.25em),
   fill: themed(white, black).transparentize(90%),
   image(themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"), width: 100%),
-))
-
-#pad(grid(
-  columns: (1fr, 1fr),
-  stroke: 1pt,
-  grid.cell()[
-    //#image(themed("out/github-stats-light.svg", "out/github-stats-dark.svg"))
-  ],
-  grid.cell()[
-    //#image(themed("out/github-stats-dark.svg", "out/github-stats-dark.svg"))
-  ],
-))
-
-= 🎵 Coding Soundtrack 🎵
-
-#pad(1pt, rect(
-  radius: 6pt,
-  inset: (bottom: -1em),
-  image(themed("out/spotify-playing.svg", "out/spotify-playing.svg"), width: 100%),
 ))
 
 = How this README works
@@ -129,10 +150,15 @@ Using a modified version of the `reflexo-vec2svg` crate, we can embed SVG `#imag
     #set align(left)
     #set text(size: 10pt, fill: themed(black, white).transparentize(25%))
     #lorem(15)
-    #rect(radius: 5pt, stroke: themed(red, red), image(
-      themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"),
-      width: 100%,
-    ), inset: (top: -0.5em, rest: 0em))
+    #rect(
+      radius: 5pt,
+      stroke: themed(red, red),
+      image(
+        themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"),
+        width: 100%,
+      ),
+      inset: (top: -0.5em, rest: 0em),
+    )
     #lorem(10)
   ]),
   edge((0, 0), (1, 0), "-|>"),
