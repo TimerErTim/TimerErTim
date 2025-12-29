@@ -50,7 +50,9 @@ I specialize in writing code that is safe, concurrent, and occasionally panics. 
   align: center,
   grid.cell()[
     👀 The Metrics 🤌
-    // #image(themed("out/github-stats-light.svg", "out/github-stats-dark.svg"), width: 100%),
+    #image(themed("out/overview-light.svg", "out/overview-dark.svg"), width: 100%)
+    #v(-1em)
+    #image(themed("out/languages-light.svg", "out/languages-dark.svg"), width: 100%)
   ],
   grid.cell()[
     ⚙️ Tech Stack 🔧

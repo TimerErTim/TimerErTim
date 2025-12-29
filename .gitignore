@@ -4,3 +4,4 @@ out/
 *.local
 tmp/
 dist/
+.venv/

@@ -5,10 +5,12 @@ lockfile = true
 [env]
 "_".file = "{{ config_root }}/.env.local"
 TYPST_FONT_PATHS = "{{ config_root }}/fonts"
+_.python.venv = { path = ".venv", create = true }
 
 [tools]
-"rust" = "nightly"
-"node" = "latest"
+rust = "nightly"
+node = "latest"
+python = "3.8"
 
 [tasks.build]
 description = "Build README.typ and write to dist/"
@@ -24,7 +26,7 @@ arg "<github-username>" env="GITHUB_USERNAME" help="GitHub username for snake co
 arg "<github-token>" env="GITHUB_TOKEN" help="GitHub token for snake contribution graph"
 """
 run = [
-  'GITHUB_TOKEN="$usage_github_token" GITHUB_USERNAME="$usage_github_username" mise run generate-snake ::: generate-typing-banner ::: generate-spotify-playing ::: generate-tech-stack',
+  'GITHUB_TOKEN="$usage_github_token" GITHUB_USERNAME="$usage_github_username" mise run generate-snake ::: generate-typing-banner ::: generate-spotify-playing ::: generate-tech-stack ::: generate-github-stats',
   "mise run compile:builder",
   "mise run build",
 ]
@@ -73,11 +75,25 @@ run = { tasks = [
 
 [tasks."generate-github-stats"]
 description = "Generate github stats"
+usage = """
+arg "<github-token>" env="GITHUB_TOKEN" help="GitHub token for github stats"
+arg "<github-username>" env="GITHUB_USERNAME" help="GitHub username for github stats"
+"""
+depends = [
+  "generate-github-stats:install-packages",
+]
+dir = "processing/github-readme-stats"
+env = { EXCLUDE_FORKED_REPOS = true }
 run = [
-  { tasks = [
-    "download-url https://github-readme-stats.vercel.app/api?username=TimerErTim&show_icons=true&theme=default&hide_border=true&bg_color=000000&title_color=fabd2f out/github-stats-light.svg",
-    "download-url https://github-readme-stats.vercel.app/api?username=TimerErTim&show_icons=true&theme=dark&hide_border=true&bg_color=00000000 out/github-stats-dark.svg",
-  ] },
+  'ACCESS_TOKEN="$usage_github_token" GITHUB_ACTOR="$usage_github_username" python3 generate_images.py',
+  "cp generated/* ../../out/",
+]
+
+[tasks."generate-github-stats:install-packages"]
+description = "Install packages for generate-github-stats"
+run = [
+  "pip install --upgrade pip setuptools wheel",
+  "pip install -r processing/github-readme-stats/requirements.txt",
 ]
 
 [tasks."generate-tech-stack"]
