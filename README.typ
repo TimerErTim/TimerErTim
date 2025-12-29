@@ -91,7 +91,7 @@ I specialize in writing code that is safe, concurrent, and occasionally panics. 
 
 = How this README works
 
-Using a modified version of the `reflexo-vec2svg` crate, we can embed SVG `#image(...)` elements directly into the compiled Typst document when exported as SVG itself.
+Using a modified version of the `reflexo-vec2svg` crate, we can inline SVG `#image(...)` elements directly into the SVG exported Typst document.
 
 #let titled-content-card(
   title: [],
