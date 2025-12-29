@@ -43,10 +43,10 @@ I specialize in writing code that is safe, concurrent, and occasionally panics. 
 
 = Overview
 
-#grid(
+#pad(x: 1em, grid(
   columns: (1fr, 1fr),
-  stroke: 1pt + themed(gray.darken(25%), gray.lighten(25%)),
-  inset: 1em,
+  //stroke: 1pt + themed(gray.darken(25%), gray.lighten(25%)),
+  gutter: 2em,
   align: center,
   grid.cell()[
     👀 The Metrics 🤌
@@ -64,8 +64,8 @@ I specialize in writing code that is safe, concurrent, and occasionally panics. 
     #rect(
       radius: 6pt,
       inset: (bottom: -4pt),
-      fill: themed(gray.transparentize(90%), white.transparentize(50%)),
-      stroke: 1pt + themed(gray.darken(25%), gray.lighten(25%)),
+      stroke: themed(black.lighten(60%), white.darken(60%)),
+      fill: themed(white.transparentize(100%), black.lighten(5%)),
       image(themed("out/spotify-playing.svg", "out/spotify-playing.svg"), width: 100%),
     )
     
@@ -80,14 +80,14 @@ I specialize in writing code that is safe, concurrent, and occasionally panics. 
     #pending Actually finish side projects\
     #pending Expand this TODO list
   ],
-)
+))
 
 == Contributions with Snakey Snek 🐍
 
 #pad(1pt, rect(
   radius: 6pt,
   inset: (top: -1em, x: -0.25em),
-  fill: themed(white, black).transparentize(90%),
+  stroke: themed(black.lighten(60%), white.darken(60%)),
   image(themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"), width: 100%),
 ))
 
