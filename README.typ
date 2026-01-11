@@ -39,7 +39,7 @@
 ]
 
 #v(1em)
-I specialize in writing code that is safe, concurrent, and occasionally panics. I program mainly for fun and learning. Exploring ideas and finding solutions to non-existent problems is my passion.
+In 2019 I started my journey specializing in writing code that is safe, blazingly-fast and occasionally panics. I program mainly for fun and learning, because I think programming, algorithms and advanced yet simple logic can be beautiful. Exploring ideas and finding solutions to non-existent problems is my passion.
 
 = Overview
 
