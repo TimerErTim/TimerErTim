@@ -14,7 +14,10 @@
   if it.level == 1 {
     set align(center)
     v(-0.5em)
-    line(length: 100%, stroke: themed(gray.lighten(25%), gray).transparentize(50%))
+    line(
+      length: 100%,
+      stroke: themed(gray.lighten(25%), gray).transparentize(50%),
+    )
     v(0.5em)
   }
 }
@@ -23,7 +26,10 @@
 
 `> Load successful.`
 
-#align(center, image(themed("out/typing-banner-light.svg", "out/typing-banner-dark.svg")))
+#align(center, image(themed(
+  "out/typing-banner-light.svg",
+  "out/typing-banner-dark.svg",
+)))
 #v(-1em)
 
 #align(center)[
@@ -32,7 +38,11 @@
   *Typst* #box(baseline: 15%, image("assets/typst.jpeg", width: 14pt)) Enthusiast |
   *FH Hagenberg* #box(baseline: 15%, stroke: 1pt + themed(black, white), radius: 3pt, fill: white, image("assets/fhooe-logo.svg", width: 20pt)) Student
   #line(length: 98%, stroke: (
-    paint: gradient.linear(color.rgb("#B7410E"), color.rgb("#239DAD"), color.rgb("#5E8036")),
+    paint: gradient.linear(
+      color.rgb("#B7410E"),
+      color.rgb("#239DAD"),
+      color.rgb("#5E8036"),
+    ),
     thickness: 3pt,
     cap: "round",
   ))
@@ -50,14 +60,27 @@ I specialize in writing code that is safe, concurrent, and occasionally panics. 
   align: center,
   grid.cell()[
     👀 The Metrics 🤌
-    #image(themed("out/overview-light.svg", "out/overview-dark.svg"), width: 100%)
+    #image(
+      themed("out/overview-light.svg", "out/overview-dark.svg"),
+      width: 100%,
+    )
     #v(-1em)
-    #image(themed("out/languages-light.svg", "out/languages-dark.svg"), width: 100%)
+    #image(
+      themed("out/languages-light.svg", "out/languages-dark.svg"),
+      width: 100%,
+    )
   ],
   grid.cell()[
     ⚙️ Tech Stack 🔧
 
-    #pad(image(themed("out/tech-stack-light.svg", "out/tech-stack-dark.svg"), width: 100%), y: -1em, x: -1em)
+    #pad(
+      image(
+        themed("out/tech-stack-light.svg", "out/tech-stack-dark.svg"),
+        width: 100%,
+      ),
+      y: -1em,
+      x: -1em,
+    )
 
     🎵 Coding Soundtrack 🎵
 
@@ -66,14 +89,32 @@ I specialize in writing code that is safe, concurrent, and occasionally panics. 
       inset: (bottom: -4pt),
       stroke: themed(black.lighten(60%), white.darken(60%)),
       fill: themed(white.transparentize(100%), black.lighten(5%)),
-      image(themed("out/spotify-playing.svg", "out/spotify-playing.svg"), width: 100%),
+      image(
+        themed("out/spotify-playing.svg", "out/spotify-playing.svg"),
+        width: 100%,
+      ),
     )
-    
+
     #set align(left)
-    #let done = box(rect(width: 1em, height: 1em, radius: 30%, stroke: themed(gray.darken(25%), gray.lighten(25%)), fill: themed(gray, gray))[
-      #place(center + top, sym.checkmark, clearance: 0pt, dy: -3pt)
-    ], baseline: 1pt)
-    #let pending = box(rect(width: 1em, height: 1em, radius: 30%, stroke: themed(gray.darken(25%), gray.lighten(25%))), baseline: 1pt)
+    #let done = box(
+      rect(
+        width: 1em,
+        height: 1em,
+        radius: 30%,
+        stroke: themed(gray.darken(25%), gray.lighten(25%)),
+        fill: themed(gray, gray),
+      )[
+        #place(center + top, sym.checkmark, clearance: 0pt, dy: -3pt)
+      ],
+      baseline: 1pt,
+    )
+    #let pending = box(
+      rect(width: 1em, height: 1em, radius: 30%, stroke: themed(
+        gray.darken(25%),
+        gray.lighten(25%),
+      )),
+      baseline: 1pt,
+    )
 
     📝 TODO:\
     #done Rewrite everything in Rust\
@@ -88,7 +129,13 @@ I specialize in writing code that is safe, concurrent, and occasionally panics. 
   radius: 6pt,
   inset: (top: -1em, x: -0.25em),
   stroke: themed(black.lighten(60%), white.darken(60%)),
-  image(themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"), width: 100%),
+  image(
+    themed(
+      "out/snake-contribution-graph-light.svg",
+      "out/snake-contribution-graph-dark.svg",
+    ),
+    width: 100%,
+  ),
 ))
 
 = How this README works
@@ -146,9 +193,18 @@ Using a modified version of the `reflexo-vec2svg` crate, we can inline SVG `#ima
     ```
   ]),
   node((0, 1), titled-content-card(width: 17em, title: [`snake.svg`])[
-    #image(themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"), width: 100%)
+    #image(
+      themed(
+        "out/snake-contribution-graph-light.svg",
+        "out/snake-contribution-graph-dark.svg",
+      ),
+      width: 100%,
+    )
   ]),
-  node(enclose: ((1, 0), (1, 1)), titled-content-card(width: 17em, title: [`output.svg`])[
+  node(enclose: ((1, 0), (1, 1)), titled-content-card(
+    width: 17em,
+    title: [`output.svg`],
+  )[
     #set align(left)
     #set text(size: 10pt, fill: themed(black, white).transparentize(25%))
     #lorem(15)
@@ -156,7 +212,10 @@ Using a modified version of the `reflexo-vec2svg` crate, we can inline SVG `#ima
       radius: 5pt,
       stroke: themed(red, red),
       image(
-        themed("out/snake-contribution-graph-light.svg", "out/snake-contribution-graph-dark.svg"),
+        themed(
+          "out/snake-contribution-graph-light.svg",
+          "out/snake-contribution-graph-dark.svg",
+        ),
         width: 100%,
       ),
       inset: (top: -0.5em, rest: 0em),

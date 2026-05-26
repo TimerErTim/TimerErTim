@@ -1,7 +1,10 @@
 experimental_monorepo_root = true
 
 [monorepo]
-config_roots = ["profile-readme"]
+config_roots = [
+  "profile-readme",
+  "logo",
+]
 
 [settings]
 experimental = true
@@ -11,3 +14,16 @@ lockfile = true
 MISE_EXPERIMENTAL = true
 TYPST_FONT_PATHS = "{{ config_root }}/fonts"
 TYPST_ROOT = "{{ config_root }}"
+
+[vars]
+REPO_ROOT = "{{ config_root }}"
+
+[tools]
+typst = "0.14.2"
+
+[tasks."fmt:typst"]
+description = "Format all Typst files in the repository"
+tools.typstyle = "latest"
+run = [
+  "typstyle -i ./ --timing",
+]

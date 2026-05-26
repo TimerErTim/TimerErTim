@@ -1,0 +1,43 @@
+[tasks."build"]
+description = "Build all logos"
+depends = ["build:?*"]
+
+[tasks."prepare:output_dir"]
+hide = true
+dir = "{{ vars.REPO_ROOT }}"
+run = [
+  "mkdir -p out/logo/",
+]
+
+[tasks."build:icon"]
+description = "Build default icon logo"
+depends = ["prepare:output_dir"]
+run = [
+  "typst compile icon.typ ../out/logo/icon.svg --format svg",
+    "typst compile icon.typ --ppi 10000 ../out/logo/icon.png --format png",
+]
+
+[tasks."build:youtube"]
+description = "Build YouTube logo"
+depends = ["prepare:output_dir"]
+run = [
+  "typst compile youtube.typ ../out/logo/youtube.svg --format svg",
+  "typst compile youtube.typ --ppi 10000 ../out/logo/youtube.png --format png",
+]
+
+
+[tasks."build:subtitled"]
+description = "Build subtitled logo"
+depends = ["prepare:output_dir"]
+run = [
+  "typst compile subtitled.typ ../out/logo/subtitled.svg --format svg",
+  "typst compile subtitled.typ --ppi 1500 ../out/logo/subtitled.png --format png",
+]
+
+[tasks."build:banner"]
+description = "Build banner logo"
+depends = ["prepare:output_dir"]
+run = [
+  "typst compile banner.typ ../out/logo/banner.svg --format svg",
+  "typst compile banner.typ --ppi 1500 ../out/logo/banner.png --format png",
+]
