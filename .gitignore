@@ -5,3 +5,6 @@ out/
 tmp/
 dist/
 .venv/
+
+# Windows shenanigans
+*:Zone.Identifier
