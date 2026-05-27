@@ -6,6 +6,7 @@ config_roots = [
   "blogs",
   "blogs/*",
   "logo",
+  "website",
 ]
 
 [settings]
