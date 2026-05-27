@@ -1,0 +1,28 @@
+
+
+["prepare:output_dir"]
+description = "Prepare the output directory"
+dir = "{{ vars.REPO_ROOT }}"
+run = [
+  "mkdir -p out/blogs/{{ config_root | basename }}"
+]
+
+["export"]
+description = "Export the blog in all formats"
+depends = ["export:?*"]
+
+["export:downloadable-pdf"]
+description = "Export the blog as a downloadable PDF"
+depends = ["prepare:output_dir"]
+run = [
+  "typst compile --format pdf --pdf-standard a-3u main.typ '{{ vars.REPO_ROOT }}/out/blogs/{{ config_root | basename }}/main.pdf'"
+]
+
+["export:vector-format"]
+description = "Export the blog as pre-compiled vector format for embedding in web"
+depends = ["prepare:output_dir"]
+run = [
+  'typst-ts-cli compile -e main.typ --workspace {{ env.TYPST_ROOT }} --output "{{ vars.REPO_ROOT }}/out/blogs/{{ config_root | basename }}" --format vector',
+  'typst-ts-cli compile -e main.typ --workspace {{ env.TYPST_ROOT }} --output "{{ vars.REPO_ROOT }}/out/blogs/{{ config_root | basename }}" --dynamic-layout',
+]
+

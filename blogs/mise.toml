@@ -1,0 +1,7 @@
+[tools]
+"cargo:https://github.com/Myriad-Dreamin/typst.ts" = { version = "tag:v0.7.0-rc2", crate = "typst-ts-cli" }
+typst = "0.14.2"
+
+[tasks."export-all"]
+description = "Export all blogs"
+depends = ["//blogs/...:export"]

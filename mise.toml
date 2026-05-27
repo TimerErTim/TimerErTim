@@ -3,6 +3,8 @@ experimental_monorepo_root = true
 [monorepo]
 config_roots = [
   "profile-readme",
+  "blogs",
+  "blogs/*",
   "logo",
 ]
 
