@@ -10,7 +10,8 @@
 
 #{
   show: box
-  scale(box(logo(background-color: white)), 45%, reflow: true)
+  show: move.with(dy: 0.5pt, dx: 0.5pt)
+  scale(box(logo(background-color: white)), 50%, reflow: true)
 }
 #set text(size: 4pt, font: "Roboto", fill: foreground-color, tracking: -0pt)
 #h(-1em + 0.5pt)
