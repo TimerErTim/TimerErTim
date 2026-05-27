@@ -14,7 +14,7 @@
     background-color: white,
   )
 }
-#set text(size: 4pt, font: "Source Code Pro")
+#set text(size: 4pt, font: "Roboto")
 #v(-3em)
 TimerErTim
 
