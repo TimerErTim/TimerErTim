@@ -1,8 +1,8 @@
-[vars]
-REPO_ROOT = "{{ config_root | dirname }}"
-
 [tools]
 node = "latest"
+
+[deps.npm]
+auto = true
 
 [tasks.dev]
 description = "Start Next.js dev server"
@@ -20,4 +20,6 @@ run = ["mkdir -p out/website/"]
 [tasks."export"]
 description = "Copy static export to repo out/website/"
 depends = ["build", "prepare:output_dir"]
-run = ["cp -r out/* {{ vars.REPO_ROOT }}/out/website/"]
+run = [
+    "rm -rf {{ vars.REPO_ROOT }}/out/website/",
+    "cp -r out/ {{ vars.REPO_ROOT }}/out/website/"]

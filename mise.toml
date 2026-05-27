@@ -17,6 +17,7 @@ lockfile = true
 MISE_EXPERIMENTAL = true
 TYPST_FONT_PATHS = "{{ config_root }}/fonts"
 TYPST_ROOT = "{{ config_root }}"
+TIMERERTIM_REPO_ROOT = "{{ config_root }}"
 
 [vars]
 REPO_ROOT = "{{ config_root }}"
