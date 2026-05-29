@@ -1,0 +1,116 @@
+#:schema https://mise.en.dev/schema/mise-task.json
+
+["prepare:output_dir"]
+description = "Prepare the output directory"
+run = ["mkdir -p build/"]
+
+["prepare:clear-output-dir"]
+description = "Clear the output directory"
+run = ["rm -rf build/*"]
+
+["export:ref-artifacts"]
+description = "Export the blog as content references for change detection"
+#https://reproducible-builds.org/specs/source-date-epoch/
+usage = """
+arg "<timestamp>" help="The reproducable unix timestamp (seconds) for the build" env="SOURCE_DATE_EPOCH"
+"""
+run = [
+    "rm -rf build/refs/ && mkdir -p build/refs/",
+    "SOURCE_DATE_EPOCH={{ usage.timestamp }} mise run export:pdf ::: build:typst-ts-cli --theme light --format pdf --output build/refs/main_light_1024pt.pdf ::: build:typst-ts-cli --theme dark --format pdf --output build/refs/main_dark_1024pt.pdf",
+    "cp build/main.pdf build/refs/",
+]
+
+["build:ref-hash"]
+description = "Build the hash of the content references"
+usage = """
+arg "<timestamp>" help="The reproducable unix timestamp (seconds) for the build" env="SOURCE_DATE_EPOCH"
+"""
+depends = ["export:ref-artifacts {{ usage.timestamp }}"]
+run = [
+    "find build/refs/ -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d ' ' -f 1 > build/refs.sha256sum",
+]
+
+["export:metadata"]
+description = "Export the blogs metadata as JSON"
+depends = ["prepare:output_dir"]
+tools.jq = "1.8.1"
+run = [
+    '''
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    TMPDIR="$(mktemp -d)"
+    cleanup() { rm -rf "${TMPDIR}"; }
+    trap cleanup EXIT
+
+    # Parallel queries for author, title, description, keywords
+    {
+      typst query main.typ "<blog-author-meta>" --field value --one > "${TMPDIR}/author" &
+      typst query main.typ "<blog-title-meta>" --field value --one > "${TMPDIR}/title" &
+      typst query main.typ "<blog-description-meta>" --field value --one > "${TMPDIR}/description" &
+      typst query main.typ "<blog-keywords-meta>" --field value --one > "${TMPDIR}/keywords" &
+      wait
+    }
+
+    author=$(cat "${TMPDIR}/author")
+    title=$(cat "${TMPDIR}/title")
+    description=$(cat "${TMPDIR}/description")
+    keywords=$(cat "${TMPDIR}/keywords")
+
+    jq -n --argjson author "$author" \
+          --argjson title "$title" \
+          --argjson description "$description" \
+          --argjson keywords "$keywords" \
+          '{author: $author, title: $title, description: $description, keywords: $keywords}' \
+    > build/metadata.json
+    '''
+]
+
+["export:pdf"]
+description = "Export the blog as a downloadable PDF"
+depends = ["prepare:output_dir"]
+run = [
+    "typst compile --format pdf --pdf-standard a-3u main.typ 'build/main.pdf' --input x-format=pdf",
+]
+
+["build:typst-ts-cli"]
+description = "Build using typst-ts-cli"
+usage = """
+flag "--theme <theme>" help="The theme to use for the export" default="light" {
+  choices "light" "dark"
+}
+flag "--page-width <page-width>" help="The width of the page" default="1024pt"
+flag "--output <output>" help="The output directory or file" default="build/"
+flag "--format <format>" help="The format to use for the export" default="svg_html"
+"""
+run = '''
+#!/usr/bin/env bash
+set -euo pipefail
+
+TMPDIR="$(mktemp -d)"
+cleanup() { rm -rf "${TMPDIR}"; }
+trap cleanup EXIT
+
+typst-ts-cli compile -e main.typ --workspace {{ env.TYPST_ROOT }} --input "x-theme={{ usage.theme }}" --input   "x-page-width={{ usage.page_width }}" --input x-target=web --input x-format={{ usage.format }} --output "${TMPDIR}/" --format {{ usage.format }}
+output_file="$(find "${TMPDIR}" -maxdepth 1 -type f | head -n 1)"
+mv "${output_file}" "{{ usage.output }}"
+'''
+
+["export:web-format:single"]
+description = "Export the blog as format for embedding in web"
+depends = ["prepare:output_dir"]
+usage = """
+flag "--theme <theme>" help="The theme to use for the export" default="light" {
+  choices "light" "dark"
+}
+flag "--page-width <page-width>" help="The width of the page" default="1024pt"
+"""
+depends_post = ["//blogs:process_svg_typsttscli_gt0.7.0-rc2 build/main_{{ usage.theme }}_{{ usage.page_width }}.svg"]
+run = [
+    '''
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    mise run :build:typst-ts-cli --theme {{ usage.theme }} --page-width {{ usage.page_width }} --format svg_html --output "build/main_{{ usage.theme }}_{{ usage.page_width }}.svg"
+    '''
+]

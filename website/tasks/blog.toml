@@ -1,0 +1,121 @@
+#:schema https://mise.en.dev/schema/mise-task.json
+
+["prepare:website-dist-dir"]
+description = "Prepare the website output directory"
+dir = "{{ vars.REPO_ROOT }}"
+run = ["mkdir -p dist/website/api/blogs/{{ config_root | basename }}/"]
+
+["prepare:website-build-dir"]
+description = "Prepare the website build directory"
+dir = "{{ vars.REPO_ROOT }}"
+run = ["mkdir -p build/website/blogs/{{ config_root | basename }}/"]
+
+["website-embedding"]
+description = "Embed the blog in the website build directory"
+depends = ["website-embedding:?*"]
+
+["website-embedding:pdf"]
+description = "Add the blog pdf to the website build directory"
+depends = ["prepare:website-build-dir", "export:pdf"]
+run = ["cp build/main.pdf {{ vars.REPO_ROOT }}/build/website/blogs/{{ config_root | basename }}/{{ config_root | basename }}.pdf"]
+
+["website-embedding:export"]
+description = "Export the all website embedding files"
+depends = ["prepare:website-build-dir", "export:metadata"]
+depends_post = ["website-embedding:compress"]
+env.REPO_ROOT = "{{ vars.REPO_ROOT }}"
+file = "{{ vars.REPO_ROOT }}/website/tasks/scripts/embed-blog.py"
+
+["website-embedding:compress"]
+description = "Compress the website embedding files using brotli"
+dir = "{{ vars.REPO_ROOT }}/build/website/blogs/{{ config_root | basename }}"
+sources = ["build.json", "*.svg"]
+outputs = ["build.json", "*.svg.br"]
+tools.node = "26"
+run = '''
+#!/usr/bin/env node
+const fs = require('fs');
+const path = require('path');
+const zlib = require('zlib');
+
+const buildJson = fs.readFileSync('build.json', 'utf8');
+const buildData = JSON.parse(buildJson);
+
+const compressionRefVariantFilename = buildData.compressionRefVariant;
+const compressionRefVariantPath = compressionRefVariantFilename;
+const compressionRef = fs.readFileSync(compressionRefVariantPath);
+
+// Helper to Brotli compress as a Promise
+function brotliCompressAsync(data, options) {
+    return new Promise((resolve, reject) => {
+        zlib.brotliCompress(data, options, (err, compressed) => {
+            if (err) return reject(err);
+            resolve(compressed);
+        });
+    });
+}
+
+function brotliDecompressAsync(data, options) {
+    return new Promise((resolve, reject) => {
+        zlib.brotliDecompress(data, options, (err, decompressed) => {
+            if (err) return reject(err);
+            resolve(decompressed);
+        });
+    });
+}
+
+async function compressVariants() {
+    // Track promises to await all
+    let updatedVariants = [];
+    for (const variant of buildData.variants) {
+        const filePath = variant.filename;
+        const fileContent = fs.readFileSync(filePath, 'utf8');
+
+        const compressedFilename = variant.filename + '.br';
+        const compressedFullPath = compressedFilename;
+
+        const compressedBinary = await brotliCompressAsync(
+            fileContent,
+            {
+                params: {
+                    // BROTLI_PARAM_MODE_TEXT tells the encoder it is looking at code/strings
+                    [zlib.constants.BROTLI_PARAM_MODE]: zlib.constants.BROTLI_MODE_TEXT,
+                    [zlib.constants.BROTLI_PARAM_QUALITY]: 11, // Maximum compression
+                },
+                dictionary: variant.filename === compressionRefVariantFilename ? undefined : compressionRef // Skip dictionary for the compression ref variant so we can decompress it later
+            }
+        );
+
+        fs.writeFileSync(compressedFullPath, compressedBinary);
+
+        const decompressedBinary = await brotliDecompressAsync(compressedBinary, {
+            dictionary: variant.filename === compressionRefVariantFilename ? undefined : compressionRef
+        });
+        if (decompressedBinary.toString() !== fileContent) {
+            throw new Error(`Decompressed binary does not match original file content for ${variant.filename}`);
+        }
+
+        console.log(`Delta compr. ${variant.filename}! Size: ${compressedBinary.byteLength} bytes.`);
+
+        // Add compressedFilename property
+        updatedVariants.push({
+            ...variant,
+            compressedFilename: compressedFilename
+        });
+    }
+
+    // Write out new buildData with updated variants array
+    const updatedBuildData = {
+        ...buildData,
+        variants: updatedVariants
+    };
+    fs.writeFileSync('build.json', JSON.stringify(updatedBuildData, null, 2));
+    console.log("Updated build.json written with compressedFilename values.");
+}
+
+// Run and propagate errors
+compressVariants().catch(e => {
+    console.error(e);
+    process.exit(1);
+});
+'''

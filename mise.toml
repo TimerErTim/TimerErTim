@@ -24,6 +24,8 @@ REPO_ROOT = "{{ config_root }}"
 
 [tools]
 typst = "0.14.2"
+uv = "0.11.7"
+jujutsu = "0.41.0"
 
 [tasks."fmt:typst"]
 description = "Format all Typst files in the repository"
