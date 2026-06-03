@@ -2,8 +2,8 @@
 
 import { TransitBlogMetadata } from "@/model/blogs";
 import { useMemo } from "react";
-import { decompress } from "@/libs/brotli";
-import type { BrotliDecodeOptions } from "@/libs/brotli";
+import { decompress } from "brotli-compress/js";
+import type { BrotliDecodeOptions } from "@/libs/brotli/decode";
 import { useEffect, useState } from "react";
 
 
@@ -13,19 +13,21 @@ export default function RenderBlog({ blogData }: { blogData: TransitBlogMetadata
         options?: BrotliDecodeOptions,
     ) {
         const binaryString = atob(base64String);
-        const buffer = Uint8Array.from(binaryString, c => c.charCodeAt(0));
+        const buffer = Int8Array.from(binaryString, c => c.charCodeAt(0));
         const decompressed = decompress(buffer, options);
         const decoder = new TextDecoder("utf-8");
         return decoder.decode(decompressed);
     }
     
     const decompressedRefSvg = useMemo(() => {
-        const refFileBase64 = blogData.variants.find(v => v.filename === blogData.compressionRefFilename)?.compressedBase64;
-        if (!refFileBase64) {
+        const refVariant = blogData.variants.find(v => v.filename === blogData.compressionRefFilename);
+        if (!refVariant) {
             throw new Error(`Reference file ${blogData.compressionRefFilename} not found for decompression`);
         }
+        const refFileBase64 = refVariant.compressedBase64;
         // Modern way: decode base64 to Uint8Array using Uint8Array.from and atob
-        return decompressBase64String(refFileBase64);
+        const decompressed = decompressBase64String(refFileBase64);
+        return decompressed;
     }, [blogData]);
 
 
@@ -87,10 +89,11 @@ export default function RenderBlog({ blogData }: { blogData: TransitBlogMetadata
         if (variant.filename === blogData.compressionRefFilename) {
             return decompressedRefSvg;
         }
-        return decompressedRefSvg;
-        //return decompressBase64String(variant.compressedBase64, {
-        //    customDictionary: new TextEncoder().encode(decompressedRefSvg),
-        //});
+        //return decompressedRefSvg;
+        const refVariant = blogData.variants.find(v => v.filename === blogData.compressionRefFilename);
+        return decompressBase64String(variant.compressedBase64, {
+            customDictionary: Buffer.from(new TextEncoder().encode(atob(refVariant?.compressedBase64!))),
+        });
     }, [blogData, theme, windowWidth, decompressedRefSvg]);
     
     return (

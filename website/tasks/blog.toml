@@ -37,16 +37,18 @@ run = '''
 const fs = require('fs');
 const path = require('path');
 const zlib = require('zlib');
+const fflate = require('{{ vars.REPO_ROOT }}/website/node_modules/fflate');
 
 const buildJson = fs.readFileSync('build.json', 'utf8');
 const buildData = JSON.parse(buildJson);
 
 const compressionRefVariantFilename = buildData.compressionRefVariant;
 const compressionRefVariantPath = compressionRefVariantFilename;
-const compressionRef = fs.readFileSync(compressionRefVariantPath);
+const compressionRef = fs.readFileSync(compressionRefVariantPath, 'utf8');
 
-// Helper to Brotli compress as a Promise
-function brotliCompressAsync(data, options) {
+console.log('Using compression dict ', compressionRefVariantPath);
+
+function compressAsync(data, options) {
     return new Promise((resolve, reject) => {
         zlib.brotliCompress(data, options, (err, compressed) => {
             if (err) return reject(err);
@@ -55,12 +57,18 @@ function brotliCompressAsync(data, options) {
     });
 }
 
-function brotliDecompressAsync(data, options) {
+// Helper to Brotli compress as a Promise
+function compressAsync(data, options) {
     return new Promise((resolve, reject) => {
-        zlib.brotliDecompress(data, options, (err, decompressed) => {
-            if (err) return reject(err);
-            resolve(decompressed);
-        });
+        const output = fflate.deflateSync(data, options);
+        resolve(output);
+    });
+}
+
+function decompressAsync(data, options) {
+    return new Promise((resolve, reject) => {
+        const decompressed = fflate.inflateSync(data, options);
+        resolve(decompressed);
     });
 }
 
@@ -70,28 +78,29 @@ async function compressVariants() {
     for (const variant of buildData.variants) {
         const filePath = variant.filename;
         const fileContent = fs.readFileSync(filePath, 'utf8');
+        const fileBytes = new TextEncoder().encode(fileContent);    
 
         const compressedFilename = variant.filename + '.br';
         const compressedFullPath = compressedFilename;
 
-        const compressedBinary = await brotliCompressAsync(
-            fileContent,
+        const compressedBinary = await compressAsync(
+            fileBytes,
             {
-                params: {
-                    // BROTLI_PARAM_MODE_TEXT tells the encoder it is looking at code/strings
-                    [zlib.constants.BROTLI_PARAM_MODE]: zlib.constants.BROTLI_MODE_TEXT,
-                    [zlib.constants.BROTLI_PARAM_QUALITY]: 11, // Maximum compression
-                },
-                dictionary: variant.filename === compressionRefVariantFilename ? undefined : compressionRef // Skip dictionary for the compression ref variant so we can decompress it later
+                level: 9,
+                dictionary: variant.filename === compressionRefVariantFilename ? undefined : new TextEncoder().encode(compressionRef)
             }
         );
 
-        fs.writeFileSync(compressedFullPath, compressedBinary);
+        //fs.writeFileSync(compressedFullPath, compressedBinary);
 
-        const decompressedBinary = await brotliDecompressAsync(compressedBinary, {
-            dictionary: variant.filename === compressionRefVariantFilename ? undefined : compressionRef
-        });
-        if (decompressedBinary.toString() !== fileContent) {
+        const decompressedBinary = await decompressAsync(
+            compressedBinary,
+            {
+                dictionary: variant.filename === compressionRefVariantFilename ? undefined : new TextEncoder().encode(compressionRef)
+            }
+        );
+        const decompressedText = new TextDecoder().decode(decompressedBinary);
+        if (decompressedText !== fileContent) {
             throw new Error(`Decompressed binary does not match original file content for ${variant.filename}`);
         }
 
