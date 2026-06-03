@@ -2,12 +2,16 @@
 
 import { TransitBlogMetadata } from "@/model/blogs";
 import { useMemo } from "react";
-import {decompress} from '@nick/brocha'
+import { decompress } from "@/libs/brotli";
+import type { BrotliDecodeOptions } from "@/libs/brotli";
 import { useEffect, useState } from "react";
 
 
 export default function RenderBlog({ blogData }: { blogData: TransitBlogMetadata }) {
-    function decompressBase64String(base64String: string, options: any = {}) {
+    function decompressBase64String(
+        base64String: string,
+        options?: BrotliDecodeOptions,
+    ) {
         const binaryString = atob(base64String);
         const buffer = Uint8Array.from(binaryString, c => c.charCodeAt(0));
         const decompressed = decompress(buffer, options);
@@ -83,9 +87,10 @@ export default function RenderBlog({ blogData }: { blogData: TransitBlogMetadata
         if (variant.filename === blogData.compressionRefFilename) {
             return decompressedRefSvg;
         }
-        // Decode and decompress, similar to ref variant
-        const customDictionary = Buffer.from(decompressedRefSvg, "utf-8");
-        return decompressBase64String(variant.compressedBase64);
+        return decompressedRefSvg;
+        //return decompressBase64String(variant.compressedBase64, {
+        //    customDictionary: new TextEncoder().encode(decompressedRefSvg),
+        //});
     }, [blogData, theme, windowWidth, decompressedRefSvg]);
     
     return (
