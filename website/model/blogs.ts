@@ -54,8 +54,12 @@ export async function loadTransitBlogMetadata(blogSlug: string): Promise<Transit
 
 export async function getAllServerBlogMetadata(): Promise<ServerBlogMetadata[]> {
     const blogs = await fs.readdir(path.join(buildInfo.repoRoot, "build/website/blogs"));
-    return await Promise.all(blogs.map(async (blogSlug) => {
-        const buildData = await fs.readFile(path.join(buildInfo.repoRoot, "build/website/blogs", blogSlug, "build.json"), "utf8");
+    const results = await Promise.all(blogs.map(async (blogSlug) => {
+        const buildJsonPath = path.join(buildInfo.repoRoot, "build/website/blogs", blogSlug, "build.json")
+        if (!await fs.access(buildJsonPath).then(() => true).catch(() => false)) {
+            return null;
+        }
+        const buildData = await fs.readFile(buildJsonPath, "utf8");
         const build = JSON.parse(buildData);
         return {
             slug: build.slug,
@@ -69,4 +73,5 @@ export async function getAllServerBlogMetadata(): Promise<ServerBlogMetadata[]> 
             variants: build.variants,
         };
     }));
+    return results.filter((result): result is ServerBlogMetadata => result !== null);
 }

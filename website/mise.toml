@@ -10,16 +10,19 @@ run = ["npm run dev"]
 
 [tasks.build]
 description = "Build static Next.js export to out/"
+depends = ["//blogs/...:website-embedding"]
 run = ["npm run build"]
 
 [tasks."prepare:output_dir"]
 hide = true
 dir = "{{ vars.REPO_ROOT }}"
-run = ["mkdir -p out/website/"]
+run = ["mkdir -p dist/website/"]
 
 [tasks."export"]
 description = "Copy static export to repo out/website/"
 depends = ["build", "prepare:output_dir"]
 run = [
-    "rm -rf {{ vars.REPO_ROOT }}/out/website/",
-    "cp -r out/ {{ vars.REPO_ROOT }}/out/website/"]
+    "rm -rf {{ vars.REPO_ROOT }}/dist/website/",
+    "cp -r out/ {{ vars.REPO_ROOT }}/dist/website/",
+    "cp -r build/website/blogs/ {{ vars.REPO_ROOT }}/dist/website/api/blogs/"
+]

@@ -3,32 +3,46 @@
 import { TransitBlogMetadata } from "@/model/blogs";
 import { useMemo } from "react";
 import { decompress } from "brotli-compress/js";
-import type { BrotliDecodeOptions } from "@/libs/brotli/decode";
+import { decode } from "@ably/vcdiff-decoder";
 import { useEffect, useState } from "react";
 
 
 export default function RenderBlog({ blogData }: { blogData: TransitBlogMetadata }) {
     function decompressBase64String(
-        base64String: string,
-        options?: BrotliDecodeOptions,
-    ) {
+        base64String: string
+    ): Uint8Array {
         const binaryString = atob(base64String);
-        const buffer = Int8Array.from(binaryString, c => c.charCodeAt(0));
-        const decompressed = decompress(buffer, options);
-        const decoder = new TextDecoder("utf-8");
-        return decoder.decode(decompressed);
+        const buffer = Uint8Array.from(binaryString, c => c.charCodeAt(0));
+        const decompressed = decompress(buffer);
+        return decompressed;
     }
-    
-    const decompressedRefSvg = useMemo(() => {
+
+    function decodeDelta(
+        reference: Uint8Array,
+        deltaBytes: Uint8Array
+    ): Uint8Array {
+        const decompressed = decode(deltaBytes, reference);
+        return decompressed;
+    }
+
+    function decodeText(
+        buffer: Uint8Array
+    ): string {
+        return new TextDecoder('utf-8').decode(buffer);
+    }
+
+    const decompressedRefBytes = useMemo(() => {
         const refVariant = blogData.variants.find(v => v.filename === blogData.compressionRefFilename);
         if (!refVariant) {
             throw new Error(`Reference file ${blogData.compressionRefFilename} not found for decompression`);
         }
         const refFileBase64 = refVariant.compressedBase64;
-        // Modern way: decode base64 to Uint8Array using Uint8Array.from and atob
-        const decompressed = decompressBase64String(refFileBase64);
-        return decompressed;
+        return decompressBase64String(refFileBase64);
     }, [blogData]);
+    
+    const decompressedRefSvg = useMemo(() => {
+        return decodeText(decompressedRefBytes);
+    }, [decompressedRefBytes]);
 
 
     // Helper to choose best-fit variant based on theme and width
@@ -89,11 +103,9 @@ export default function RenderBlog({ blogData }: { blogData: TransitBlogMetadata
         if (variant.filename === blogData.compressionRefFilename) {
             return decompressedRefSvg;
         }
-        //return decompressedRefSvg;
-        const refVariant = blogData.variants.find(v => v.filename === blogData.compressionRefFilename);
-        return decompressBase64String(variant.compressedBase64, {
-            customDictionary: Buffer.from(new TextEncoder().encode(atob(refVariant?.compressedBase64!))),
-        });
+        const decompressedDelta = decompressBase64String(variant.compressedBase64);
+        const decodedDelta = decodeDelta(decompressedRefBytes, decompressedDelta);
+        return decodeText(decodedDelta);
     }, [blogData, theme, windowWidth, decompressedRefSvg]);
     
     return (
