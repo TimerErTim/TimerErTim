@@ -26,5 +26,4 @@ run = [
     "cp -r out/* {{ vars.REPO_ROOT }}/dist/website/",
     "mkdir -p {{ vars.REPO_ROOT }}/dist/website/api/blogs/",
     "cp -r {{ vars.REPO_ROOT }}/build/website/* {{ vars.REPO_ROOT }}/dist/website/api/blogs/",
-    "jj -R {{ vars.REPO_ROOT }}/dist/website/ util snapshot"
 ]
