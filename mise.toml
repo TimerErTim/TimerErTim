@@ -7,6 +7,7 @@ config_roots = [
   "blogs/*",
   "logo",
   "website",
+  "libs/xdelta3",
 ]
 
 [settings]

@@ -1,0 +1,27 @@
+#:schema https://mise.en.dev/schema/mise-task.json
+
+[tools]
+python = "3.8"
+rust = "nightly"
+
+[env]
+UV_PYTHON = { value = "{{ tools.python.path }}", tools = true }
+
+[settings]
+python.uv_venv_auto = "create|source"
+
+[tasks.build]
+sources = ["src/**/*.rs", "Cargo.toml", "Cargo.lock"]
+description = "Build and install the extension into the active venv"
+run = [
+    "uv pip install .",
+]
+
+[tasks.test]
+description = "Run Python tests"
+depends = ["build"]
+run = "uv run pytest -q"
+
+[tasks.check]
+description = "Cargo check without building the Python extension"
+run = "cargo check"
