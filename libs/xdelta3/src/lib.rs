@@ -8,17 +8,17 @@ use ::xdelta3 as xdelta3_rs;
 ///
 /// Returns patch bytes suitable for [`decode`].
 #[pyfunction]
-#[pyo3(signature = (target, source))]
-fn encode(target: &[u8], source: &[u8]) -> PyResult<Vec<u8>> {
-    xdelta3_rs::encode(target, source)
+#[pyo3(signature = (reference, target))]
+fn encode(reference: &[u8], target: &[u8]) -> PyResult<Vec<u8>> {
+    xdelta3_rs::encode(target, reference)
         .ok_or_else(|| PyValueError::new_err("xdelta3 encode failed"))
 }
 
 /// Apply a VCDIFF patch to `source` and return the reconstructed data.
 #[pyfunction]
-#[pyo3(signature = (patch, source))]
-fn decode(patch: &[u8], source: &[u8]) -> PyResult<Vec<u8>> {
-    xdelta3_rs::decode(patch, source)
+#[pyo3(signature = (reference, patch))]
+fn decode(reference: &[u8], patch: &[u8]) -> PyResult<Vec<u8>> {
+    xdelta3_rs::decode(patch, reference)
         .ok_or_else(|| PyValueError::new_err("xdelta3 decode failed"))
 }
 
