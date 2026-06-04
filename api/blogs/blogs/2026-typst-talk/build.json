@@ -1,0 +1,73 @@
+{
+  "slug": "2026-typst-talk",
+  "contentHash": "36de173555cc410ffa512904afcda67564f2c476c4e3783d47eb879f3fd875e6",
+  "createdAt": 1780605197,
+  "updatedAt": 1780605197,
+  "compressionRefVariant": "main_light_1024pt.svg",
+  "variants": [
+    {
+      "filename": "main_light_1024pt.svg",
+      "theme": "light",
+      "width_pt": 1024,
+      "compressedFilename": "main_light_1024pt.svg.br"
+    },
+    {
+      "filename": "main_light_960pt.svg",
+      "theme": "light",
+      "width_pt": 960,
+      "compressedFilename": "main_light_960pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_light_768pt.svg",
+      "theme": "light",
+      "width_pt": 768,
+      "compressedFilename": "main_light_768pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_light_640pt.svg",
+      "theme": "light",
+      "width_pt": 640,
+      "compressedFilename": "main_light_640pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_1024pt.svg",
+      "theme": "dark",
+      "width_pt": 1024,
+      "compressedFilename": "main_dark_1024pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_960pt.svg",
+      "theme": "dark",
+      "width_pt": 960,
+      "compressedFilename": "main_dark_960pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_768pt.svg",
+      "theme": "dark",
+      "width_pt": 768,
+      "compressedFilename": "main_dark_768pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_640pt.svg",
+      "theme": "dark",
+      "width_pt": 640,
+      "compressedFilename": "main_dark_640pt.svg.br",
+      "compressionType": "vcdiff"
+    }
+  ],
+  "author": [
+    "John Doe"
+  ],
+  "title": "Typst Talk",
+  "description": "A talk about Typst, hi Nathalie",
+  "keywords": [
+    "Typst",
+    "Talk"
+  ]
+}
