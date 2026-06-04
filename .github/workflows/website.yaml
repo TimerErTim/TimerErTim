@@ -1,0 +1,58 @@
+name: Deploy Website
+
+on:
+  workflow_dispatch:
+  push: # run on every push on the master branch
+    branches:
+      - main
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "push"
+  cancel-in-progress: false
+
+jobs:
+  deploy-website:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install mise
+        uses: jdx/mise-action@v4
+        with:
+          experimental: true # [default: false] enable experimental features
+
+      - name: Cache dependencies
+        uses: actions/cache@v5
+        with:
+          path: |
+            website/node_modules
+            /home/runner/.local/share/mise/
+          key: ${{ runner.os }}-website-dependencies
+
+      - name: Initialize jujutsu
+        run: jj git init --git-repo ./
+      
+      - name: Setup previous gh-pages files  # for memory/persistence
+        run: |
+          mkdir -p dist/website/ && jj workspace add --name website-dist dist/website -r 'coalesce(bookmarks(gh-pages), root())'
+
+      - name: Build the website
+        run: cd website && mise deps && mise run :export
+
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v5
+        with:
+          target_branch: gh-pages
+          build_dir: dist/website/
+          keep_history: true
+          jekyll: false
+          fqdn: timerertim.eu
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
