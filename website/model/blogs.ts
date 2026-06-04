@@ -31,8 +31,6 @@ export type BlogVariant = {
     width_pt: number,
     filename: string,
     compressedBase64: string,
-    clearText: string,
-    clearTextBase64: string,
 }
 
 export async function loadTransitBlogMetadata(blogSlug: string): Promise<TransitBlogMetadata> {
@@ -46,8 +44,6 @@ export async function loadTransitBlogMetadata(blogSlug: string): Promise<Transit
             width_pt: variant.width_pt,
             filename: variant.filename,
             compressedBase64: await fs.readFile(path.join(buildInfo.repoRoot, "build/website/blogs", blogSlug, variant.compressedFilename), "base64"),
-            clearText: await fs.readFile(path.join(buildInfo.repoRoot, "build/website/blogs", blogSlug, variant.filename), "utf8"),
-            clearTextBase64: await fs.readFile(path.join(buildInfo.repoRoot, "build/website/blogs", blogSlug, variant.filename), "base64"),
         }))),
     }
 }

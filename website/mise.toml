@@ -23,6 +23,9 @@ description = "Copy static export to repo out/website/"
 depends = ["build", "prepare:output_dir"]
 run = [
     "rm -rf {{ vars.REPO_ROOT }}/dist/website/",
+    "jj workspace forget website-dist; jj workspace add {{ vars.REPO_ROOT }}/dist/website/ --name website-dist -r 'coalesce(website-dist, root())'",
     "cp -r out/ {{ vars.REPO_ROOT }}/dist/website/",
-    "cp -r build/website/blogs/ {{ vars.REPO_ROOT }}/dist/website/api/blogs/"
+    "mkdir -p {{ vars.REPO_ROOT }}/dist/website/api/blogs/",
+    "cp -r {{ vars.REPO_ROOT }}/build/website/. {{ vars.REPO_ROOT }}/dist/website/api/blogs/",
+    "jj -R {{ vars.REPO_ROOT }}/dist/website/ workspace update-stale"
 ]

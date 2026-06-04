@@ -1,6 +1,4 @@
 import { getAllServerBlogMetadata, loadTransitBlogMetadata } from "@/model/blogs";
-import { notFound } from "next/navigation";
-import TypstDocument from "@/components/typst-document";
 import { readFile } from "node:fs/promises";
 import RenderBlog from "./render-blog";
 

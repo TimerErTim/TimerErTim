@@ -8,6 +8,10 @@ import { useEffect, useState } from "react";
 
 
 export default function RenderBlog({ blogData }: { blogData: TransitBlogMetadata }) {
+    const inBrowser = typeof window != "undefined"
+    // Defer actual svg decompression until CSR for lighter html
+    const [initialRender, setInitialRender] = useState(true)
+
     function decompressBase64String(
         base64String: string
     ): Uint8Array {
@@ -31,6 +35,10 @@ export default function RenderBlog({ blogData }: { blogData: TransitBlogMetadata
         return new TextDecoder('utf-8').decode(buffer);
     }
 
+    useEffect(() => {
+        setInitialRender(false);
+    }, []);
+    
     const decompressedRefBytes = useMemo(() => {
         const refVariant = blogData.variants.find(v => v.filename === blogData.compressionRefFilename);
         if (!refVariant) {
@@ -43,7 +51,6 @@ export default function RenderBlog({ blogData }: { blogData: TransitBlogMetadata
     const decompressedRefSvg = useMemo(() => {
         return decodeText(decompressedRefBytes);
     }, [decompressedRefBytes]);
-
 
     // Helper to choose best-fit variant based on theme and width
     function selectVariant(variants: TransitBlogMetadata["variants"], theme: "light" | "dark", windowWidth: number) {
@@ -110,7 +117,10 @@ export default function RenderBlog({ blogData }: { blogData: TransitBlogMetadata
     
     return (
         <div>
-            <div dangerouslySetInnerHTML={{ __html: svgContent }} suppressHydrationWarning />
+            {inBrowser && !initialRender ?
+            <div dangerouslySetInnerHTML={{ __html: svgContent }} suppressHydrationWarning/> :
+            <div/>
+}
         </div>
     );
 }
