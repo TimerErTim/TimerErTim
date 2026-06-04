@@ -5,11 +5,12 @@
 #import "../template/components/xhtml.typ": xhtml
 
 #set document(
-  title: "Typst Talk",
-  description: "A talk about Typst, hi Nathalie",
-  author: "John Doe",
-  keywords: ("Typst", "Talk"),
+  title: "Writing a static blog with Typst",
+  description: "How I used Typst to write an internet blog in NextJS and statically hosting it efficiently with brotli compression and vcdiff patching on GitHub.",
+  author: "Tim Peko a.k.a TimerErTim",
+  keywords: ("Typst", "SSG", "NextJS", "mise-en-place", "Compression", "Patching", "GitHub", "brotli", "vcdiff"),
 )
+
 #blog-metadata()
 #set page(
   width: eval(web-page-width),
@@ -53,3 +54,5 @@ Let's add a #link("https://lilaq.org/")[lilaq] diagram for good measure:\
     smooth: true
   )
 )
+
+Brotli customDictionary compression to python xdelta3 to create a vcdiff patch.
