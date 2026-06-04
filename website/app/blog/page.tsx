@@ -1,5 +1,6 @@
 import { title } from "@/components/primitives";
 import { getAllServerBlogMetadata } from "@/model/blogs";
+import Link from "next/link";
 
 export default async function BlogPage() {
   const blogs = await getAllServerBlogMetadata();
@@ -10,9 +11,9 @@ export default async function BlogPage() {
       <div style={{display: 'flex', flexDirection: 'column', gap: '2rem', marginTop: '2rem'}}>
         {blogs.map((blog) => (
           <div key={blog.slug} style={{padding: '1rem', border: '1px solid #eee', borderRadius: '8px'}}>
-            <a href={`/blog/${blog.slug}`} style={{textDecoration: 'none', color: 'inherit'}}>
+            <Link href={`/blog/${blog.slug}`} style={{textDecoration: 'none', color: 'inherit'}}>
               <h2 style={{margin: '0 0 0.25em 0'}}>{blog.title}</h2>
-            </a>
+            </Link>
             <div style={{marginBottom: '0.5em', fontSize: '0.97em', color: '#555'}}>
               {blog.description}
             </div>
