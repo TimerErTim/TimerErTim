@@ -1,8 +1,8 @@
 #let is-web = sys.inputs.at("x-target", default: "classic") == "web"
 #let web-page-width = sys.inputs.at("x-page-width", default: none)
 #let web-theme = sys.inputs.at("x-theme", default: "light")
-#import "../template/components/metadata.typ": blog-metadata
-#import "../template/components/xhtml.typ": xhtml
+#import "../common/components/metadata.typ": blog-metadata
+#import "../common/components/xhtml.typ": xhtml
 
 #set document(
   title: "Writing a static blog with Typst",

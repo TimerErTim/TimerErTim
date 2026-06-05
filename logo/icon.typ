@@ -1,13 +1,13 @@
-#import "../look-and-feel/theme.typ": current-theme as theme
+#import "../look-and-feel/index.typ": themes
 #import "@preview/suiji:0.5.1" as sj
 
-#let brace-color = theme.colors.secondary.at("200")
-#let foreground-color = black
+#let brace-color = themes.light.colors.accent
+#let foreground-color = themes.light.colors.foreground
 #let font = "Consolas"
 
 #let logo(
   brace-color: brace-color,
-  text-color: black,
+  text-color: foreground-color,
   background-color: white.transparentize(100%),
 ) = {
   set text(
@@ -17,16 +17,16 @@
     bottom-edge: -0.2em,
   )
   {
-    set text(fill: text-color, font: "JetBrains Mono", size: 10pt)
+    set text(fill: text-color, font: "JetBrains Mono", size: 10.3pt)
     show block: none
-    place(center + top, dy: 0.37em)[
+    place(center + top, dy: 0.36em)[
       #set align(center)
       #show: box.with(width: 0.55em, height: 0.102em, clip: true)
       T
     ]
   }
 
-  set text(tracking: -0.7pt, stroke: background-color + 0.1pt)
+  set text(tracking: -0.7pt, stroke: background-color + 0.15pt)
   [}{]
 
   // place random falling sand
@@ -50,7 +50,7 @@
       if (y > 5.75) {
         continue
       }
-      place(bottom + center, dx: x * 1pt, dy: -5.725pt + y * 1pt)[
+      place(bottom + center, dx: x * 1pt, dy: -5.925pt + y * 1pt)[
         #rect(
           width: size * 1pt,
           height: size * 1pt,

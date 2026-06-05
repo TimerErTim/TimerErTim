@@ -1,15 +1,13 @@
 #import "icon.typ": logo
-#import "../look-and-feel/theme.typ": load-theme
+#import "../look-and-feel/index.typ": themes
 
-#let dark-theme = load-theme("dark")
-
-#let background-color = dark-theme.colors.background
-#let secondary-color = dark-theme.colors.secondary.at("400")
+#let background-color = themes.dark.colors.base
+#let secondary-color = themes.dark.colors.accent
 #let dark-logo(
   background-color: background-color,
 ) = logo(
-  brace-color: secondary-color,
-  text-color: dark-theme.colors.secondary.at("900"),
+  brace-color: themes.dark.colors.text,
+  text-color: secondary-color,
   background-color: background-color,
 )
 
@@ -17,7 +15,7 @@
   margin: 1pt,
   height: auto,
   width: auto,
-  fill: background-color,
+  fill: gradient.radial(themes.dark.colors.surface, background-color),
 )
 
 #show: circle.with(inset: -0.25pt, stroke: secondary-color + 0.25pt)

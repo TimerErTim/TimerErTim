@@ -8,6 +8,11 @@ auto = true
 description = "Start Next.js dev server"
 run = ["npm run dev"]
 
+[tasks."import:look-and-feel"]
+description = "Import the look and feel"
+depends = ["//look-and-feel:export:json"]
+run = ["cp {{ vars.REPO_ROOT }}/look-and-feel/themes.json {{ vars.REPO_ROOT }}/website/look-and-feel.json"]
+
 [tasks.build]
 description = "Build static Next.js export to out/"
 depends = ["//blogs/...:website-embedding"]

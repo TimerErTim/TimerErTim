@@ -1,4 +1,4 @@
-#import "icon.typ": logo
+#import "icon.typ": logo, foreground-color
 
 #set page(
   margin: 1pt,
@@ -14,7 +14,7 @@
     background-color: white,
   )
 }
-#set text(size: 4pt, font: "Roboto")
+#set text(size: 4pt, font: "Roboto", fill: foreground-color)
 #v(-3em)
 TimerErTim
 
