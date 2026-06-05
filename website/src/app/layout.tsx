@@ -7,7 +7,7 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
-import { PrePaintThemeInjectionScript } from "@/lib/theme/theme-injection";
+import { PrePaintThemeInjectionScript } from "@/lib/theme";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
