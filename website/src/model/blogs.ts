@@ -60,26 +60,31 @@ export async function blogHasPdf(blogSlug: string): Promise<boolean> {
     return fs.access(getBlogPdfFilesystemPath(blogSlug)).then(() => true).catch(() => false);
 }
 
+function parseServerBlogMetadata(build: Record<string, unknown>): ServerBlogMetadata {
+    return {
+        slug: build.slug as string,
+        title: build.title as string,
+        description: build.description as string,
+        keywords: build.keywords as string[],
+        author: build.author as string[],
+        createdAt: new Date((build.createdAt as number) * 1000),
+        updatedAt: new Date((build.updatedAt as number) * 1000),
+        compressionRefVariant: build.compressionRefVariant as string,
+        variants: build.variants as BlogVariantHeader[],
+    };
+}
+
+export async function getServerBlogMetadata(blogSlug: string): Promise<ServerBlogMetadata | null> {
+    const buildJsonPath = path.join(buildInfo.repoRoot, "build/website/blogs", blogSlug, "build.json");
+    if (!await fs.access(buildJsonPath).then(() => true).catch(() => false)) {
+        return null;
+    }
+    const buildData = await fs.readFile(buildJsonPath, "utf8");
+    return parseServerBlogMetadata(JSON.parse(buildData));
+}
+
 export async function getAllServerBlogMetadata(): Promise<ServerBlogMetadata[]> {
     const blogs = await fs.readdir(path.join(buildInfo.repoRoot, "build/website/blogs"));
-    const results = await Promise.all(blogs.map(async (blogSlug) => {
-        const buildJsonPath = path.join(buildInfo.repoRoot, "build/website/blogs", blogSlug, "build.json")
-        if (!await fs.access(buildJsonPath).then(() => true).catch(() => false)) {
-            return null;
-        }
-        const buildData = await fs.readFile(buildJsonPath, "utf8");
-        const build = JSON.parse(buildData);
-        return {
-            slug: build.slug,
-            title: build.title,
-            description: build.description,
-            keywords: build.keywords,
-            author: build.author,
-            createdAt: new Date(build.createdAt * 1000),
-            updatedAt: new Date(build.updatedAt * 1000),
-            compressionRefVariant: build.compressionRefVariant,
-            variants: build.variants,
-        };
-    }));
+    const results = await Promise.all(blogs.map((blogSlug) => getServerBlogMetadata(blogSlug)));
     return results.filter((result): result is ServerBlogMetadata => result !== null);
 }

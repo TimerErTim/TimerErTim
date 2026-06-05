@@ -10,6 +10,7 @@ import { Navbar } from "@/components/navbar";
 import { PrePaintThemeInjectionScript } from "@/theme/theme-injection";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,
