@@ -105,7 +105,9 @@ if previous_reference_hash is None or previous_reference_hash != new_reference_h
     dst_dir = os.path.join(REPO_ROOT, dst_dir_rel)
 
     variants = [
-        BlogSvgVariant(theme=theme, page_width=page_width) for theme in ["light", "dark"] for page_width in [1024, 960, 768, 640]
+        BlogSvgVariant(theme=theme, page_width=page_width)
+        for theme in ["light", "dark"]
+        for page_width in range(320, 1097, 128)
     ]
     compression_ref_variant = variants[0]
     export_blog_variants(variants, dst_dir_rel)

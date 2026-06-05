@@ -1,11 +1,12 @@
 "use client";
 
 import { TransitBlogMetadata } from "@/model/blogs";
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import { decompress } from "brotli-compress/js";
 import { decode } from "@ably/vcdiff-decoder";
 import { useEffect, useState } from "react";
 import { useTheme } from "@/lib/theme";
+import { useContainerWidth } from "@/lib/container-width";
 
 
 export default function RenderBlog({ blogData }: { blogData: TransitBlogMetadata }) {
@@ -54,7 +55,7 @@ export default function RenderBlog({ blogData }: { blogData: TransitBlogMetadata
     }, [decompressedRefBytes]);
 
     // Helper to choose best-fit variant based on theme and width
-    function selectVariant(variants: TransitBlogMetadata["variants"], theme: "light" | "dark", windowWidth: number) {
+    function selectVariant(variants: TransitBlogMetadata["variants"], theme: "light" | "dark", containerWidth: number) {
         // Filter by theme
         const themeVariants = variants.filter(v => v.theme === theme);
         if (themeVariants.length === 0) {
@@ -62,35 +63,23 @@ export default function RenderBlog({ blogData }: { blogData: TransitBlogMetadata
             return variants[0];
         }
         // Sort by width_pt ascending
-        const sorted = [...themeVariants].sort((a, b) => a.width_pt - b.width_pt);
-        // Find the smallest variant that is >= windowWidth, otherwise pick largest
+        const sorted = [...themeVariants].sort((a, b) => b.width_pt - a.width_pt);
+        // Find the largest variant that is <= containerWidth, otherwise pick smallest
         for (const v of sorted) {
-            if (v.width_pt >= windowWidth) return v;
+            if (v.width_pt <= containerWidth) return v;
         }
         return sorted[sorted.length - 1];
     }
 
-    function useWindowWidth() {
-        const [width, setWidth] = useState(
-            typeof window !== "undefined" ? window.innerWidth : 1024
-        );
-        useEffect(() => {
-            const handleResize = () => setWidth(window.innerWidth);
-            window.addEventListener("resize", handleResize);
-            return () => window.removeEventListener("resize", handleResize);
-        }, []);
-        return width;
-    }
-
     const theme = useTheme();
-    const windowWidth = useWindowWidth();
+    const [divRef, divWidth] = useContainerWidth();
 
     // Memoize SVG for current theme and window width
     const svgContent = useMemo(() => {
         // Use actual SVG reference if only one variant
         if (blogData.variants.length === 1) return decompressedRefSvg;
         // Select variant
-        const variant = selectVariant(blogData.variants, theme, windowWidth);
+        const variant = selectVariant(blogData.variants, theme, divWidth);
         if (!variant) {
             return decompressedRefSvg; // fallback
         }
@@ -100,17 +89,16 @@ export default function RenderBlog({ blogData }: { blogData: TransitBlogMetadata
         const decompressedDelta = decompressBase64String(variant.compressedBase64);
         const decodedDelta = decodeDelta(decompressedRefBytes, decompressedDelta);
         return decodeText(decodedDelta);
-    }, [blogData, theme, windowWidth, decompressedRefSvg]);
+    }, [blogData, theme, divWidth, decompressedRefSvg]);
 
     const svgDangerouslySet = useMemo(() => {
         return { __html: svgContent };
     }, [svgContent])
 
-    return inBrowser && !initialRender ?
-        <div
-            dangerouslySetInnerHTML={svgDangerouslySet}
+    return <div
+            dangerouslySetInnerHTML={inBrowser && !initialRender ? svgDangerouslySet : undefined}
             suppressHydrationWarning
-            className="w-full h-full flex items-center justify-center"
-        /> :
-        <div />
+            className="w-full flex items-center justify-center"
+            ref={divRef}
+        />
 }
