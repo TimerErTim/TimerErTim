@@ -53,6 +53,6 @@ jobs:
           build_dir: dist/website/
           keep_history: true
           jekyll: false
-          fqdn: timerertim.eu
+          fqdn: ${{ env.TIMERERTIM_SITE_DOMAIN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
