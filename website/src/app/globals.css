@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "./theme.generated.css";
 
+@source "../**/*.{ts,tsx}";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme {

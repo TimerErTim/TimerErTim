@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const themesPath = join(__dirname, "../look-and-feel.json");
-const outputPath = join(__dirname, "../src/styles/theme.generated.css");
+const outputPath = join(__dirname, "../src/app/theme.generated.css");
 
 const themes = JSON.parse(readFileSync(themesPath, "utf8"));
 
@@ -24,7 +24,7 @@ function normalizeColors(colors) {
   };
 }
 
-function themeVars(colors, prefix) {
+function themeVars(colors) {
   const normalized = normalizeColors(colors);
   return Object.entries(normalized)
     .map(([key, value]) => `  --theme-${key}: ${value};`)
@@ -32,17 +32,15 @@ function themeVars(colors, prefix) {
 }
 
 const { layout } = themes;
-const light = themes.light;
-const dark = themes.dark;
 
 const css = `/* Generated from look-and-feel.json — do not edit */
 :root,
 .light {
-${themeVars(light, "light")}
+${themeVars(themes.light)}
 }
 
 .dark {
-${themeVars(dark, "dark")}
+${themeVars(themes.dark)}
 }
 
 @theme inline {
@@ -58,10 +56,14 @@ ${themeVars(dark, "dark")}
   --color-success: var(--theme-success);
   --color-info: var(--theme-info);
 
-  --font-size-tiny: ${layout.fontSize.tiny}px;
-  --font-size-small: ${layout.fontSize.small}px;
-  --font-size-medium: ${layout.fontSize.medium}px;
-  --font-size-large: ${layout.fontSize.large}px;
+  --text-tiny: ${layout.fontSize.tiny}px;
+  --text-tiny--line-height: ${layout.lineHeight.tiny}px;
+  --text-small: ${layout.fontSize.small}px;
+  --text-small--line-height: ${layout.lineHeight.small}px;
+  --text-medium: ${layout.fontSize.medium}px;
+  --text-medium--line-height: ${layout.lineHeight.medium}px;
+  --text-large: ${layout.fontSize.large}px;
+  --text-large--line-height: ${layout.lineHeight.large}px;
 
   --leading-tiny: ${layout.lineHeight.tiny}px;
   --leading-small: ${layout.lineHeight.small}px;

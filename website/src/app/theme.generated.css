@@ -41,10 +41,14 @@
   --color-success: var(--theme-success);
   --color-info: var(--theme-info);
 
-  --font-size-tiny: 11.2px;
-  --font-size-small: 13.6px;
-  --font-size-medium: 16px;
-  --font-size-large: 18.4px;
+  --text-tiny: 11.2px;
+  --text-tiny--line-height: 16px;
+  --text-small: 13.6px;
+  --text-small--line-height: 20px;
+  --text-medium: 16px;
+  --text-medium--line-height: 24px;
+  --text-large: 18.4px;
+  --text-large--line-height: 28px;
 
   --leading-tiny: 16px;
   --leading-small: 20px;

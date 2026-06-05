@@ -49,16 +49,28 @@ type InternalLinkProps = SharedLinkProps & {
 
 export type AppLinkProps = ExternalLinkProps | InternalLinkProps;
 
+function isExternalLink(props: AppLinkProps): props is ExternalLinkProps {
+  return "external" in props && props.external === true;
+}
+
 export function AppLink(props: AppLinkProps) {
-  const { href, children, className, variant, active, ...rest } = props;
+  const { href, children, className, variant, active } = props;
   const classes = linkStyles({ variant, active, className });
 
-  if ("external" in props && props.external) {
-    const anchorProps = rest as Omit<ComponentProps<"a">, "href" | "children" | "className">;
+  if (isExternalLink(props)) {
+    const {
+      external: _external,
+      href: _href,
+      children: _children,
+      className: _className,
+      variant: _variant,
+      active: _active,
+      ...anchorProps
+    } = props;
     return (
       <a
         className={classes}
-        href={href as string}
+        href={href}
         rel="noopener noreferrer"
         target="_blank"
         {...anchorProps}
@@ -68,7 +80,15 @@ export function AppLink(props: AppLinkProps) {
     );
   }
 
-  const linkProps = rest as Omit<ComponentProps<typeof NextLink>, "href" | "children" | "className">;
+  const {
+    external: _external,
+    href: _href,
+    children: _children,
+    className: _className,
+    variant: _variant,
+    active: _active,
+    ...linkProps
+  } = props;
   return (
     <NextLink className={classes} href={href as Route} {...linkProps}>
       {children}
