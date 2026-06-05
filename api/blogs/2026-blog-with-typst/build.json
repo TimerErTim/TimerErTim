@@ -1,0 +1,80 @@
+{
+  "slug": "2026-blog-with-typst",
+  "contentHash": "981446ba0e914e80be60034e6c079a596f5f181a7f1904e96dc7723e3a86f7af",
+  "createdAt": 1780656669,
+  "updatedAt": 1780656669,
+  "compressionRefVariant": "main_light_1024pt.svg",
+  "variants": [
+    {
+      "filename": "main_light_1024pt.svg",
+      "theme": "light",
+      "width_pt": 1024,
+      "compressedFilename": "main_light_1024pt.svg.br"
+    },
+    {
+      "filename": "main_light_960pt.svg",
+      "theme": "light",
+      "width_pt": 960,
+      "compressedFilename": "main_light_960pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_light_768pt.svg",
+      "theme": "light",
+      "width_pt": 768,
+      "compressedFilename": "main_light_768pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_light_640pt.svg",
+      "theme": "light",
+      "width_pt": 640,
+      "compressedFilename": "main_light_640pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_1024pt.svg",
+      "theme": "dark",
+      "width_pt": 1024,
+      "compressedFilename": "main_dark_1024pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_960pt.svg",
+      "theme": "dark",
+      "width_pt": 960,
+      "compressedFilename": "main_dark_960pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_768pt.svg",
+      "theme": "dark",
+      "width_pt": 768,
+      "compressedFilename": "main_dark_768pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_640pt.svg",
+      "theme": "dark",
+      "width_pt": 640,
+      "compressedFilename": "main_dark_640pt.svg.br",
+      "compressionType": "vcdiff"
+    }
+  ],
+  "author": [
+    "Tim Peko a.k.a TimerErTim"
+  ],
+  "title": "Writing a static blog with Typst",
+  "description": "How I used Typst to write an internet blog in NextJS and statically hosting it efficiently with brotli compression and vcdiff patching on GitHub.",
+  "keywords": [
+    "Typst",
+    "SSG",
+    "NextJS",
+    "mise-en-place",
+    "Compression",
+    "Patching",
+    "GitHub",
+    "brotli",
+    "vcdiff"
+  ]
+}
