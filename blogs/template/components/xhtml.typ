@@ -79,17 +79,17 @@
       "</svg>"
     }
 
-    if sys.inputs.at("x-format", default: "") == "pdf" and sys.inputs.at("x-target", default: "web") == "web" {
+    if sys.inputs.at("x-format", default: "") == "pdf" and sys.inputs.at("x-target", default: "") == "web" {
       show: pdf.artifact
       show: box.with(width: outer-width, height: outer-height)
       html-embed
+    } else {
+      image(
+        bytes(html-embed),
+        alt: "!typst-embed-command",
+        width: outer-width,
+        height: outer-height,
+      )
     }
-
-    image(
-      bytes(html-embed),
-      alt: "!typst-embed-command",
-      width: outer-width,
-      height: outer-height,
-    )
   })
 }
