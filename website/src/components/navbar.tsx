@@ -6,6 +6,7 @@ import NextLink from "next/link";
 import clsx from "clsx";
 
 import { siteConfig } from "@/config/site";
+import { routes } from "@/paths";
 import {
   TwitterIcon,
   GithubIcon,
@@ -39,7 +40,7 @@ export const Navbar = () => {
     <nav className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
       <header className="mx-auto flex h-16 max-w-[1280px] items-center justify-between gap-4 px-6">
         <div className="flex items-center gap-4">
-          <NextLink className="flex items-center gap-1" href="/">
+          <NextLink className="flex items-center gap-1" href={routes.home()}>
             <Logo />
             <p className="font-bold text-inherit">ACME</p>
           </NextLink>

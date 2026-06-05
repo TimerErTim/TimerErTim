@@ -19,6 +19,8 @@ MISE_EXPERIMENTAL = true
 TYPST_FONT_PATHS = "{{ config_root }}/fonts"
 TYPST_ROOT = "{{ config_root }}"
 TIMERERTIM_REPO_ROOT = "{{ config_root }}"
+TIMERERTIM_SITE_DOMAIN = "timerertim.eu"
+TIMERERTIM_SITE_ORIGIN = "https://{{ env.TIMERERTIM_SITE_DOMAIN }}"
 
 [vars]
 REPO_ROOT = "{{ config_root }}"

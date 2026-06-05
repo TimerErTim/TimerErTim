@@ -1,4 +1,5 @@
 import type { ServerBlogMetadata } from "@/model/blogs";
+import { urls } from "@/paths";
 
 function escapeXml(value: string): string {
   return value
@@ -12,19 +13,17 @@ function escapeXml(value: string): string {
 export function buildBlogRssFeed({
   siteName,
   siteDescription,
-  siteUrl,
   blogs,
 }: {
   siteName: string;
   siteDescription: string;
-  siteUrl: string;
   blogs: ServerBlogMetadata[];
 }): string {
-  const feedUrl = `${siteUrl}/feed.xml`;
+  const feedUrl = urls.feed();
   const items = [...blogs]
     .sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime())
     .map((blog) => {
-      const itemUrl = `${siteUrl}/blog/${blog.slug}/`;
+      const itemUrl = urls.blogPost(blog.slug);
       const categories = blog.keywords
         .map((keyword) => `      <category>${escapeXml(keyword)}</category>`)
         .join("\n");
@@ -53,7 +52,7 @@ ${author}${categories}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>${escapeXml(`${siteName} Blog`)}</title>
-    <link>${escapeXml(siteUrl)}</link>
+    <link>${escapeXml(urls.site())}</link>
     <description>${escapeXml(siteDescription)}</description>
     <language>en</language>
     <atom:link href="${escapeXml(feedUrl)}" rel="self" type="application/rss+xml" />

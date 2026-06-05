@@ -1,25 +1,19 @@
 import type { Metadata } from "next";
 
 import type { ServerBlogMetadata } from "@/model/blogs";
-import { getBlogPdfDownloadPath } from "@/model/blogs";
-
-function blogPageUrl(siteUrl: string, slug: string): string {
-  return `${siteUrl}/blog/${slug}/`;
-}
+import { urls } from "@/paths";
 
 export function buildBlogPageMetadata({
   blog,
   siteName,
-  siteUrl,
   hasPdf,
 }: {
   blog: ServerBlogMetadata;
   siteName: string;
-  siteUrl: string;
   hasPdf: boolean;
 }): Metadata {
-  const pageUrl = blogPageUrl(siteUrl, blog.slug);
-  const pdfUrl = `${siteUrl}${getBlogPdfDownloadPath(blog.slug)}`;
+  const pageUrl = urls.blogPost(blog.slug);
+  const pdfUrl = urls.blogPostPdf(blog.slug);
 
   return {
     title: blog.title,
@@ -66,15 +60,13 @@ export function buildBlogPageMetadata({
 export function buildBlogPostingJsonLd({
   blog,
   siteName,
-  siteUrl,
   hasPdf,
 }: {
   blog: ServerBlogMetadata;
   siteName: string;
-  siteUrl: string;
   hasPdf: boolean;
 }): Record<string, unknown> {
-  const pageUrl = blogPageUrl(siteUrl, blog.slug);
+  const pageUrl = urls.blogPost(blog.slug);
 
   return {
     "@context": "https://schema.org",
@@ -96,13 +88,13 @@ export function buildBlogPostingJsonLd({
     publisher: {
       "@type": "Organization",
       name: siteName,
-      url: siteUrl,
+      url: urls.site(),
     },
     ...(hasPdf
       ? {
           encoding: {
             "@type": "MediaObject",
-            contentUrl: `${siteUrl}${getBlogPdfDownloadPath(blog.slug)}`,
+            contentUrl: urls.blogPostPdf(blog.slug),
             encodingFormat: "application/pdf",
           },
         }

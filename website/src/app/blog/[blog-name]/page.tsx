@@ -10,7 +10,6 @@ import {
 import {
     blogHasPdf,
     getAllServerBlogMetadata,
-    getBlogPdfDownloadPath,
     getServerBlogMetadata,
     loadTransitBlogMetadata,
 } from "@/model/blogs";
@@ -36,7 +35,6 @@ export async function generateMetadata({
     return buildBlogPageMetadata({
         blog: blogMetadata,
         siteName: siteConfig.name,
-        siteUrl: siteConfig.url,
         hasPdf,
     });
 }
@@ -53,7 +51,6 @@ export default async function BlogPage({ params }: { params: Promise<{ "blog-nam
     const jsonLd = buildBlogPostingJsonLd({
         blog: blogMetadata,
         siteName: siteConfig.name,
-        siteUrl: siteConfig.url,
         hasPdf,
     });
 
@@ -79,10 +76,7 @@ export default async function BlogPage({ params }: { params: Promise<{ "blog-nam
                 </div>
                 {hasPdf && (
                     <div className="mt-4">
-                        <BlogPdfDownloadButton
-                            slug={p["blog-name"]}
-                            downloadPath={getBlogPdfDownloadPath(p["blog-name"])}
-                        />
+                        <BlogPdfDownloadButton slug={p["blog-name"]} />
                     </div>
                 )}
                 {blogMetadata.description && (

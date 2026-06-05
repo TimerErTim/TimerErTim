@@ -1,6 +1,6 @@
 import { buildInfo } from "@/config/system";
+import { fsPaths } from "@/paths";
 import fs from "node:fs/promises";
-import path from "node:path";
 
 export type BlogVariantHeader = {
     theme: "light" | "dark",
@@ -34,7 +34,7 @@ export type BlogVariant = {
 }
 
 export async function loadTransitBlogMetadata(blogSlug: string): Promise<TransitBlogMetadata> {
-    const buildJsonPath = path.join(buildInfo.repoRoot, "build/website/blogs", blogSlug, "build.json");
+    const buildJsonPath = fsPaths.blogBuildJson(blogSlug);
     const buildJson = await fs.readFile(buildJsonPath, "utf8");
     const build = JSON.parse(buildJson);
     return {
@@ -43,21 +43,16 @@ export async function loadTransitBlogMetadata(blogSlug: string): Promise<Transit
             theme: variant.theme,
             width_pt: variant.width_pt,
             filename: variant.filename,
-            compressedBase64: await fs.readFile(path.join(buildInfo.repoRoot, "build/website/blogs", blogSlug, variant.compressedFilename), "base64"),
+            compressedBase64: await fs.readFile(
+                fsPaths.blogVariantFile(blogSlug, variant.compressedFilename),
+                "base64",
+            ),
         }))),
     }
 }
 
-export function getBlogPdfFilesystemPath(blogSlug: string): string {
-    return path.join(buildInfo.repoRoot, "build/website/blogs", blogSlug, `${blogSlug}.pdf`);
-}
-
-export function getBlogPdfDownloadPath(blogSlug: string): string {
-    return `/blog/${blogSlug}/${blogSlug}.pdf`;
-}
-
 export async function blogHasPdf(blogSlug: string): Promise<boolean> {
-    return fs.access(getBlogPdfFilesystemPath(blogSlug)).then(() => true).catch(() => false);
+    return fs.access(fsPaths.blogPdf(blogSlug)).then(() => true).catch(() => false);
 }
 
 function parseServerBlogMetadata(build: Record<string, unknown>): ServerBlogMetadata {
@@ -75,7 +70,7 @@ function parseServerBlogMetadata(build: Record<string, unknown>): ServerBlogMeta
 }
 
 export async function getServerBlogMetadata(blogSlug: string): Promise<ServerBlogMetadata | null> {
-    const buildJsonPath = path.join(buildInfo.repoRoot, "build/website/blogs", blogSlug, "build.json");
+    const buildJsonPath = fsPaths.blogBuildJson(blogSlug);
     if (!await fs.access(buildJsonPath).then(() => true).catch(() => false)) {
         return null;
     }
@@ -84,7 +79,7 @@ export async function getServerBlogMetadata(blogSlug: string): Promise<ServerBlo
 }
 
 export async function getAllServerBlogMetadata(): Promise<ServerBlogMetadata[]> {
-    const blogs = await fs.readdir(path.join(buildInfo.repoRoot, "build/website/blogs"));
+    const blogs = await fs.readdir(fsPaths.blogsRoot());
     const results = await Promise.all(blogs.map((blogSlug) => getServerBlogMetadata(blogSlug)));
     return results.filter((result): result is ServerBlogMetadata => result !== null);
 }

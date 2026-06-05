@@ -9,7 +9,6 @@ export async function GET() {
   const feed = buildBlogRssFeed({
     siteName: siteConfig.name,
     siteDescription: siteConfig.description,
-    siteUrl: siteConfig.url,
     blogs,
   });
 

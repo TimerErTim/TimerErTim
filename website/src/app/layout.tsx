@@ -8,20 +8,21 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import { PrePaintThemeInjectionScript } from "@/lib/theme";
+import { routes, urls } from "@/paths";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: new URL(urls.site()),
   title: {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
   icons: {
-    icon: "/favicon.ico",
+    icon: routes.favicon(),
   },
   alternates: {
     types: {
-      "application/rss+xml": `${siteConfig.url}/feed.xml`,
+      "application/rss+xml": urls.feed(),
     },
   },
 };

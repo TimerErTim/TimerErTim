@@ -1,63 +1,65 @@
+import { routes, SITE_ORIGIN } from "@/paths";
+
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "Next.js + HeroUI",
   description: "Make beautiful websites regardless of your design experience.",
-  url: "https://timerertim.eu",
+  url: SITE_ORIGIN,
   navItems: [
     {
       label: "Home",
-      href: "/",
+      href: routes.home(),
     },
     {
       label: "Docs",
-      href: "/docs",
+      href: routes.docs(),
     },
     {
       label: "Pricing",
-      href: "/pricing",
+      href: routes.pricing(),
     },
     {
       label: "Blog",
-      href: "/blog",
+      href: routes.blog(),
     },
     {
       label: "About",
-      href: "/about",
+      href: routes.about(),
     },
   ],
   navMenuItems: [
     {
       label: "Profile",
-      href: "/profile",
+      href: routes.profile(),
     },
     {
       label: "Dashboard",
-      href: "/dashboard",
+      href: routes.dashboard(),
     },
     {
       label: "Projects",
-      href: "/projects",
+      href: routes.projects(),
     },
     {
       label: "Team",
-      href: "/team",
+      href: routes.team(),
     },
     {
       label: "Calendar",
-      href: "/calendar",
+      href: routes.calendar(),
     },
     {
       label: "Settings",
-      href: "/settings",
+      href: routes.settings(),
     },
     {
       label: "Help & Feedback",
-      href: "/help-feedback",
+      href: routes.helpFeedback(),
     },
     {
       label: "Logout",
-      href: "/logout",
+      href: routes.logout(),
     },
   ],
   links: {
