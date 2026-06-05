@@ -1,11 +1,11 @@
-import { getAllServerBlogMetadata, loadTransitBlogMetadata } from "@/model/blogs";
-import { readFile } from "node:fs/promises";
+import { BlogPdfDownloadButton } from "@/components/blog-pdf-download-button";
+import {
+    blogHasPdf,
+    getAllServerBlogMetadata,
+    getBlogPdfDownloadPath,
+    loadTransitBlogMetadata,
+} from "@/model/blogs";
 import RenderBlog from "./render-blog";
-
-async function getSvgContent(path: string): Promise<string> {
-    const svgContent = await readFile(path, 'utf8');
-    return svgContent;
-}
 
 export async function generateStaticParams() {
     const blogs = await getAllServerBlogMetadata();
@@ -16,6 +16,7 @@ export default async function BlogPage({ params }: { params: Promise<{ "blog-nam
     const p = await params;
     const blogData = await loadTransitBlogMetadata(p["blog-name"]);
     const blogMetadata = (await getAllServerBlogMetadata()).find(b => b.slug === p["blog-name"])!;
+    const hasPdf = await blogHasPdf(p["blog-name"]);
 
     return (
         <>
@@ -33,6 +34,14 @@ export default async function BlogPage({ params }: { params: Promise<{ "blog-nam
                         </span>
                     )}
                 </div>
+                {hasPdf && (
+                    <div className="mt-4">
+                        <BlogPdfDownloadButton
+                            slug={p["blog-name"]}
+                            downloadPath={getBlogPdfDownloadPath(p["blog-name"])}
+                        />
+                    </div>
+                )}
                 {blogMetadata.description && (
                     <div className="mt-4 text-gray-500 text-lg">
                         {blogMetadata.description}

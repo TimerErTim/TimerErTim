@@ -48,6 +48,18 @@ export async function loadTransitBlogMetadata(blogSlug: string): Promise<Transit
     }
 }
 
+export function getBlogPdfFilesystemPath(blogSlug: string): string {
+    return path.join(buildInfo.repoRoot, "build/website/blogs", blogSlug, `${blogSlug}.pdf`);
+}
+
+export function getBlogPdfDownloadPath(blogSlug: string): string {
+    return `/blog/${blogSlug}/${blogSlug}.pdf`;
+}
+
+export async function blogHasPdf(blogSlug: string): Promise<boolean> {
+    return fs.access(getBlogPdfFilesystemPath(blogSlug)).then(() => true).catch(() => false);
+}
+
 export async function getAllServerBlogMetadata(): Promise<ServerBlogMetadata[]> {
     const blogs = await fs.readdir(path.join(buildInfo.repoRoot, "build/website/blogs"));
     const results = await Promise.all(blogs.map(async (blogSlug) => {
