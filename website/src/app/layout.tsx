@@ -7,7 +7,7 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
-import { PrePaintThemeInjectionScript } from "@/theme/theme-injection";
+import { PrePaintThemeInjectionScript } from "@/lib/theme/theme-injection";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -39,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <PrePaintThemeInjectionScript />
       </head>

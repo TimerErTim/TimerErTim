@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { ThemeProvider } from "@/theme";
+import { ThemeProvider } from "@/lib/theme";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return <ThemeProvider>{children}</ThemeProvider>;
