@@ -1,0 +1,57 @@
+/* Generated from look-and-feel.json — do not edit */
+:root,
+.light {
+  --theme-base: #f7f8fb;
+  --theme-foreground: #191a22;
+  --theme-accent: #62a123;
+  --theme-neutral: #d0d1d4;
+  --theme-surface: #e6e8eb;
+  --theme-overlay: #e0e1e4;
+  --theme-border: #a0a1a7;
+  --theme-danger: #9f5c5c;
+  --theme-warning: #bb9b79;
+  --theme-success: #72946b;
+  --theme-info: #779eb6;
+}
+
+.dark {
+  --theme-base: #111115;
+  --theme-foreground: #e7ebf6;
+  --theme-accent: #426e17;
+  --theme-neutral: #46474e;
+  --theme-surface: #1a1a20;
+  --theme-overlay: #1e1f25;
+  --theme-border: #707179;
+  --theme-danger: #cfa4ae;
+  --theme-warning: #ede4d0;
+  --theme-success: #c1d9bf;
+  --theme-info: #b7d4d9;
+}
+
+@theme inline {
+  --color-background: var(--theme-base);
+  --color-foreground: var(--theme-foreground);
+  --color-accent: var(--theme-accent);
+  --color-muted: var(--theme-neutral);
+  --color-surface: var(--theme-surface);
+  --color-overlay: var(--theme-overlay);
+  --color-border: var(--theme-border);
+  --color-danger: var(--theme-danger);
+  --color-warning: var(--theme-warning);
+  --color-success: var(--theme-success);
+  --color-info: var(--theme-info);
+
+  --font-size-tiny: 11.2px;
+  --font-size-small: 13.6px;
+  --font-size-medium: 16px;
+  --font-size-large: 18.4px;
+
+  --leading-tiny: 16px;
+  --leading-small: 20px;
+  --leading-medium: 24px;
+  --leading-large: 28px;
+
+  --radius-sm: 0px;
+  --radius-md: 0.8px;
+  --radius-lg: 1.6px;
+}

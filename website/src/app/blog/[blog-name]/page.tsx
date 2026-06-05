@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { BlogPdfDownloadButton } from "@/components/blog-pdf-download-button";
+import { prose } from "@/components/primitives";
 import { siteConfig } from "@/config/site";
 import {
     buildBlogPageMetadata,
@@ -60,9 +61,11 @@ export default async function BlogPage({ params }: { params: Promise<{ "blog-nam
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <header className="border-b border-gray-200 mb-8 pb-5">
-                <h1 className="text-4xl font-bold m-0 leading-tight break-words">{blogMetadata.title}</h1>
-                <div className="mt-3 text-gray-600 text-base leading-snug">
+            <header className="border-b border-border mb-8 pb-5">
+                <h1 className="font-sans text-large leading-large font-semibold m-0">
+                    {blogMetadata.title}
+                </h1>
+                <div className="mt-3 text-small leading-small text-muted">
                     {blogMetadata.author && blogMetadata.author.length > 0 && (
                         <span>
                             By {blogMetadata.author.join(", ")}
@@ -80,17 +83,17 @@ export default async function BlogPage({ params }: { params: Promise<{ "blog-nam
                     </div>
                 )}
                 {blogMetadata.description && (
-                    <div className="mt-4 text-gray-500 text-lg">
+                    <p className={`${prose()} mt-4 text-muted`}>
                         {blogMetadata.description}
-                    </div>
+                    </p>
                 )}
                 {blogMetadata.keywords && blogMetadata.keywords.length > 0 && (
-                    <div className="mt-5 text-sm text-gray-400">
+                    <p className="mt-5 text-tiny leading-tiny text-muted m-0">
                         Tags: {blogMetadata.keywords.join(", ")}
-                    </div>
+                    </p>
                 )}
             </header>
-            <article>
+            <article className={prose()}>
                 <RenderBlog blogData={blogData} />
             </article>
         </>

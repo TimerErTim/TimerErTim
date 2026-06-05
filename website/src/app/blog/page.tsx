@@ -1,29 +1,46 @@
 import { title } from "@/components/primitives";
+import { BlogSidebar } from "@/components/blog-sidebar";
+import { PageShell } from "@/components/page-shell";
+import { Card, AppLink } from "@/components/ui";
 import { getAllServerBlogMetadata } from "@/model/blogs";
 import { routes } from "@/paths";
-import Link from "next/link";
 
 export default async function BlogPage() {
   const blogs = await getAllServerBlogMetadata();
 
   return (
+    <PageShell sidebar={<BlogSidebar />}>
     <div>
       <h1 className={title()}>Blog</h1>
-      <div style={{display: 'flex', flexDirection: 'column', gap: '2rem', marginTop: '2rem'}}>
+      <div className="mt-8 flex flex-col gap-4">
         {blogs.map((blog) => (
-          <div key={blog.slug} style={{padding: '1rem', border: '1px solid #eee', borderRadius: '8px'}}>
-            <Link href={routes.blogPost(blog.slug)} style={{textDecoration: 'none', color: 'inherit'}}>
-              <h2 style={{margin: '0 0 0.25em 0'}}>{blog.title}</h2>
-            </Link>
-            <div style={{marginBottom: '0.5em', fontSize: '0.97em', color: '#555'}}>
-              {blog.description}
-            </div>
-            <div style={{fontSize: '0.9em', color: '#888'}}>
-              Last updated: {blog.updatedAt.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
-            </div>
-          </div>
+          <Card key={blog.slug} hoverable>
+            <AppLink
+              className="no-underline hover:no-underline"
+              href={routes.blogPost(blog.slug)}
+              variant="plain"
+            >
+              <h2 className="text-medium leading-medium font-semibold text-foreground m-0">
+                {blog.title}
+              </h2>
+            </AppLink>
+            {blog.description && (
+              <p className="mt-2 text-small leading-small text-muted m-0">
+                {blog.description}
+              </p>
+            )}
+            <p className="mt-3 text-tiny leading-tiny text-muted m-0">
+              Last updated:{" "}
+              {blog.updatedAt.toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+            </p>
+          </Card>
         ))}
       </div>
     </div>
+    </PageShell>
   );
 }

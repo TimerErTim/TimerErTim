@@ -158,6 +158,29 @@ export const HeartFilledIcon = ({
   </svg>
 );
 
+export const RssIcon: React.FC<IconSvgProps> = ({
+  size = 20,
+  width,
+  height,
+  ...props
+}) => (
+  <svg
+    height={size || height}
+    viewBox="0 0 24 24"
+    width={size || width}
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={1.5}
+    {...props}
+  >
+    <path
+      d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"
+      strokeLinecap="round"
+    />
+    <circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none" />
+  </svg>
+);
+
 export const SearchIcon = (props: IconSvgProps) => (
   <svg
     aria-hidden="true"

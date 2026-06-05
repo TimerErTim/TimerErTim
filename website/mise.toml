@@ -4,18 +4,24 @@ node = "26"
 [deps.npm]
 auto = true
 
-[tasks.dev]
-description = "Start Next.js dev server"
-run = ["npm run dev"]
-
 [tasks."import:look-and-feel"]
 description = "Import the look and feel"
-depends = ["//look-and-feel:export:json"]
+depends = ["//look-and-feel:build:json"]
 run = ["cp {{ vars.REPO_ROOT }}/look-and-feel/themes.json {{ vars.REPO_ROOT }}/website/look-and-feel.json"]
+
+[tasks."generate:theme"]
+description = "Generate Tailwind theme CSS from look-and-feel.json"
+depends = ["import:look-and-feel"]
+run = ["node scripts/generate-theme-css.mjs"]
+
+[tasks.dev]
+description = "Start Next.js dev server"
+depends = ["generate:theme"]
+run = ["npm run dev"]
 
 [tasks.build]
 description = "Build static Next.js export to out/"
-depends = ["//blogs/...:website-embedding"]
+depends = ["generate:theme", "//blogs/...:website-embedding"]
 run = ["npm run build"]
 
 [tasks."prepare:output_dir"]

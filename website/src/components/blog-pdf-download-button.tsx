@@ -1,13 +1,16 @@
 import { blogPdfFilename, routes } from "@/paths";
+import { Button } from "@/components/ui";
 
 export function BlogPdfDownloadButton({ slug }: { slug: string }) {
     return (
         <a
-            className="button button--secondary button--md rounded-full inline-flex items-center gap-2"
-            href={routes.blogPostPdf(slug)}
+            className="inline-flex"
             download={blogPdfFilename(slug)}
+            href={routes.blogPostPdf(slug)}
         >
-            Download PDF
+            <Button variant="secondary" size="sm">
+                Download PDF
+            </Button>
         </a>
     );
 }
