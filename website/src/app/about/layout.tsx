@@ -1,11 +1,11 @@
 import { PageShell } from "@/components/page-shell";
+import { aboutDescription } from "@/site/content/about";
 import { buildSitePageMetadata } from "@/lib/site-metadata";
 import { routes } from "@/paths";
-import { site } from "@/site";
 
 export const metadata = buildSitePageMetadata({
   title: "About",
-  description: site.content.about.body,
+  description: aboutDescription,
   route: routes.about(),
 });
 

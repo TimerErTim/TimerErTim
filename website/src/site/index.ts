@@ -1,4 +1,4 @@
-import { aboutContent } from "@/site/content/about";
+
 import { identity } from "@/site/identity";
 import { identityAssets } from "@/site/identity-assets";
 import { legal } from "@/site/legal";
@@ -13,9 +13,6 @@ export const site = {
   links,
   legal,
   identity: identityAssets,
-  content: {
-    about: aboutContent,
-  },
 } as const;
 
 // Backward-compatible alias during migration

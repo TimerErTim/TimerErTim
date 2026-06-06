@@ -24,8 +24,7 @@ export default function Home() {
 
         <div className="mt-12 border border-border bg-surface p-5 max-w-xl">
           <p className="text-small leading-small text-muted m-0">
-            Essays are rendered from Typst, with light and dark variants that
-            adapt to your system theme.
+            Blog entries are rendered using <AppLink external href="https://typst.app/">Typst</AppLink> and embedded in the website as svg. For more information, see the <AppLink href={routes.blogPost("2026-blog-with-typst")}>the blogpost</AppLink>.
           </p>
         </div>
       </section>

@@ -13,13 +13,14 @@ export function PageShell({
   subContent?: ReactNode;
   sidebarLayout?: SidebarLayout;
 }) {
+  const shellClass = "mx-auto max-w-5xl px-6 pb-16";
+
   if (!sidebar && !subContent) {
     return (
-      <div className="mx-auto max-w-3xl px-6 pb-16">{children}</div>
+      <div className={shellClass}>{children}</div>
     );
   }
 
-  const shellClass = "mx-auto max-w-5xl px-6 pb-16";
 
   if (!sidebar) {
     return (
