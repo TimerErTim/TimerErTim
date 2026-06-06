@@ -37,8 +37,13 @@ export const routes = {
     about: () => asRoute(routePath("about")),
     feed: () => asRoute("/feed.xml"),
     sitemap: () => asRoute("/sitemap.xml"),
+    manifest: () => asRoute("/manifest.webmanifest"),
     favicon: () => asRoute("/favicon.ico"),
+    favicon16: () => asRoute("/favicon-16x16.png"),
+    favicon32: () => asRoute("/favicon-32x32.png"),
     appleTouchIcon: () => asRoute("/apple-touch-icon.png"),
+    androidChrome192: () => asRoute("/android-chrome-192x192.png"),
+    androidChrome512: () => asRoute("/android-chrome-512x512.png"),
     blogPost: (slug: string) => asRoute(routePath("blog", slug)),
     blogPostPdf: (slug: string) => asRoute(`/blog/${slug}/${blogPdfFilename(slug)}`),
 } as const;

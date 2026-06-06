@@ -15,15 +15,6 @@ const optionalFiles = [
     target: join(targetDir, "social-preview.png"),
     fallback: join(sourceDir, "banner.png"),
   },
-  {
-    source: "favicon.ico",
-    target: join(publicDir, "favicon.ico"),
-  },
-  {
-    source: "apple-touch-icon.png",
-    target: join(publicDir, "apple-touch-icon.png"),
-    fallback: join(sourceDir, "banner.png"),
-  },
 ];
 
 mkdirSync(targetDir, { recursive: true });

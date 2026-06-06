@@ -23,9 +23,13 @@ file = "tasks/scripts/generate-fonts.mjs"
 description = "Copy identity banners into website public/identity"
 file = "tasks/scripts/prepare-identity.mjs"
 
+[tasks."prepare:favicon"]
+description = "Copy favicon bundle from assets/favicon into website public/"
+file = "tasks/scripts/prepare-favicon.mjs"
+
 [tasks."generate:assets"]
 description = "Generate theme and font assets for the website"
-depends = ["generate:theme", "generate:fonts", "prepare:identity"]
+depends = ["generate:theme", "generate:fonts", "prepare:identity", "prepare:favicon"]
 
 [tasks.dev]
 description = "Start Next.js dev server"

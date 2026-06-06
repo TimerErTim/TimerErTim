@@ -55,9 +55,14 @@ export function rootSiteMetadata(): Metadata {
     },
     description: site.description,
     icons: {
-      icon: routes.favicon(),
+      icon: [
+        { url: routes.favicon(), sizes: "any" },
+        { url: routes.favicon32(), sizes: "32x32", type: "image/png" },
+        { url: routes.favicon16(), sizes: "16x16", type: "image/png" },
+      ],
       apple: routes.appleTouchIcon(),
     },
+    manifest: routes.manifest(),
     alternates: {
       canonical: urls.home(),
       types: {
