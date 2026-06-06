@@ -27,3 +27,4 @@
 | Typst | The Typst Developers | Apache-2.0 | [typst/typst](https://github.com/typst/typst) |
 | brotli-compress | — | MIT | npm package |
 | @ably/vcdiff-decoder | Ably Real-time Ltd | Apache-2.0 | npm package |
+| Phosphor Icons | Phosphor Icons | MIT | [phosphor-icons/core](https://github.com/phosphor-icons/core) |

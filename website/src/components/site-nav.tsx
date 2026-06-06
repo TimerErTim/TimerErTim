@@ -47,7 +47,7 @@ export function SiteNav({ searchEntries }: SiteNavProps) {
           ))}
         </ul>
 
-        <div className="hidden md:flex items-center gap-3 ml-auto">
+        <div className="hidden sm:flex items-center gap-3 ml-auto">
           <div className="w-44">
             <BlogSearch entries={searchEntries} />
           </div>

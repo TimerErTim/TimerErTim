@@ -98,7 +98,7 @@ export function BlogSearch({ entries }: BlogSearchProps) {
         onKeyDown={handleKeyDown}
         placeholder="Search…"
         role="combobox"
-        startContent={<SearchIcon className="text-base" />}
+        startContent={<SearchIcon className="text-base" size={20} />}
         size="sm"
         type="search"
         value={query}
