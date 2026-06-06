@@ -35,6 +35,22 @@ function themeVars(colors) {
 
 const { layout } = themes;
 
+const themeColorTokens = [
+  "background",
+  "foreground",
+  "accent",
+  "muted",
+  "surface",
+  "overlay",
+  "border",
+  "danger",
+  "warning",
+  "success",
+  "info",
+];
+
+const themeFontSizes = Object.keys(layout.fontSize);
+
 const css = `/* Generated from look-and-feel/themes.json — do not edit */
 :root,
 .light {
@@ -87,6 +103,10 @@ export const themeColors = {
   light: ${JSON.stringify(light)},
   dark: ${JSON.stringify(dark)},
 } as const;
+
+export const themeSemanticColors = ${JSON.stringify(themeColorTokens)} as const;
+
+export const themeFontSizes = ${JSON.stringify(themeFontSizes)} as const;
 `;
 
 writeFileSync(cssOutputPath, css);
