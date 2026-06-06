@@ -20,12 +20,12 @@ export default async function BlogPage() {
               href={routes.blogPost(blog.slug)}
               variant="plain"
             >
-              <h2 className="text-medium leading-medium font-semibold text-foreground m-0">
+              <h2 className="text-medium leading-medium font-bold text-foreground m-0">
                 {blog.title}
               </h2>
             </AppLink>
             {blog.description && (
-              <p className="mt-2 text-small leading-small text-muted m-0">
+              <p className="mt-2 text-small leading-small text-foreground m-0">
                 {blog.description}
               </p>
             )}

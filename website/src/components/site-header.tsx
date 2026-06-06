@@ -10,7 +10,7 @@ export function SiteHeader() {
           {siteConfig.name}
         </h1>
       </AppLink>
-      <p className="mt-2 text-small leading-small text-muted m-0">
+      <p className="mt-2 text-small leading-small text-foreground m-0">
         {siteConfig.description}
       </p>
     </header>

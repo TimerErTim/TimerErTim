@@ -1,17 +1,17 @@
+#!/usr/bin/env node
+// Directory is relative to the website mise.toml file
 import { readFileSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const themesPath = join(__dirname, "../look-and-feel.json");
-const outputPath = join(__dirname, "../src/app/theme.generated.css");
+const themesPath = join(process.env.TIMERERTIM_REPO_ROOT, "look-and-feel/themes.json");
+const outputPath = join(process.cwd(), "src/app/theme.generated.css");
 
 const themes = JSON.parse(readFileSync(themesPath, "utf8"));
 
 function normalizeColors(colors) {
   return {
     base: colors.base,
-    foreground: colors.foreground ?? colors.text,
+    foreground: colors.foreground,
     accent: colors.accent,
     neutral: colors.neutral,
     surface: colors.surface,
@@ -21,6 +21,7 @@ function normalizeColors(colors) {
     warning: colors.warning,
     success: colors.success,
     info: colors.info,
+    muted: colors.muted,
   };
 }
 
@@ -47,7 +48,7 @@ ${themeVars(themes.dark)}
   --color-background: var(--theme-base);
   --color-foreground: var(--theme-foreground);
   --color-accent: var(--theme-accent);
-  --color-muted: var(--theme-neutral);
+  --color-muted: var(--theme-muted);
   --color-surface: var(--theme-surface);
   --color-overlay: var(--theme-overlay);
   --color-border: var(--theme-border);

@@ -34,11 +34,12 @@
     "danger": "#9f5c5c",
     "warning": "#bb9b79",
     "success": "#72946b",
-    "info": "#779eb6"
+    "info": "#779eb6",
+    "muted": "#191a22b2"
   },
   "dark": {
     "base": "#111115",
-    "text": "#e7ebf6",
+    "foreground": "#e7ebf6",
     "accent": "#426e17",
     "neutral": "#46474e",
     "surface": "#1a1a20",
@@ -47,6 +48,7 @@
     "danger": "#cfa4ae",
     "warning": "#ede4d0",
     "success": "#c1d9bf",
-    "info": "#b7d4d9"
+    "info": "#b7d4d9",
+    "muted": "#e7ebf6b2"
   }
 }

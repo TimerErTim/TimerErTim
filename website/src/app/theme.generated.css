@@ -12,6 +12,7 @@
   --theme-warning: #bb9b79;
   --theme-success: #72946b;
   --theme-info: #779eb6;
+  --theme-muted: #191a22b2;
 }
 
 .dark {
@@ -26,13 +27,14 @@
   --theme-warning: #ede4d0;
   --theme-success: #c1d9bf;
   --theme-info: #b7d4d9;
+  --theme-muted: #e7ebf6b2;
 }
 
 @theme inline {
   --color-background: var(--theme-base);
   --color-foreground: var(--theme-foreground);
   --color-accent: var(--theme-accent);
-  --color-muted: var(--theme-neutral);
+  --color-muted: var(--theme-muted);
   --color-surface: var(--theme-surface);
   --color-overlay: var(--theme-overlay);
   --color-border: var(--theme-border);

@@ -34,7 +34,6 @@ const blogsRoot = () => path.join(buildInfo.repoRoot, "build/website/blogs");
 export const routes = {
     home: () => asRoute("/"),
     docs: () => asRoute(routePath("docs")),
-    pricing: () => asRoute(routePath("pricing")),
     blog: () => asRoute(routePath("blog")),
     about: () => asRoute(routePath("about")),
     profile: () => asRoute(routePath("profile")),

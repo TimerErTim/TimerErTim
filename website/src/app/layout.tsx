@@ -10,6 +10,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteNav } from "@/components/site-nav";
 import { PrePaintThemeInjectionScript } from "@/lib/theme";
 import { routes, urls } from "@/paths";
+import { SideFooter } from "@/components/side-footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL(urls.site()),
@@ -60,9 +61,7 @@ export default function RootLayout({
               <SiteNav />
             </div>
             <main className="flex-grow">{children}</main>
-            <footer className="border-t border-border py-6 text-center text-tiny leading-tiny text-muted">
-              <span>© {new Date().getFullYear()} {siteConfig.name}</span>
-            </footer>
+            <SideFooter />
           </div>
         </Providers>
       </body>

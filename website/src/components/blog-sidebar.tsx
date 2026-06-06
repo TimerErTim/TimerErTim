@@ -6,6 +6,7 @@ export async function BlogSidebar({ currentSlug }: { currentSlug?: string }) {
   const blogs = await getAllServerBlogMetadata();
   const recent = blogs
     .filter((b) => b.slug !== currentSlug)
+    .sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime())
     .slice(0, 12);
 
   if (recent.length === 0) {
@@ -15,7 +16,7 @@ export async function BlogSidebar({ currentSlug }: { currentSlug?: string }) {
   return (
     <div className="bg-surface border border-border p-4">
       <h2 className="text-small leading-small font-semibold text-foreground m-0 mb-4">
-        Recent essays
+        Recent blogs
       </h2>
       <ul className="m-0 p-0 list-none space-y-2.5">
         {recent.map((blog) => (

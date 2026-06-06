@@ -8,6 +8,7 @@ import { routes } from "@/paths";
 import { AppLink, Divider, Input } from "@/components/ui";
 import {
   GithubIcon,
+  LinkedInIcon,
   RssIcon,
   SearchIcon,
 } from "@/components/icons";
@@ -68,6 +69,14 @@ export function SiteNav() {
           >
             <GithubIcon />
           </AppLink>
+          <AppLink
+            aria-label="LinkedIn"
+            external
+            href={siteConfig.links.linkedin}
+            variant="muted"
+          >
+            <LinkedInIcon />
+          </AppLink>
         </div>
 
         <button
@@ -126,6 +135,9 @@ export function SiteNav() {
             </AppLink>
             <AppLink external href={siteConfig.links.github} variant="muted">
               GitHub
+            </AppLink>
+            <AppLink external href={siteConfig.links.linkedin} variant="muted">
+              LinkedIn
             </AppLink>
           </div>
         </div>

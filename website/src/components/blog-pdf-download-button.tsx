@@ -9,7 +9,7 @@ export function BlogPdfDownloadButton({ slug }: { slug: string }) {
             href={routes.blogPostPdf(slug)}
         >
             <Button variant="secondary" size="sm">
-                Download PDF
+                Download
             </Button>
         </a>
     );

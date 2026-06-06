@@ -62,7 +62,7 @@ export default async function BlogPage({ params }: { params: Promise<{ "blog-nam
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
             <header className="border-b border-border mb-8 pb-5">
-                <h1 className="font-sans text-large leading-large font-semibold m-0">
+                <h1 className="font-sans text-large leading-large font-bold m-0">
                     {blogMetadata.title}
                 </h1>
                 <div className="mt-3 text-small leading-small text-muted">
@@ -83,7 +83,7 @@ export default async function BlogPage({ params }: { params: Promise<{ "blog-nam
                     </div>
                 )}
                 {blogMetadata.description && (
-                    <p className={`${prose()} mt-4 text-muted`}>
+                    <p className={`${prose()} mt-4 text-foreground`}>
                         {blogMetadata.description}
                     </p>
                 )}

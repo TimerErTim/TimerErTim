@@ -15,7 +15,7 @@
   ),
   "dark": (
     "base": oklch(18%, 2%, 284deg),
-    "text": oklch(88%, 4%, 272deg).lighten(50%),
+    "foreground": oklch(88%, 4%, 272deg).lighten(50%),
     "accent": rgb("#426E17").oklch(),
     "neutral": oklch(40%, 3%, 280deg),
     "surface": oklch(22%, 3%, 284deg),
@@ -28,8 +28,19 @@
   )
 )
 
+#let _calc_muted(colorset) = {
+  return colorset.foreground.transparentize(30%)
+}
+
+#let _process_colors(colorset) = {
+  return (
+    ..colorset,
+    "muted": _calc_muted(colorset),
+  )
+}
+
 // Merge colors for all themes
 #let colors = (
-  "light": _colors.at("light"),
-  "dark": _colors.at("dark"),
+  "light": _process_colors(_colors.at("light")),
+  "dark": _process_colors(_colors.at("dark")),
 )

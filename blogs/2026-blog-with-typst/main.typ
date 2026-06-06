@@ -6,8 +6,8 @@
 
 #set document(
   title: "Writing a static blog with Typst",
-  description: "How I used Typst to write an internet blog in NextJS and statically hosting it efficiently with brotli compression and vcdiff patching on GitHub.",
-  author: "Tim Peko a.k.a TimerErTim",
+  description: "How this very blog was written with Typst and statically hosting it efficiently with brotli compression and vcdiff patching on GitHub. Or in other words: How to probably misuse Typst for everthing.",
+  author: "Tim Peko (TimerErTim)",
   keywords: ("Typst", "SSG", "NextJS", "mise-en-place", "Compression", "Patching", "GitHub", "brotli", "vcdiff"),
 )
 
@@ -16,6 +16,7 @@
   width: eval(web-page-width),
   height: auto,
   fill: white.transparentize(100%),
+  margin: 0pt
 ) if is-web
 
 #let pro-tip-box(content) = {
