@@ -1,15 +1,43 @@
 {
   "slug": "2026-typst-talk",
-  "contentHash": "943067d58df437b3704e3fc05336d5aa30bfb82fc67fa5f5f4b2151312042272",
-  "createdAt": 1780656669,
-  "updatedAt": 1780656669,
-  "compressionRefVariant": "main_light_1024pt.svg",
+  "contentHash": "8325a5d4402348d28187227f3cbafafe867c892d76c7fca03ddadaa5b94e9aab",
+  "createdAt": 1780755621,
+  "updatedAt": 1780755621,
+  "compressionRefVariant": "main_light_320pt.svg",
   "variants": [
     {
-      "filename": "main_light_1024pt.svg",
+      "filename": "main_light_320pt.svg",
       "theme": "light",
-      "width_pt": 1024,
-      "compressedFilename": "main_light_1024pt.svg.br"
+      "width_pt": 320,
+      "compressedFilename": "main_light_320pt.svg.br"
+    },
+    {
+      "filename": "main_light_448pt.svg",
+      "theme": "light",
+      "width_pt": 448,
+      "compressedFilename": "main_light_448pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_light_576pt.svg",
+      "theme": "light",
+      "width_pt": 576,
+      "compressedFilename": "main_light_576pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_light_704pt.svg",
+      "theme": "light",
+      "width_pt": 704,
+      "compressedFilename": "main_light_704pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_light_832pt.svg",
+      "theme": "light",
+      "width_pt": 832,
+      "compressedFilename": "main_light_832pt.svg.br",
+      "compressionType": "vcdiff"
     },
     {
       "filename": "main_light_960pt.svg",
@@ -19,24 +47,45 @@
       "compressionType": "vcdiff"
     },
     {
-      "filename": "main_light_768pt.svg",
+      "filename": "main_light_1088pt.svg",
       "theme": "light",
-      "width_pt": 768,
-      "compressedFilename": "main_light_768pt.svg.br",
+      "width_pt": 1088,
+      "compressedFilename": "main_light_1088pt.svg.br",
       "compressionType": "vcdiff"
     },
     {
-      "filename": "main_light_640pt.svg",
-      "theme": "light",
-      "width_pt": 640,
-      "compressedFilename": "main_light_640pt.svg.br",
-      "compressionType": "vcdiff"
-    },
-    {
-      "filename": "main_dark_1024pt.svg",
+      "filename": "main_dark_320pt.svg",
       "theme": "dark",
-      "width_pt": 1024,
-      "compressedFilename": "main_dark_1024pt.svg.br",
+      "width_pt": 320,
+      "compressedFilename": "main_dark_320pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_448pt.svg",
+      "theme": "dark",
+      "width_pt": 448,
+      "compressedFilename": "main_dark_448pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_576pt.svg",
+      "theme": "dark",
+      "width_pt": 576,
+      "compressedFilename": "main_dark_576pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_704pt.svg",
+      "theme": "dark",
+      "width_pt": 704,
+      "compressedFilename": "main_dark_704pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_832pt.svg",
+      "theme": "dark",
+      "width_pt": 832,
+      "compressedFilename": "main_dark_832pt.svg.br",
       "compressionType": "vcdiff"
     },
     {
@@ -47,17 +96,10 @@
       "compressionType": "vcdiff"
     },
     {
-      "filename": "main_dark_768pt.svg",
+      "filename": "main_dark_1088pt.svg",
       "theme": "dark",
-      "width_pt": 768,
-      "compressedFilename": "main_dark_768pt.svg.br",
-      "compressionType": "vcdiff"
-    },
-    {
-      "filename": "main_dark_640pt.svg",
-      "theme": "dark",
-      "width_pt": 640,
-      "compressedFilename": "main_dark_640pt.svg.br",
+      "width_pt": 1088,
+      "compressedFilename": "main_dark_1088pt.svg.br",
       "compressionType": "vcdiff"
     }
   ],

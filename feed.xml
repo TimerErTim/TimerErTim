@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Next.js + HeroUI Blog</title>
+    <title>TimerErTim Blog</title>
     <link>https://timerertim.eu</link>
-    <description>Make beautiful websites regardless of your design experience.</description>
+    <description>Online portfolio and blogs for everything technical</description>
     <language>en</language>
     <atom:link href="https://timerertim.eu/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Writing a static blog with Typst</title>
       <link>https://timerertim.eu/blog/2026-blog-with-typst/</link>
-      <description>How I used Typst to write an internet blog in NextJS and statically hosting it efficiently with brotli compression and vcdiff patching on GitHub.</description>
-      <pubDate>Fri, 05 Jun 2026 10:51:09 GMT</pubDate>
+      <description>How this very blog was written with Typst and statically hosting it efficiently with brotli compression and vcdiff patching on GitHub. Or in other words: How to probably misuse Typst for everthing.</description>
+      <pubDate>Sat, 06 Jun 2026 14:20:21 GMT</pubDate>
       <guid isPermaLink="true">https://timerertim.eu/blog/2026-blog-with-typst/</guid>
-      <author>Tim Peko a.k.a TimerErTim</author>
+      <author>Tim Peko (TimerErTim)</author>
       <category>Typst</category>
       <category>SSG</category>
       <category>NextJS</category>
@@ -27,7 +27,7 @@
       <title>Typst Talk</title>
       <link>https://timerertim.eu/blog/2026-typst-talk/</link>
       <description>A talk about Typst, hi Nathalie</description>
-      <pubDate>Fri, 05 Jun 2026 10:51:09 GMT</pubDate>
+      <pubDate>Sat, 06 Jun 2026 14:20:21 GMT</pubDate>
       <guid isPermaLink="true">https://timerertim.eu/blog/2026-typst-talk/</guid>
       <author>John Doe</author>
       <category>Typst</category>
