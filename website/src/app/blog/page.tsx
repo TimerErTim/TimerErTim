@@ -2,9 +2,17 @@ import { title } from "@/components/primitives";
 import { BlogSidebar } from "@/components/blog-sidebar";
 import { PageShell } from "@/components/page-shell";
 import { Card, Tag } from "@/components/ui";
+import { buildSitePageMetadata } from "@/lib/site-metadata";
 import { getAllServerBlogMetadata } from "@/model/blogs";
 import { routes } from "@/paths";
+import { site } from "@/site";
 import Link from "next/link";
+
+export const metadata = buildSitePageMetadata({
+  title: "Blog",
+  description: `Essays and posts from ${site.name}.`,
+  route: routes.blog(),
+});
 
 export default async function BlogPage() {
   const blogs = await getAllServerBlogMetadata();

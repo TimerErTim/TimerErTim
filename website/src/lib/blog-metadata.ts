@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
 import type { ServerBlogMetadata } from "@/model/blogs";
-import { urls } from "@/paths";
+import { defaultSocialImage } from "@/lib/site-metadata";
+import { absoluteSiteUrl, urls } from "@/paths";
 
 export function buildBlogPageMetadata({
   blog,
@@ -41,11 +42,13 @@ export function buildBlogPageMetadata({
       modifiedTime: blog.updatedAt.toISOString(),
       authors: blog.author,
       tags: blog.keywords,
+      images: [defaultSocialImage],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: blog.title,
       description: blog.description,
+      images: [defaultSocialImage.url],
     },
     other: {
       "article:published_time": blog.createdAt.toISOString(),
@@ -74,6 +77,7 @@ export function buildBlogPostingJsonLd({
     headline: blog.title,
     description: blog.description,
     url: pageUrl,
+    image: absoluteSiteUrl(defaultSocialImage.url),
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": pageUrl,

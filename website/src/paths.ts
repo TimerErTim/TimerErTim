@@ -24,7 +24,7 @@ function siteOrigin(): string {
     return SITE_ORIGIN.replace(/\/$/, "");
 }
 
-function absoluteUrl(route: string): string {
+export function absoluteSiteUrl(route: string): string {
     return `${siteOrigin()}${route.startsWith("/") ? route : `/${route}`}`;
 }
 
@@ -36,7 +36,9 @@ export const routes = {
     blog: () => asRoute(routePath("blog")),
     about: () => asRoute(routePath("about")),
     feed: () => asRoute("/feed.xml"),
+    sitemap: () => asRoute("/sitemap.xml"),
     favicon: () => asRoute("/favicon.ico"),
+    appleTouchIcon: () => asRoute("/apple-touch-icon.png"),
     blogPost: (slug: string) => asRoute(routePath("blog", slug)),
     blogPostPdf: (slug: string) => asRoute(`/blog/${slug}/${blogPdfFilename(slug)}`),
 } as const;
@@ -44,12 +46,12 @@ export const routes = {
 /** Absolute URLs for SEO, RSS, Open Graph, and other external references. */
 export const urls = {
     site: siteOrigin,
-    home: () => absoluteUrl(routes.home()),
-    blog: () => absoluteUrl(routes.blog()),
-    about: () => absoluteUrl(routes.about()),
-    feed: () => absoluteUrl(routes.feed()),
-    blogPost: (slug: string) => absoluteUrl(routes.blogPost(slug)),
-    blogPostPdf: (slug: string) => absoluteUrl(routes.blogPostPdf(slug)),
+    home: () => absoluteSiteUrl(routes.home()),
+    blog: () => absoluteSiteUrl(routes.blog()),
+    about: () => absoluteSiteUrl(routes.about()),
+    feed: () => absoluteSiteUrl(routes.feed()),
+    blogPost: (slug: string) => absoluteSiteUrl(routes.blogPost(slug)),
+    blogPostPdf: (slug: string) => absoluteSiteUrl(routes.blogPostPdf(slug)),
 } as const;
 
 export function blogPdfFilename(slug: string): string {

@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Metadata, Viewport } from "next";
+import { Viewport } from "next";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
@@ -8,28 +8,13 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteNav } from "@/components/site-nav";
 import { SideFooter } from "@/components/side-footer";
 import { getBlogSearchEntries } from "@/lib/blog-search";
+import { rootSiteMetadata } from "@/lib/site-metadata";
 import { PrePaintThemeInjectionScript } from "@/lib/theme";
-import { routes, urls } from "@/paths";
 import { site } from "@/site";
 import { fontMono, fontSans } from "@/site/fonts.generated";
 import { themeColors } from "@/site/theme.generated";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(urls.site()),
-  title: {
-    default: site.name,
-    template: `%s · ${site.name}`,
-  },
-  description: site.description,
-  icons: {
-    icon: routes.favicon(),
-  },
-  alternates: {
-    types: {
-      "application/rss+xml": urls.feed(),
-    },
-  },
-};
+export const metadata = rootSiteMetadata();
 
 export const viewport: Viewport = {
   themeColor: [
