@@ -1,8 +1,8 @@
 #import "../look-and-feel/index.typ": themes
 #import "@preview/suiji:0.5.1" as sj
 
-#let brace-color = themes.light.colors.accent
-#let foreground-color = themes.light.colors.foreground
+#let brace-color = themes.light.accent
+#let foreground-color = themes.light.foreground
 #let font = "Consolas"
 
 #let logo(
@@ -17,7 +17,7 @@
     bottom-edge: -0.2em,
   )
   {
-    set text(fill: text-color, font: "JetBrains Mono", size: 10.3pt)
+    set text(fill: text-color, font: themes.fonts.mono.family, size: 10.3pt)
     show block: none
     place(center + top, dy: 0.36em)[
       #set align(center)

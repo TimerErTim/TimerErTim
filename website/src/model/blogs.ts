@@ -1,4 +1,4 @@
-import { buildInfo } from "@/config/system";
+import { buildInfo } from "@/site/system";
 import { fsPaths } from "@/paths";
 import fs from "node:fs/promises";
 

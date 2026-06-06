@@ -3,15 +3,16 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 
-import { siteConfig } from "@/config/site";
+import { BlogSearch } from "@/components/blog-search";
 import { routes } from "@/paths";
-import { AppLink, Divider, Input } from "@/components/ui";
+import { site } from "@/site";
+import { AppLink, Divider } from "@/components/ui";
 import {
   GithubIcon,
   LinkedInIcon,
   RssIcon,
-  SearchIcon,
 } from "@/components/icons";
+import type { BlogSearchEntry } from "@/lib/blog-search";
 
 function isActive(pathname: string, href: string) {
   if (href === routes.home()) {
@@ -20,26 +21,20 @@ function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}`);
 }
 
-export function SiteNav() {
+type SiteNavProps = {
+  searchEntries: BlogSearchEntry[];
+};
+
+export function SiteNav({ searchEntries }: SiteNavProps) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const searchInput = (
-    <Input
-      aria-label="Search"
-      placeholder="Search…"
-      startContent={<SearchIcon className="text-base" />}
-      size="sm"
-      type="search"
-    />
-  );
 
   return (
     <nav className="mb-8">
       <Divider />
       <div className="flex items-center justify-between gap-4 py-3">
         <ul className="hidden sm:flex items-center gap-5 m-0 p-0 list-none">
-          {siteConfig.navItems.map((item) => (
+          {site.navItems.map((item) => (
             <li key={item.href}>
               <AppLink
                 active={isActive(pathname, item.href)}
@@ -53,10 +48,12 @@ export function SiteNav() {
         </ul>
 
         <div className="hidden md:flex items-center gap-3 ml-auto">
-          <div className="w-44">{searchInput}</div>
+          <div className="w-44">
+            <BlogSearch entries={searchEntries} />
+          </div>
           <AppLink
             aria-label="RSS feed"
-            href={routes.feed()}
+            href={site.links.rss}
             variant="muted"
           >
             <RssIcon />
@@ -64,7 +61,7 @@ export function SiteNav() {
           <AppLink
             aria-label="GitHub"
             external
-            href={siteConfig.links.github}
+            href={site.links.github}
             variant="muted"
           >
             <GithubIcon />
@@ -72,7 +69,7 @@ export function SiteNav() {
           <AppLink
             aria-label="LinkedIn"
             external
-            href={siteConfig.links.linkedin}
+            href={site.links.linkedin}
             variant="muted"
           >
             <LinkedInIcon />
@@ -115,7 +112,7 @@ export function SiteNav() {
       {isMenuOpen && (
         <div className="sm:hidden py-4 space-y-4">
           <ul className="flex flex-col gap-2 m-0 p-0 list-none">
-            {siteConfig.navItems.map((item) => (
+            {site.navItems.map((item) => (
               <li key={item.href}>
                 <AppLink
                   active={isActive(pathname, item.href)}
@@ -128,15 +125,15 @@ export function SiteNav() {
               </li>
             ))}
           </ul>
-          <div>{searchInput}</div>
+          <BlogSearch entries={searchEntries} />
           <div className="flex items-center gap-4">
-            <AppLink href={routes.feed()} variant="muted">
+            <AppLink href={site.links.rss} variant="muted">
               RSS
             </AppLink>
-            <AppLink external href={siteConfig.links.github} variant="muted">
+            <AppLink external href={site.links.github} variant="muted">
               GitHub
             </AppLink>
-            <AppLink external href={siteConfig.links.linkedin} variant="muted">
+            <AppLink external href={site.links.linkedin} variant="muted">
               LinkedIn
             </AppLink>
           </div>

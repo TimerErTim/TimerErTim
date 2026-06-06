@@ -4,19 +4,33 @@ node = "26"
 [deps.npm]
 auto = true
 
-[tasks."generate:theme-css"]
-description = "Generate Tailwind theme CSS from look and feel"
+[tasks."generate:theme"]
+description = "Generate theme CSS and TS from look-and-feel"
 depends = ["//look-and-feel:build:json"]
-file = "tasks/scripts/generate-theme-css.mjs"
+file = "tasks/scripts/generate-theme.mjs"
+
+[tasks."prepare:fonts"]
+description = "Copy repo fonts into website public/fonts for Next.js"
+depends = ["//look-and-feel:build:json"]
+file = "tasks/scripts/prepare-fonts.mjs"
+
+[tasks."generate:fonts"]
+description = "Generate Next.js local font loaders from look-and-feel"
+depends = ["prepare:fonts"]
+file = "tasks/scripts/generate-fonts.mjs"
+
+[tasks."generate:assets"]
+description = "Generate theme and font assets for the website"
+depends = ["generate:theme", "generate:fonts"]
 
 [tasks.dev]
 description = "Start Next.js dev server"
-depends = ["generate:theme-css"]
+depends = ["generate:assets"]
 run = ["npm run dev"]
 
 [tasks.build]
 description = "Build static Next.js export to out/"
-depends = ["generate:theme-css", "//blogs/...:website-embedding"]
+depends = ["generate:assets", "//blogs/...:website-embedding"]
 run = ["npm run build"]
 
 [tasks."prepare:output_dir"]

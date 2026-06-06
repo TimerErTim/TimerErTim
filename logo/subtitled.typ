@@ -1,4 +1,5 @@
 #import "icon.typ": logo, foreground-color
+#import "../look-and-feel/index.typ": themes
 
 #set page(
   margin: 1pt,
@@ -14,7 +15,7 @@
     background-color: white,
   )
 }
-#set text(size: 4pt, font: "Roboto", fill: foreground-color)
+#set text(size: 4pt, font: themes.fonts.sans.family, fill: foreground-color)
 #v(-3em)
 TimerErTim
 

@@ -4,21 +4,23 @@ import clsx from "clsx";
 
 import { Providers } from "./providers";
 
-import { siteConfig } from "@/config/site";
-import { fontSans, fontSerif, fontMono } from "@/config/fonts";
 import { SiteHeader } from "@/components/site-header";
 import { SiteNav } from "@/components/site-nav";
+import { SideFooter } from "@/components/side-footer";
+import { getBlogSearchEntries } from "@/lib/blog-search";
 import { PrePaintThemeInjectionScript } from "@/lib/theme";
 import { routes, urls } from "@/paths";
-import { SideFooter } from "@/components/side-footer";
+import { site } from "@/site";
+import { fontMono, fontSans } from "@/site/fonts.generated";
+import { themeColors } from "@/site/theme.generated";
 
 export const metadata: Metadata = {
   metadataBase: new URL(urls.site()),
   title: {
-    default: siteConfig.name,
-    template: `%s · ${siteConfig.name}`,
+    default: site.name,
+    template: `%s · ${site.name}`,
   },
-  description: siteConfig.description,
+  description: site.description,
   icons: {
     icon: routes.favicon(),
   },
@@ -31,16 +33,18 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f7f8fb" },
-    { media: "(prefers-color-scheme: dark)", color: "#111115" },
+    { media: "(prefers-color-scheme: light)", color: themeColors.light.base },
+    { media: "(prefers-color-scheme: dark)", color: themeColors.dark.base },
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const searchEntries = await getBlogSearchEntries();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -50,7 +54,6 @@ export default function RootLayout({
         className={clsx(
           "min-h-screen font-sans antialiased",
           fontSans.variable,
-          fontSerif.variable,
           fontMono.variable,
         )}
       >
@@ -58,7 +61,7 @@ export default function RootLayout({
           <div className="flex min-h-screen flex-col">
             <div className="mx-auto w-full max-w-5xl px-6">
               <SiteHeader />
-              <SiteNav />
+              <SiteNav searchEntries={searchEntries} />
             </div>
             <main className="flex-grow">{children}</main>
             <SideFooter />

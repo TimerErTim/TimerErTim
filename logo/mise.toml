@@ -33,5 +33,6 @@ run = [
 description = "Build banner logo"
 depends = ["prepare:output_dir"]
 run = [
-  "typst compile banner.typ --ppi 5000 ../out/logo/banner.png --format png",
+  "typst compile banner.typ --ppi 8000 ../out/logo/banner.png --format png",
+  "typst compile banner.typ --ppi 8000 ../out/logo/banner_dark.png --format png --input theme=dark",
 ]

@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { BlogPdfDownloadButton } from "@/components/blog-pdf-download-button";
+import { BlogSidebar } from "@/components/blog-sidebar";
+import { PageShell } from "@/components/page-shell";
 import { prose } from "@/components/primitives";
-import { siteConfig } from "@/config/site";
+import { Tag } from "@/components/ui/tag";
 import {
     buildBlogPageMetadata,
     buildBlogPostingJsonLd,
@@ -14,6 +16,7 @@ import {
     getServerBlogMetadata,
     loadTransitBlogMetadata,
 } from "@/model/blogs";
+import { site } from "@/site";
 import RenderBlog from "./render-blog";
 
 export async function generateStaticParams() {
@@ -35,7 +38,7 @@ export async function generateMetadata({
     const hasPdf = await blogHasPdf(p["blog-name"]);
     return buildBlogPageMetadata({
         blog: blogMetadata,
-        siteName: siteConfig.name,
+        siteName: site.name,
         hasPdf,
     });
 }
@@ -51,7 +54,7 @@ export default async function BlogPage({ params }: { params: Promise<{ "blog-nam
     const hasPdf = await blogHasPdf(p["blog-name"]);
     const jsonLd = buildBlogPostingJsonLd({
         blog: blogMetadata,
-        siteName: siteConfig.name,
+        siteName: site.name,
         hasPdf,
     });
 
@@ -61,41 +64,49 @@ export default async function BlogPage({ params }: { params: Promise<{ "blog-nam
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <header className="border-b border-border mb-8 pb-5">
-                <h1 className="font-sans text-large leading-large font-bold m-0">
-                    {blogMetadata.title}
-                </h1>
-                <div className="mt-3 text-small leading-small text-muted">
-                    {blogMetadata.author && blogMetadata.author.length > 0 && (
-                        <span>
-                            By {blogMetadata.author.join(", ")}
-                        </span>
-                    )}
-                    {blogMetadata.updatedAt && (
-                        <span className={blogMetadata.author && blogMetadata.author.length > 0 ? "ml-4" : ""}>
-                            Last updated: {blogMetadata.updatedAt.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
-                        </span>
-                    )}
-                </div>
-                {hasPdf && (
-                    <div className="mt-4">
-                        <BlogPdfDownloadButton slug={p["blog-name"]} />
+            <PageShell
+                sidebar={<BlogSidebar currentSlug={p["blog-name"]} />}
+                subContent={
+                    <article className={prose()}>
+                        <RenderBlog blogData={blogData} />
+                    </article>
+                }
+            >
+                <header className="border-b border-border mb-8 pb-5">
+                    <h1 className="font-sans text-large leading-large font-bold m-0">
+                        {blogMetadata.title}
+                    </h1>
+                    <div className="mt-3 text-small leading-small text-muted">
+                        {blogMetadata.author && blogMetadata.author.length > 0 && (
+                            <span>
+                                By {blogMetadata.author.join(", ")}
+                            </span>
+                        )}
+                        {blogMetadata.updatedAt && (
+                            <span className={blogMetadata.author && blogMetadata.author.length > 0 ? "ml-4" : ""}>
+                                Last updated: {blogMetadata.updatedAt.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
+                            </span>
+                        )}
                     </div>
-                )}
-                {blogMetadata.description && (
-                    <p className={`${prose()} mt-4 text-foreground`}>
-                        {blogMetadata.description}
-                    </p>
-                )}
-                {blogMetadata.keywords && blogMetadata.keywords.length > 0 && (
-                    <p className="mt-5 text-tiny leading-tiny text-muted m-0">
-                        Tags: {blogMetadata.keywords.join(", ")}
-                    </p>
-                )}
-            </header>
-            <article className={prose()}>
-                <RenderBlog blogData={blogData} />
-            </article>
+                    {hasPdf && (
+                        <div className="mt-4">
+                            <BlogPdfDownloadButton slug={p["blog-name"]} />
+                        </div>
+                    )}
+                    {blogMetadata.description && (
+                        <p className={`${prose()} mt-4 text-foreground`}>
+                            {blogMetadata.description}
+                        </p>
+                    )}
+                    {blogMetadata.keywords && blogMetadata.keywords.length > 0 && (
+                        <div className="mt-5 flex flex-wrap gap-2">
+                            {blogMetadata.keywords.map((keyword) => (
+                                <Tag key={keyword}>{keyword}</Tag>
+                            ))}
+                        </div>
+                    )}
+                </header>
+            </PageShell>
         </>
     );
 }

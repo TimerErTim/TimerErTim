@@ -1,7 +1,7 @@
 import path from "node:path";
 import type { Route } from "next";
 
-import { buildInfo } from "@/config/system";
+import { buildInfo } from "@/site/system";
 
 export const SITE_ORIGIN = process.env.TIMERERTIM_SITE_ORIGIN!
 
@@ -36,14 +36,6 @@ export const routes = {
     docs: () => asRoute(routePath("docs")),
     blog: () => asRoute(routePath("blog")),
     about: () => asRoute(routePath("about")),
-    profile: () => asRoute(routePath("profile")),
-    dashboard: () => asRoute(routePath("dashboard")),
-    projects: () => asRoute(routePath("projects")),
-    team: () => asRoute(routePath("team")),
-    calendar: () => asRoute(routePath("calendar")),
-    settings: () => asRoute(routePath("settings")),
-    helpFeedback: () => asRoute(routePath("help-feedback")),
-    logout: () => asRoute(routePath("logout")),
     feed: () => asRoute("/feed.xml"),
     favicon: () => asRoute("/favicon.ico"),
     blogPost: (slug: string) => asRoute(routePath("blog", slug)),
@@ -55,7 +47,6 @@ export const urls = {
     site: siteOrigin,
     home: () => absoluteUrl(routes.home()),
     docs: () => absoluteUrl(routes.docs()),
-    pricing: () => absoluteUrl(routes.pricing()),
     blog: () => absoluteUrl(routes.blog()),
     about: () => absoluteUrl(routes.about()),
     feed: () => absoluteUrl(routes.feed()),

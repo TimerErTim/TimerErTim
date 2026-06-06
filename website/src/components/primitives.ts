@@ -19,5 +19,5 @@ export const subtitle = tv({
 });
 
 export const prose = tv({
-  base: "prose font-serif text-medium leading-medium text-foreground",
+  base: "prose font-sans text-medium leading-medium text-foreground",
 });

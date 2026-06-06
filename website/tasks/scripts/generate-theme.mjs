@@ -1,10 +1,11 @@
 #!/usr/bin/env node
-// Directory is relative to the website mise.toml file
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-const themesPath = join(process.env.TIMERERTIM_REPO_ROOT, "look-and-feel/themes.json");
-const outputPath = join(process.cwd(), "src/app/theme.generated.css");
+const repoRoot = process.env.TIMERERTIM_REPO_ROOT;
+const themesPath = join(repoRoot, "look-and-feel/themes.json");
+const cssOutputPath = join(process.cwd(), "src/app/theme.generated.css");
+const tsOutputPath = join(process.cwd(), "src/site/theme.generated.ts");
 
 const themes = JSON.parse(readFileSync(themesPath, "utf8"));
 
@@ -34,7 +35,7 @@ function themeVars(colors) {
 
 const { layout } = themes;
 
-const css = `/* Generated from look-and-feel.json — do not edit */
+const css = `/* Generated from look-and-feel/themes.json — do not edit */
 :root,
 .light {
 ${themeVars(themes.light)}
@@ -77,5 +78,18 @@ ${themeVars(themes.dark)}
 }
 `;
 
-writeFileSync(outputPath, css);
-console.log(`Wrote ${outputPath}`);
+const light = normalizeColors(themes.light);
+const dark = normalizeColors(themes.dark);
+
+const ts = `/* Generated from look-and-feel/themes.json — do not edit */
+
+export const themeColors = {
+  light: ${JSON.stringify(light)},
+  dark: ${JSON.stringify(dark)},
+} as const;
+`;
+
+writeFileSync(cssOutputPath, css);
+writeFileSync(tsOutputPath, ts);
+console.log(`Wrote ${cssOutputPath}`);
+console.log(`Wrote ${tsOutputPath}`);

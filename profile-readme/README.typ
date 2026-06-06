@@ -1,10 +1,11 @@
 #import "@preview/fletcher:0.5.8" as fletcher: edge, node
 
+#import "../look-and-feel/index.typ": themes
 #import "lib.typ": *
 
 #set page(margin: (x: 0pt, y: 4pt), height: auto)
-#set text(size: 12pt, font: ("Roboto", "Noto Color Emoji"))
-#show raw: set text(font: "JetBrains Mono")
+#set text(size: 12pt, font: (themes.fonts.sans.family, "Noto Color Emoji"))
+#show raw: set text(font: themes.fonts.mono.family)
 #show math.equation: set text(font: "Fira Math")
 #set text(fill: themed(black, white))
 #show heading: it => {

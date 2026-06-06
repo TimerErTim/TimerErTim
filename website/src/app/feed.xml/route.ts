@@ -1,4 +1,4 @@
-import { siteConfig } from "@/config/site";
+import { site } from "@/site";
 import { buildBlogRssFeed } from "@/lib/rss";
 import { getAllServerBlogMetadata } from "@/model/blogs";
 
@@ -7,8 +7,8 @@ export const dynamic = "force-static";
 export async function GET() {
   const blogs = await getAllServerBlogMetadata();
   const feed = buildBlogRssFeed({
-    siteName: siteConfig.name,
-    siteDescription: siteConfig.description,
+    siteName: site.name,
+    siteDescription: site.description,
     blogs,
   });
 

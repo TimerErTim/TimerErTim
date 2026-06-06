@@ -1,4 +1,4 @@
-import { siteConfig } from "@/config/site";
+import { site } from "@/site";
 import { title, subtitle } from "@/components/primitives";
 import { PageShell } from "@/components/page-shell";
 import { AppLink, Button } from "@/components/ui";
@@ -10,7 +10,7 @@ export default function Home() {
       <section className="py-4">
         <h2 className={title({ size: "lg" })}>Welcome</h2>
         <p className={`${subtitle()} mt-4 max-w-xl`}>
-          {siteConfig.description}
+          {site.description}
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">

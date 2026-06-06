@@ -1,6 +1,7 @@
 #let is-web = sys.inputs.at("x-target", default: "classic") == "web"
 #let web-page-width = sys.inputs.at("x-page-width", default: none)
 #let web-theme = sys.inputs.at("x-theme", default: "light")
+#import "../../look-and-feel/index.typ": themes
 #import "../common/components/metadata.typ": blog-metadata
 #import "../common/components/xhtml.typ": xhtml
 
@@ -20,7 +21,7 @@
 #let pro-tip-box(content) = {
   show: box.with(stroke: 1pt + yellow, radius: 0.5em, fill: yellow.lighten(80%), inset: 1em)
   {
-    set text(fill: black, font: "JetBrains Mono", size: 1.2em)
+    set text(fill: black, font: themes.fonts.mono.family, size: 1.2em)
     [Protip Box]
   }
   parbreak()
