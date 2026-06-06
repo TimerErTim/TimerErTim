@@ -1,5 +1,6 @@
 import { aboutContent } from "@/site/content/about";
 import { identity } from "@/site/identity";
+import { identityAssets } from "@/site/identity-assets";
 import { legal } from "@/site/legal";
 import { links } from "@/site/links";
 import { navigation } from "@/site/navigation";
@@ -11,6 +12,7 @@ export const site = {
   ...navigation,
   links,
   legal,
+  identity: identityAssets,
   content: {
     about: aboutContent,
   },

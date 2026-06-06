@@ -66,6 +66,7 @@ export default async function BlogPage({ params }: { params: Promise<{ "blog-nam
             />
             <PageShell
                 sidebar={<BlogSidebar currentSlug={p["blog-name"]} />}
+                sidebarLayout="match-content"
                 subContent={
                     <article className={prose()}>
                         <RenderBlog blogData={blogData} />

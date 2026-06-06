@@ -19,9 +19,13 @@ description = "Generate Next.js local font loaders from look-and-feel"
 depends = ["prepare:fonts"]
 file = "tasks/scripts/generate-fonts.mjs"
 
+[tasks."prepare:identity"]
+description = "Copy identity banners into website public/identity"
+file = "tasks/scripts/prepare-identity.mjs"
+
 [tasks."generate:assets"]
 description = "Generate theme and font assets for the website"
-depends = ["generate:theme", "generate:fonts"]
+depends = ["generate:theme", "generate:fonts", "prepare:identity"]
 
 [tasks.dev]
 description = "Start Next.js dev server"

@@ -46,15 +46,18 @@ export default async function RootLayout({
   const searchEntries = await getBlogSearchEntries();
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      className={clsx(fontSans.variable, fontMono.variable)}
+      lang="en"
+      suppressHydrationWarning
+    >
       <head>
         <PrePaintThemeInjectionScript />
       </head>
       <body
         className={clsx(
           "min-h-screen font-sans antialiased",
-          fontSans.variable,
-          fontMono.variable,
+          fontSans.className,
         )}
       >
         <Providers>

@@ -9,8 +9,8 @@ export default async function BlogPage() {
   const blogs = await getAllServerBlogMetadata();
 
   return (
-    <PageShell sidebar={<BlogSidebar />}>
-      <div>
+    <PageShell sidebar={<BlogSidebar />} sidebarLayout="fill">
+      <div className="flex flex-1 flex-col">
         <h1 className={title()}>Blog</h1>
         <div className="mt-8 flex flex-col gap-4">
           {blogs.map((blog) => (
