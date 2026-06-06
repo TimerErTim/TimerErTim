@@ -1,0 +1,6 @@
+[tools]
+typst = "0.14.2"
+
+[tasks."build"]
+description = "Build favicon"
+run = ["typst compile favicon.typ --ppi 160 --format png"]

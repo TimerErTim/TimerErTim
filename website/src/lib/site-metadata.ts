@@ -4,7 +4,7 @@ import { absoluteSiteUrl, routes, urls } from "@/paths";
 import { site } from "@/site";
 import { identityAssets } from "@/site/identity-assets";
 
-export const siteTitleTemplate = `%s | ${site.name}`;
+export const siteTitleTemplate = `%s • ${site.name}`;
 
 export const defaultSocialImage = {
   url: identityAssets.socialPreview,

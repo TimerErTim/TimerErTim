@@ -25,6 +25,8 @@ file = "tasks/scripts/prepare-identity.mjs"
 
 [tasks."prepare:favicon"]
 description = "Copy favicon bundle from assets/favicon into website public/"
+sources = ["{{ vars.REPO_ROOT }}/assets/favicon/*"]
+outputs = ["public/*.png", "public/*.ico"]
 file = "tasks/scripts/prepare-favicon.mjs"
 
 [tasks."generate:assets"]

@@ -6,8 +6,6 @@ tmp/
 build/
 dist/
 .venv/
-website/public/fonts/
-website/public/identity/
 
 # Windows shenanigans
 *:Zone.Identifier
