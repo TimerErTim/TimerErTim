@@ -49,7 +49,7 @@
     "math": {
       "family": "Fira Math",
       "files": [
-        "FiraMath-Regular.ttf"
+        "FiraMath-Regular.otf"
       ],
       "weights": [
         400

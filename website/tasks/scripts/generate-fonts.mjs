@@ -30,7 +30,7 @@ function buildSrcEntries(role) {
   assertFontFiles(role, files);
   return files.map((file, index) => {
     const weight = weights[index] ?? weights[weights.length - 1] ?? 400;
-    const relPath = `../../public/fonts/${file}`;
+    const relPath = `../../build/fonts/${file}`;
     return `    { path: "${relPath}", weight: "${weight}" }`;
   });
 }

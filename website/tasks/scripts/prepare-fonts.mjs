@@ -5,7 +5,7 @@ import { join } from "node:path";
 const repoRoot = process.env.TIMERERTIM_REPO_ROOT;
 const themesPath = join(repoRoot, "look-and-feel/themes.json");
 const sourceFontsDir = join(repoRoot, "fonts");
-const targetFontsDir = join(process.cwd(), "public/fonts");
+const targetFontsDir = join(process.cwd(), "build/fonts");
 
 const themes = JSON.parse(readFileSync(themesPath, "utf8"));
 const { fonts } = themes;
@@ -26,6 +26,6 @@ for (const role of Object.keys(fonts)) {
       process.exit(1);
     }
     copyFileSync(source, target);
-    console.log(`Copied ${file} → public/fonts/`);
+    console.log(`Copied ${file} → build/fonts/`);
   }
 }

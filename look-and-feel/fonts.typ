@@ -11,7 +11,7 @@
   ),
   math: (
     family: "Fira Math",
-    files: ("FiraMath-Regular.ttf",),
+    files: ("FiraMath-Regular.otf",),
     weights: (400,),
   )
 )
