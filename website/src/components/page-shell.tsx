@@ -35,7 +35,7 @@ export function PageShell({
       <div className={shellClass}>
         <div className="relative">
           <div className="min-w-0 lg:pr-[calc(220px+2.5rem)]">{children}</div>
-          <aside className="hidden lg:block absolute top-0 right-0 w-[220px] max-h-full overflow-y-auto">
+          <aside className="hidden lg:block absolute top-0 right-0 h-full w-[220px] max-h-full overflow-hidden">
             {sidebar}
           </aside>
         </div>

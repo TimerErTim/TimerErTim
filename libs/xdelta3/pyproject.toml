@@ -8,7 +8,6 @@ version = "0.1.1"
 description = "Python bindings for xdelta3 (VCDIFF binary patches)"
 readme = "README.md"
 requires-python = ">=3.8"
-license = { text = "Apache-2.0" }
 keywords = ["xdelta", "vcdiff", "binary-patch", "delta"]
 classifiers = [
     "Development Status :: 4 - Beta",

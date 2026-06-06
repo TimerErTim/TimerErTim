@@ -9,18 +9,14 @@ export async function BlogSidebar({ currentSlug }: { currentSlug?: string }) {
     .sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime())
     .slice(0, 12);
 
-  if (recent.length === 0) {
-    return null;
-  }
-
   return (
-    <div className="bg-surface border border-border p-4">
-      <h2 className="text-small leading-small font-semibold text-foreground m-0 mb-4">
+    <div className="flex h-fit max-h-full flex-col overflow-hidden bg-surface border border-border p-4 pb-0">
+      <h2 className="shrink-0 text-small leading-small font-semibold text-foreground m-0 mb-4">
         Recent blogs
       </h2>
-      <ul className="m-0 p-0 list-none space-y-2.5">
+      <ul className="min-h-0 flex-1 overflow-hidden m-0 p-0 list-none -space-y-1.5">
         {recent.map((blog) => (
-          <li key={blog.slug} className="flex gap-2 text-small leading-small">
+          <li key={blog.slug} className="flex gap-2 text-small leading-small pb-4">
             <span aria-hidden className="text-muted select-none">
               ·
             </span>

@@ -8,7 +8,7 @@ export const buttonStyles = tv({
     variant: {
       primary: "bg-accent text-foreground hover:opacity-90",
       secondary:
-        "bg-surface border border-border text-foreground hover:bg-overlay",
+        "bg-surface border border-border text-foreground hover:bg-accent/90",
       ghost: "text-foreground hover:bg-overlay",
       link: "text-info underline-offset-2 hover:underline p-0",
     },

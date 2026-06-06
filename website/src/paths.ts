@@ -33,7 +33,6 @@ const blogsRoot = () => path.join(buildInfo.repoRoot, "build/website/blogs");
 /** Relative site routes for Next.js navigation and links. */
 export const routes = {
     home: () => asRoute("/"),
-    docs: () => asRoute(routePath("docs")),
     blog: () => asRoute(routePath("blog")),
     about: () => asRoute(routePath("about")),
     feed: () => asRoute("/feed.xml"),
@@ -46,7 +45,6 @@ export const routes = {
 export const urls = {
     site: siteOrigin,
     home: () => absoluteUrl(routes.home()),
-    docs: () => absoluteUrl(routes.docs()),
     blog: () => absoluteUrl(routes.blog()),
     about: () => absoluteUrl(routes.about()),
     feed: () => absoluteUrl(routes.feed()),

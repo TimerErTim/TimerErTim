@@ -3,7 +3,7 @@ import { site } from "@/site";
 
 export function SideFooter() {
   return (
-    <footer className="border-t border-border py-6 text-center text-tiny leading-tiny text-muted">
+    <footer className="border-t border-border py-4 text-center text-tiny leading-tiny text-muted">
       <p className="m-0">
         © {new Date().getFullYear()} {site.legalName}
       </p>
