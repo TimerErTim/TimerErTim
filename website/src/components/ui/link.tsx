@@ -1,6 +1,7 @@
 import NextLink from "next/link";
 import type { Route } from "next";
-import { tv, type VariantProps } from "tailwind-variants";
+import { type VariantProps } from "tailwind-variants";
+import { tv } from "@/lib/tw";
 import { type ComponentProps, type ReactNode } from "react";
 
 const linkStyles = tv({

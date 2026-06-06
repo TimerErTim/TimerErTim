@@ -1,4 +1,4 @@
-import { tv } from "tailwind-variants";
+import { tv } from "@/lib/tw";
 import { type HTMLAttributes } from "react";
 
 const cardStyles = tv({

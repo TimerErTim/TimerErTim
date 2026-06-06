@@ -1,4 +1,4 @@
-import { tv } from "tailwind-variants";
+import { tv } from "@/lib/tw";
 import { type InputHTMLAttributes, type ReactNode } from "react";
 
 const inputStyles = tv({

@@ -1,4 +1,5 @@
-import { tv, type VariantProps } from "tailwind-variants";
+import { type VariantProps } from "tailwind-variants";
+import { tv } from "@/lib/tw";
 import { forwardRef, type ButtonHTMLAttributes } from "react";
 
 export const buttonStyles = tv({

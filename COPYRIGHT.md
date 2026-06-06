@@ -16,8 +16,6 @@
 | Source Code Pro | Adobe Systems Incorporated | [SIL OFL 1.1](https://openfontlicense.org) | [adobe-fonts/source-code-pro](https://github.com/adobe-fonts/source-code-pro) |
 | Fira Math | Mozilla Foundation | [SIL OFL 1.1](https://openfontlicense.org) | [firamath/firamath](https://github.com/firamath/firamath) |
 
-To swap the mono font for a Nerd Font variant, update `look-and-feel/fonts.typ` and add the corresponding attribution row here.
-
 ## Software dependencies
 
 | Project | Copyright holder | License | Source |

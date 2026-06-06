@@ -1,4 +1,4 @@
-import { tv } from "tailwind-variants";
+import { tv } from "@/lib/tw";
 
 export const title = tv({
   base: "font-sans text-large leading-large font-semibold tracking-tight text-foreground",

@@ -20,7 +20,7 @@ export function PageShell({
       {sidebar ? (
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_220px] gap-10">
           <div className="min-w-0">{children}</div>
-          <aside className="lg:pt-1">{sidebar}</aside>
+          <aside className="hidden lg:block lg:pt-1">{sidebar}</aside>
         </div>
       ) : (
         children
