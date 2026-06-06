@@ -34,4 +34,6 @@
   }
 }
 
-#metadata((themes,).map(_convert-to-js-units).map(_convert-to-hex-colors).first()) <themes>
+#metadata(
+  (themes,).map(_convert-to-js-units).map(_convert-to-hex-colors).first(),
+) <themes>

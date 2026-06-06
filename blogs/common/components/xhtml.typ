@@ -50,8 +50,14 @@
       return (width-par-length.to-absolute(), height-par-length.to-absolute())
     }
 
-    let (inner-width, inner-height) = resolve-relative(inner-width, inner-height)
-    let (outer-width, outer-height) = resolve-relative(outer-width, outer-height)
+    let (inner-width, inner-height) = resolve-relative(
+      inner-width,
+      inner-height,
+    )
+    let (outer-width, outer-height) = resolve-relative(
+      outer-width,
+      outer-height,
+    )
 
     // Directly wrap the content in a <div> with the correct xhtml namespace,
     // so the SVG foreignObject doesn't need to (and shouldn't) set it again.
@@ -79,7 +85,10 @@
       "</svg>"
     }
 
-    if sys.inputs.at("x-format", default: "") == "pdf" and sys.inputs.at("x-target", default: "") == "web" {
+    if (
+      sys.inputs.at("x-format", default: "") == "pdf"
+        and sys.inputs.at("x-target", default: "") == "web"
+    ) {
       show: pdf.artifact
       show: box.with(width: outer-width, height: outer-height)
       html-embed

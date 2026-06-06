@@ -11,7 +11,7 @@
     "danger": oklch(55%, 22%, 20deg),
     "warning": oklch(71%, 15%, 68deg),
     "success": oklch(63%, 18%, 140deg),
-    "info": oklch(68%, 14%, 235deg)  // Info is also used for links
+    "info": oklch(68%, 14%, 235deg), // Info is also used for links
   ),
   "dark": (
     "base": oklch(18%, 2%, 284deg),
@@ -24,8 +24,8 @@
     "danger": oklch(76%, 13%, 3deg),
     "warning": oklch(92%, 7%, 87deg),
     "success": oklch(86%, 11%, 143deg),
-    "info": oklch(85%, 8%, 210deg)  // Info is also used for links
-  )
+    "info": oklch(85%, 8%, 210deg), // Info is also used for links
+  ),
 )
 
 #let _calc_muted(colorset) = {

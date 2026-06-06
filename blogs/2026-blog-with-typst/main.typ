@@ -9,7 +9,17 @@
   title: "Writing a static blog with Typst",
   description: "How this very blog was written with Typst and statically hosting it efficiently with brotli compression and vcdiff patching on GitHub. Or in other words: How to probably misuse Typst for everthing.",
   author: "Tim Peko (TimerErTim)",
-  keywords: ("Typst", "SSG", "NextJS", "mise-en-place", "Compression", "Patching", "GitHub", "brotli", "vcdiff"),
+  keywords: (
+    "Typst",
+    "SSG",
+    "NextJS",
+    "mise-en-place",
+    "Compression",
+    "Patching",
+    "GitHub",
+    "brotli",
+    "vcdiff",
+  ),
 )
 
 #blog-metadata()
@@ -17,11 +27,16 @@
   width: eval(web-page-width),
   height: auto,
   fill: white.transparentize(100%),
-  margin: 0pt
+  margin: 0pt,
 ) if is-web
 
 #let pro-tip-box(content) = {
-  show: box.with(stroke: 1pt + yellow, radius: 0.5em, fill: yellow.lighten(80%), inset: 1em)
+  show: box.with(
+    stroke: 1pt + yellow,
+    radius: 0.5em,
+    fill: yellow.lighten(80%),
+    inset: 1em,
+  )
   {
     set text(fill: black, font: themes.fonts.mono.family, size: 1.2em)
     [Protip Box]
@@ -53,8 +68,8 @@ Let's add a #link("https://lilaq.org/")[lilaq] diagram for good measure:\
   lq.plot(
     range(10),
     x => x * x / calc.exp(x),
-    smooth: true
-  )
+    smooth: true,
+  ),
 )
 
 Brotli customDictionary compression to python xdelta3 to create a vcdiff patch.

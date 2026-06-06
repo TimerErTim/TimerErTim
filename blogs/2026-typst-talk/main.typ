@@ -19,7 +19,12 @@
 ) if is-web
 
 #let pro-tip-box(content) = {
-  show: box.with(stroke: 1pt + yellow, radius: 0.5em, fill: yellow.lighten(80%), inset: 1em)
+  show: box.with(
+    stroke: 1pt + yellow,
+    radius: 0.5em,
+    fill: yellow.lighten(80%),
+    inset: 1em,
+  )
   {
     set text(fill: black, font: themes.fonts.mono.family, size: 1.2em)
     [Protip Box]
@@ -51,6 +56,6 @@ Let's add a #link("https://lilaq.org/")[lilaq] diagram for good measure:\
   lq.plot(
     range(10),
     x => x * x / calc.exp(x),
-    smooth: true
-  )
+    smooth: true,
+  ),
 )

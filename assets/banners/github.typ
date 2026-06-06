@@ -3,32 +3,30 @@
   width: 640pt,
   height: 320pt,
   margin: 40pt,
-  fill: white
+  fill: white,
 )
 
 #import "../../look-and-feel/index.typ": themes
 
 #set align(center + horizon)
-#set page(
-  background: {
-    place( box(width: 100%, height: 100%, fill: gradient.radial(
+#set page(background: {
+  place(box(width: 100%, height: 100%, fill: gradient.radial(
     white.transparentize(100%),
     themes.light.surface,
     themes.light.info.transparentize(50%),
     themes.light.accent.transparentize(100%),
     white.transparentize(100%),
-    center: (0%, 0%)
+    center: (0%, 0%),
   )))
-  place( box(width: 100%, height: 100%, fill: gradient.radial(
+  place(box(width: 100%, height: 100%, fill: gradient.radial(
     white.transparentize(100%),
     themes.light.surface,
     themes.dark.accent.transparentize(100%),
     themes.light.overlay,
     white.transparentize(100%),
-    center: (100%, 100%)
+    center: (100%, 100%),
   )))
-  }
-)
+})
 #{
   image("../identity/banner.png", width: 70%)
 }

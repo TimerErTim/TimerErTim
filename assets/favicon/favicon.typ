@@ -2,7 +2,7 @@
   width: 256pt,
   height: 256pt,
   fill: white.transparentize(100%),
-  margin: 0pt
+  margin: 0pt,
 )
 
 #import "../../look-and-feel/index.typ": themes

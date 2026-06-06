@@ -1,4 +1,4 @@
-#import "icon.typ": logo, foreground-color
+#import "icon.typ": foreground-color, logo
 #import "../look-and-feel/index.typ": themes
 
 #set page(

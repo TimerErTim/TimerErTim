@@ -8,7 +8,7 @@
     large: 1.15 * rem,
   ),
   lineHeight: (
-    tiny: 1 *     rem,
+    tiny: 1 * rem,
     small: 1.25 * rem,
     medium: 1.5 * rem,
     large: 1.75 * rem,
