@@ -9,6 +9,7 @@ config_roots = [
   "website",
   "libs/*",
   "look-and-feel",
+  "assets/*",
 ]
 
 [settings]

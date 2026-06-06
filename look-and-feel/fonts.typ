@@ -9,4 +9,9 @@
     files: ("JetBrainsMono-Regular.ttf", "JetBrainsMono-Bold.ttf"),
     weights: (400, 700),
   ),
+  math: (
+    family: "Fira Math",
+    files: ("FiraMath-Regular.ttf",),
+    weights: (400,),
+  )
 )

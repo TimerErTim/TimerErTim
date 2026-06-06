@@ -1,0 +1,6 @@
+[tools]
+typst = "0.14.2"
+
+[tasks."build:github"]
+description = "Build GitHub banner"
+run = ["typst compile github.typ --ppi 200 --format png"]
