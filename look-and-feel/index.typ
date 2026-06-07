@@ -10,5 +10,6 @@
 
 #let get-theme(theme) = (
   layout: layout,
-  ..colors.at(theme),
+  fonts: fonts,
+  colors: colors.at(theme),
 )

@@ -15,12 +15,12 @@
   ),
   radius: (
     small: 0 * rem,
-    medium: 0.05 * rem,
-    large: 0.1 * rem,
+    medium: 0 * rem,
+    large: 0 * rem,
   ),
   borderWidth: (
     small: 1pt,
-    medium: 1pt,
-    large: 1pt,
+    medium: 2pt,
+    large: 4pt,
   ),
 )
