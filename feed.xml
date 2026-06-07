@@ -10,7 +10,7 @@
       <title>Writing a static blog with Typst</title>
       <link>https://timerertim.eu/blog/2026-blog-with-typst/</link>
       <description>How this very blog was written with Typst and statically hosting it efficiently with brotli compression and vcdiff patching on GitHub. Or in other words: How to probably misuse Typst for everthing.</description>
-      <pubDate>Sun, 07 Jun 2026 14:34:21 GMT</pubDate>
+      <pubDate>Sun, 07 Jun 2026 14:41:02 GMT</pubDate>
       <guid isPermaLink="true">https://timerertim.eu/blog/2026-blog-with-typst/</guid>
       <author>Tim Peko (TimerErTim)</author>
       <category>Typst</category>
@@ -27,7 +27,7 @@
       <title>Typst Talk</title>
       <link>https://timerertim.eu/blog/2026-typst-talk/</link>
       <description>A talk about Typst, hi Nathalie</description>
-      <pubDate>Sun, 07 Jun 2026 14:34:21 GMT</pubDate>
+      <pubDate>Sun, 07 Jun 2026 14:41:02 GMT</pubDate>
       <guid isPermaLink="true">https://timerertim.eu/blog/2026-typst-talk/</guid>
       <author>John Doe</author>
       <category>Typst</category>
