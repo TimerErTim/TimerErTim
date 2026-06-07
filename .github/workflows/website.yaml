@@ -36,12 +36,11 @@ jobs:
             /home/runner/.local/share/mise/
           key: ${{ runner.os }}-website-dependencies
 
-      - name: Initialize jujutsu
-        run: jj git init --git-repo ./
-      
-      - name: Setup previous gh-pages files  # for memory/persistence
-        run: |
-          mkdir -p dist/website/ && jj workspace add --name website-dist dist/website -r 'coalesce(bookmarks(gh-pages), root())'
+      - name: Load gh-pages branch
+        uses: actions/checkout@v6
+        with:
+          ref: gh-pages
+          path: dist/website/
 
       - name: Build the website
         run: cd website && mise deps && mise run :export
