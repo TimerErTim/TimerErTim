@@ -108,8 +108,9 @@
   show: set-raw-style
   show link: style-link
   show quote: style-quote
-
   show: pikchr-init
+
+  set rect(stroke: theme.colors.border)
 
   cont
 }

@@ -53,6 +53,7 @@
       1cm
     },
   )
+  show pagebreak: none
 
   show: set-footnote-style
   show: set-reference-style
