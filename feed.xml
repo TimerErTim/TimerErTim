@@ -9,29 +9,21 @@
     <item>
       <title>Writing a static blog with Typst</title>
       <link>https://timerertim.eu/blog/2026-blog-with-typst/</link>
-      <description>How this very blog was written with Typst and statically hosting it efficiently with brotli compression and vcdiff patching on GitHub. Or in other words: How to probably misuse Typst for everthing.</description>
+      <description>Let&apos;s dive into the world of Typst and see how we can use it to power this very blog website. We will investigate potential solutions, the custom build process I settled on and the technologies necessary. For static hosting highly efficient compression and patching is necessary.
+Or in other words: How to proberly misuse Typst for everthing.</description>
       <pubDate>Sun, 07 Jun 2026 14:42:38 GMT</pubDate>
+      <atom:updated>2026-06-08T13:22:13.000Z</atom:updated>
       <guid isPermaLink="true">https://timerertim.eu/blog/2026-blog-with-typst/</guid>
       <author>Tim Peko (TimerErTim)</author>
       <category>Typst</category>
       <category>SSG</category>
       <category>NextJS</category>
       <category>mise-en-place</category>
-      <category>Compression</category>
-      <category>Patching</category>
+      <category>compression</category>
+      <category>patching</category>
       <category>GitHub</category>
       <category>brotli</category>
       <category>vcdiff</category>
-    </item>
-    <item>
-      <title>Typst Talk</title>
-      <link>https://timerertim.eu/blog/2026-typst-talk/</link>
-      <description>A talk about Typst, hi Nathalie</description>
-      <pubDate>Sun, 07 Jun 2026 14:42:38 GMT</pubDate>
-      <guid isPermaLink="true">https://timerertim.eu/blog/2026-typst-talk/</guid>
-      <author>John Doe</author>
-      <category>Typst</category>
-      <category>Talk</category>
     </item>
   </channel>
 </rss>
