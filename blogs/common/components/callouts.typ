@@ -1,0 +1,62 @@
+#import "../theming.typ": theme
+
+#let callout-base(
+  color-val: theme.colors.overlay,
+  fill: auto,
+  border: true, // Whether to show a border around the callout
+  cont,
+) = {
+  show: block.with(
+    stroke: (
+      left: color-val + theme.layout.borderWidth.large,
+      rest: if border {
+        color-val + theme.layout.borderWidth.small
+      } else {
+        none
+      },
+    ),
+    radius: theme.layout.radius.medium,
+    fill: if fill == auto {
+      color.mix((color-val, 10%), (theme.colors.base, 90%))
+    } else {
+      fill
+    },
+    inset: 1em,
+    outset: (left: -theme.layout.borderWidth.large / 2),
+  )
+  cont
+}
+
+#let callout-block(
+  color-val: theme.colors.overlay,
+  heading: none,
+  body,
+) = {
+  callout-base(color-val: color-val, fill: auto)[
+    #heading
+
+    #set text(fill: color.mix((color-val, 20%), (theme.colors.foreground, 80%)))
+    #body
+  ]
+}
+
+#let quote-callout(
+  body,
+  attribution: none,
+) = {
+  callout-base(color-val: theme.colors.muted, fill: none, border: false)[
+    #body
+    #if attribution != none {
+      set text(fill: theme.colors.muted)
+      linebreak()
+      h(1fr)
+      sym.dash
+      attribution
+    }
+  ]
+}
+
+#let info-callout = callout-block.with(color-val: theme.colors.info)
+#let warning-callout = callout-block.with(color-val: theme.colors.warning)
+#let danger-callout = callout-block.with(color-val: theme.colors.danger)
+#let success-callout = callout-block.with(color-val: theme.colors.success)

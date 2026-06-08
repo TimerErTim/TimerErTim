@@ -1,8 +1,0 @@
-[task_config]
-includes = [
-    "../../website/tasks/blog.toml",  # Include this blog in the website embedding
-    "../tasks/blog.toml"
-]
-
-
-

@@ -1,3 +1,5 @@
+#import "../variants.typ": is-pdf, targets-web
+
 /// HTML extension
 #let xhtml(
   outer-width: 160pt,
@@ -86,8 +88,7 @@
     }
 
     if (
-      sys.inputs.at("x-format", default: "") == "pdf"
-        and sys.inputs.at("x-target", default: "") == "web"
+      targets-web and is-pdf
     ) {
       show: pdf.artifact
       show: box.with(width: outer-width, height: outer-height)
