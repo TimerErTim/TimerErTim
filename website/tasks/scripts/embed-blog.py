@@ -75,7 +75,7 @@ def export_blog_variants(variants: List[BlogSvgVariant], dst_dir_rel: str):
             print(f"Copied {src_file} -> {dst_file_rel}")
     except subprocess.CalledProcessError as e:
         print(f"Error running 'mise run export:web-format:single': {e.stderr.decode().strip() if e.stderr else e}")
-        return None
+        raise
 
 relative_build_json_path = os.path.join("dist/website/api/blogs", BLOG_SLUG, "build.json")
 build = None

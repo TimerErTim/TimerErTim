@@ -33,7 +33,24 @@
   body,
 ) = {
   callout-base(color-val: color-val, fill: auto)[
-    #heading
+    #if heading != none {
+      block(
+        width: 100%,
+        outset: (
+          left: 1em - theme.layout.borderWidth.large,
+          rest: 1em,
+        ),
+        stroke: (
+          top: color-val + theme.layout.borderWidth.small,
+          right: color-val + theme.layout.borderWidth.small,
+        ),
+        fill: color.mix((color-val, 50%), (theme.colors.base, 50%)),
+      )[
+        #set text(size: 1.1em)
+        #heading
+      ]
+      v(0.5em)
+    }
 
     #set text(fill: color.mix((color-val, 20%), (theme.colors.foreground, 80%)))
     #body

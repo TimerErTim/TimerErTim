@@ -6,14 +6,13 @@
   outer-height: 90pt,
   inner-width: none,
   inner-height: none,
-  content,
+  cont,
 ) = {
   // From https://github.com/Myriad-Dreamin/typst.ts/blob/main/contrib/templates/xhtml/lib.typ
-  let t = content.func()
-  let content = if content.func() == raw {
-    content.text
+  let content = if type(cont) == content {
+    cont.text
   } else {
-    content
+    cont
   }
 
   let inner-width = if inner-width == none {

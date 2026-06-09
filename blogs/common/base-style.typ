@@ -111,6 +111,8 @@
   show: pikchr-init
 
   set rect(stroke: theme.colors.border)
+  show figure: align.with(left)
+  show figure.caption: set text(size: theme.layout.fontSize.tiny)
 
   cont
 }
