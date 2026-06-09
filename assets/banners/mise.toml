@@ -4,3 +4,8 @@ typst = "0.14.2"
 [tasks."build:github"]
 description = "Build GitHub banner"
 run = ["typst compile github.typ --ppi 200 --format png"]
+
+
+[tasks."build:social-preview"]
+description = "Build social preview banner"
+run = ["typst compile social-preview.typ --ppi 76 --format png"]

@@ -11,7 +11,7 @@ const requiredFiles = ["banner.png", "banner_dark.png"];
 
 const optionalFiles = [
   {
-    source: "social-preview.png",
+    source: join(repoRoot, "assets/banners/social-preview.png"),
     target: join(targetDir, "social-preview.png"),
     fallback: join(sourceDir, "banner.png"),
   },
@@ -31,7 +31,7 @@ for (const file of requiredFiles) {
 }
 
 for (const { source, target, fallback } of optionalFiles) {
-  const sourcePath = join(sourceDir, source);
+  const sourcePath = source;
   const resolvedSource = existsSync(sourcePath)
     ? sourcePath
     : fallback && existsSync(fallback)
