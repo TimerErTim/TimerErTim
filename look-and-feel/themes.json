@@ -64,11 +64,11 @@
     "surface": "#e6e8eb",
     "overlay": "#e0e1e4",
     "border": "#a0a1a7",
-    "danger": "#9f5c5c",
+    "danger": "#9c2d2d",
     "warning": "#bb9b79",
     "success": "#72946b",
-    "info": "#779eb6",
-    "muted": "#191a22b2"
+    "info": "#6694b0",
+    "muted": "#7e8086"
   },
   "dark": {
     "base": "#111115",
@@ -82,6 +82,6 @@
     "warning": "#ede4d0",
     "success": "#c1d9bf",
     "info": "#b7d4d9",
-    "muted": "#e7ebf6b2"
+    "muted": "#72747c"
   }
 }

@@ -1,5 +1,5 @@
 #import "components/callouts.typ": quote-callout
-#import "theming.typ": catppuccin-flavor, theme, themes
+#import "theming.typ": catppuccin-flavor, catppuccin-accents, theme, themes
 #import "variants.typ": light-or, web-or
 #import "deps.typ": catppuccin, codly, codly-init, codly-languages
 #import "components/pikchr.typ": pikchr-init
@@ -74,12 +74,12 @@
   codly(
     languages: codly-languages,
     lang-format: (name, icon, color) => {
-      set text(fill: themes.light.foreground)
+      set text(fill: theme.colors.foreground)
       show: box.with(
         inset: theme.layout.borderWidth.medium,
         stroke: color + theme.layout.borderWidth.small / 2,
         radius: theme.layout.radius.small,
-        fill: color.lighten(80%),
+        fill: color.mix((theme.colors.base, 250%)),
         height: 1.2em
       )
       [#web-or(none, icon) #name]
@@ -90,6 +90,12 @@
     fill: theme.colors.surface,
     stroke: stroke(theme.colors.border),
     radius: theme.layout.radius.large,
+    smart-skip: true,
+    skip-number: align(center)[#sym.dots.v],
+    default-color: catppuccin-accents.blue,
+    highlight-radius: theme.layout.radius.small,
+    highlight-fill: color => color.mix((theme.colors.base, 250%)),
+    reference-sep: ":",
     breakable: false,
   )
 

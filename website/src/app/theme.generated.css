@@ -8,11 +8,11 @@
   --theme-surface: #e6e8eb;
   --theme-overlay: #e0e1e4;
   --theme-border: #a0a1a7;
-  --theme-danger: #9f5c5c;
+  --theme-danger: #9c2d2d;
   --theme-warning: #bb9b79;
   --theme-success: #72946b;
-  --theme-info: #779eb6;
-  --theme-muted: #191a22b2;
+  --theme-info: #6694b0;
+  --theme-muted: #7e8086;
 }
 
 .dark {
@@ -27,7 +27,7 @@
   --theme-warning: #ede4d0;
   --theme-success: #c1d9bf;
   --theme-info: #b7d4d9;
-  --theme-muted: #e7ebf6b2;
+  --theme-muted: #72747c;
 }
 
 @theme inline {

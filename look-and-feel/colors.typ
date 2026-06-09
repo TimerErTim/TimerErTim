@@ -8,10 +8,10 @@
     "surface": oklch(93%, 1%, 265deg),
     "overlay": oklch(91%, 1%, 265deg),
     "border": oklch(71%, 2%, 275deg),
-    "danger": oklch(55%, 22%, 20deg),
+    "danger": oklch(46.8%, 0.147, 24.86deg),
     "warning": oklch(71%, 15%, 68deg),
     "success": oklch(63%, 18%, 140deg),
-    "info": oklch(68%, 14%, 235deg), // Info is also used for links
+    "info": oklch(64.41%, 0.065, 235.88deg), // Info is also used for links
   ),
   "dark": (
     "base": oklch(18%, 2%, 284deg),
@@ -29,7 +29,7 @@
 )
 
 #let _calc_muted(colorset) = {
-  return colorset.foreground.transparentize(30%)
+  return colorset.foreground.mix((colorset.base, 100%))
 }
 
 #let _process_colors(colorset) = {

@@ -6,7 +6,7 @@
   border: true, // Whether to show a border around the callout
   cont,
 ) = {
-  let stroke-color = color.mix((color-val, 50%), (theme.colors.base, 50%))
+  let stroke-color = color.mix((color-val, 40%), (theme.colors.base, 60%))
   show: block.with(
     stroke: (
       left: color-val + theme.layout.borderWidth.large,
@@ -24,6 +24,7 @@
     },
     inset: 1em,
     outset: (left: -theme.layout.borderWidth.large / 2),
+    width: 100%
   )
   cont
 }
@@ -41,9 +42,10 @@
           left: 1em - theme.layout.borderWidth.large,
           rest: 1em,
         ),
-        fill: color.mix((color-val, 50%), (theme.colors.base, 50%)),
+        fill: color.mix((color-val, 40%), (theme.colors.base, 60%)),
+        sticky: true
       )[
-        #set text(size: 1.1em)
+        #set text(size: 1.05em)
         #heading
       ]
       v(0.5em)
