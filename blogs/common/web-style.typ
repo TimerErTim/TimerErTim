@@ -36,6 +36,14 @@
   body
 }
 
+#let set-figure-style(
+  body,
+) = {
+  show figure: set figure(supplement: none)
+  show figure.caption: set text(fill: theme.colors.muted)
+  body
+}
+
 #let web-template(
   cont,
 ) = {
@@ -57,6 +65,7 @@
 
   show: set-footnote-style
   show: set-reference-style
+  show: set-figure-style
 
   cont
 }

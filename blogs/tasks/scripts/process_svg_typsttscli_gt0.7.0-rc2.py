@@ -27,7 +27,7 @@ if start_idx != -1 and end_idx != -1:
 # =====================================================================
 # Matches both <image> and <img> tags that contain a base64 encoded SVG in either href or src
 img_pattern = re.compile(
-    r'<(?:image|img)[^>]*?alt=["\']!typst-embed-command["\'][^>]*?(?:xlink:href|src)=["\']data:image/svg\+xml;base64,([^"\']*?)["\'][^>]*?>'
+    r'<(?:image|img)[^>]*?(?:xlink:href|src)=["\']data:image/svg\+xml;base64,([^"\']*?)["\'][^>]*?alt=["\']!typst-embed-command["\'][^>]*?>'
 )
 
 def decode_and_inline(text):
