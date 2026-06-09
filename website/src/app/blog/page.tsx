@@ -16,6 +16,7 @@ export const metadata = buildSitePageMetadata({
 
 export default async function BlogPage() {
   const blogs = await getAllServerBlogMetadata();
+  blogs.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime());
 
   return (
     <PageShell sidebar={<BlogSidebar />} sidebarLayout="fill">
