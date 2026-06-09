@@ -1,0 +1,118 @@
+{
+  "slug": "2026-fh-talk-about-typst",
+  "contentHash": "6f02a3cf163ddfc5fa3ff6c7bc5ad9fbb178d21335c58c42da7d62caff3f0a30",
+  "createdAt": 1781043828,
+  "updatedAt": 1781043828,
+  "compressionRefVariant": "main_light_320pt.svg",
+  "variants": [
+    {
+      "filename": "main_light_320pt.svg",
+      "theme": "light",
+      "width_pt": 320,
+      "compressedFilename": "main_light_320pt.svg.br"
+    },
+    {
+      "filename": "main_light_448pt.svg",
+      "theme": "light",
+      "width_pt": 448,
+      "compressedFilename": "main_light_448pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_light_576pt.svg",
+      "theme": "light",
+      "width_pt": 576,
+      "compressedFilename": "main_light_576pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_light_704pt.svg",
+      "theme": "light",
+      "width_pt": 704,
+      "compressedFilename": "main_light_704pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_light_832pt.svg",
+      "theme": "light",
+      "width_pt": 832,
+      "compressedFilename": "main_light_832pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_light_960pt.svg",
+      "theme": "light",
+      "width_pt": 960,
+      "compressedFilename": "main_light_960pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_light_1088pt.svg",
+      "theme": "light",
+      "width_pt": 1088,
+      "compressedFilename": "main_light_1088pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_320pt.svg",
+      "theme": "dark",
+      "width_pt": 320,
+      "compressedFilename": "main_dark_320pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_448pt.svg",
+      "theme": "dark",
+      "width_pt": 448,
+      "compressedFilename": "main_dark_448pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_576pt.svg",
+      "theme": "dark",
+      "width_pt": 576,
+      "compressedFilename": "main_dark_576pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_704pt.svg",
+      "theme": "dark",
+      "width_pt": 704,
+      "compressedFilename": "main_dark_704pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_832pt.svg",
+      "theme": "dark",
+      "width_pt": 832,
+      "compressedFilename": "main_dark_832pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_960pt.svg",
+      "theme": "dark",
+      "width_pt": 960,
+      "compressedFilename": "main_dark_960pt.svg.br",
+      "compressionType": "vcdiff"
+    },
+    {
+      "filename": "main_dark_1088pt.svg",
+      "theme": "dark",
+      "width_pt": 1088,
+      "compressedFilename": "main_dark_1088pt.svg.br",
+      "compressionType": "vcdiff"
+    }
+  ],
+  "author": [
+    "Tim Peko (TimerErTim)"
+  ],
+  "title": "My workshop about Typst for the fhLUG in Campus Hagenberg",
+  "description": "On June 8th, 2026, I had the wonderful opportunity to lead a Typst workshop for the fh Linux User Group at Campus Hagenberg, made possible by Daniel Knittl-Frank's excellent organization. It was a fantastic experience, with enthusiastic and engaged participants. In this blog post, you'll find highlights from the workshop as well as access to the full recording (German).",
+  "keywords": [
+    "Typst",
+    "Video",
+    "Workshop",
+    "fhLUG",
+    "Campus Hagenberg"
+  ]
+}

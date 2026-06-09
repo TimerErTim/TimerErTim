@@ -7,6 +7,19 @@
     <language>en</language>
     <atom:link href="https://timerertim.eu/feed.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>My workshop about Typst for the fhLUG in Campus Hagenberg</title>
+      <link>https://timerertim.eu/blog/2026-fh-talk-about-typst/</link>
+      <description>On June 8th, 2026, I had the wonderful opportunity to lead a Typst workshop for the fh Linux User Group at Campus Hagenberg, made possible by Daniel Knittl-Frank&apos;s excellent organization. It was a fantastic experience, with enthusiastic and engaged participants. In this blog post, you&apos;ll find highlights from the workshop as well as access to the full recording (German).</description>
+      <pubDate>Tue, 09 Jun 2026 22:23:48 GMT</pubDate>
+      <guid isPermaLink="true">https://timerertim.eu/blog/2026-fh-talk-about-typst/</guid>
+      <author>Tim Peko (TimerErTim)</author>
+      <category>Typst</category>
+      <category>Video</category>
+      <category>Workshop</category>
+      <category>fhLUG</category>
+      <category>Campus Hagenberg</category>
+    </item>
+    <item>
       <title>Writing a static blog with Typst</title>
       <link>https://timerertim.eu/blog/2026-blog-with-typst/</link>
       <description>Let&apos;s dive into the world of Typst and see how we can use it to power this very blog website. We will investigate potential solutions, the custom build process I settled on and the technologies necessary. For static hosting highly efficient compression and patching is necessary.
