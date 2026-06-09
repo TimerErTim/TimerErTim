@@ -3,4 +3,4 @@
 :HL["/_next/static/media/JetBrainsMono_Regular-s.p.0qe~76yht6k9t.ttf","font",{"crossOrigin":"","type":"font/ttf"}]
 :HL["/_next/static/media/Roboto_Bold-s.p.12va9lub94jta.ttf","font",{"crossOrigin":"","type":"font/ttf"}]
 :HL["/_next/static/media/Roboto_Regular-s.p.05l5218h0vtea.ttf","font",{"crossOrigin":"","type":"font/ttf"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"blog","param":null,"prefetchHints":0,"slots":{"children":{"name":"blog-name","param":{"type":"d","key":"2026-fh-talk-about-typst","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"bKWfevVt_PVigG4NduetL"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"blog","param":null,"prefetchHints":0,"slots":{"children":{"name":"blog-name","param":{"type":"d","key":"2026-fh-talk-about-typst","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"vu_zEmLBB9zuTC__lqI70"}
