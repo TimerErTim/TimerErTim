@@ -9,3 +9,7 @@ run = ["typst compile github.typ --ppi 200 --format png"]
 [tasks."build:social-preview"]
 description = "Build social preview banner"
 run = ["typst compile social-preview.typ --ppi 76 --format png"]
+
+[tasks."build:youtube-banner"]
+description = "Build YouTube banner"
+run = ["typst compile youtube.typ --ppi 72 --format png"]
