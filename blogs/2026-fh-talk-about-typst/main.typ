@@ -255,7 +255,7 @@ The above quote perfectly captures the philosophy of Typst and lays the foundati
       {
         show: box.with(width: 19em)
         show: figure.with(
-          caption: [The three modes of Typst: _Markup_, _Math_, and _Code_. Arrows indicate syntax to swtich between modes.],
+          caption: [The three modes of Typst: _Markup_, _Math_, and _Code_. Arrows indicate syntax to switch between modes.],
         )
         holy-trinity-diagram()
       },
