@@ -24,6 +24,8 @@
 )
 #show: blog-entry.with(
   //target: "web"
+  created-at: datetime(year: 2026, month: 6, day: 9),
+  updated-at: datetime(year: 2026, month: 6, day: 10),
 )
 
 

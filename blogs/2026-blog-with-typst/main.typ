@@ -23,7 +23,9 @@
   ),
 )
 #show: blog-entry.with(
-  target: auto
+  target: auto,
+  created-at: datetime(year: 2026, month: 6, day: 11),
+  updated-at: datetime(year: 2026, month: 6, day: 11),
 )
 
 #import "deps.typ": fl, lq

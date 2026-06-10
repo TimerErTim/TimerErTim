@@ -24,13 +24,13 @@ print = lambda *args, **kwargs: old_print(*args, **{k: v for k, v in kwargs.item
 
 print(f"BLOG_SLUG: {BLOG_SLUG}")
 
-def get_build_hash(timestamp: int) -> str:
+def get_build_hash() -> str:
     import subprocess
 
     # Run 'mise run build:ref-hash' with the timestamp argument
     try:
         subprocess.run(
-            ["mise", "run", "build:ref-hash", str(timestamp)],
+            ["mise", "run", "build:ref-hash"],
             check=True,
             stdout=None,  # link to parent stdout
             stderr=None   # link to parent stderr
@@ -88,19 +88,13 @@ except Exception as e:
     print(f"Warning: Error reading {relative_build_json_path}: {e}. 'build' set to None.")
     
 previous_reference_hash = build["contentHash"] if build is not None else None
-new_reference_hash = None
-if previous_reference_hash is not None:
-    reference_hash_timestamp = build["updatedAt"]
-    new_reference_hash = get_build_hash(reference_hash_timestamp)
+new_reference_hash = get_build_hash()
 
 # If the reference hash has changed, export the blog embedding files
 if previous_reference_hash is None or previous_reference_hash != new_reference_hash:
     import time
     current_timestamp = int(time.time())
-    # Calculate the new reference hash
-    new_reference_hash = get_build_hash(current_timestamp)
     metadata = json.load(open("build/metadata.json"))
-    created_timestamp = build["createdAt"] if build is not None else current_timestamp
     dst_dir_rel = os.path.join("build/website/blogs", BLOG_SLUG)
     dst_dir = os.path.join(REPO_ROOT, dst_dir_rel)
 
@@ -115,8 +109,6 @@ if previous_reference_hash is None or previous_reference_hash != new_reference_h
     build_data = {
         "slug": BLOG_SLUG,
         "contentHash": new_reference_hash,
-        "createdAt": created_timestamp,
-        "updatedAt": current_timestamp,
         "compressionRefVariant": compression_ref_variant.to_filename(),
         "variants": [
             {

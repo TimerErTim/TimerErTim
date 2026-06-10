@@ -1,5 +1,3 @@
-#import "../../look-and-feel/index.typ":
-#import "components/metadata.typ": blog-metadata
 #import "components/callouts.typ": quote-callout
 #import "theming.typ": catppuccin-flavor, theme, themes
 #import "variants.typ": light-or, web-or
@@ -101,7 +99,6 @@
 #let base-style(
   cont,
 ) = {
-  blog-metadata()
   show: set-text-style
 
   show: set-equation-style

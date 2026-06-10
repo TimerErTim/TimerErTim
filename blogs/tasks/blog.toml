@@ -11,21 +11,15 @@ run = ["rm -rf build/*"]
 ["export:ref-artifacts"]
 description = "Export the blog as content references for change detection"
 #https://reproducible-builds.org/specs/source-date-epoch/
-usage = """
-arg "<timestamp>" help="The reproducable unix timestamp (seconds) for the build" env="SOURCE_DATE_EPOCH"
-"""
 run = [
     "rm -rf build/refs/ && mkdir -p build/refs/",
-    "SOURCE_DATE_EPOCH={{ usage.timestamp }} mise run export:pdf ::: build:typst-ts-cli --theme light --format pdf --output build/refs/main_light.pdf ::: build:typst-ts-cli --theme dark --format pdf --output build/refs/main_dark.pdf",
+    'SOURCE_DATE_EPOCH=$(typst query main.typ "<blog-updated-at-meta>" --field value --one) mise run export:pdf ::: build:typst-ts-cli --theme light --format pdf --output build/refs/main_light.pdf ::: build:typst-ts-cli --theme dark --format pdf --output build/refs/main_dark.pdf',
     "cp build/main.pdf build/refs/",
 ]
 
 ["build:ref-hash"]
 description = "Build the hash of the content references"
-usage = """
-arg "<timestamp>" help="The reproducable unix timestamp (seconds) for the build" env="SOURCE_DATE_EPOCH"
-"""
-depends = ["export:ref-artifacts {{ usage.timestamp }}"]
+depends = ["export:ref-artifacts"]
 run = [
     "find build/refs/ -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d ' ' -f 1 > build/refs.sha256sum",
 ]
@@ -49,6 +43,8 @@ run = [
       typst query main.typ "<blog-title-meta>" --field value --one > "${TMPDIR}/title" &
       typst query main.typ "<blog-description-meta>" --field value --one > "${TMPDIR}/description" &
       typst query main.typ "<blog-keywords-meta>" --field value --one > "${TMPDIR}/keywords" &
+      typst query main.typ "<blog-created-at-meta>" --field value --one > "${TMPDIR}/created_at" &
+      typst query main.typ "<blog-updated-at-meta>" --field value --one > "${TMPDIR}/updated_at" &
       wait
     }
 
@@ -56,12 +52,15 @@ run = [
     title=$(cat "${TMPDIR}/title")
     description=$(cat "${TMPDIR}/description")
     keywords=$(cat "${TMPDIR}/keywords")
-
+    created_at=$(cat "${TMPDIR}/created_at")
+    updated_at=$(cat "${TMPDIR}/updated_at")
     jq -n --argjson author "$author" \
           --argjson title "$title" \
           --argjson description "$description" \
           --argjson keywords "$keywords" \
-          '{author: $author, title: $title, description: $description, keywords: $keywords}' \
+          --argjson created_at "$created_at" \
+          --argjson updated_at "$updated_at" \
+          '{author: $author, title: $title, description: $description, keywords: $keywords, createdAt: $created_at, updatedAt: $updated_at}' \
     > build/metadata.json
     '''
 ]
