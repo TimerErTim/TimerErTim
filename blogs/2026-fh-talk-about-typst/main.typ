@@ -318,7 +318,7 @@ Let's say we wanted to change the text font for the rest of this document. I wil
 
 Ah, there it is. Perfect! Neat huh?
 
-Revert back with #raw(strfmt("#set text(font: {theme-fonts-sans-family})", theme-fonts-sans-family: theme.fonts.sans.family))
+Revert back with #raw(strfmt("#set text(font: {theme-fonts-sans-family:?})", theme-fonts-sans-family: theme.fonts.sans.family))
 
 #set text(font: theme.fonts.sans.family)
 
@@ -390,7 +390,7 @@ Let's also try out putting the headings inside a green rectangle:
 #show heading: it => rect(stroke: green, it)
 ```
 
-#show "Typst": set text(fill: blue)
+#show "Typst": set text(fill: catppuccin-accents.blue)
 #show "Typst": it => [_#(it)_]
 #show heading: it => rect(stroke: catppuccin-accents.green, it)
 
