@@ -27,7 +27,7 @@
 )
 
 
-#let youtube-link = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+#let youtube-link = "https://www.youtube.com/watch?v=GS978MRbqqo"
 
 If you're primarily interested in the workshop recording (German language only), you'll find the video #web-or(
   [
