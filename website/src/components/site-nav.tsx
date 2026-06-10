@@ -11,6 +11,7 @@ import {
   GithubIcon,
   LinkedInIcon,
   RssIcon,
+  YoutubeIcon,
 } from "@/components/icons";
 import type { BlogSearchEntry } from "@/lib/blog-search";
 
@@ -74,6 +75,14 @@ export function SiteNav({ searchEntries }: SiteNavProps) {
           >
             <LinkedInIcon />
           </AppLink>
+          <AppLink
+            aria-label="YouTube"
+            external
+            href={site.links.youtube}
+            variant="muted"
+          >
+            <YoutubeIcon />
+          </AppLink>
         </div>
 
         <button
@@ -135,6 +144,9 @@ export function SiteNav({ searchEntries }: SiteNavProps) {
             </AppLink>
             <AppLink external href={site.links.linkedin} variant="muted">
               LinkedIn
+            </AppLink>
+            <AppLink external href={site.links.youtube} variant="muted">
+              YouTube
             </AppLink>
           </div>
         </div>
