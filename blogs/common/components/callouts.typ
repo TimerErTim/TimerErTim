@@ -6,18 +6,19 @@
   border: true, // Whether to show a border around the callout
   cont,
 ) = {
+  let stroke-color = color.mix((color-val, 50%), (theme.colors.base, 50%))
   show: block.with(
     stroke: (
       left: color-val + theme.layout.borderWidth.large,
       rest: if border {
-        color-val + theme.layout.borderWidth.small
+        stroke-color + theme.layout.borderWidth.small
       } else {
         none
       },
     ),
     radius: theme.layout.radius.medium,
     fill: if fill == auto {
-      color.mix((color-val, 10%), (theme.colors.base, 90%))
+      color-val.transparentize(92.5%)
     } else {
       fill
     },
@@ -39,10 +40,6 @@
         outset: (
           left: 1em - theme.layout.borderWidth.large,
           rest: 1em,
-        ),
-        stroke: (
-          top: color-val + theme.layout.borderWidth.small,
-          right: color-val + theme.layout.borderWidth.small,
         ),
         fill: color.mix((color-val, 50%), (theme.colors.base, 50%)),
       )[

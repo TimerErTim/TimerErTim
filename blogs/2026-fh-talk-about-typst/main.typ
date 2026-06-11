@@ -309,7 +309,7 @@ Arguably the most powerful styling tools are the `#set`- and `#show`-Rules. You 
     `= Topic` is really just syntactic sugar for an invocation of the `#heading("Topic")` function. `*Bold*` is just `#strong("Bold")`. This holds true for all of Typst and is the second foundation for its flexibility.
   ],
   grid.cell(align: horizon, {
-    show: pad.with(left: 0pt, top: -0.5em - 0.2em, rest: -1em)
+    show: pad.with(left: 0pt, top: -0.5em - 0.2em, rest: -1em + theme.layout.borderWidth.small / 2)
     image("assets/functions_meme.png", width: 6cm)
   }),
 ))
