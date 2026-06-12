@@ -217,8 +217,8 @@ The document is then rendered on the client side by the browser using the `typst
 
 Turns out we have problems embedding HTML content in Typst and responsiveness is not really responding. HTML content is important because it allows us to do things like#web-or[: 
 #xhtml(```html
-<iframe data-testid="embed-iframe" src="https://open.spotify.com/embed/track/7mixpZVqU8AWHvSqOL0wKy?utm_source=generator&amp;si=156c406b2fff4d4a" width="100%" height="352" frameBorder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-```, outer-width: 50%, outer-height: 352pt * 50%, inner-height: 352pt)
+<iframe data-testid="embed-iframe" src="https://open.spotify.com/embed/track/7mixpZVqU8AWHvSqOL0wKy?utm_source=generator&amp;si=156c406b2fff4d4a" width="512" height="352" frameBorder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+```, outer-width: 50%, inner-height: 352pt, inner-width: 512pt)
 ][
   embedding an iframe of a totally unrelated Spotify track.
 ]
