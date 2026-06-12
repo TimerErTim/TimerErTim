@@ -1,8 +1,6 @@
 {
   "slug": "2026-fh-talk-about-typst",
-  "contentHash": "736c73799bdbadc5285931cb24d24ebc405d438be7c7322ccb2a07d28c56c0bd",
-  "createdAt": 1781043828,
-  "updatedAt": 1781075245,
+  "contentHash": "757afa015e1a345ac74e3a9df0045f2d57f08d6164c37140e62e12a055a6afbf",
   "compressionRefVariant": "main_light_320pt.svg",
   "variants": [
     {
@@ -114,5 +112,7 @@
     "Workshop",
     "fhLUG",
     "Campus Hagenberg"
-  ]
+  ],
+  "createdAt": 1780963200,
+  "updatedAt": 1781049600
 }

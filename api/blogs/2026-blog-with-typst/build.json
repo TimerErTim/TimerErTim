@@ -1,8 +1,6 @@
 {
   "slug": "2026-blog-with-typst",
-  "contentHash": "6c69be8a4cdc8b62de109f6815a116793edfd6343767ad10957bb9e5be5103fd",
-  "createdAt": 1780843358,
-  "updatedAt": 1780924933,
+  "contentHash": "19c5b9da49abdbc1dcf96f70d1f896e571e23deaa2125f7da521d3421c374889",
   "compressionRefVariant": "main_light_320pt.svg",
   "variants": [
     {
@@ -107,7 +105,7 @@
     "Tim Peko (TimerErTim)"
   ],
   "title": "Writing a static blog with Typst",
-  "description": "Let's dive into the world of Typst and see how we can use it to power this very blog website. We will investigate potential solutions, the custom build process I settled on and the technologies necessary. For static hosting highly efficient compression and patching is necessary.\nOr in other words: How to proberly misuse Typst for everthing.",
+  "description": "Let's dive into the world of Typst and see how we can use it to power this very blog website. We will investigate potential solutions, the custom build process I settled on, and the technologies necessary. For static hosting, highly efficient compression and patching are necessary.\nOr in other words: How to properly misuse Typst for everything.",
   "keywords": [
     "Typst",
     "SSG",
@@ -116,7 +114,9 @@
     "compression",
     "patching",
     "GitHub",
-    "brotli",
-    "vcdiff"
-  ]
+    "Brotli",
+    "Vcdiff"
+  ],
+  "createdAt": 1781222400,
+  "updatedAt": 1781222400
 }
