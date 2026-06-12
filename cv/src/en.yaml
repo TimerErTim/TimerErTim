@@ -1,0 +1,188 @@
+summary: >
+  Dedicated Software Engineer and passionate hobby programmer seeking challenging opportunities to build impactful software. Strong focus on writing efficient, safe, and correct code, backed by self-study and expanding academic expertise in data analysis and biology.
+  
+contacts:
+  title: Software Engineer | Bioinformatics Student
+  city: Linz
+  # Birthplace -> Sensitive
+  # Birthdate -> Sensitive
+  # Address -> Sensitive
+  # Marital Status -> Sensitive
+  # Religion -> Sensitive
+  homecountry: Austria
+  nationality: Austrian
+  gender: Male
+
+skills:
+  - category: Languages
+    items:
+      - German (native)
+      - English (fluent)
+  - category: Mathematics
+    items:
+      - Statistics
+      - Linear Algebra
+      - Calculus
+      - Probability
+  - category: Informatics
+    items:
+      - Deep Learning
+      - Networking
+      - Operating Systems
+      - Infrastructure Architecture
+      - System Design
+  - category: Programming Languages
+    items:
+      - Rust
+      - Python
+      - Java
+      - Kotlin
+      - C# (limited)
+      - C++
+      - JavaScript
+      - TypeScript
+      - PHP (limited)
+  - category: Biology
+    items:
+      - Genomics
+      - Biochemistry
+      - Sequencing
+      - Analysis
+  - category: Soft Skills
+    items:
+      - Remarkable Ability to Learn Quickly and Self-Driven
+      - Strong Problem-Solving Skills
+      - Excellent Communication and Collaboration Skills
+      - Ability to Work Independently
+
+
+hobbies:
+  - category: Sports
+    items:
+      - SCUBA Diving
+      - Strength Training
+      - Shooting Sports
+  - category: Computer
+    items:
+      - Gaming
+      - Programming
+      - Researching
+  - category: Other
+    items:
+      - Cooking
+      - Traveling
+      - Trying new things
+
+jobs:
+  - position: Software Engineer
+    company:
+      name: opta data Österreich GmbH
+      link: https://www.optadata.at/
+    description:
+      - One of three core developers, designing and implementing a diabetes order platform from scratch
+      - Involved in setting up and planning of core software system deprecation and implementation of new platform
+      - Core component establishment such as authorization, observability and analytics 
+    from: "2024 Jun."
+    to: "current"
+    tags:
+      - Systems Design
+      - Domain Driven
+      - Scrum Collaboration
+    
+  - position: Internship
+    company:
+      name: opta data Österreich GmbH
+      link: https://www.optadata.at/
+    description:
+      - Developed a reporting tool for in-house AI text extraction model drift detection in production
+      - Trained autoencoder based on above model's architecture for document classification
+      - Presented findings to stakeholders
+
+    from: "2022 Jul."
+    to: "2022 Aug."
+    tags:
+      - Data Analysis
+      - Data Visualization
+      - Report Generation
+      - Deep Learning
+
+education:
+  - place:
+      name: FH Oberösterreich
+      link: "https://fh-ooe.at/campus-hagenberg"
+    degree: "B.Sc."
+    major: "Medical- & Bioinformatics"
+    track: "Bioinformatics"
+    # final_work:
+    #   link:
+    #     name: "Data Optimization Techniques"
+    location: Hagenberg, Austria
+    from: "2025"
+    to: "current"
+  - place:
+      name: Higher Technical College Grieskirchen
+      link: "https://www.htl-grieskirchen.at/wp/"
+    degree: "A-Levels"
+    major: "Medical Informatics"
+    final_work:
+      link:
+        name: "Synde - Document Dataset Synthesizer"
+    location: Grieskirchen, Austria
+    from: "2018"
+    to: "2023"
+
+certifications:
+  - venue:
+      name: FILL Hackathon 2022
+      link: https://www.fill.co.at/de/news-und-events/news/fill-hackathon-2022
+    #certificate_link: "https://techinnovatorshackathon.com/certificates/johndoe"
+    description: >
+      Won in the software engineering category by developing realtime order and delivery platform for a small 3d printing assembly.
+    year: 2022
+    from: "Dec. 14"
+    to: "Dec. 16"
+  - venue:
+      name: Project Award - HTL Leonding 
+      link: https://www.htl-leonding.at/2023/04/22/project-award-2023-2/
+    certificate_link: https://www.youtube.com/watch?v=pX3kJ07VnNI
+    description: >
+      Diploma Thesis Award for the best overall project in innovation. 
+    year: 2023
+  - venue:
+      name: Jugend Innovativ 
+      link: https://www.jugend-innovativ.at/
+    certificate_link: https://www.jugendinnovativ.at/projekt/document-dataset-synthesizer
+    description: >
+      3rd place in Austria wide Diploma Thesis Award for category "ICT & Digital".
+    year: 2023
+
+
+achievements:
+  - name: "Känguru der Mathematik"
+    description: >
+      Austrian Math Kangaroo; Competition in mathematics for students aged 10-14.
+    link: https://www.kaenguru.at/
+    wins:
+      - category: "Upper Austria"
+        year: 2015
+        placement: 8th place
+      - category: "Upper Austria"
+        year: 2016
+        placement: 3rd place
+      - category: "Austria"
+        year: 2016
+        placement: 9th place
+  - name: "Biber der Informatik"
+    description: >
+      Austrian Computer Science Competition for students aged 10-14.
+    link: https://wettbewerb.biber.ocg.at/
+    wins:
+      - category: "Austria"
+        year: 2016
+        placement: 2nd place
+  - name: "School Position"
+    wins:
+      - category: "Deputy School Representative"
+        year: 2021
+      - category: "Deputy Department Representative"
+        year: 2021

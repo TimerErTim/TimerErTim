@@ -1,9 +1,10 @@
 import path from "node:path";
 import type { Route } from "next";
 
+import configValues from "../../config/values.json";
 import { buildInfo } from "@/site/system";
 
-export const SITE_ORIGIN = process.env.TIMERERTIM_SITE_ORIGIN!
+export const SITE_ORIGIN = configValues.TIMERERTIM_SITE_ORIGIN;
 
 /** Matches {@link ../next.config.mjs} `trailingSlash` setting. */
 const TRAILING_SLASH = true;

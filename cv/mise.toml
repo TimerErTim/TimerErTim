@@ -1,0 +1,28 @@
+[tasks."build:cv"]
+depends = ["build:cv:lang en",] #"build:cv:lang de"]
+
+[tasks."build:biodata"]
+depends = ["build:biodata:lang en",] #"build:biodata:lang de"]
+
+[tasks."build:cv:lang"]
+usage = """
+arg <lang> default="en"
+"""
+run = [
+    'mkdir -p out/cvs',
+    'typst compile --input lang=${usage_lang} cv.typ "out/cvs/CV_${usage_lang}_$(date +%Y-%m-%d).pdf"',
+    'cp out/cvs/CV_${usage_lang}_$(date +%Y-%m-%d).pdf out/cvs/CV_${usage_lang}_latest.pdf'
+]
+
+[tasks."build:biodata:lang"]
+usage = """
+arg <lang> default="en"
+"""
+run = [
+    'mkdir -p out/biodatas',
+    'typst compile --input lang=${usage_lang} biodata.typ "out/biodatas/Biodata_${usage_lang}_$(date +%Y-%m-%d).pdf"',
+    'cp out/biodatas/Biodata_${usage_lang}_$(date +%Y-%m-%d).pdf out/biodatas/Biodata_${usage_lang}_latest.pdf'
+]
+
+[tasks."build"]
+depends = ["build:{cv,biodata}"]

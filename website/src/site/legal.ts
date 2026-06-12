@@ -1,6 +1,7 @@
+import configValues from "../../../config/values.json";
+
 export const legal = {
-  license: process.env.TIMERERTIM_LICENSE ?? "CC BY-NC 4.0",
+  license: configValues.TIMERERTIM_LICENSE,
   licenseUrl:
-    process.env.TIMERERTIM_LICENSE_CANONICAL_URL ??
-    "https://creativecommons.org/licenses/by-nc/4.0/",
+    configValues.TIMERERTIM_LICENSE_CANONICAL_URL,
 } as const;

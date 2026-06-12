@@ -10,6 +10,7 @@ config_roots = [
   "libs/*",
   "look-and-feel",
   "assets/*",
+  "cv",
 ]
 
 [settings]
@@ -21,15 +22,9 @@ MISE_EXPERIMENTAL = true
 TYPST_FONT_PATHS = "{{ config_root }}/fonts"
 TYPST_ROOT = "{{ config_root }}"
 TIMERERTIM_REPO_ROOT = "{{ config_root }}"
-TIMERERTIM_SITE_DOMAIN = "timerertim.eu"
-TIMERERTIM_SITE_ORIGIN = "https://{{ env.TIMERERTIM_SITE_DOMAIN }}"
-TIMERERTIM_LICENSE = "CC BY-NC 4.0"
-TIMERERTIM_LICENSE_CANONICAL_URL = "https://creativecommons.org/licenses/by-nc/4.0/"
-TIMERERTIM_LEGAL_NAME = "Tim Peko"
-TIMERERTIM_PSEUDONYM = "TimerErTim"
-TIMERERTIM_SOURCE_CODE_URL = "https://github.com/timerertim"
-TIMERERTIM_COPYRIGHT_NOTICE_PATH = "COPYRIGHT.md"
-TIMERERTIM_COPYRIGHT_NOTICE_URL = "{{ env.TIMERERTIM_SOURCE_CODE_URL }}/blob/main/{{ env.TIMERERTIM_COPYRIGHT_NOTICE_PATH }}"
+'_'.file = [
+  "config/values.json"
+]
 
 [vars]
 REPO_ROOT = "{{ config_root }}"

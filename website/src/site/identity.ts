@@ -1,8 +1,9 @@
 import { SITE_ORIGIN } from "@/paths";
+import configValues from "../../../config/values.json";
 
 export const identity = {
-  name: process.env.TIMERERTIM_PSEUDONYM ?? "timerertim",
-  legalName: process.env.TIMERERTIM_LEGAL_NAME ?? "Tim Peko",
+  name: configValues.TIMERERTIM_PSEUDONYM,
+  legalName: configValues.TIMERERTIM_LEGAL_NAME,
   description: "Online portfolio and blogs for everything technical",
   url: SITE_ORIGIN,
 } as const;

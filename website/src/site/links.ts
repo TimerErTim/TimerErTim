@@ -1,12 +1,13 @@
 import { routes } from "@/paths";
+import configValues from "../../../config/values.json";
 
 export const links = {
   github: "https://github.com/timerertim",
   linkedin: "https://www.linkedin.com/in/tim-peko-470a05249/",
   youtube: "https://www.youtube.com/@timerertim",
   rss: routes.feed(),
-  sourceCode: process.env.TIMERERTIM_SOURCE_CODE_URL ?? "https://github.com/timerertim",
+  sourceCode: configValues.TIMERERTIM_SOURCE_CODE_URL,
   copyrightNotice:
-    process.env.TIMERERTIM_COPYRIGHT_NOTICE_URL ??
-    `${process.env.TIMERERTIM_SOURCE_CODE_URL ?? "https://github.com/timerertim"}/blob/main/COPYRIGHT.md`,
+    configValues.TIMERERTIM_COPYRIGHT_NOTICE_URL ??
+    `${configValues.TIMERERTIM_SOURCE_CODE_URL}/blob/main/COPYRIGHT.md`,
 } as const;
