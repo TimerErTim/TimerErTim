@@ -9,6 +9,7 @@ const linkStyles = tv({
   variants: {
     variant: {
       default: "text-info underline-offset-2 hover:underline",
+      bold: "text-foreground font-medium underline-offset-2 underline decoration-accent hover:text-accent",
       nav: "text-foreground no-underline hover:text-accent",
       muted: "text-muted no-underline hover:text-foreground",
       plain: "text-inherit no-underline hover:text-inherit",

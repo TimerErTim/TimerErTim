@@ -2,9 +2,10 @@ import path from "node:path";
 import type { Route } from "next";
 
 import { buildInfo } from "@/site/system";
+import configValues from "../../config/values.json";
 
 /** Injected by mise from `config/values.json` during dev and build. */
-export const SITE_ORIGIN = process.env.TIMERERTIM_SITE_ORIGIN!;
+export const SITE_ORIGIN = configValues.TIMERERTIM_SITE_ORIGIN;
 
 /** Matches {@link ../next.config.mjs} `trailingSlash` setting. */
 const TRAILING_SLASH = true;
@@ -47,7 +48,7 @@ export const routes = {
     androidChrome512: () => asRoute("/android-chrome-512x512.png"),
     blogPost: (slug: string) => asRoute(routePath("blog", slug)),
     blogPostPdf: (slug: string) => asRoute(`/blog/${slug}/${blogPdfFilename(slug)}`),
-    cvPdf: () => asRoute(`/cv/${cvPdfFilename()}`),
+    cvPdf: () => asRoute("/cv/tim-peko-cv.pdf"),
 } as const;
 
 /** Absolute URLs for SEO, RSS, Open Graph, and other external references. */
@@ -61,14 +62,6 @@ export const urls = {
     blogPostPdf: (slug: string) => absoluteSiteUrl(routes.blogPostPdf(slug)),
     cvPdf: () => absoluteSiteUrl(routes.cvPdf()),
 } as const;
-
-export function cvPdfFilename(): string {
-    return "tim-peko-cv.pdf";
-}
-
-export function cvPdfLabel(): string {
-    return "Tim Peko CV";
-}
 
 export function blogPdfFilename(slug: string): string {
     return `${slug}.pdf`;

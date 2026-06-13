@@ -9,14 +9,13 @@ usage = """
 arg <lang> default="en"
 """
 sources = [
-    "cv.typ",
-    "common.typ",
+    "**/*.typ",
     "settings.yaml",
     "src/**",
     "{{ vars.REPO_ROOT }}/config/values.json",
     "{{ vars.REPO_ROOT }}/look-and-feel/**",
 ]
-outputs = ["out/cvs/CV_${usage_lang}_latest.pdf"]
+outputs = ["out/cvs/CV_*_latest.pdf"]
 run = [
     'mkdir -p out/cvs',
     'typst compile --input lang=${usage_lang} cv.typ "out/cvs/CV_${usage_lang}_$(date +%Y-%m-%d).pdf"',
@@ -27,6 +26,14 @@ run = [
 usage = """
 arg <lang> default="en"
 """
+sources = [
+    "**/*.typ",
+    "settings.yaml",
+    "src/**",
+    "{{ vars.REPO_ROOT }}/config/values.json",
+    "{{ vars.REPO_ROOT }}/look-and-feel/**",
+]
+outputs = ["out/biodatas/Biodata_*_latest.pdf"]
 run = [
     'mkdir -p out/biodatas',
     'typst compile --input lang=${usage_lang} biodata.typ "out/biodatas/Biodata_${usage_lang}_$(date +%Y-%m-%d).pdf"',

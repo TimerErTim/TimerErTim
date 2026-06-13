@@ -1,4 +1,4 @@
-import { configValues } from "@/site/config";
+import configValues from "../../../config/values.json";
 
 export const legal = {
   license: configValues.TIMERERTIM_LICENSE,

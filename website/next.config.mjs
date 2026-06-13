@@ -1,3 +1,5 @@
+import path from 'path';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
@@ -6,6 +8,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  turbopack: {
+    root: path.join(process.env.TIMERERTIM_REPO_ROOT)
+  }
 };
 
 export default nextConfig;
