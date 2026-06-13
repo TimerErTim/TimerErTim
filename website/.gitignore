@@ -2,6 +2,8 @@
 
 /public/fonts/
 /public/identity/
+/public/cv/
+/config/
 
 # dependencies
 /node_modules

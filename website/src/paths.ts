@@ -1,7 +1,7 @@
 import path from "node:path";
 import type { Route } from "next";
 
-import configValues from "../../config/values.json";
+import configValues from "../config/values.json";
 import { buildInfo } from "@/site/system";
 
 export const SITE_ORIGIN = configValues.TIMERERTIM_SITE_ORIGIN;
@@ -47,6 +47,7 @@ export const routes = {
     androidChrome512: () => asRoute("/android-chrome-512x512.png"),
     blogPost: (slug: string) => asRoute(routePath("blog", slug)),
     blogPostPdf: (slug: string) => asRoute(`/blog/${slug}/${blogPdfFilename(slug)}`),
+    cvPdf: () => asRoute(`/cv/${cvPdfFilename()}`),
 } as const;
 
 /** Absolute URLs for SEO, RSS, Open Graph, and other external references. */
@@ -58,7 +59,12 @@ export const urls = {
     feed: () => absoluteSiteUrl(routes.feed()),
     blogPost: (slug: string) => absoluteSiteUrl(routes.blogPost(slug)),
     blogPostPdf: (slug: string) => absoluteSiteUrl(routes.blogPostPdf(slug)),
+    cvPdf: () => absoluteSiteUrl(routes.cvPdf()),
 } as const;
+
+export function cvPdfFilename(): string {
+    return "lebenslauf.pdf";
+}
 
 export function blogPdfFilename(slug: string): string {
     return `${slug}.pdf`;

@@ -1,3 +1,4 @@
+import { AboutSidebar } from "@/components/about-sidebar";
 import { PageShell } from "@/components/page-shell";
 import { aboutDescription } from "@/site/content/about";
 import { buildSitePageMetadata } from "@/lib/site-metadata";
@@ -14,5 +15,9 @@ export default function AboutLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <PageShell>{children}</PageShell>;
+  return (
+    <PageShell sidebar={<AboutSidebar />} sidebarLayout="fill">
+      {children}
+    </PageShell>
+  );
 }

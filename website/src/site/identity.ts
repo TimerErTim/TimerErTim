@@ -1,5 +1,5 @@
 import { SITE_ORIGIN } from "@/paths";
-import configValues from "../../../config/values.json";
+import configValues from "../../config/values.json";
 
 export const identity = {
   name: configValues.TIMERERTIM_PSEUDONYM,

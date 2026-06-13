@@ -1,4 +1,5 @@
 
+import { contact } from "@/site/contact";
 import { identity } from "@/site/identity";
 import { identityAssets } from "@/site/identity-assets";
 import { legal } from "@/site/legal";
@@ -7,9 +8,12 @@ import { navigation } from "@/site/navigation";
 
 export type Site = typeof site;
 
+export { contact } from "@/site/contact";
+
 export const site = {
   ...identity,
   ...navigation,
+  contact,
   links,
   legal,
   identity: identityAssets,
