@@ -44,7 +44,10 @@
   // Inject font family into the SVG
   let current-font = text.font
   let fallback-font = theme.fonts.sans.family
-  let font-string = strfmt(`font-family="{current-font}"`.text, current-font: (current-font, fallback-font).join(", "))
+  let font-string = strfmt(
+    `font-family="{current-font}"`.text,
+    current-font: (current-font, fallback-font).join(", "),
+  )
   // svg-src always starts with <svg ...>
   let pre = svg-src.slice(0, 4)
   let post = svg-src.slice(5)

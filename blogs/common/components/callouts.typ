@@ -24,7 +24,7 @@
     },
     inset: 1em,
     outset: (left: -theme.layout.borderWidth.large / 2),
-    width: 100%
+    width: 100%,
   )
   cont
 }
@@ -43,7 +43,7 @@
           rest: 1em,
         ),
         fill: color.mix((color-val, 40%), (theme.colors.base, 60%)),
-        sticky: true
+        sticky: true,
       )[
         #set text(size: 1.05em)
         #heading

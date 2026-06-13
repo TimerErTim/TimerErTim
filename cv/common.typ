@@ -3,7 +3,7 @@
 #let _merge_dicts(a, b) = {
   let merged = (:)
   for key in (a.keys() + b.keys()).dedup() {
-    if key in a and key not in b  {
+    if key in a and key not in b {
       merged.insert(key, a.at(key))
       continue
     } else if key in b and key not in a {
@@ -55,8 +55,12 @@
 
 
 #let base-configuration(doc, lang: lang) = {
-  set text(size: eval(settings.font.size.heading_large), font: themes.fonts.sans.family, lang: lang)
-  
+  set text(
+    size: eval(settings.font.size.heading_large),
+    font: themes.fonts.sans.family,
+    lang: lang,
+  )
+
   show link: set text(themes.light.info.lighten(25%))
   show link: underline
 
@@ -65,18 +69,18 @@
     margin: (
       top: 1.5cm,
       bottom: 1cm,
-    )
+    ),
   )
 
   //show heading: set text(fill: themes.light.accent)
   show heading: h => [
-  #set text(
-    size: eval(settings.font.size.heading_large),
-    font: themes.fonts.sans.family
-  )
-  #set block(below: 0.75em)
-  #h
-]
-  
+    #set text(
+      size: eval(settings.font.size.heading_large),
+      font: themes.fonts.sans.family,
+    )
+    #set block(below: 0.75em)
+    #h
+  ]
+
   doc
 }

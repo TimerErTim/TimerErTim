@@ -34,7 +34,7 @@
 #let broader-than(
   width,
   some,
-  fallback
+  fallback,
 ) = {
   if web-page-width == none or eval(web-page-width) >= width {
     some

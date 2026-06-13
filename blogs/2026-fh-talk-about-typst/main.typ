@@ -2,10 +2,12 @@
 #import "../common/template.typ": blog-entry
 #import "../common/theming.typ": catppuccin-accents, theme
 #import "../common/deps.typ": codly, local as codly-local, strfmt
-#import "../common/components/callouts.typ": danger-callout, info-callout, success-callout, warning-callout
+#import "../common/components/callouts.typ": (
+  danger-callout, info-callout, success-callout, warning-callout,
+)
 #import "../common/components/pikchr.typ": color-to-pikchr, pikchr
 #import "../common/variants.typ": light-or, web-or
-#import "deps.typ": fl, conch
+#import "deps.typ": conch, fl
 
 #set text(lang: "en")
 #set document(
@@ -60,7 +62,9 @@ Daniel Knittl-Frank is the main organizer and head of the group. His support and
 = The Workshop
 
 #{
-  show: figure.with(caption: "Me after the workshop and snagging a fitting shirt.")
+  show: figure.with(
+    caption: "Me after the workshop and snagging a fitting shirt.",
+  )
   show: box.with(stroke: theme.colors.border)
   image("assets/base-thumbnail.png", width: 80%)
 }
@@ -68,9 +72,17 @@ Daniel Knittl-Frank is the main organizer and head of the group. His support and
 Before jumping into action, we started with a high level overview of document writing and why #link("https://typst.app/")[Typst] stands out. Did you know that you can categorize tools in two categories?
 
 #{
-  show: figure.with(caption: [Two types of categories: Word Processors and Typesetting Systems.])
+  show: figure.with(
+    caption: [Two types of categories: Word Processors and Typesetting Systems.],
+  )
   layout(((width, height)) => {
-    show: box.with(stroke: theme.colors.border, clip: true, width: width, height: width / 3.2, inset: (top: -10%))
+    show: box.with(
+      stroke: theme.colors.border,
+      clip: true,
+      width: width,
+      height: width / 3.2,
+      inset: (top: -10%),
+    )
     show: align.with(center + horizon)
     image(
       "assets/2026_Typst_Hagenberg_TimPeko_Handout_4.svg",
@@ -164,7 +176,9 @@ The above quote perfectly captures the philosophy of Typst and lays the foundati
         Mark\ up
       ],
       shape: fl.shapes.circle,
-      stroke: if highlight-section == "markup" { catppuccin-accents.mauve + 3pt } else {
+      stroke: if highlight-section == "markup" {
+        catppuccin-accents.mauve + 3pt
+      } else {
         theme.colors.foreground + 2pt
       },
       width: radius,
@@ -179,7 +193,9 @@ The above quote perfectly captures the philosophy of Typst and lays the foundati
         Math
       ],
       shape: fl.shapes.circle,
-      stroke: if highlight-section == "math" { catppuccin-accents.mauve + 3pt } else { theme.colors.foreground + 2pt },
+      stroke: if highlight-section == "math" {
+        catppuccin-accents.mauve + 3pt
+      } else { theme.colors.foreground + 2pt },
       width: radius,
       height: radius,
       name: "math",
@@ -192,7 +208,9 @@ The above quote perfectly captures the philosophy of Typst and lays the foundati
         Code
       ],
       shape: fl.shapes.circle,
-      stroke: if highlight-section == "code" { catppuccin-accents.mauve + 3pt } else { theme.colors.foreground + 2pt },
+      stroke: if highlight-section == "code" {
+        catppuccin-accents.mauve + 3pt
+      } else { theme.colors.foreground + 2pt },
       width: radius,
       height: radius,
       name: "code",
@@ -202,7 +220,9 @@ The above quote perfectly captures the philosophy of Typst and lays the foundati
       <math>,
       "-|>",
       `$...$`,
-      stroke: if highlight-section == "markup" { catppuccin-accents.yellow } else { theme.colors.border + 2pt },
+      stroke: if highlight-section == "markup" {
+        catppuccin-accents.yellow
+      } else { theme.colors.border + 2pt },
       shift: 2mm,
     ),
     //fl.edge(<math>, <markdown>, "-|>", stroke: base-colors.overlay2 + 1.5pt, shift: 2mm),
@@ -211,7 +231,9 @@ The above quote perfectly captures the philosophy of Typst and lays the foundati
       <code>,
       "-|>",
       `#...`,
-      stroke: if highlight-section == "markup" { catppuccin-accents.yellow } else { theme.colors.border + 2pt },
+      stroke: if highlight-section == "markup" {
+        catppuccin-accents.yellow
+      } else { theme.colors.border + 2pt },
       shift: 2mm,
       label-side: left,
     ),
@@ -220,7 +242,9 @@ The above quote perfectly captures the philosophy of Typst and lays the foundati
       <markup>,
       "-|>",
       `[...]`,
-      stroke: if highlight-section == "code" { catppuccin-accents.yellow } else { theme.colors.border + 2pt },
+      stroke: if highlight-section == "code" {
+        catppuccin-accents.yellow
+      } else { theme.colors.border + 2pt },
       shift: 2mm,
     ),
     fl.edge(
@@ -228,7 +252,9 @@ The above quote perfectly captures the philosophy of Typst and lays the foundati
       <math>,
       "-|>",
       `$...$`,
-      stroke: if highlight-section == "code" { catppuccin-accents.yellow } else { theme.colors.border + 2pt },
+      stroke: if highlight-section == "code" {
+        catppuccin-accents.yellow
+      } else { theme.colors.border + 2pt },
       shift: 2mm,
     ),
     fl.edge(
@@ -236,7 +262,9 @@ The above quote perfectly captures the philosophy of Typst and lays the foundati
       <code>,
       "-|>",
       `#...`,
-      stroke: if highlight-section == "math" { catppuccin-accents.yellow } else { theme.colors.border + 2pt },
+      stroke: if highlight-section == "math" {
+        catppuccin-accents.yellow
+      } else { theme.colors.border + 2pt },
       shift: 2mm,
       label-side: left,
     ),
@@ -252,7 +280,7 @@ The above quote perfectly captures the philosophy of Typst and lays the foundati
       "horizontal"
     }
     grid(
-      columns: if dir == "horizontal" { (auto, 1fr) } else { (auto) },
+      columns: if dir == "horizontal" { (auto, 1fr) } else { auto },
       gutter: 1em,
       {
         show: box.with(width: 19em)
@@ -309,7 +337,11 @@ Arguably the most powerful styling tools are the `#set`- and `#show`-Rules. You 
     `= Topic` is really just syntactic sugar for an invocation of the `#heading("Topic")` function. `*Bold*` is just `#strong("Bold")`. This holds true for all of Typst and is the second foundation for its flexibility.
   ],
   grid.cell(align: horizon, {
-    show: pad.with(left: 0pt, top: -0.5em - 0.2em, rest: -1em + theme.layout.borderWidth.small / 2)
+    show: pad.with(
+      left: 0pt,
+      top: -0.5em - 0.2em,
+      rest: -1em + theme.layout.borderWidth.small / 2,
+    )
     image("assets/functions_meme.png", width: 6cm)
   }),
 ))
@@ -325,7 +357,7 @@ Revert back with #raw(strfmt("#set text(font: {theme-fonts-sans-family:?})", the
 #set text(font: theme.fonts.sans.family)
 
 #danger-callout(heading: [Mind the scope!])[
-  `#set` (and `#show`) -Rules are effective for the whole scope they are defined in. If you have a block 
+  `#set` (and `#show`) -Rules are effective for the whole scope they are defined in. If you have a block
   #let code = ```typ
   #[
     #set text(fill: red)
@@ -402,27 +434,30 @@ If you continue on reading this blog post, you should notice all our intended `#
 
 This serves only as demonstration purpose about the power of the already promising package ecosystem: We will use the "conch" package for emulating a whole terminal right in our document:
 
-#let code = strfmt(```typ
-#import "@preview/conch:0.1.0": terminal-block, system
+#let code = strfmt(
+  ```typ
+  #import "@preview/conch:0.1.0": terminal-block, system
 
-#terminal-block(
-  width: 100%,
-  user: "timerertim",
-  system: system(
-    files: (
-      "test.txt": (
-        "Show Line!",
-        "Ignore Line!"
-      ).join("\n")
-    )
-  ),
- {backticks}
- ls
- cat test.txt
- cat test.txt | grep Show
- {backticks}
+  #terminal-block(
+    width: 100%,
+    user: "timerertim",
+    system: system(
+      files: (
+        "test.txt": (
+          "Show Line!",
+          "Ignore Line!"
+        ).join("\n")
+      )
+    ),
+   {backticks}
+   ls
+   cat test.txt
+   cat test.txt | grep Show
+   {backticks}
+  )
+  ```.text,
+  backticks: "```",
 )
-```.text, backticks: "```")
 
 #eval(code, mode: "markup")
 

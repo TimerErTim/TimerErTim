@@ -22,7 +22,7 @@
       white.transparentize(100%),
       center: (0%, 0%),
     )))
-  }
+  },
 )
 
 #set align(center + horizon)

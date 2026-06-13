@@ -2,10 +2,12 @@
 #import "../common/template.typ": blog-entry
 #import "../common/theming.typ": catppuccin-accents, theme
 #import "../common/deps.typ": codly, local as codly-local, strfmt
-#import "../common/components/callouts.typ": danger-callout, info-callout, success-callout, warning-callout
+#import "../common/components/callouts.typ": (
+  danger-callout, info-callout, success-callout, warning-callout,
+)
 #import "../common/components/pikchr.typ": color-to-pikchr, pikchr
-#import "../common/variants.typ": web-or, hide-in-preview, broader-than
-#import "deps.typ": sj, conch
+#import "../common/variants.typ": broader-than, hide-in-preview, web-or
+#import "deps.typ": conch, sj
 
 #set text(lang: "en")
 #set document(
@@ -80,7 +82,9 @@ iterations
 #let imag_range = (-1, 1, 200)
 #let mandelbrot_width = 20em
 #let mandelbrot_height = (
-  mandelbrot_width / (real_range.at(1) - real_range.at(0)) * (imag_range.at(1) - imag_range.at(0))
+  mandelbrot_width
+    / (real_range.at(1) - real_range.at(0))
+    * (imag_range.at(1) - imag_range.at(0))
 )
 #hide-in-preview(lq.diagram(
   title: [Image of @mandelbrot-equation],
@@ -99,10 +103,12 @@ iterations
   ),
   lq.colormesh(
     range(real_range.at(2)).map(x => (
-      x / real_range.at(2) * (real_range.at(1) - real_range.at(0)) + real_range.at(0)
+      x / real_range.at(2) * (real_range.at(1) - real_range.at(0))
+        + real_range.at(0)
     )),
     range(imag_range.at(2)).map(y => (
-      y / imag_range.at(2) * (imag_range.at(1) - imag_range.at(0)) + imag_range.at(0)
+      y / imag_range.at(2) * (imag_range.at(1) - imag_range.at(0))
+        + imag_range.at(0)
     )),
     (x, y) => iterations(x, y),
   ),
@@ -139,7 +145,9 @@ It is very easy to style, and with correct abuse, it can be used to represent th
 With the tool choice being made, my first idea was to use the #link("https://myriad-dreamin.github.io/typst.ts/")[typst-ts] project of the fantastic #link("https://github.com/Myriad-Dreamin")[Myriad-Dreamin] to create a React component that would render the blog post. It is a fantastic tool specifically designed for responsive embedding of Typst documents in web applications.
 
 #{
-  show: figure.with(caption: [Proposal process for embedding a Typst document in a website])
+  show: figure.with(
+    caption: [Proposal process for embedding a Typst document in a website],
+  )
   show: rect.with(inset: (left: -1em))
   pikchr(
     ```pikchr
@@ -215,10 +223,10 @@ The document is then rendered on the client side by the browser using the `typst
 
 #image("assets/you-dont-say.png", width: 20%, alt: "You don't say!?!")
 
-Turns out we have problems embedding HTML content in Typst and responsiveness is not really responding. HTML content is important because it allows us to do things like#web-or[: 
-#xhtml(```html
-<iframe data-testid="embed-iframe" src="https://open.spotify.com/embed/track/7mixpZVqU8AWHvSqOL0wKy?utm_source=generator&amp;si=156c406b2fff4d4a" width="512" height="352" frameBorder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-```, outer-width: 50%, inner-height: 352pt, inner-width: 512pt)
+Turns out we have problems embedding HTML content in Typst and responsiveness is not really responding. HTML content is important because it allows us to do things like#web-or[:
+  #xhtml(```html
+  <iframe data-testid="embed-iframe" src="https://open.spotify.com/embed/track/7mixpZVqU8AWHvSqOL0wKy?utm_source=generator&amp;si=156c406b2fff4d4a" width="512" height="352" frameBorder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  ```, outer-width: 50%, inner-height: 352pt, inner-width: 512pt)
 ][
   embedding an iframe of a totally unrelated Spotify track.
 ]
@@ -259,19 +267,25 @@ So, without further ado, a custom implementation it is.
 
 Fortunately, the `typst-ts-cli` CLI has a `--format` option that allows us to export the document as an *HTML* page with the whole content rendered as a single *interactive*#footnote[Text selection, navigation to headings, etc.] SVG. A script simply yoinks that out for us.
 
-#codly(ranges: ((none, 5), (30, none)),
+#codly(
+  ranges: ((none, 5), (30, none)),
   highlighted-lines: (1, 2, 3, 30, 31),
-  highlighted-default-color: color.mix((theme.colors.danger, 50%), (theme.colors.base, 50%)),
- annotations: (
-  (
-    start: 4,
-    end: 6,
-    content: [
-      #show: rotate.with(-90deg)
-      YOINK!
-    ]
+  highlighted-default-color: color.mix(
+    (theme.colors.danger, 50%),
+    (theme.colors.base, 50%),
   ),
-), annotation-format: none)
+  annotations: (
+    (
+      start: 4,
+      end: 6,
+      content: [
+        #show: rotate.with(-90deg)
+        YOINK!
+      ],
+    ),
+  ),
+  annotation-format: none,
+)
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -316,19 +330,23 @@ Inspecting this extracted SVG reveals how `typst-ts-cli` embeds SVG images in th
 })
 
 #{
-codly(skips: ((1, 10),), highlights: (
-  (
-    line: 11,
-    start: 91,
-    end: 119,
-    tag: "svg",
-  ),
-), reference-by: "item",
-header: [Base64 encoded SVG inside `image` tag])
+  codly(
+    skips: ((1, 10),),
+    highlights: (
+      (
+        line: 11,
+        start: 91,
+        end: 119,
+        tag: "svg",
+      ),
+    ),
+    reference-by: "item",
+    header: [Base64 encoded SVG inside `image` tag],
+  )
 
-```svg
-<image class="typst-image" width="400" height="300" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxu...IvPjwvc3ZnPg==" alt="!test-alt"/>
-```
+  ```svg
+  <image class="typst-image" width="400" height="300" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxu...IvPjwvc3ZnPg==" alt="!test-alt"/>
+  ```
 }
 
 Here, #box(baseline: 2pt, inset: 2pt, stroke: catppuccin-accents.blue, fill: catppuccin-accents.blue.mix((theme.colors.base, 80%)))[svg] is the base64 encoded SVG content. Decoding it reveals our original SVG content: `<svg>Hello, world!</svg>`. Amazing!
@@ -337,11 +355,14 @@ A second pass script replaces all occurrences of the `<image>` tag with a specif
 
 For example #web-or[the spotify embed above was][embedding the totally unrelated Spotify track mentioned earlier could be] accomplished by this code:
 
-#raw(block: true, lang: "typ", strfmt(```typ
-#xhtml({triplequote}html
-<iframe data-testid="embed-iframe" src="https://open.spotify.com/embed/track/7mixpZVqU8AWHvSqOL0wKy?utm_source=generator&amp;si=156c406b2fff4d4a" width="100%" height="352" frameBorder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-{triplequote})
-```.text, triplequote: "```"))
+#raw(block: true, lang: "typ", strfmt(
+  ```typ
+  #xhtml({triplequote}html
+  <iframe data-testid="embed-iframe" src="https://open.spotify.com/embed/track/7mixpZVqU8AWHvSqOL0wKy?utm_source=generator&amp;si=156c406b2fff4d4a" width="100%" height="352" frameBorder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  {triplequote})
+  ```.text,
+  triplequote: "```",
+))
 
 where `xhtml` is a helper function handling conversion to SVG's `foreignObject` tag, sizing, etc.
 
@@ -350,7 +371,9 @@ where `xhtml` is a helper function handling conversion to SVG's `foreignObject` 
 How to embed fixed size content in a variable width container, like the web browser? Easy fix: Generate multiple width variants of the same document, distribute them and have the browser decide which one to display.
 
 #{
-  show: figure.with(caption: [Bundling multiple variants of the blog post with differing widths; the client side browser decides which one to display])
+  show: figure.with(
+    caption: [Bundling multiple variants of the blog post with differing widths; the client side browser decides which one to display],
+  )
   show: rect.with(inset: (left: -1em))
   pikchr(
     ```pikchr
@@ -436,11 +459,17 @@ and compiling the document with `typst-ts-cli --input "x-page-width=456pt" main.
 #let typical-svg-size_mb = 3
 #let theme-variants = 2
 #let size-variants = 6
-#let total-payload-size_mb = size-variants * theme-variants * typical-svg-size_mb
-#danger-callout(heading: [$#size-variants "Size variants" times #theme-variants "Theme variants" times underbrace(#typical-svg-size_mb "MB", #{
-  show: box.with(height: 1em)
-  place(center)[typical size]
-}) "content SVG size" = underline(bold(#calc.round(total-payload-size_mb) "MB" "bundle payload"))$])[
+#let total-payload-size_mb = (
+  size-variants * theme-variants * typical-svg-size_mb
+)
+#danger-callout(
+  heading: [$#size-variants "Size variants" times #theme-variants "Theme variants" times underbrace(
+    #typical-svg-size_mb "MB", #{
+      show: box.with(height: 1em)
+      place(center)[typical size]
+    }
+  ) "content SVG size" = underline(bold(#calc.round(total-payload-size_mb) "MB" "bundle payload"))$],
+)[
   Hell NO! Every user has to download this payload *for every visit*!
   We need to heavily compress this ASAP.
 
@@ -453,7 +482,9 @@ We will heavily utilize *Brotli* compression because it has great compression ra
 
 #info-callout(heading: [*Brotli* supports delta compression!])[
   #{
-    show: figure.with(caption: [Dictionary compression in *Brotli* \[#link("https://www.annalytic.com/")[Anna Monus], #link("https://www.debugbear.com/blog/shared-compression-dictionaries")\]])
+    show: figure.with(
+      caption: [Dictionary compression in *Brotli* \[#link("https://www.annalytic.com/")[Anna Monus], #link("https://www.debugbear.com/blog/shared-compression-dictionaries")\]],
+    )
     image("assets/dictionary_compression.png")
   }
 
@@ -475,20 +506,22 @@ Let's go ahead and implement decompression and DOM node ingestion on the browser
   set text(fill: theme.colors.danger)
   codly(enabled: false)
   ```
-  791 |               const wordLength = this.copyLength;
-  792 |               if (wordLength > 31) {
-> 793 |                 throw new BrotliDecoderAllocRingBuffer1Error(
-      |                       ^
-  794 |                   "Invalid backward reference",
-  795 |                 );
-  796 |               } (app/error.tsx:15:13)
-  ``` 
+    791 |               const wordLength = this.copyLength;
+    792 |               if (wordLength > 31) {
+  > 793 |                 throw new BrotliDecoderAllocRingBuffer1Error(
+        |                       ^
+    794 |                   "Invalid backward reference",
+    795 |                 );
+    796 |               } (app/error.tsx:15:13)
+  ```
   codly(enabled: true)
 }
 
 *F\*\*\*\*K!*
 
-#warning-callout(heading: [Browser-side *Brotli* dictionary support is limited])[
+#warning-callout(
+  heading: [Browser-side *Brotli* dictionary support is limited],
+)[
   I am sure this is partially a user error, but it turns out *zlib*'s dictionary support is more flexible than the browser-side *Brotli* decoder.
 
   Using the _cleartext_ reference SVG variant as dictionary
@@ -515,13 +548,13 @@ Instead of relying on *Brotli*'s dictionary support, we can use *VCDIFF* to crea
     file "reference" "SVG" fit color $accent
     arrow
     box "Brotli" "dictionary" "compression" fit
-    arrow 
+    arrow
     cylinder "Compressed" "Artifact" fit
     file "variant 1" "SVG" at 1in below first file same as first file color $foreground
     arrow from last file to first box.sw chop
-    file "variant 2" "SVG" at 1in below first box same as first file color $muted 
+    file "variant 2" "SVG" at 1in below first box same as first file color $muted
     arrow dashed from last file to first box chop color $muted
-    file "variant 3" "SVG" at 1in below first cylinder same as first file color $muted 
+    file "variant 3" "SVG" at 1in below first cylinder same as first file color $muted
     arrow dashed from last file to first box chop color $muted
     ```
   },
@@ -529,8 +562,10 @@ Instead of relying on *Brotli*'s dictionary support, we can use *VCDIFF* to crea
     set text(size: 2em)
     broader-than(560pt, sym.arrow.r, sym.arrow.b)
   }),
-  { 
-    show: figure.with(caption: [Compression approach with delta patches from *VCDIFF*])
+  {
+    show: figure.with(
+      caption: [Compression approach with delta patches from *VCDIFF*],
+    )
     show: rect.with(width: 100%)
     ```show-pikchr
     file "reference" "SVG" fit color $accent
@@ -538,13 +573,13 @@ Instead of relying on *Brotli*'s dictionary support, we can use *VCDIFF* to crea
     box "VCDIFF" "delta compression" fit
     arrow
     box "Brotli" "general-purpose" "compression" fit
-    arrow 
+    arrow
     cylinder "Compressed" "Artifact" fit
     file "variant 1" "SVG" fit at 1in below first file same as first file color $foreground
     arrow from last file to first box.sw chop
-    file "variant 2" "SVG" fit at 1in below first box same as first file color $muted 
+    file "variant 2" "SVG" fit at 1in below first box same as first file color $muted
     arrow dashed from last file to first box chop color $muted
-    file "variant 3" "SVG" at 1in below last box same as first file color $muted 
+    file "variant 3" "SVG" at 1in below last box same as first file color $muted
     arrow dashed from last file to first box chop color $muted
     ```
   },
@@ -617,12 +652,12 @@ And now, finally, after almost no hassle at all, the build process is complete! 
   width: 100%,
   theme: "catppuccin",
   font: theme.fonts.mono.family,
-  title: [static files @ out/blog/2026-blog-with-typst/]
+  title: [static files @ out/blog/2026-blog-with-typst/],
 )[
   #show: pad.with(top: -1em)
   #conch.render-ansi(
     read("assets/eza_dist_output.txt"),
-    theme: "catppuccin"
+    theme: "catppuccin",
   )
 ]
 
@@ -644,7 +679,7 @@ If that question is floating around in your head, you can look around this chapt
 
 == PDF download
 
-When you click the "download" button on the website, the browser fetches a precompiled PDF version of this blog post. 
+When you click the "download" button on the website, the browser fetches a precompiled PDF version of this blog post.
 
 #codly(header: [Blogpost Styling: Either web optimized or PDF optimized])
 ```typ
@@ -784,7 +819,7 @@ Because we actually insert a new DOM child and remove the previous one upon resi
     set text(size: 2em)
     broader-than(560pt, sym.arrow.r, sym.arrow.b)
   },
-  { 
+  {
     show: figure.with(caption: [Thumbnail after resize])
     show: rect.with(inset: 0pt)
     image("assets/postreload-downsized.png")
@@ -816,7 +851,9 @@ NextJS is therefore unable to include any complex content in the description of 
 Even though the current solution is already pretty efficient, there is still room for improvement. We could, for example, search for the best reference variant for each possible target variant and then store what reference was used for every individual target variant. This is not trivial, because we need to prevent cyclic references. Imagine the following situation:
 
 #{
-  show: figure.with(caption: [Cyclic delta compression references: Files represent delta patches, cylinders represent only brotli compressed full variants.])
+  show: figure.with(
+    caption: [Cyclic delta compression references: Files represent delta patches, cylinders represent only brotli compressed full variants.],
+  )
   show: box.with(width: 60%)
   ```show-pikchr
   file "delta" "variant 1" fit color $sky
@@ -845,5 +882,5 @@ Here a primitive algorithm would see #text(fill: catppuccin-accents.sky)[variant
 
   #danger-callout[
     Our SVGs are currently incompatible with SVGO, so further investigation is necessary.
-  ] 
+  ]
 ]

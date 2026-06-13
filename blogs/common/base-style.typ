@@ -1,5 +1,5 @@
 #import "components/callouts.typ": quote-callout
-#import "theming.typ": catppuccin-flavor, catppuccin-accents, theme, themes
+#import "theming.typ": catppuccin-accents, catppuccin-flavor, theme, themes
 #import "variants.typ": light-or, web-or
 #import "deps.typ": catppuccin, codly, codly-init, codly-languages
 #import "components/pikchr.typ": pikchr-init
@@ -50,7 +50,7 @@
   raw,
 ) = {
   set text(font: theme.fonts.mono.family)
-  
+
   if raw.block == true {
     raw
   } else {
@@ -80,7 +80,7 @@
         stroke: color + theme.layout.borderWidth.small / 2,
         radius: theme.layout.radius.small,
         fill: color.mix((theme.colors.base, 250%)),
-        height: 1.2em
+        height: 1.2em,
       )
       [#web-or(none, icon) #name]
     },

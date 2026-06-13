@@ -8,6 +8,10 @@
   #metadata(document.description.text) <blog-description-meta>
   #metadata(document.author) <blog-author-meta>
   #metadata(document.keywords) <blog-keywords-meta>
-  #metadata(int((created-at - unix-epoch-date).seconds())) <blog-created-at-meta>
-  #metadata(int((updated-at - unix-epoch-date).seconds())) <blog-updated-at-meta>
+  #metadata(int(
+    (created-at - unix-epoch-date).seconds(),
+  )) <blog-created-at-meta>
+  #metadata(int(
+    (updated-at - unix-epoch-date).seconds(),
+  )) <blog-updated-at-meta>
 ]
