@@ -1,4 +1,4 @@
-import configValues from "../../config/values.json";
+import { configValues } from "@/site/config";
 
 export const contact = {
   email: configValues.TIMERERTIM_EMAIL,

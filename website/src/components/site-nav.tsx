@@ -5,7 +5,8 @@ import { usePathname } from "next/navigation";
 
 import { BlogSearch } from "@/components/blog-search";
 import { routes } from "@/paths";
-import { site } from "@/site";
+import { navigation } from "@/site/navigation";
+import { socialLinks } from "@/site/social-links";
 import { AppLink, Divider } from "@/components/ui";
 import {
   GithubIcon,
@@ -35,7 +36,7 @@ export function SiteNav({ searchEntries }: SiteNavProps) {
       <Divider />
       <div className="flex items-center justify-between gap-4 py-3">
         <ul className="hidden sm:flex items-center gap-5 m-0 p-0 list-none">
-          {site.navItems.map((item) => (
+          {navigation.navItems.map((item) => (
             <li key={item.href}>
               <AppLink
                 active={isActive(pathname, item.href)}
@@ -54,7 +55,7 @@ export function SiteNav({ searchEntries }: SiteNavProps) {
           </div>
           <AppLink
             aria-label="RSS feed"
-            href={site.links.rss}
+            href={socialLinks.rss}
             variant="muted"
           >
             <RssIcon />
@@ -62,7 +63,7 @@ export function SiteNav({ searchEntries }: SiteNavProps) {
           <AppLink
             aria-label="GitHub"
             external
-            href={site.links.github}
+            href={socialLinks.github}
             variant="muted"
           >
             <GithubIcon />
@@ -70,7 +71,7 @@ export function SiteNav({ searchEntries }: SiteNavProps) {
           <AppLink
             aria-label="LinkedIn"
             external
-            href={site.links.linkedin}
+            href={socialLinks.linkedin}
             variant="muted"
           >
             <LinkedInIcon />
@@ -78,7 +79,7 @@ export function SiteNav({ searchEntries }: SiteNavProps) {
           <AppLink
             aria-label="YouTube"
             external
-            href={site.links.youtube}
+            href={socialLinks.youtube}
             variant="muted"
           >
             <YoutubeIcon />
@@ -121,7 +122,7 @@ export function SiteNav({ searchEntries }: SiteNavProps) {
       {isMenuOpen && (
         <div className="sm:hidden py-4 space-y-4">
           <ul className="flex flex-col gap-2 m-0 p-0 list-none">
-            {site.navItems.map((item) => (
+            {navigation.navItems.map((item) => (
               <li key={item.href}>
                 <AppLink
                   active={isActive(pathname, item.href)}
@@ -136,16 +137,16 @@ export function SiteNav({ searchEntries }: SiteNavProps) {
           </ul>
           <BlogSearch entries={searchEntries} />
           <div className="flex items-center gap-4">
-            <AppLink href={site.links.rss} variant="muted">
+            <AppLink href={socialLinks.rss} variant="muted">
               RSS
             </AppLink>
-            <AppLink external href={site.links.github} variant="muted">
+            <AppLink external href={socialLinks.github} variant="muted">
               GitHub
             </AppLink>
-            <AppLink external href={site.links.linkedin} variant="muted">
+            <AppLink external href={socialLinks.linkedin} variant="muted">
               LinkedIn
             </AppLink>
-            <AppLink external href={site.links.youtube} variant="muted">
+            <AppLink external href={socialLinks.youtube} variant="muted">
               YouTube
             </AppLink>
           </div>

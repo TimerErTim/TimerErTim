@@ -9,6 +9,8 @@ import { navigation } from "@/site/navigation";
 export type Site = typeof site;
 
 export { contact } from "@/site/contact";
+export { configValues } from "@/site/config";
+export type { ConfigValues } from "@/site/config";
 
 export const site = {
   ...identity,

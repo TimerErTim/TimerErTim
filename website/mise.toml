@@ -29,26 +29,19 @@ sources = ["{{ vars.REPO_ROOT }}/assets/favicon/*"]
 outputs = ["public/*.png", "public/*.ico"]
 file = "tasks/scripts/prepare-favicon.mjs"
 
-[tasks."prepare:config"]
-description = "Copy repo config/values.json into website config/"
-sources = ["{{ vars.REPO_ROOT }}/config/values.json"]
-outputs = ["config/values.json"]
-file = "tasks/scripts/prepare-config.mjs"
-
 [tasks."prepare:cv"]
 description = "Build CV and copy latest English PDF into website public/cv/"
 depends = ["//cv:build:cv:lang en"]
-sources = [
-    "{{ vars.REPO_ROOT }}/cv/**/*.typ",
-    "{{ vars.REPO_ROOT }}/cv/src/**",
-    "{{ vars.REPO_ROOT }}/config/values.json",
+sources = ["{{ vars.REPO_ROOT }}/cv/out/cvs/CV_en_latest.pdf"]
+outputs = ["public/cv/tim-peko-cv.pdf"]
+run = [
+    "mkdir -p public/cv",
+    "cp {{ vars.REPO_ROOT }}/cv/out/cvs/CV_en_latest.pdf public/cv/tim-peko-cv.pdf",
 ]
-outputs = ["public/cv/lebenslauf.pdf"]
-file = "tasks/scripts/prepare-cv.mjs"
 
 [tasks."generate:assets"]
 description = "Generate theme and font assets for the website"
-depends = ["generate:theme", "generate:fonts", "prepare:config", "prepare:identity", "prepare:favicon", "prepare:cv"]
+depends = ["generate:theme", "generate:fonts", "prepare:identity", "prepare:favicon", "prepare:cv"]
 
 [tasks.dev]
 description = "Start Next.js dev server"

@@ -1,7 +1,6 @@
-import configValues from "../../config/values.json";
+import { configValues } from "@/site/config";
 
 export const legal = {
   license: configValues.TIMERERTIM_LICENSE,
-  licenseUrl:
-    configValues.TIMERERTIM_LICENSE_CANONICAL_URL,
+  licenseUrl: configValues.TIMERERTIM_LICENSE_CANONICAL_URL,
 } as const;

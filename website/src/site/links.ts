@@ -1,11 +1,11 @@
-import { routes } from "@/paths";
-import configValues from "../../config/values.json";
+import { configValues } from "@/site/config";
+import { socialLinks } from "@/site/social-links";
 
 export const links = {
-  github: "https://github.com/timerertim",
-  linkedin: "https://www.linkedin.com/in/tim-peko-470a05249/",
-  youtube: "https://www.youtube.com/@timerertim",
-  rss: routes.feed(),
+  github: configValues.TIMERERTIM_GITHUB_URL,
+  linkedin: configValues.TIMERERTIM_LINKEDIN_URL,
+  youtube: configValues.TIMERERTIM_YOUTUBE_URL,
+  rss: socialLinks.rss,
   sourceCode: configValues.TIMERERTIM_SOURCE_CODE_URL,
   copyrightNotice:
     configValues.TIMERERTIM_COPYRIGHT_NOTICE_URL ??

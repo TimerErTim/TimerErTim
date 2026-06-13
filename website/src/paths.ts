@@ -1,10 +1,10 @@
 import path from "node:path";
 import type { Route } from "next";
 
-import configValues from "../config/values.json";
 import { buildInfo } from "@/site/system";
 
-export const SITE_ORIGIN = configValues.TIMERERTIM_SITE_ORIGIN;
+/** Injected by mise from `config/values.json` during dev and build. */
+export const SITE_ORIGIN = process.env.TIMERERTIM_SITE_ORIGIN!;
 
 /** Matches {@link ../next.config.mjs} `trailingSlash` setting. */
 const TRAILING_SLASH = true;
@@ -63,7 +63,11 @@ export const urls = {
 } as const;
 
 export function cvPdfFilename(): string {
-    return "lebenslauf.pdf";
+    return "tim-peko-cv.pdf";
+}
+
+export function cvPdfLabel(): string {
+    return "Tim Peko CV";
 }
 
 export function blogPdfFilename(slug: string): string {

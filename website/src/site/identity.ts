@@ -1,9 +1,8 @@
-import { SITE_ORIGIN } from "@/paths";
-import configValues from "../../config/values.json";
+import { configValues } from "@/site/config";
 
 export const identity = {
   name: configValues.TIMERERTIM_PSEUDONYM,
   legalName: configValues.TIMERERTIM_LEGAL_NAME,
   description: "Online portfolio and blogs for everything technical",
-  url: SITE_ORIGIN,
+  url: configValues.TIMERERTIM_SITE_ORIGIN,
 } as const;

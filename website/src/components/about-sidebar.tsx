@@ -1,4 +1,4 @@
-import { routes } from "@/paths";
+import { cvPdfLabel, routes } from "@/paths";
 import { contact } from "@/site/contact";
 
 function telHref(phone: string): string {
@@ -43,7 +43,7 @@ export function AboutSidebar() {
           rel="noopener noreferrer"
           target="_blank"
         >
-          Lebenslauf (PDF)
+          {cvPdfLabel()} (PDF)
         </a>
       </div>
     </div>
