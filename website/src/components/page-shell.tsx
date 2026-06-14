@@ -16,11 +16,8 @@ export function PageShell({
   const shellClass = "mx-auto max-w-5xl px-6 pb-16";
 
   if (!sidebar && !subContent) {
-    return (
-      <div className={shellClass}>{children}</div>
-    );
+    return <div className={shellClass}>{children}</div>;
   }
-
 
   if (!sidebar) {
     return (
@@ -31,31 +28,38 @@ export function PageShell({
     );
   }
 
-  if (sidebarLayout === "match-content") {
-    return (
-      <div className={shellClass}>
-        <div className="relative">
-          <div className="min-w-0 lg:pr-[calc(220px+2.5rem)]">{children}</div>
-          <aside className="hidden lg:block absolute top-0 right-0 h-full w-[220px] max-h-full overflow-hidden">
-            {sidebar}
-          </aside>
-        </div>
-        {subContent && <div className="mt-8 min-w-0">{subContent}</div>}
-      </div>
-    );
-  }
+  const layoutClass =
+    sidebarLayout === "fill"
+      ? "flex flex-col gap-8 md:grid md:min-h-[calc(100vh-14rem)] md:grid-cols-[minmax(0,1fr)_220px] md:grid-rows-[auto_auto] md:items-stretch md:gap-x-10 md:gap-y-8"
+      : "flex flex-col gap-8 md:grid md:grid-cols-[minmax(0,1fr)_220px] md:grid-rows-[auto_auto] md:gap-x-10 md:gap-y-8";
+
+  const sidebarClass =
+    sidebarLayout === "fill"
+      ? "order-3 min-w-0 md:col-start-2 md:row-start-1 md:flex md:min-h-0 md:flex-col"
+      : "order-3 min-w-0 md:col-start-2 md:row-start-1 md:self-start";
+
+  const sidebarInnerClass =
+    sidebarLayout === "fill"
+      ? "md:sticky md:top-6 md:min-h-0 md:flex-1 md:overflow-y-auto"
+      : "md:sticky md:top-6";
 
   return (
     <div className={shellClass}>
-      <div className="grid min-h-[calc(100vh-14rem)] grid-cols-1 lg:grid-cols-[minmax(0,1fr)_220px] gap-10 items-stretch">
-        <div className="min-w-0 flex flex-col">{children}</div>
-        <aside className="hidden lg:flex lg:min-h-0 lg:flex-col">
-          <div className="sticky top-6 min-h-0 flex-1 overflow-y-auto">
-            {sidebar}
+      <div className={layoutClass}>
+        <div className="order-1 min-w-0 flex flex-col md:col-start-1 md:row-start-1">
+          {children}
+        </div>
+
+        {subContent && (
+          <div className="order-2 min-w-0 md:col-span-2 md:row-start-2">
+            {subContent}
           </div>
+        )}
+
+        <aside className={sidebarClass}>
+          <div className={sidebarInnerClass}>{sidebar}</div>
         </aside>
       </div>
-      {subContent && <div className="mt-8 min-w-0">{subContent}</div>}
     </div>
   );
 }
