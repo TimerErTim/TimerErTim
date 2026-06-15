@@ -3,6 +3,7 @@
 /public/fonts/
 /public/identity/
 /public/cv/
+/public/nextImageExportOptimizer/
 
 # dependencies
 /node_modules

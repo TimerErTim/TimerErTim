@@ -1,6 +1,9 @@
+import bannerLight from "../../../assets/identity/banner.png";
+import bannerDark from "../../../assets/identity/banner_dark.png";
+
 export const identityAssets = {
-  bannerLight: "/identity/banner.png",
-  bannerDark: "/identity/banner_dark.png",
+  bannerLight: bannerLight,
+  bannerDark: bannerDark,
   /** Used for Open Graph / Twitter / WhatsApp link previews. Drop `assets/identity/social-preview.png` (1200×630 recommended). */
   socialPreview: "/identity/social-preview.png",
   /** Source bundle: `assets/favicon/` (copied to public/ by prepare:favicon). */

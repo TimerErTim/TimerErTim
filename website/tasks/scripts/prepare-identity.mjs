@@ -7,7 +7,9 @@ const sourceDir = join(repoRoot, "assets/identity");
 const publicDir = join(process.cwd(), "public");
 const targetDir = join(publicDir, "identity");
 
-const requiredFiles = ["banner.png", "banner_dark.png"];
+const requiredFiles = [
+  // This stays empty because we include them in the identity-assets.ts file
+];
 
 const optionalFiles = [
   {

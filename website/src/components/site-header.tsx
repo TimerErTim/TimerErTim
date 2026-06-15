@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ExportedImage from "next-image-export-optimizer";
 
 import { AppLink } from "@/components/ui";
 import { routes } from "@/paths";
@@ -12,7 +12,7 @@ export function SiteHeader() {
         href={routes.home()}
         variant="plain"
       >
-        <Image
+        <ExportedImage
           alt={site.name}
           className="h-10 w-auto dark:hidden"
           height={40}
@@ -20,7 +20,7 @@ export function SiteHeader() {
           src={site.identity.bannerLight}
           width={280}
         />
-        <Image
+        <ExportedImage
           alt={site.name}
           className="hidden h-10 w-auto dark:block"
           height={40}
