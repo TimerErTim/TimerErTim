@@ -21,7 +21,7 @@ const nextConfig = {
     nextImageExportOptimizer_quality: "75",
     nextImageExportOptimizer_storePicturesInWEBP: "true",
     nextImageExportOptimizer_exportFolderName: "nextImageExportOptimizer",
-    nextImageExportOptimizer_generateAndUseBlurImages: "true",
+    nextImageExportOptimizer_generateAndUseBlurImages: "false",
   }
 };
 
