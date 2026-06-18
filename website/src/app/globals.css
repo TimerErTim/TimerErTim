@@ -16,6 +16,6 @@
 	}
 
 	.prose a {
-		@apply text-info underline-offset-2 hover:underline;
+		@apply font-semibold text-info underline decoration-shadow decoration-1 underline-offset-[3px] hover:underline;
 	}
 }

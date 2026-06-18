@@ -2,6 +2,7 @@
 #import "../common/template.typ": blog-entry
 #import "../common/theming.typ": catppuccin-accents, theme
 #import "../common/deps.typ": codly, local as codly-local, strfmt
+#import "../common/components/depth.typ": depth-shadow-block
 #import "../common/components/callouts.typ": (
   danger-callout, info-callout, success-callout, warning-callout,
 )
@@ -239,6 +240,7 @@ So naturally continuing the search, I dug into #link("https://github.com/Myriad-
     #set text(font: theme.fonts.sans.family)
     #numbering("1", it)
   ])
+  show: depth-shadow-block.with(color: theme.colors.border)
   let rng = sj.gen-rng(42)
   let sizes
   let prefixes

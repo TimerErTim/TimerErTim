@@ -23,6 +23,7 @@ function normalizeColors(colors) {
     success: colors.success,
     info: colors.info,
     muted: colors.muted,
+    shadow: colors.shadow,
   };
 }
 
@@ -47,9 +48,12 @@ const themeColorTokens = [
   "warning",
   "success",
   "info",
+  "shadow",
 ];
 
 const themeFontSizes = Object.keys(layout.fontSize);
+const themeBorderWidths = ["sm", "md", "lg"];
+const themeDepthSizes = ["sm", "md"];
 
 const css = `/* Generated from look-and-feel/themes.json — do not edit */
 :root,
@@ -73,6 +77,7 @@ ${themeVars(themes.dark)}
   --color-warning: var(--theme-warning);
   --color-success: var(--theme-success);
   --color-info: var(--theme-info);
+  --color-shadow: var(--theme-shadow);
 
   --text-tiny: ${layout.fontSize.tiny}px;
   --text-tiny--line-height: ${layout.lineHeight.tiny}px;
@@ -91,6 +96,19 @@ ${themeVars(themes.dark)}
   --radius-sm: ${layout.radius.small}px;
   --radius-md: ${layout.radius.medium}px;
   --radius-lg: ${layout.radius.large}px;
+
+  --border-width-sm: ${layout.borderWidth.small}px;
+  --border-width-md: ${layout.borderWidth.medium}px;
+  --border-width-lg: ${layout.borderWidth.large}px;
+
+  --depth-sm: ${layout.depth.small}px;
+  --depth-md: ${layout.depth.medium}px;
+
+  --spacing-depth-sm: var(--depth-sm);
+  --spacing-depth-md: var(--depth-md);
+
+  --shadow-sm: var(--depth-sm) var(--depth-sm) 0 var(--depth-sm) var(--tw-shadow-color, var(--color-shadow));
+  --shadow-md: var(--depth-md) var(--depth-md) 0 var(--depth-md) var(--tw-shadow-color, var(--color-shadow));
 }
 `;
 
@@ -107,6 +125,10 @@ export const themeColors = {
 export const themeSemanticColors = ${JSON.stringify(themeColorTokens)} as const;
 
 export const themeFontSizes = ${JSON.stringify(themeFontSizes)} as const;
+
+export const themeBorderWidths = ${JSON.stringify(themeBorderWidths)} as const;
+
+export const themeDepthSizes = ${JSON.stringify(themeDepthSizes)} as const;
 `;
 
 writeFileSync(cssOutputPath, css);

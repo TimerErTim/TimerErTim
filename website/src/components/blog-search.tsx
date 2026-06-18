@@ -5,7 +5,7 @@ import { useCallback, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { SearchIcon } from "@/components/icons";
-import { Input } from "@/components/ui";
+import { Input, Card } from "@/components/ui";
 import type { BlogSearchEntry } from "@/lib/blog-search";
 import { routes } from "@/paths";
 
@@ -105,18 +105,22 @@ export function BlogSearch({ entries }: BlogSearchProps) {
       />
 
       {isOpen && results.length > 0 && (
-        <ul
-          className="absolute right-0 z-50 mt-1 w-72 max-h-80 overflow-y-auto border border-border bg-overlay shadow-sm list-none m-0 p-1"
-          id="blog-search-results"
-          role="listbox"
+        <Card
+          className="absolute right-0 z-50 mt-2 w-72 max-h-80 overflow-y-auto p-1"
+          padding="none"
         >
+          <ul
+            className="list-none m-0 p-0"
+            id="blog-search-results"
+            role="listbox"
+          >
           {results.map((result, index) => (
             <li key={result.slug} role="option" aria-selected={index === activeIndex}>
               <button
-                className={`block w-full text-left px-2.5 py-2 text-small leading-small no-underline border-0 cursor-pointer ${
+                className={`block w-full text-left px-2.5 py-2 text-small leading-small no-underline border-0 cursor-pointer rounded-sm font-semibold ${
                   index === activeIndex
-                    ? "bg-surface text-foreground"
-                    : "bg-transparent text-foreground hover:bg-surface"
+                    ? "bg-overlay/50 text-foreground"
+                    : "bg-transparent text-foreground hover:bg-overlay/50"
                 }`}
                 onMouseDown={(event) => {
                   event.preventDefault();
@@ -125,7 +129,7 @@ export function BlogSearch({ entries }: BlogSearchProps) {
                 onMouseEnter={() => setActiveIndex(index)}
                 type="button"
               >
-                <span className="block font-medium">{result.title}</span>
+                <span className="block font-bold">{result.title}</span>
                 {result.description && (
                   <span className="block text-tiny leading-tiny text-muted mt-0.5 line-clamp-2">
                     {result.description}
@@ -134,7 +138,8 @@ export function BlogSearch({ entries }: BlogSearchProps) {
               </button>
             </li>
           ))}
-        </ul>
+          </ul>
+        </Card>
       )}
     </div>
   );

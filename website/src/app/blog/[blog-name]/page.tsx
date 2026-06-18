@@ -5,7 +5,7 @@ import { BlogPdfDownloadButton } from "@/components/blog-pdf-download-button";
 import { BlogSidebar } from "@/components/blog-sidebar";
 import { PageShell } from "@/components/page-shell";
 import { prose } from "@/components/primitives";
-import { Tag } from "@/components/ui/tag";
+import { Card, Tag } from "@/components/ui";
 import {
     buildBlogPageMetadata,
     buildBlogPostingJsonLd,
@@ -18,7 +18,6 @@ import {
 } from "@/model/blogs";
 import { site } from "@/site";
 import RenderBlog from "./render-blog";
-import { twMerge } from "@/lib/tw";
 
 export async function generateStaticParams() {
     const blogs = await getAllServerBlogMetadata();
@@ -69,34 +68,31 @@ export default async function BlogPage({ params }: { params: Promise<{ "blog-nam
                 sidebar={<BlogSidebar currentSlug={p["blog-name"]} />}
                 sidebarLayout="match-content"
                 subContent={
-                    <article className={twMerge(prose(), "border-t border-border pt-10")}>
+                    <article className={prose()}>
                         <RenderBlog blogData={blogData} />
                     </article>
                 }
             >
-                <header>
+                <Card role="banner" padding="md">
                     <h1 className="font-sans text-large leading-large font-bold m-0">
                         {blogMetadata.title}
                     </h1>
-                    <div className="flex flex-row flex-wrap justify-between">
-
-                    <div className="mt-3 mb-2 text-small leading-small text-muted grow">
-                        {blogMetadata.author && blogMetadata.author.length > 0 && (
-                            <span>
-                                By {blogMetadata.author.join(", ")}
-                            </span>
-                        )}
-                        {blogMetadata.updatedAt && (
-                            <span className={blogMetadata.author && blogMetadata.author.length > 0 ? "ml-4" : ""}>
-                                Last updated: {blogMetadata.updatedAt.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
-                            </span>
-                        )}
-                    </div>
-                    {hasPdf && (
-                        <div className="mt-2">
-                            <BlogPdfDownloadButton slug={p["blog-name"]} />
+                    <div className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
+                        <div className="text-small leading-small text-muted">
+                            {blogMetadata.author && blogMetadata.author.length > 0 && (
+                                <span>
+                                    By {blogMetadata.author.join(", ")}
+                                </span>
+                            )}
+                            {blogMetadata.updatedAt && (
+                                <span className={blogMetadata.author && blogMetadata.author.length > 0 ? " ml-4" : ""}>
+                                    Last updated: {blogMetadata.updatedAt.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
+                                </span>
+                            )}
                         </div>
-                    )}
+                        {hasPdf && (
+                            <BlogPdfDownloadButton slug={p["blog-name"]} />
+                        )}
                     </div>
                     {blogMetadata.description && (
                         <p className={`${prose()} mt-4 text-foreground`}>
@@ -110,7 +106,7 @@ export default async function BlogPage({ params }: { params: Promise<{ "blog-nam
                             ))}
                         </div>
                     )}
-                </header>
+                </Card>
             </PageShell>
         </>
     );

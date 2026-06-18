@@ -32,7 +32,7 @@ export function SiteNav({ searchEntries }: SiteNavProps) {
 
   return (
     <nav className="mb-8">
-      <Divider />
+      <Divider size="lg" />
       <div className="flex items-center justify-between gap-4 py-3">
         <ul className="hidden sm:flex items-center gap-5 m-0 p-0 list-none">
           {site.navItems.map((item) => (
@@ -55,7 +55,7 @@ export function SiteNav({ searchEntries }: SiteNavProps) {
           <AppLink
             aria-label="RSS feed"
             href={site.links.rss}
-            variant="muted"
+            variant="plain"
           >
             <RssIcon />
           </AppLink>
@@ -63,7 +63,7 @@ export function SiteNav({ searchEntries }: SiteNavProps) {
             aria-label="GitHub"
             external
             href={site.links.github}
-            variant="muted"
+            variant="plain"
           >
             <GithubIcon />
           </AppLink>
@@ -71,7 +71,7 @@ export function SiteNav({ searchEntries }: SiteNavProps) {
             aria-label="LinkedIn"
             external
             href={site.links.linkedin}
-            variant="muted"
+            variant="plain"
           >
             <LinkedInIcon />
           </AppLink>
@@ -79,7 +79,7 @@ export function SiteNav({ searchEntries }: SiteNavProps) {
             aria-label="YouTube"
             external
             href={site.links.youtube}
-            variant="muted"
+            variant="plain"
           >
             <YoutubeIcon />
           </AppLink>
@@ -116,11 +116,11 @@ export function SiteNav({ searchEntries }: SiteNavProps) {
           </svg>
         </button>
       </div>
-      <Divider />
+      <Divider size="lg" />
 
       {isMenuOpen && (
         <div className="sm:hidden py-4 space-y-4">
-          <ul className="flex flex-col gap-2 m-0 p-0 list-none">
+          <ul className="flex flex-col gap-2 m-0 p-0 list-none mb-4">
             {site.navItems.map((item) => (
               <li key={item.href}>
                 <AppLink
@@ -136,16 +136,16 @@ export function SiteNav({ searchEntries }: SiteNavProps) {
           </ul>
           <BlogSearch entries={searchEntries} />
           <div className="flex items-center gap-4">
-            <AppLink href={site.links.rss} variant="muted">
+            <AppLink href={site.links.rss} variant="plain">
               RSS
             </AppLink>
-            <AppLink external href={site.links.github} variant="muted">
+            <AppLink external href={site.links.github} variant="plain">
               GitHub
             </AppLink>
-            <AppLink external href={site.links.linkedin} variant="muted">
+            <AppLink external href={site.links.linkedin} variant="plain">
               LinkedIn
             </AppLink>
-            <AppLink external href={site.links.youtube} variant="muted">
+            <AppLink external href={site.links.youtube} variant="plain">
               YouTube
             </AppLink>
           </div>

@@ -29,3 +29,4 @@
   catppuccin-accents.flamingo,
   catppuccin-accents.red,
 )
+

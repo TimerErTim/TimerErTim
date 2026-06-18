@@ -2,7 +2,10 @@ import { tv } from "@/lib/tw";
 import { type ReactNode } from "react";
 
 const tagStyles = tv({
-  base: "inline-block border border-info bg-info/25 text-foreground text-tiny leading-tiny px-2 py-0.5 rounded-sm",
+  base: [
+    "inline-block font-semibold text-background text-tiny leading-tiny px-2.5 py-0.5",
+    "rounded-sm border-shadow bg-info",
+  ],
 });
 
 export function Tag({

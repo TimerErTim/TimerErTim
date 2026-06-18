@@ -1,7 +1,7 @@
 import { site } from "@/site";
 import { title, subtitle } from "@/components/primitives";
 import { PageShell } from "@/components/page-shell";
-import { AppLink, Button } from "@/components/ui";
+import { AppLink, Button, Card } from "@/components/ui";
 import { routes } from "@/paths";
 
 export default function Home() {
@@ -22,11 +22,11 @@ export default function Home() {
           </AppLink>
         </div>
 
-        <div className="mt-12 border border-border bg-surface p-5 max-w-xl">
-          <p className="text-small leading-small text-muted m-0">
+        <Card className="mt-12 max-w-xl" padding="md">
+          <p className="text-small leading-small text-foreground m-0">
             Blog entries are rendered using <AppLink external href="https://typst.app/">Typst</AppLink> and embedded in the website as svg. For more information, see the <AppLink href={routes.blogPost("2026-blog-with-typst")}>the blogpost</AppLink>.
           </p>
-        </div>
+        </Card>
       </section>
     </PageShell>
   );

@@ -10,7 +10,13 @@ export function LoadingSpinner({ className }: { className?: string }) {
                 className,
             )}
         >
-            <div className="size-8 animate-spin rounded-full border-2 border-border border-t-accent" />
+            <div
+                className={twMerge(
+                    "size-8 animate-spin rounded-full border-md border-border",
+                    "border-t-accent border-l-accent border-r-accent border-b-transparent"
+                )}
+            />
+      
         </div>
     );
 }

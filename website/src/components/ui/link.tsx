@@ -8,14 +8,15 @@ const linkStyles = tv({
   base: "transition-colors",
   variants: {
     variant: {
-      default: "text-info underline-offset-2 hover:underline",
-      bold: "text-foreground font-medium underline-offset-2 underline decoration-accent hover:text-accent",
-      nav: "text-foreground no-underline hover:text-accent",
+      default:
+        "font-semibold text-info underline decoration-shadow decoration-1 underline-offset-(--border-width-lg) hover:underline",
+      bold: "text-foreground font-bold underline decoration-shadow decoration-2 underline-offset-(--border-width-lg) hover:text-accent",
+      nav: "font-semibold text-foreground no-underline hover:text-accent",
       muted: "text-muted no-underline hover:text-foreground",
       plain: "text-inherit no-underline hover:text-inherit",
     },
     active: {
-      true: "text-accent font-medium",
+      true: "text-accent font-bold",
       false: "",
     },
   },
@@ -23,7 +24,7 @@ const linkStyles = tv({
     {
       variant: "nav",
       active: true,
-      class: "text-accent font-medium",
+      class: "text-accent font-bold",
     },
   ],
   defaultVariants: {

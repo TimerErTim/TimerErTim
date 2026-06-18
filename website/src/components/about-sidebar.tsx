@@ -1,4 +1,4 @@
-import { AppLink, Divider } from "@/components/ui";
+import { AppLink, Card, Divider } from "@/components/ui";
 import { routes } from "@/paths";
 import { contact } from "@/site/contact";
 
@@ -8,8 +8,8 @@ function telHref(phone: string): string {
 
 export function AboutSidebar() {
   return (
-    <div className="flex h-fit max-h-full flex-col overflow-hidden bg-surface border border-border p-4">
-      <h2 className="shrink-0 text-small leading-small font-semibold text-foreground m-0 mb-4">
+    <Card className="flex h-fit max-h-full flex-col overflow-hidden">
+      <h2 className="shrink-0 text-small leading-small font-bold text-foreground m-0 mb-4">
         Contact
       </h2>
       <ul className="m-0 flex flex-col gap-3 p-0 list-none text-small leading-small">
@@ -44,6 +44,6 @@ export function AboutSidebar() {
       >
         Curriculum Vitae (PDF)
       </AppLink>
-    </div>
+    </Card>
   );
 }

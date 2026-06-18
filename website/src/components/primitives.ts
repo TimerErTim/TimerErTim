@@ -1,7 +1,7 @@
 import { tv } from "@/lib/tw";
 
 export const title = tv({
-  base: "font-sans text-large leading-large font-semibold tracking-tight text-foreground",
+  base: "font-sans text-large leading-large font-bold tracking-tight text-foreground",
   variants: {
     size: {
       sm: "text-medium leading-medium",

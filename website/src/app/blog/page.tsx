@@ -24,13 +24,13 @@ export default async function BlogPage() {
         <h1 className={title()}>Blog</h1>
         <div className="mt-8 flex flex-col gap-4">
           {blogs.map((blog) => (
-            <Link href={routes.blogPost(blog.slug)} key={blog.slug}>
+            <Link href={routes.blogPost(blog.slug)} key={blog.slug} className="contents">
               <Card hoverable>
                 <h2 className="text-medium leading-medium font-bold text-foreground m-0">
                   {blog.title}
                 </h2>
                 {blog.description && (
-                  <p className="mt-2 text-small leading-small text-foreground m-0">
+                  <p className="mt-2 text-small leading-small text-foreground m-0 font-medium">
                     {blog.description}
                   </p>
                 )}

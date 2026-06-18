@@ -1,33 +1,35 @@
 /* Generated from look-and-feel/themes.json — do not edit */
 :root,
 .light {
-  --theme-base: #f7f8fb;
-  --theme-foreground: #191a22;
-  --theme-accent: #62a123;
-  --theme-neutral: #d0d1d4;
-  --theme-surface: #e6e8eb;
-  --theme-overlay: #e0e1e4;
-  --theme-border: #a0a1a7;
-  --theme-danger: #9c2d2d;
-  --theme-warning: #bb9b79;
-  --theme-success: #72946b;
-  --theme-info: #6694b0;
-  --theme-muted: #7e8086;
+  --theme-base: #f9f5e9;
+  --theme-foreground: #080810;
+  --theme-accent: #6e9441;
+  --theme-neutral: #d0cab9;
+  --theme-surface: #f9f5e9;
+  --theme-overlay: #f4e7ca;
+  --theme-border: #080810;
+  --theme-danger: #994642;
+  --theme-warning: #d3955e;
+  --theme-success: #447e47;
+  --theme-info: #33769a;
+  --theme-muted: #737373;
+  --theme-shadow: #080810;
 }
 
 .dark {
-  --theme-base: #111115;
-  --theme-foreground: #e7ebf6;
-  --theme-accent: #426e17;
-  --theme-neutral: #46474e;
-  --theme-surface: #1a1a20;
-  --theme-overlay: #1e1f25;
-  --theme-border: #707179;
-  --theme-danger: #cfa4ae;
-  --theme-warning: #ede4d0;
-  --theme-success: #c1d9bf;
-  --theme-info: #b7d4d9;
-  --theme-muted: #72747c;
+  --theme-base: #0a0b10;
+  --theme-foreground: #edeef7;
+  --theme-accent: #99bf72;
+  --theme-neutral: #2c2d36;
+  --theme-surface: #0a0b10;
+  --theme-overlay: #191925;
+  --theme-border: #edeef7;
+  --theme-danger: #dd9592;
+  --theme-warning: #deb684;
+  --theme-success: #82b482;
+  --theme-info: #6fb0c4;
+  --theme-muted: #707179;
+  --theme-shadow: #edeef7;
 }
 
 @theme inline {
@@ -42,6 +44,7 @@
   --color-warning: var(--theme-warning);
   --color-success: var(--theme-success);
   --color-info: var(--theme-info);
+  --color-shadow: var(--theme-shadow);
 
   --text-tiny: 11.2px;
   --text-tiny--line-height: 16px;
@@ -57,7 +60,20 @@
   --leading-medium: 24px;
   --leading-large: 28px;
 
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 0px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --border-width-sm: 1.5px;
+  --border-width-md: 2px;
+  --border-width-lg: 3px;
+
+  --depth-sm: 1.5px;
+  --depth-md: 2px;
+
+  --spacing-depth-sm: var(--depth-sm);
+  --spacing-depth-md: var(--depth-md);
+
+  --shadow-sm: var(--depth-sm) var(--depth-sm) 0 var(--depth-sm) var(--tw-shadow-color, var(--color-shadow));
+  --shadow-md: var(--depth-md) var(--depth-md) 0 var(--depth-md) var(--tw-shadow-color, var(--color-shadow));
 }

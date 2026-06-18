@@ -4,13 +4,14 @@ import { Button } from "@/components/ui";
 export function BlogPdfDownloadButton({ slug }: { slug: string }) {
     return (
         <a
-            className="inline-flex"
+            className="contents"
             download={blogPdfFilename(slug)}
             href={routes.blogPostPdf(slug)}
         >
-            <Button variant="secondary" size="sm">
-                Download
+            <Button variant="primary" size="sm">
+                Download PDF
             </Button>
+       
         </a>
     );
 }

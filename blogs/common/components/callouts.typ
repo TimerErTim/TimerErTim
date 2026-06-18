@@ -1,57 +1,52 @@
 #import "../theming.typ": theme
+#import "depth.typ": depth-shadow-block
+
+#let callout-tint(color-val) = {
+  color.mix(
+    (color-val, 18%),
+    (theme.colors.surface, 82%),
+  )
+}
+
+#let callout-heading-tint(color-val) = {
+  color.mix(
+    (color-val, 35%),
+    (theme.colors.surface, 65%),
+  )
+}
 
 #let callout-base(
-  color-val: theme.colors.overlay,
-  fill: auto,
-  border: true, // Whether to show a border around the callout
+  stroke-color: theme.colors.border,
+  fill: theme.colors.surface,
   cont,
 ) = {
-  let stroke-color = color.mix((color-val, 40%), (theme.colors.base, 60%))
   show: block.with(
-    stroke: (
-      left: color-val + theme.layout.borderWidth.large,
-      rest: if border {
-        stroke-color + theme.layout.borderWidth.small
-      } else {
-        none
-      },
-    ),
-    radius: theme.layout.radius.medium,
-    fill: if fill == auto {
-      color-val.transparentize(92.5%)
-    } else {
-      fill
-    },
+    stroke: stroke-color + theme.layout.borderWidth.small,
+    radius: theme.layout.radius.small,
+    fill: fill,
     inset: 1em,
-    outset: (left: -theme.layout.borderWidth.large / 2),
-    width: 100%,
   )
   cont
 }
 
 #let callout-block(
-  color-val: theme.colors.overlay,
+  color-val: theme.colors.accent,
   heading: none,
   body,
 ) = {
-  callout-base(color-val: color-val, fill: auto)[
+  show: depth-shadow-block.with(
+    color: color-val,
+    inner-border: theme.layout.borderWidth.small,
+    radius: theme.layout.radius.small,
+  )
+  callout-base(stroke-color: color-val)[
     #if heading != none {
-      block(
-        width: 100%,
-        outset: (
-          left: 1em - theme.layout.borderWidth.large,
-          rest: 1em,
-        ),
-        fill: color.mix((color-val, 40%), (theme.colors.base, 60%)),
-        sticky: true,
-      )[
-        #set text(size: 1.05em)
-        #heading
-      ]
-      v(0.5em)
+      set text(size: 1.05em, weight: "bold")
+      set text(fill: color-val)
+      heading
     }
 
-    #set text(fill: color.mix((color-val, 20%), (theme.colors.foreground, 80%)))
+    #set text(fill: theme.colors.foreground)
     #body
   ]
 }
@@ -60,12 +55,18 @@
   body,
   attribution: none,
 ) = {
-  callout-base(color-val: theme.colors.muted, fill: none, border: false)[
+  show: depth-shadow-block.with(
+    color: theme.colors.neutral,
+    inner-border: theme.layout.borderWidth.small,
+    radius: theme.layout.radius.small,
+  )
+  callout-base(stroke-color: theme.colors.neutral, fill: theme.colors.surface)[
+    #set text(fill: theme.colors.foreground, style: "italic")
     #body
     #if attribution != none {
-      set text(fill: theme.colors.muted)
-      linebreak()
-      h(1fr)
+      v(0.5em)
+      set align(right)
+      set text(fill: theme.colors.muted, style: "normal", size: 0.95em)
       sym.dash
       attribution
     }

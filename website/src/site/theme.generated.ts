@@ -1,10 +1,14 @@
 /* Generated from look-and-feel/themes.json — do not edit */
 
 export const themeColors = {
-  light: {"base":"#f7f8fb","foreground":"#191a22","accent":"#62a123","neutral":"#d0d1d4","surface":"#e6e8eb","overlay":"#e0e1e4","border":"#a0a1a7","danger":"#9c2d2d","warning":"#bb9b79","success":"#72946b","info":"#6694b0","muted":"#7e8086"},
-  dark: {"base":"#111115","foreground":"#e7ebf6","accent":"#426e17","neutral":"#46474e","surface":"#1a1a20","overlay":"#1e1f25","border":"#707179","danger":"#cfa4ae","warning":"#ede4d0","success":"#c1d9bf","info":"#b7d4d9","muted":"#72747c"},
+  light: {"base":"#f9f5e9","foreground":"#080810","accent":"#6e9441","neutral":"#d0cab9","surface":"#f9f5e9","overlay":"#f4e7ca","border":"#080810","danger":"#994642","warning":"#d3955e","success":"#447e47","info":"#33769a","muted":"#737373","shadow":"#080810"},
+  dark: {"base":"#0a0b10","foreground":"#edeef7","accent":"#99bf72","neutral":"#2c2d36","surface":"#0a0b10","overlay":"#191925","border":"#edeef7","danger":"#dd9592","warning":"#deb684","success":"#82b482","info":"#6fb0c4","muted":"#707179","shadow":"#edeef7"},
 } as const;
 
-export const themeSemanticColors = ["background","foreground","accent","muted","surface","overlay","border","danger","warning","success","info"] as const;
+export const themeSemanticColors = ["background","foreground","accent","muted","surface","overlay","border","danger","warning","success","info","shadow"] as const;
 
 export const themeFontSizes = ["tiny","small","medium","large"] as const;
+
+export const themeBorderWidths = ["sm","md","lg"] as const;
+
+export const themeDepthSizes = ["sm","md"] as const;

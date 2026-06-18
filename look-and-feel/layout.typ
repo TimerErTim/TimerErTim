@@ -14,13 +14,17 @@
     large: 1.75 * rem,
   ),
   radius: (
-    small: 0 * rem,
-    medium: 0 * rem,
-    large: 0 * rem,
+    small: 0.25 * rem,
+    medium: 0.5 * rem,
+    large: 0.75 * rem,
   ),
   borderWidth: (
-    small: 1pt,
+    small: 1.5pt,
     medium: 2pt,
-    large: 4pt,
+    large: 3pt,
+  ),
+  depth: (
+    small: 1.5pt,
+    medium: 2pt,
   ),
 )
