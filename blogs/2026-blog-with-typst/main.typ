@@ -340,6 +340,7 @@ Inspecting this extracted SVG reveals how `typst-ts-cli` embeds SVG images in th
         start: 91,
         end: 119,
         tag: "svg",
+        fill: catppuccin-accents.blue.lighten(50%),
       ),
     ),
     reference-by: "item",
@@ -351,7 +352,7 @@ Inspecting this extracted SVG reveals how `typst-ts-cli` embeds SVG images in th
   ```
 }
 
-Here, #box(baseline: 2pt, inset: 2pt, stroke: catppuccin-accents.blue, fill: catppuccin-accents.blue.mix((theme.colors.base, 80%)))[svg] is the base64 encoded SVG content. Decoding it reveals our original SVG content: `<svg>Hello, world!</svg>`. Amazing!
+Here, #box(baseline: 2pt, inset: 2pt, stroke: catppuccin-accents.blue, fill: catppuccin-accents.blue.lighten(50%).mix((theme.colors.base, 80%)), radius: theme.layout.radius.small)[svg] is the base64 encoded SVG content. Decoding it reveals our original SVG content: `<svg>Hello, world!</svg>`. Amazing!
 
 A second pass script replaces all occurrences of the `<image>` tag with a specific `alt="!typst-embed-command"` with the base64 decoded SVG content. Now we can precisely control the XML (and by extension HTML) content in our document, ready to embed in the website as normal SVG.
 
