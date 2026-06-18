@@ -657,7 +657,7 @@ And now, finally, after almost no hassle at all, the build process is complete! 
   font: theme.fonts.mono.family,
   title: [static files @ out/blog/2026-blog-with-typst/],
 )[
-  #show: pad.with(top: -1em)
+  #show: pad.with(top: -0.5em, bottom: 0.5em)
   #conch.render-ansi(
     read("assets/eza_dist_output.txt"),
     theme: "catppuccin",

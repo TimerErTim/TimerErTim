@@ -57,6 +57,7 @@
 #let style-raw(
   raw,
 ) = {
+  set text(font: theme.fonts.mono.family)
   if raw.block == true {
     show block.where(
       radius: theme.layout.radius.medium,
@@ -83,7 +84,6 @@
   show: catppuccin.set-code-theme.with(
     catppuccin-flavor,
   )
-  show raw: set text(font: theme.fonts.mono.family)
   show: codly-init.with()
   show raw: style-raw
   codly(
