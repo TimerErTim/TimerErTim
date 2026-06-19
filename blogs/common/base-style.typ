@@ -158,7 +158,7 @@
   show quote: style-quote
   show: pikchr-init
 
-  set rect(stroke: theme.colors.shadow + theme.layout.borderWidth.small)
+  set rect(stroke: theme.colors.border + theme.layout.borderWidth.medium, radius: theme.layout.radius.medium)
   show figure: align.with(left)
   show figure.caption: set text(
     size: theme.layout.fontSize.tiny,

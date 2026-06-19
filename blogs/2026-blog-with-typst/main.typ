@@ -149,7 +149,8 @@ With the tool choice being made, my first idea was to use the #link("https://myr
   show: figure.with(
     caption: [Proposal process for embedding a Typst document in a website],
   )
-  show: rect.with(inset: (left: -1em))
+  show: depth-shadow-block.with(color: theme.colors.border, inner-border: theme.layout.borderWidth.small, radius: theme.layout.radius.medium)
+  show: rect.with(inset: (left: -1em), fill: theme.colors.surface)
   pikchr(
     ```pikchr
     fill = $base
@@ -377,7 +378,8 @@ How to embed fixed size content in a variable width container, like the web brow
   show: figure.with(
     caption: [Bundling multiple variants of the blog post with differing widths; the client side browser decides which one to display],
   )
-  show: rect.with(inset: (left: -1em))
+  show: depth-shadow-block.with(color: theme.colors.border, inner-border: theme.layout.borderWidth.small, radius: theme.layout.radius.medium)
+  show: rect.with(inset: (left: -1em), fill: theme.colors.surface)
   pikchr(
     ```pikchr
     fill = $base
@@ -505,7 +507,8 @@ The reference variant is compressed without any delta compression: 2.4 MB #sym.a
 Let's go ahead and implement decompression and DOM node ingestion on the browser side. Simple enough, add a corresponding package, implement variant selection and...
 
 #{
-  show: rect
+  show: depth-shadow-block.with(color: theme.colors.border, inner-border: theme.layout.borderWidth.small, radius: theme.layout.radius.medium)
+  show: rect.with(inset: 0.5em, fill: theme.colors.surface)
   set text(fill: theme.colors.danger)
   codly(enabled: false)
   ```
@@ -812,19 +815,19 @@ Because we actually insert a new DOM child and remove the previous one upon resi
 #grid(
   columns: broader-than(560pt, (1fr, auto, 1fr), 1),
   gutter: 1em,
-  align: broader-than(560pt, horizon, center),
+  align: broader-than(560pt, top, center),
   {
     show: figure.with(caption: [Playing YouTube video before resize])
-    show: rect.with(inset: 0pt)
+    show: box.with(inset: 0pt, clip: true, stroke: theme.colors.border + theme.layout.borderWidth.medium, radius: theme.layout.radius.medium)
     image("assets/prereload-downsized.png")
   },
-  {
+  grid.cell(align: center + horizon, {
     set text(size: 2em)
     broader-than(560pt, sym.arrow.r, sym.arrow.b)
-  },
+  }),
   {
     show: figure.with(caption: [Thumbnail after resize])
-    show: rect.with(inset: 0pt)
+    show: box.with(inset: 0pt, clip: true, stroke: theme.colors.border + theme.layout.borderWidth.medium, radius: theme.layout.radius.medium)
     image("assets/postreload-downsized.png")
   },
 )

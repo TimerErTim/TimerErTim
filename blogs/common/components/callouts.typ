@@ -56,13 +56,13 @@
   attribution: none,
 ) = {
   show: depth-shadow-block.with(
-    color: theme.colors.neutral,
+    color: theme.colors.border,
     inner-border: theme.layout.borderWidth.small,
-    radius: theme.layout.radius.small,
+    radius: theme.layout.radius.medium,
   )
-  callout-base(stroke-color: theme.colors.neutral, fill: theme.colors.surface)[
-    #set text(fill: theme.colors.foreground, style: "italic")
-    #body
+  callout-base(stroke-color: theme.colors.border, fill: theme.colors.surface)[
+    #set text(fill: theme.colors.foreground)
+    #emph(body)
     #if attribution != none {
       v(0.5em)
       set align(right)
