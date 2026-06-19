@@ -1,18 +1,18 @@
 /* Generated from look-and-feel/themes.json — do not edit */
 :root,
 .light {
-  --theme-base: #f9f5e9;
+  --theme-base: #fffcf0;
   --theme-foreground: #080810;
   --theme-accent: #6e9441;
   --theme-neutral: #d0cab9;
-  --theme-surface: #f9f5e9;
+  --theme-surface: #fffcf0;
   --theme-overlay: #f4e7ca;
   --theme-border: #080810;
   --theme-danger: #994642;
   --theme-warning: #d3955e;
   --theme-success: #447e47;
   --theme-info: #33769a;
-  --theme-muted: #737373;
+  --theme-muted: #767676;
   --theme-shadow: #080810;
 }
 

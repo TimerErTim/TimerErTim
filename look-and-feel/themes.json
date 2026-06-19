@@ -61,18 +61,18 @@
     }
   },
   "light": {
-    "base": "#f9f5e9",
+    "base": "#fffcf0",
     "foreground": "#080810",
     "accent": "#6e9441",
     "neutral": "#d0cab9",
-    "surface": "#f9f5e9",
+    "surface": "#fffcf0",
     "overlay": "#f4e7ca",
     "border": "#080810",
     "danger": "#994642",
     "warning": "#d3955e",
     "success": "#447e47",
     "info": "#33769a",
-    "muted": "#737373",
+    "muted": "#767676",
     "shadow": "#080810"
   },
   "dark": {

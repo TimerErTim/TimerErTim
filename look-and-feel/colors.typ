@@ -1,11 +1,11 @@
 // Main color config, derived colors further down below
 #let _colors = (
   "light": (
-    "base": oklch(97%, 4%, 92deg),
+    "base": oklch(99%, 4%, 92deg),
     "foreground": oklch(14%, 4%, 280deg),
     "accent": oklch(62%, 30%, 130deg),
     "neutral": oklch(84%, 6%, 90deg),
-    "surface": oklch(97%, 4%, 92deg),
+    "surface": oklch(99%, 4%, 92deg),
     "overlay": oklch(93%, 10%, 86deg),
     "border": oklch(14%, 4%, 280deg),
     "danger": oklch(50%, 28%, 25deg),

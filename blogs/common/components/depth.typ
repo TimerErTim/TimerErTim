@@ -14,8 +14,8 @@
   outset: (
     top: inner-border / 2,
     left: inner-border / 2,
-    right: depth + inner-border / 2,
-    bottom: depth + inner-border / 2,
+    right: depth * 2 + inner-border / 2,
+    bottom: depth * 2 + inner-border / 2,
   ),
   align(left + top, cont),
 )

@@ -22,7 +22,7 @@
 ) = {
   show: block.with(
     stroke: stroke-color + theme.layout.borderWidth.small,
-    radius: theme.layout.radius.small,
+    radius: theme.layout.radius.medium,
     fill: fill,
     inset: 1em,
   )
@@ -37,7 +37,7 @@
   show: depth-shadow-block.with(
     color: color-val,
     inner-border: theme.layout.borderWidth.small,
-    radius: theme.layout.radius.small,
+    radius: theme.layout.radius.medium,
   )
   callout-base(stroke-color: color-val)[
     #if heading != none {
