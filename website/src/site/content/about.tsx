@@ -17,8 +17,8 @@ export default function AboutContent() {
         <section>
           <h2 className={title({ size: "sm" })}>Now</h2>
           <p className="mt-2">
-            Bioinformatics at FH Oberösterreich, Hagenberg. Simultaneously working at opta
-            data Österreich. I try to establish <a href="https://typst.app/">Typst</a> at my university.
+            Studying Bioinformatics at <a href="https://fh-ooe.at/studienangebot/medizin-und-bioinformatik-bachelor">FH Oberösterreich, Hagenberg</a>. Simultaneously working at <a href="https://www.optadata.at/">opta
+            data Österreich</a>. I try to establish <a href="https://typst.app/">Typst</a> at my university.
           </p>
         </section>
 
