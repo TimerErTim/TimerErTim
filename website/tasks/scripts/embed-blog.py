@@ -103,13 +103,11 @@ if previous_reference_hash is None or previous_reference_hash != new_reference_h
         for theme in ["light", "dark"]
         for page_width in range(320, 1097, 128)
     ]
-    compression_ref_variant = variants[0]
     export_blog_variants(variants, dst_dir_rel)
 
     build_data = {
         "slug": BLOG_SLUG,
         "contentHash": new_reference_hash,
-        "compressionRefVariant": compression_ref_variant.to_filename(),
         "variants": [
             {
                 "filename": variant.to_filename(),

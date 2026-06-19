@@ -1,7 +1,7 @@
 "use client";
 
 import { TransitBlogMetadata } from "@/model/blogs";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { decompress } from "brotli-compress/js";
 import { decode } from "@ably/vcdiff-decoder";
 import { useTheme } from "@/lib/theme";
@@ -46,41 +46,67 @@ export default function RenderBlog({ blogData }: { blogData: TransitBlogMetadata
         setReady(true);
     }, []);
 
-    const decompressedRefBytes = useMemo(() => {
-        if (!ready) return null;
-        const refVariant = blogData.variants.find(
-            (v) => v.filename === blogData.compressionRefFilename,
-        );
-        if (!refVariant) {
-            throw new Error(
-                `Reference file ${blogData.compressionRefFilename} not found for decompression`,
-            );
-        }
-        return decompressBase64String(refVariant.compressedBase64);
-    }, [blogData, ready]);
+    const variantByFilename = useMemo(() => {
+        return new Map(blogData.variants.map((variant) => [variant.filename, variant]));
+    }, [blogData.variants]);
 
-    const decompressedRefSvg = useMemo(() => {
-        if (!decompressedRefBytes) return null;
-        return decodeText(decompressedRefBytes);
-    }, [decompressedRefBytes]);
+    const decodedBytesCache = useRef(new Map<string, Uint8Array>());
+
+    const getDecodedBytes = useCallback((filename: string): Uint8Array => {
+        const cached = decodedBytesCache.current.get(filename);
+        if (cached) {
+            return cached;
+        }
+
+        const decodeWithVisit = (current: string, visiting: Set<string>): Uint8Array => {
+            const cachedBytes = decodedBytesCache.current.get(current);
+            if (cachedBytes) {
+                return cachedBytes;
+            }
+            if (visiting.has(current)) {
+                throw new Error(`Compression cycle detected at ${current}`);
+            }
+            visiting.add(current);
+
+            const variant = variantByFilename.get(current);
+            if (!variant) {
+                throw new Error(`Variant ${current} not found for decompression`);
+            }
+
+            const decompressedPayload = decompressBase64String(variant.compressedBase64);
+            let decoded: Uint8Array;
+            if (variant.referenceVariant === null) {
+                decoded = decompressedPayload;
+            } else {
+                const referenceBytes = decodeWithVisit(variant.referenceVariant, visiting);
+                decoded = decodeDelta(referenceBytes, decompressedPayload);
+            }
+
+            decodedBytesCache.current.set(current, decoded);
+            return decoded;
+        };
+
+        return decodeWithVisit(filename, new Set());
+    }, [variantByFilename]);
 
     const theme = useTheme();
     const [divRef, divWidth] = useContainerWidth();
 
     const svgContent = useMemo(() => {
-        if (!decompressedRefSvg || !decompressedRefBytes) return null;
-        if (blogData.variants.length === 1) return decompressedRefSvg;
+        if (!ready) return null;
+        if (blogData.variants.length === 1) {
+            const onlyVariant = blogData.variants[0];
+            if (!onlyVariant) return null;
+            return decodeText(getDecodedBytes(onlyVariant.filename));
+        }
         const variant = selectVariant(blogData.variants, theme, divWidth);
+        const fallbackVariant = blogData.variants[0];
         if (!variant) {
-            return decompressedRefSvg;
+            if (!fallbackVariant) return null;
+            return decodeText(getDecodedBytes(fallbackVariant.filename));
         }
-        if (variant.filename === blogData.compressionRefFilename) {
-            return decompressedRefSvg;
-        }
-        const decompressedDelta = decompressBase64String(variant.compressedBase64);
-        const decodedDelta = decodeDelta(decompressedRefBytes, decompressedDelta);
-        return decodeText(decodedDelta);
-    }, [blogData, theme, divWidth, decompressedRefSvg, decompressedRefBytes]);
+        return decodeText(getDecodedBytes(variant.filename));
+    }, [blogData.variants, theme, divWidth, ready, getDecodedBytes]);
 
     const containerRef = useRef<HTMLDivElement>(null);
 

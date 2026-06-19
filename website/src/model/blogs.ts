@@ -1,4 +1,3 @@
-import { buildInfo } from "@/site/system";
 import { fsPaths } from "@/paths";
 import fs from "node:fs/promises";
 
@@ -7,6 +6,7 @@ export type BlogVariantHeader = {
     width_pt: number,
     compressedFilename: string,
     filename: string,
+    referenceVariant: string | null,
 }
 
 export type ServerBlogMetadata = {
@@ -17,12 +17,10 @@ export type ServerBlogMetadata = {
     author: string[],
     createdAt: Date,
     updatedAt: Date,
-    compressionRefVariant: string,
     variants: BlogVariantHeader[]
 }
 
 export type TransitBlogMetadata = {
-    compressionRefFilename: string, // The filename of the reference variant, which has to be uncompressed with no dict
     variants: BlogVariant[]
 }
 
@@ -31,6 +29,7 @@ export type BlogVariant = {
     width_pt: number,
     filename: string,
     compressedBase64: string,
+    referenceVariant: string | null,
 }
 
 export async function loadTransitBlogMetadata(blogSlug: string): Promise<TransitBlogMetadata> {
@@ -38,11 +37,11 @@ export async function loadTransitBlogMetadata(blogSlug: string): Promise<Transit
     const buildJson = await fs.readFile(buildJsonPath, "utf8");
     const build = JSON.parse(buildJson);
     return {
-        compressionRefFilename: build.compressionRefVariant,
         variants: await Promise.all(build.variants.map(async (variant: BlogVariantHeader) => ({
             theme: variant.theme,
             width_pt: variant.width_pt,
             filename: variant.filename,
+            referenceVariant: variant.referenceVariant,
             compressedBase64: await fs.readFile(
                 fsPaths.blogVariantFile(blogSlug, variant.compressedFilename),
                 "base64",
@@ -64,7 +63,6 @@ function parseServerBlogMetadata(build: Record<string, unknown>): ServerBlogMeta
         author: build.author as string[],
         createdAt: new Date((build.createdAt as number) * 1000),
         updatedAt: new Date((build.updatedAt as number) * 1000),
-        compressionRefVariant: build.compressionRefVariant as string,
         variants: build.variants as BlogVariantHeader[],
     };
 }
