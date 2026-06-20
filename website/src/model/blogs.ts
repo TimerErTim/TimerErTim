@@ -1,12 +1,22 @@
 import { fsPaths } from "@/paths";
 import fs from "node:fs/promises";
 
+export type BlogCompressionMetadata = {
+    format: string,
+    compressedFilename: string,
+    lgwin: number,
+    quality: number,
+    uncompressedLength: number,
+    compressedLength: number,
+    orderStrategy: string,
+}
+
 export type BlogVariantHeader = {
     theme: "light" | "dark",
     width_pt: number,
-    compressedFilename: string,
     filename: string,
-    referenceVariant: string | null,
+    offset: number,
+    length: number,
 }
 
 export type ServerBlogMetadata = {
@@ -17,10 +27,13 @@ export type ServerBlogMetadata = {
     author: string[],
     createdAt: Date,
     updatedAt: Date,
+    compression: BlogCompressionMetadata,
     variants: BlogVariantHeader[]
 }
 
 export type TransitBlogMetadata = {
+    compression: BlogCompressionMetadata,
+    compressedBase64: string,
     variants: BlogVariant[]
 }
 
@@ -28,25 +41,28 @@ export type BlogVariant = {
     theme: "light" | "dark",
     width_pt: number,
     filename: string,
-    compressedBase64: string,
-    referenceVariant: string | null,
+    offset: number,
+    length: number,
 }
 
 export async function loadTransitBlogMetadata(blogSlug: string): Promise<TransitBlogMetadata> {
     const buildJsonPath = fsPaths.blogBuildJson(blogSlug);
     const buildJson = await fs.readFile(buildJsonPath, "utf8");
     const build = JSON.parse(buildJson);
+    const compression = build.compression as BlogCompressionMetadata;
     return {
-        variants: await Promise.all(build.variants.map(async (variant: BlogVariantHeader) => ({
+        compression,
+        compressedBase64: await fs.readFile(
+            fsPaths.blogVariantFile(blogSlug, compression.compressedFilename),
+            "base64",
+        ),
+        variants: build.variants.map((variant: BlogVariantHeader) => ({
             theme: variant.theme,
             width_pt: variant.width_pt,
             filename: variant.filename,
-            referenceVariant: variant.referenceVariant,
-            compressedBase64: await fs.readFile(
-                fsPaths.blogVariantFile(blogSlug, variant.compressedFilename),
-                "base64",
-            ),
-        }))),
+            offset: variant.offset,
+            length: variant.length,
+        })),
     }
 }
 
@@ -63,6 +79,7 @@ function parseServerBlogMetadata(build: Record<string, unknown>): ServerBlogMeta
         author: build.author as string[],
         createdAt: new Date((build.createdAt as number) * 1000),
         updatedAt: new Date((build.updatedAt as number) * 1000),
+        compression: build.compression as BlogCompressionMetadata,
         variants: build.variants as BlogVariantHeader[],
     };
 }

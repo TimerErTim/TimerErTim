@@ -1,0 +1,21 @@
+{
+  "name": "concat-brotli",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./node": {
+      "types": "./src/node.d.ts",
+      "default": "./src/node.js"
+    },
+    "./browser": {
+      "types": "./src/browser.d.ts",
+      "default": "./src/browser.js"
+    }
+  }
+}

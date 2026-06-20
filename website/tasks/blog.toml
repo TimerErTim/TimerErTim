@@ -27,9 +27,9 @@ env.REPO_ROOT = "{{ vars.REPO_ROOT }}"
 file = "{{ vars.REPO_ROOT }}/website/tasks/scripts/embed-blog.py"
 
 ["website-embedding:compress"]
-description = "Compress the website embedding files using brotli"
+description = "Compress blog variants into a single brotli bundle"
 dir = "{{ vars.REPO_ROOT }}/build/website/blogs/{{ config_root | basename }}"
-sources = ["*.svg"]
-outputs = ["*.svg.br"]
+sources = ["*.svg", "build.json"]
+outputs = ["variants.br", "build.json"]
 env.REPO_ROOT = "{{ vars.REPO_ROOT }}"
-file = "{{ vars.REPO_ROOT }}/website/tasks/scripts/compress-blog.py"
+run = ["node {{ vars.REPO_ROOT }}/website/tasks/scripts/compress-blog.mjs"]
