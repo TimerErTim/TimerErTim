@@ -24,6 +24,7 @@
     stroke: stroke-color + theme.layout.borderWidth.small,
     radius: theme.layout.radius.medium,
     fill: fill,
+    width: 100%,
     inset: 1em,
   )
   cont
