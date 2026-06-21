@@ -12,7 +12,7 @@
 |------|------------------|---------|--------|
 | Roboto | The Roboto Project Authors | [SIL OFL 1.1](https://openfontlicense.org) | [googlefonts/roboto-classic](https://github.com/googlefonts/roboto-classic) |
 | JetBrains Mono | The JetBrains Mono Project Authors | [SIL OFL 1.1](https://openfontlicense.org) | [JetBrains/JetBrainsMono](https://github.com/JetBrains/JetBrainsMono) |
-| Noto Color Emoji | Google LLC | [SIL OFL 1.1](https://openfontlicense.org) | [googlefonts/noto-emoji](https://github.com/googlefonts/noto-emoji) |
+| OpenMoji | OpenMoji – the open-source emoji and icon project. | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/#) | [hfg-gmuend/openmoji](https://github.com/hfg-gmuend/openmoji) |
 | Source Code Pro | Adobe Systems Incorporated | [SIL OFL 1.1](https://openfontlicense.org) | [adobe-fonts/source-code-pro](https://github.com/adobe-fonts/source-code-pro) |
 | Fira Math | Mozilla Foundation | [SIL OFL 1.1](https://openfontlicense.org) | [firamath/firamath](https://github.com/firamath/firamath) |
 

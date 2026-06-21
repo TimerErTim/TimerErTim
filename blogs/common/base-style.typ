@@ -1,7 +1,7 @@
 #import "components/callouts.typ": quote-callout
 #import "theming.typ": catppuccin-accents, catppuccin-flavor, theme, themes
 #import "components/depth.typ": depth-shadow-block
-#import "variants.typ": light-or, web-or
+#import "variants.typ": light-or, targets-web, web-or, is-preview
 #import "deps.typ": catppuccin, codly, codly-init, codly-languages
 #import "components/pikchr.typ": pikchr-init
 
@@ -19,6 +19,29 @@
 
   set par(leading: theme.layout.lineHeight.tiny / 11pt * 1em - 0.8em)
 
+  body
+}
+
+#let style-emoji(emoji) = {
+  set text(
+    font: "OpenMoji", 
+  )
+  // Scale up in web (and web based tinymist preview)because otherwise the emoji is too small idk shenanigans, because we use working but broken bounding box font
+  set text(
+    size:  1.2em,
+    baseline: 0.15em,
+  ) if targets-web or is-preview
+  emoji
+}
+
+#let set-emoji-style(
+  body,
+) = {
+  // dictionary(emoji).values().fold(body, (acc, value) => {
+  //   show value: style-emoji
+  //   acc
+  // })
+  show regex("\\p{Extended_Pictographic}"): style-emoji
   body
 }
 
@@ -151,6 +174,7 @@
   cont,
 ) = {
   show: set-text-style
+  show: set-emoji-style
   show: set-heading-style
   show: set-equation-style
   show: set-raw-style
