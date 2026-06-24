@@ -19,7 +19,7 @@
     "accent": oklch(76%, 28%, 130deg),
     "neutral": oklch(30%, 4%, 280deg),
     "surface": oklch(15%, 3%, 280deg),
-    "overlay": oklch(22%, 6%, 285deg),
+    "overlay": oklch(25%, 12%, 285deg),
     "border": oklch(95%, 3%, 280deg),
     "danger": oklch(74%, 22%, 22deg),
     "warning": oklch(80%, 20%, 72deg),
