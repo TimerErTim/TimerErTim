@@ -87,6 +87,7 @@
       width: 100%,
     ): depth-shadow-block.with(
       color: theme.colors.border,
+      fill: none,
       inner-border: theme.layout.borderWidth.small,
     )
     raw
@@ -148,24 +149,12 @@
 #let set-heading-style(
   body,
 ) = {
-  show heading.where(level: 1): it => {
-    v(1.5em, weak: true)
-    set text(size: 1.6em, weight: "bold")
-    it
-    v(0.75em, weak: true)
-  }
-  show heading.where(level: 2): it => {
-    v(1.25em, weak: true)
-    set text(size: 1.25em, weight: "bold")
-    it
-    v(0.5em, weak: true)
-  }
-  show heading.where(level: 3): it => {
-    v(1em, weak: true)
-    set text(size: 1.1em, weight: "bold")
-    it
-    v(0.35em, weak: true)
-  }
+  show heading.where(level: 1): set text(size: 1.4em)
+  show heading.where(level: 2): set text(size: 1.25em)
+  show heading.where(level: 3): set text(size: 1.15em)
+  show heading.where(level: 4): set text(size: 1.10em)
+
+  show heading: set block(above: 1em, below: 0.7547em)
 
   body
 }
@@ -188,6 +177,7 @@
     size: theme.layout.fontSize.tiny,
     fill: theme.colors.muted,
   )
+  set table(stroke: theme.colors.border + theme.layout.borderWidth.small)
 
   cont
 }

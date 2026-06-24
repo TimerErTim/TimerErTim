@@ -8,7 +8,7 @@
   cont,
   target: auto,
   created-at: datetime.today(),
-  updated-at: datetime.today(),
+  updated-at: auto,
 ) = {
   blog-metadata(
     created-at: created-at,

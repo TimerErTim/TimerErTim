@@ -24,6 +24,8 @@
 ) = {
   if ref.element != none and ref.element.func() == heading {
     link(ref.target, ref.element.body)
+  } else if ref.element != none and ref.element.func() == figure {
+    link(ref.target, ref.element.caption.body)
   } else {
     ref
   }

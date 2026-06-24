@@ -40,6 +40,7 @@
   }
 
   set heading(numbering: "1.1")
+  set figure(placement: auto)
 
   cont
 }
