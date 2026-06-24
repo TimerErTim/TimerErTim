@@ -1,0 +1,2427 @@
+[
+    {
+      "component1": 0.41024917364120483,
+      "component2": 0.8164671659469604,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth8.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth8_plag1.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth8_plag4.cpp"
+      ]
+    },
+    {
+      "component1": 0.3845312297344208,
+      "component2": 0.8172643184661865,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth8_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth8.cpp"
+      ]
+    },
+    {
+      "component1": 0.9415960907936096,
+      "component2": -0.5150176286697388,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth1_plag1.cpp"
+      ]
+    },
+    {
+      "component1": 0.9206599593162537,
+      "component2": -0.47169041633605957,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth1_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth1.cpp"
+      ]
+    },
+    {
+      "component1": 6.705910682678223,
+      "component2": -0.6917474269866943,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z1/Z1/student8157.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z1/Z1/student8157.cpp"
+      ]
+    },
+    {
+      "component1": -1.7530510425567627,
+      "component2": 0.014019154012203217,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth6.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth6_plag2.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth6_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -1.6553893089294434,
+      "component2": 0.10443072021007538,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth6_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth6.cpp"
+      ]
+    },
+    {
+      "component1": -0.24880455434322357,
+      "component2": 1.220420002937317,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth7.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth7_plag2.cpp"
+      ]
+    },
+    {
+      "component1": 0.055201224982738495,
+      "component2": 0.8479161858558655,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth7_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth7.cpp"
+      ]
+    },
+    {
+      "component1": -2.10209321975708,
+      "component2": 0.05188265070319176,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z2/Z2/student5378.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z2/Z2/student9538.cpp"
+      ]
+    },
+    {
+      "component1": -2.1026902198791504,
+      "component2": 0.051923539489507675,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z2/Z2/student9538.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z2/Z2/student5378.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z2/Z2/student7425.cpp"
+      ]
+    },
+    {
+      "component1": -0.84808349609375,
+      "component2": -0.25766995549201965,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth5.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth5_plag1.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth5_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -0.8567432761192322,
+      "component2": -0.21862193942070007,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth5_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth5.cpp"
+      ]
+    },
+    {
+      "component1": 6.49523401260376,
+      "component2": -0.6434245705604553,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth3_plag1.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth3_plag4.cpp"
+      ]
+    },
+    {
+      "component1": 6.498233318328857,
+      "component2": -0.6439633369445801,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth3_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth3.cpp"
+      ]
+    },
+    {
+      "component1": -3.181339740753174,
+      "component2": -1.608271837234497,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth1_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -3.1845128536224365,
+      "component2": -1.608206868171692,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth1_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth1.cpp"
+      ]
+    },
+    {
+      "component1": 2.713057041168213,
+      "component2": -0.1771603375673294,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth1_plag3.cpp"
+      ]
+    },
+    {
+      "component1": 2.7133164405822754,
+      "component2": -0.17712734639644623,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth1_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth1.cpp"
+      ]
+    },
+    {
+      "component1": -2.4165687561035156,
+      "component2": -0.9633706212043762,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth2_plag1.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth2_plag3.cpp"
+      ]
+    },
+    {
+      "component1": -2.4165701866149902,
+      "component2": -0.9633724093437195,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth2_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth2.cpp"
+      ]
+    },
+    {
+      "component1": 0.7260584235191345,
+      "component2": 0.16588839888572693,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth6.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth6_plag2.cpp"
+      ]
+    },
+    {
+      "component1": 0.6395255923271179,
+      "component2": 0.37119144201278687,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth6_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth6.cpp"
+      ]
+    },
+    {
+      "component1": -1.0283159017562866,
+      "component2": -0.531640887260437,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth2_plag1.cpp"
+      ]
+    },
+    {
+      "component1": -0.9777376651763916,
+      "component2": -0.4658381938934326,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth2_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth2.cpp"
+      ]
+    },
+    {
+      "component1": -2.9377963542938232,
+      "component2": 1.624720811843872,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth5.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth5_plag3.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth5_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -2.9376845359802246,
+      "component2": 1.623496174812317,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth5_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth5.cpp"
+      ]
+    },
+    {
+      "component1": -1.6810568571090698,
+      "component2": 1.0421218872070312,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth6.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth6_plag2.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth6_plag3.cpp"
+      ]
+    },
+    {
+      "component1": -1.6818164587020874,
+      "component2": 1.0417754650115967,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth6_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth6.cpp"
+      ]
+    },
+    {
+      "component1": 1.3380706310272217,
+      "component2": 0.6618961691856384,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth2_plag2.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth2_plag3.cpp"
+      ]
+    },
+    {
+      "component1": 1.4471244812011719,
+      "component2": 0.6491065621376038,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth2_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth2.cpp"
+      ]
+    },
+    {
+      "component1": 0.10573893785476685,
+      "component2": 0.21385948359966278,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth6.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth6_plag1.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth6_plag2.cpp"
+      ]
+    },
+    {
+      "component1": 0.28544488549232483,
+      "component2": 0.42022624611854553,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth6_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth6.cpp"
+      ]
+    },
+    {
+      "component1": -0.941668689250946,
+      "component2": 2.3690567016601562,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth8.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth8_plag3.cpp"
+      ]
+    },
+    {
+      "component1": -0.9430015683174133,
+      "component2": 2.3694140911102295,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth8_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth8.cpp"
+      ]
+    },
+    {
+      "component1": -0.20275473594665527,
+      "component2": 1.2260380983352661,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth5.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth5_plag2.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth5_plag3.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth5_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -0.25329655408859253,
+      "component2": 1.2572789192199707,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth5_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth5.cpp"
+      ]
+    },
+    {
+      "component1": -1.674421787261963,
+      "component2": 1.881130576133728,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth6.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth6_plag1.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth6_plag2.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth6_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -2.6073527336120605,
+      "component2": 1.3488528728485107,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth6_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth6.cpp"
+      ]
+    },
+    {
+      "component1": -0.19469422101974487,
+      "component2": 0.06582419574260712,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth8.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth8_plag2.cpp"
+      ]
+    },
+    {
+      "component1": -0.18019992113113403,
+      "component2": 0.0750046819448471,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth8_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth8.cpp"
+      ]
+    },
+    {
+      "component1": -1.6810773611068726,
+      "component2": 1.0423026084899902,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth6_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth6.cpp"
+      ]
+    },
+    {
+      "component1": 7.763981342315674,
+      "component2": -0.94401615858078,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth3_plag1.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth3_plag2.cpp"
+      ]
+    },
+    {
+      "component1": 7.7645063400268555,
+      "component2": -0.9441416263580322,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth3_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth3.cpp"
+      ]
+    },
+    {
+      "component1": -0.8054289221763611,
+      "component2": 0.08493129163980484,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth8.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth8_plag2.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth8_plag3.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth8_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -0.8060201406478882,
+      "component2": 0.0847715213894844,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth8_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth8.cpp"
+      ]
+    },
+    {
+      "component1": 1.000962495803833,
+      "component2": -0.6052525639533997,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth7.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth7_plag2.cpp"
+      ]
+    },
+    {
+      "component1": 1.0742619037628174,
+      "component2": -0.9510361552238464,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth7_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth7.cpp"
+      ]
+    },
+    {
+      "component1": 7.154055595397949,
+      "component2": -0.795598566532135,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth1_plag1.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth1_plag3.cpp"
+      ]
+    },
+    {
+      "component1": 7.155704975128174,
+      "component2": -0.796104907989502,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth1_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth1.cpp"
+      ]
+    },
+    {
+      "component1": 0.5633131861686707,
+      "component2": -0.23970769345760345,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth2_plag2.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth2_plag4.cpp"
+      ]
+    },
+    {
+      "component1": 0.5609014630317688,
+      "component2": -0.2895856201648712,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth2_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth2.cpp"
+      ]
+    },
+    {
+      "component1": 1.296063780784607,
+      "component2": -0.35503050684928894,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth6.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth6_plag1.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth6_plag2.cpp"
+      ]
+    },
+    {
+      "component1": 0.9575803875923157,
+      "component2": -0.45016416907310486,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth6_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth6.cpp"
+      ]
+    },
+    {
+      "component1": 1.336511254310608,
+      "component2": 0.6664496064186096,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth2_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth2.cpp"
+      ]
+    },
+    {
+      "component1": 0.5509425401687622,
+      "component2": -0.11909839510917664,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth2_plag1.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth2_plag4.cpp"
+      ]
+    },
+    {
+      "component1": 0.554559051990509,
+      "component2": -0.09101419895887375,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth2_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth2.cpp"
+      ]
+    },
+    {
+      "component1": -1.979168176651001,
+      "component2": -1.1401540040969849,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth2_plag1.cpp"
+      ]
+    },
+    {
+      "component1": -1.9790674448013306,
+      "component2": -1.145993947982788,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth2_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth2.cpp"
+      ]
+    },
+    {
+      "component1": -2.938091278076172,
+      "component2": 1.6236964464187622,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth5_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth5.cpp"
+      ]
+    },
+    {
+      "component1": 7.7613444328308105,
+      "component2": -0.9433972835540771,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth3_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth3.cpp"
+      ]
+    },
+    {
+      "component1": -2.2541487216949463,
+      "component2": 0.9059091806411743,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth6.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth6_plag1.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth6_plag2.cpp"
+      ]
+    },
+    {
+      "component1": -2.328977346420288,
+      "component2": 0.9029480218887329,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth6_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth6.cpp"
+      ]
+    },
+    {
+      "component1": -0.762867271900177,
+      "component2": 0.14362923800945282,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth5.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth5_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -0.7629936933517456,
+      "component2": 0.14346712827682495,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth5_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth5.cpp"
+      ]
+    },
+    {
+      "component1": -1.397186517715454,
+      "component2": 2.119982957839966,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth4_plag3.cpp"
+      ]
+    },
+    {
+      "component1": -1.3113455772399902,
+      "component2": 2.069901943206787,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth4_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth4.cpp"
+      ]
+    },
+    {
+      "component1": 0.4955568313598633,
+      "component2": -0.841214120388031,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth4_plag3.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth4_plag4.cpp"
+      ]
+    },
+    {
+      "component1": 0.5611599087715149,
+      "component2": -0.2911131680011749,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth4_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth4.cpp"
+      ]
+    },
+    {
+      "component1": 0.8204823732376099,
+      "component2": 0.1388409435749054,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth5.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth5_plag3.cpp"
+      ]
+    },
+    {
+      "component1": 0.7179915308952332,
+      "component2": 0.13423576951026917,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth5_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth5.cpp"
+      ]
+    },
+    {
+      "component1": -1.0073388814926147,
+      "component2": 1.8541624546051025,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth3_plag3.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth3_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -1.031137228012085,
+      "component2": 1.867100477218628,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth3_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth3.cpp"
+      ]
+    },
+    {
+      "component1": -0.8135613203048706,
+      "component2": -0.21312010288238525,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth5_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth5.cpp"
+      ]
+    },
+    {
+      "component1": -1.675540804862976,
+      "component2": 1.8804844617843628,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth6_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth6.cpp"
+      ]
+    },
+    {
+      "component1": -0.894263505935669,
+      "component2": -0.4134669601917267,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth1_plag3.cpp"
+      ]
+    },
+    {
+      "component1": -0.9041429162025452,
+      "component2": -0.4139597713947296,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth1_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth1.cpp"
+      ]
+    },
+    {
+      "component1": 0.4001295864582062,
+      "component2": -0.5391740798950195,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth3_plag4.cpp"
+      ]
+    },
+    {
+      "component1": 0.40003225207328796,
+      "component2": -0.539184033870697,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth3_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth3.cpp"
+      ]
+    },
+    {
+      "component1": -1.9992156028747559,
+      "component2": 0.14209213852882385,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth5.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth5_plag2.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth5_plag3.cpp"
+      ]
+    },
+    {
+      "component1": -2.001692295074463,
+      "component2": 0.13850350677967072,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth5_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth5.cpp"
+      ]
+    },
+    {
+      "component1": -0.8064903616905212,
+      "component2": 0.08502209186553955,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth8_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth8.cpp"
+      ]
+    },
+    {
+      "component1": -2.858797311782837,
+      "component2": 1.131706953048706,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth7.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth7_plag1.cpp"
+      ]
+    },
+    {
+      "component1": -2.85862398147583,
+      "component2": 1.1318438053131104,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth7_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth7.cpp"
+      ]
+    },
+    {
+      "component1": -1.730711579322815,
+      "component2": -0.09917006641626358,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth7.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth7_plag3.cpp"
+      ]
+    },
+    {
+      "component1": -1.7306885719299316,
+      "component2": -0.09912315011024475,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth7_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth7.cpp"
+      ]
+    },
+    {
+      "component1": -1.0263477563858032,
+      "component2": 2.352328062057495,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth1_plag1.cpp"
+      ]
+    },
+    {
+      "component1": -1.1099882125854492,
+      "component2": 2.357041120529175,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth1_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth1.cpp"
+      ]
+    },
+    {
+      "component1": -2.0903077125549316,
+      "component2": -1.764585256576538,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth3_plag2.cpp"
+      ]
+    },
+    {
+      "component1": -2.297250747680664,
+      "component2": -1.8313242197036743,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth3_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth3.cpp"
+      ]
+    },
+    {
+      "component1": 0.819073498249054,
+      "component2": -0.5301480293273926,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z3/Z1/student7713.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z3/Z1/student5162.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z3/Z1/student7713.cpp"
+      ]
+    },
+    {
+      "component1": -2.8640048503875732,
+      "component2": 1.131581425666809,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-3/auth5.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-3/auth5_plag2.cpp"
+      ]
+    },
+    {
+      "component1": -2.8670315742492676,
+      "component2": 1.1415737867355347,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-3/auth5_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-3/auth5.cpp"
+      ]
+    },
+    {
+      "component1": -1.8779447078704834,
+      "component2": 1.6000163555145264,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth8.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth8_plag1.cpp"
+      ]
+    },
+    {
+      "component1": -1.7885278463363647,
+      "component2": 1.732588291168213,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth8_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth8.cpp"
+      ]
+    },
+    {
+      "component1": -2.9272661209106445,
+      "component2": -0.9040729403495789,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth2_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -2.864234209060669,
+      "component2": -0.9743810296058655,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth2_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth2.cpp"
+      ]
+    },
+    {
+      "component1": -1.0213710069656372,
+      "component2": 0.21179242432117462,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth7.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth7_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -1.0296422243118286,
+      "component2": 0.20531320571899414,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth7_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth7.cpp"
+      ]
+    },
+    {
+      "component1": -0.1779806911945343,
+      "component2": 1.1814897060394287,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth5_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth5.cpp"
+      ]
+    },
+    {
+      "component1": 0.3929382860660553,
+      "component2": 0.8169844150543213,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth3_plag2.cpp"
+      ]
+    },
+    {
+      "component1": 0.38512757420539856,
+      "component2": 0.817419171333313,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth3_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth3.cpp"
+      ]
+    },
+    {
+      "component1": -2.3349969387054443,
+      "component2": 0.058573778718709946,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth7.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth7_plag1.cpp"
+      ]
+    },
+    {
+      "component1": -2.3349967002868652,
+      "component2": 0.058618493378162384,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth7_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth7.cpp"
+      ]
+    },
+    {
+      "component1": 6.518970966339111,
+      "component2": -0.648868203163147,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth4_plag1.cpp"
+      ]
+    },
+    {
+      "component1": 6.615081310272217,
+      "component2": -0.6710394620895386,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth4_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth4.cpp"
+      ]
+    },
+    {
+      "component1": -1.3526467084884644,
+      "component2": 0.8559547662734985,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth2_plag1.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth2_plag3.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth2_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -1.3936063051223755,
+      "component2": 0.8432109951972961,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth2_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth2.cpp"
+      ]
+    },
+    {
+      "component1": -0.7590572237968445,
+      "component2": 0.14854717254638672,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth6.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth6_plag3.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth6_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -0.7614115476608276,
+      "component2": 0.14851114153862,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth6_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth6.cpp"
+      ]
+    },
+    {
+      "component1": -1.6444664001464844,
+      "component2": 0.6853711009025574,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-8/auth1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-8/auth1_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -1.6450998783111572,
+      "component2": 0.6272997856140137,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-8/auth1_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-8/auth1.cpp"
+      ]
+    },
+    {
+      "component1": -2.0429892539978027,
+      "component2": -1.133225679397583,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-19/auth1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-19/auth1_plag3.cpp"
+      ]
+    },
+    {
+      "component1": -2.0810859203338623,
+      "component2": -1.1200016736984253,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-19/auth1_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-19/auth1.cpp"
+      ]
+    },
+    {
+      "component1": -2.310950756072998,
+      "component2": 0.9462376236915588,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth4_plag1.cpp"
+      ]
+    },
+    {
+      "component1": -2.3121562004089355,
+      "component2": 0.9201276898384094,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth4_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth4.cpp"
+      ]
+    },
+    {
+      "component1": 0.401257187128067,
+      "component2": 0.832784116268158,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth8_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth8.cpp"
+      ]
+    },
+    {
+      "component1": 0.20734219253063202,
+      "component2": -1.9134386777877808,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z2/Z4/student8118.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z2/Z4/student8118.cpp"
+      ]
+    },
+    {
+      "component1": 0.8061964511871338,
+      "component2": 0.5663098692893982,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth4_plag2.cpp"
+      ]
+    },
+    {
+      "component1": 0.8088122010231018,
+      "component2": 0.5175241231918335,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth4_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth4.cpp"
+      ]
+    },
+    {
+      "component1": 1.1071510314941406,
+      "component2": -0.42983588576316833,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth6.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth6_plag1.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth6_plag4.cpp"
+      ]
+    },
+    {
+      "component1": 0.9568158984184265,
+      "component2": -0.44843602180480957,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth6_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth6.cpp"
+      ]
+    },
+    {
+      "component1": -2.13344669342041,
+      "component2": 0.057154543697834015,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z1/Z3/student7054.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z1/Z3/student7054.cpp"
+      ]
+    },
+    {
+      "component1": -0.9792344570159912,
+      "component2": -4.103931427001953,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth8.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth8_plag3.cpp"
+      ]
+    },
+    {
+      "component1": -0.8810017704963684,
+      "component2": -0.34056586027145386,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth8_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth8.cpp"
+      ]
+    },
+    {
+      "component1": 6.379241466522217,
+      "component2": -0.6164931654930115,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth8.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth8_plag1.cpp"
+      ]
+    },
+    {
+      "component1": 6.369452953338623,
+      "component2": -0.6142376065254211,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth8_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth8.cpp"
+      ]
+    },
+    {
+      "component1": -0.1936931610107422,
+      "component2": -1.4617809057235718,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z2/Z1/student4430.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z2/Z1/student4430.cpp"
+      ]
+    },
+    {
+      "component1": -2.405780792236328,
+      "component2": -0.9244802594184875,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth2_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth2.cpp"
+      ]
+    },
+    {
+      "component1": 0.5543144941329956,
+      "component2": -0.23300465941429138,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth2_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth2.cpp"
+      ]
+    },
+    {
+      "component1": -0.21359458565711975,
+      "component2": 0.13026410341262817,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth2_plag3.cpp"
+      ]
+    },
+    {
+      "component1": 0.4027947783470154,
+      "component2": 0.830413818359375,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth2_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth2.cpp"
+      ]
+    },
+    {
+      "component1": -0.17318148910999298,
+      "component2": -1.4437847137451172,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth2_plag1.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth2_plag3.cpp"
+      ]
+    },
+    {
+      "component1": -0.2152177393436432,
+      "component2": -1.480724573135376,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth2_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth2.cpp"
+      ]
+    },
+    {
+      "component1": -1.3927809000015259,
+      "component2": 1.2557189464569092,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth5.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth5_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -1.3942290544509888,
+      "component2": 1.1580575704574585,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth5_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth5.cpp"
+      ]
+    },
+    {
+      "component1": 7.759118556976318,
+      "component2": -0.9428589344024658,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth6.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth6_plag2.cpp"
+      ]
+    },
+    {
+      "component1": 7.761919021606445,
+      "component2": -0.9435364007949829,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth6_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth6.cpp"
+      ]
+    },
+    {
+      "component1": -0.7346234917640686,
+      "component2": 0.12515844404697418,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth6_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth6.cpp"
+      ]
+    },
+    {
+      "component1": 1.9820631742477417,
+      "component2": -0.6453644037246704,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth6.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth6_plag4.cpp"
+      ]
+    },
+    {
+      "component1": 1.9763613939285278,
+      "component2": -0.6924976110458374,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth6_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth6.cpp"
+      ]
+    },
+    {
+      "component1": -2.7634644508361816,
+      "component2": -0.9452615976333618,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z3/Z1/student6029.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z3/Z1/student4280.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z3/Z1/student6029.cpp"
+      ]
+    },
+    {
+      "component1": -0.9792340397834778,
+      "component2": -4.103931427001953,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth3_plag1.cpp"
+      ]
+    },
+    {
+      "component1": -0.9792340397834778,
+      "component2": -4.103930950164795,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth3_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth3.cpp"
+      ]
+    },
+    {
+      "component1": -2.548232316970825,
+      "component2": -1.744529128074646,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z3/Z1/student4280.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z3/Z1/student6029.cpp"
+      ]
+    },
+    {
+      "component1": -1.6246858835220337,
+      "component2": 0.3438975214958191,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-8/auth8.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-8/auth8_plag1.cpp"
+      ]
+    },
+    {
+      "component1": -1.6247825622558594,
+      "component2": 0.3439551591873169,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-8/auth8_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-8/auth8.cpp"
+      ]
+    },
+    {
+      "component1": 1.9683529138565063,
+      "component2": -0.7214013338088989,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth8.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth8_plag1.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth8_plag2.cpp"
+      ]
+    },
+    {
+      "component1": -2.4039621353149414,
+      "component2": -0.9743896722793579,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth8_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth8.cpp"
+      ]
+    },
+    {
+      "component1": -2.6655023097991943,
+      "component2": -1.2528774738311768,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth8.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth8_plag1.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth8_plag3.cpp"
+      ]
+    },
+    {
+      "component1": -2.642667531967163,
+      "component2": -1.2729828357696533,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth8_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth8.cpp"
+      ]
+    },
+    {
+      "component1": 6.87825345993042,
+      "component2": -0.7316284775733948,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth7.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth7_plag2.cpp"
+      ]
+    },
+    {
+      "component1": -1.6779059171676636,
+      "component2": 1.0658804178237915,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth7_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth7.cpp"
+      ]
+    },
+    {
+      "component1": -1.0844148397445679,
+      "component2": -0.36725544929504395,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-19/auth3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-19/auth3_plag1.cpp"
+      ]
+    },
+    {
+      "component1": -1.0844128131866455,
+      "component2": -0.3672618865966797,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-19/auth3_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-19/auth3.cpp"
+      ]
+    },
+    {
+      "component1": 0.9338086843490601,
+      "component2": -0.4040215313434601,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth6_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth6.cpp"
+      ]
+    },
+    {
+      "component1": 0.6647752523422241,
+      "component2": -0.5302032828330994,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z3/Z1/student5162.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z3/Z1/student7713.cpp"
+      ]
+    },
+    {
+      "component1": 1.176256775856018,
+      "component2": 0.18227380514144897,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth7.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth7_plag1.cpp"
+      ]
+    },
+    {
+      "component1": 0.6396523714065552,
+      "component2": 0.37118494510650635,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth7_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth7.cpp"
+      ]
+    },
+    {
+      "component1": -1.367255449295044,
+      "component2": 0.8637588024139404,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth2_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth2.cpp"
+      ]
+    },
+    {
+      "component1": -0.2537846267223358,
+      "component2": 1.2575830221176147,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth5_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth5.cpp"
+      ]
+    },
+    {
+      "component1": -0.9900370240211487,
+      "component2": 1.829365849494934,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth7.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth7_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -1.0027270317077637,
+      "component2": 1.8322710990905762,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth7_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth7.cpp"
+      ]
+    },
+    {
+      "component1": 2.0228285789489746,
+      "component2": -0.28678324818611145,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth4_plag4.cpp"
+      ]
+    },
+    {
+      "component1": 2.041231632232666,
+      "component2": -0.1322200894355774,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth4_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth4.cpp"
+      ]
+    },
+    {
+      "component1": 7.154357433319092,
+      "component2": -0.7956610918045044,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth3_plag3.cpp"
+      ]
+    },
+    {
+      "component1": 7.168687343597412,
+      "component2": -0.7987969517707825,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth3_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth3.cpp"
+      ]
+    },
+    {
+      "component1": 0.40309983491897583,
+      "component2": 0.854620099067688,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth6.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth6_plag2.cpp"
+      ]
+    },
+    {
+      "component1": 0.4570502042770386,
+      "component2": 0.8253340125083923,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth6_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth6.cpp"
+      ]
+    },
+    {
+      "component1": 6.705626487731934,
+      "component2": -0.6916958093643188,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth5.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth5_plag3.cpp"
+      ]
+    },
+    {
+      "component1": 6.653854846954346,
+      "component2": -0.6798343062400818,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth5_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth5.cpp"
+      ]
+    },
+    {
+      "component1": 1.3787841796875,
+      "component2": -0.224151611328125,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth6_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth6.cpp"
+      ]
+    },
+    {
+      "component1": -2.2294113636016846,
+      "component2": -1.3436723947525024,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth2_plag3.cpp"
+      ]
+    },
+    {
+      "component1": -2.54132342338562,
+      "component2": -1.3346315622329712,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth2_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth2.cpp"
+      ]
+    },
+    {
+      "component1": -2.3975799083709717,
+      "component2": -0.9771061539649963,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth7.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth7_plag2.cpp"
+      ]
+    },
+    {
+      "component1": -2.399099826812744,
+      "component2": -0.9300018548965454,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth7_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth7.cpp"
+      ]
+    },
+    {
+      "component1": 0.8713744878768921,
+      "component2": 0.22042670845985413,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth6.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth6_plag4.cpp"
+      ]
+    },
+    {
+      "component1": 0.8667504787445068,
+      "component2": 0.22144845128059387,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth6_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth6.cpp"
+      ]
+    },
+    {
+      "component1": -1.7695027589797974,
+      "component2": -0.10940329730510712,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth6_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth6.cpp"
+      ]
+    },
+    {
+      "component1": -0.08186998218297958,
+      "component2": 1.1005781888961792,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth8.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth8_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -0.08304828405380249,
+      "component2": 1.102076768875122,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth8_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth8.cpp"
+      ]
+    },
+    {
+      "component1": 1.9824745655059814,
+      "component2": -0.6308971047401428,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth1_plag1.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth1_plag3.cpp"
+      ]
+    },
+    {
+      "component1": 1.970581293106079,
+      "component2": -0.7118993997573853,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth1_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth1.cpp"
+      ]
+    },
+    {
+      "component1": -2.617936134338379,
+      "component2": -1.3198177814483643,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth2_plag2.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth2_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -2.551262617111206,
+      "component2": -1.3361927270889282,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth2_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth2.cpp"
+      ]
+    },
+    {
+      "component1": -2.0757954120635986,
+      "component2": -1.7750111818313599,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth5.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth5_plag3.cpp"
+      ]
+    },
+    {
+      "component1": -2.0657525062561035,
+      "component2": -1.7846412658691406,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth5_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth5.cpp"
+      ]
+    },
+    {
+      "component1": -2.6295294761657715,
+      "component2": -1.3035751581192017,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth8_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth8.cpp"
+      ]
+    },
+    {
+      "component1": -2.6139416694641113,
+      "component2": 1.344970941543579,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth6_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth6.cpp"
+      ]
+    },
+    {
+      "component1": 0.028359318152070045,
+      "component2": 0.9140642285346985,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth6.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth6_plag3.cpp"
+      ]
+    },
+    {
+      "component1": 0.008509838953614235,
+      "component2": 0.958987832069397,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth6_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth6.cpp"
+      ]
+    },
+    {
+      "component1": -2.6074166297912598,
+      "component2": -1.331646203994751,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth2_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth2.cpp"
+      ]
+    },
+    {
+      "component1": 1.9820080995559692,
+      "component2": -0.6340958476066589,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth1_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth1.cpp"
+      ]
+    },
+    {
+      "component1": 0.7203472256660461,
+      "component2": 0.1381673812866211,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth1_plag4.cpp"
+      ]
+    },
+    {
+      "component1": 0.7427275776863098,
+      "component2": 0.11127231270074844,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth1_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth1.cpp"
+      ]
+    },
+    {
+      "component1": -0.19455686211585999,
+      "component2": -1.4624210596084595,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth2_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth2.cpp"
+      ]
+    },
+    {
+      "component1": 0.2958340048789978,
+      "component2": 0.45770302414894104,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth2_plag1.cpp"
+      ]
+    },
+    {
+      "component1": 0.1354396492242813,
+      "component2": 0.6689677834510803,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth2_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth2.cpp"
+      ]
+    },
+    {
+      "component1": -2.900285005569458,
+      "component2": 1.4922822713851929,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-3/auth3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-3/auth3_plag1.cpp"
+      ]
+    },
+    {
+      "component1": -1.6488889455795288,
+      "component2": 1.8741425275802612,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-3/auth3_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-3/auth3.cpp"
+      ]
+    },
+    {
+      "component1": 6.41383171081543,
+      "component2": -0.6244216561317444,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z3/Z2/student5496.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z3/Z2/student5496.cpp"
+      ]
+    },
+    {
+      "component1": -0.09742111712694168,
+      "component2": -1.3527276515960693,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth5.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth5_plag3.cpp"
+      ]
+    },
+    {
+      "component1": -0.09642106294631958,
+      "component2": -1.3506897687911987,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth5_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth5.cpp"
+      ]
+    },
+    {
+      "component1": -0.47497761249542236,
+      "component2": 0.17128410935401917,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth1_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -0.47529903054237366,
+      "component2": 0.17154672741889954,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth1_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth1.cpp"
+      ]
+    },
+    {
+      "component1": -1.1603422164916992,
+      "component2": 2.310960054397583,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth4_plag3.cpp"
+      ]
+    },
+    {
+      "component1": -1.1600645780563354,
+      "component2": 2.311755895614624,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth4_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth4.cpp"
+      ]
+    },
+    {
+      "component1": 1.4488918781280518,
+      "component2": -0.1726013869047165,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth3_plag3.cpp"
+      ]
+    },
+    {
+      "component1": 1.4627333879470825,
+      "component2": -0.12106581777334213,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth3_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth3.cpp"
+      ]
+    },
+    {
+      "component1": 7.146661758422852,
+      "component2": -0.7940676808357239,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth1_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth1.cpp"
+      ]
+    },
+    {
+      "component1": 0.013236035592854023,
+      "component2": 0.9255760908126831,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth6.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth6_plag1.cpp"
+      ]
+    },
+    {
+      "component1": -0.040557168424129486,
+      "component2": 0.9684050679206848,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth6_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth6.cpp"
+      ]
+    },
+    {
+      "component1": 0.5508607029914856,
+      "component2": -0.12012592703104019,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth2_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth2.cpp"
+      ]
+    },
+    {
+      "component1": -1.355757713317871,
+      "component2": 0.8365668654441833,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z2/Z3/student4419.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z2/Z3/student4419.cpp"
+      ]
+    },
+    {
+      "component1": -2.001239061355591,
+      "component2": 0.14005030691623688,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth5_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth5.cpp"
+      ]
+    },
+    {
+      "component1": 7.780708312988281,
+      "component2": -0.9481205940246582,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth2_plag1.cpp"
+      ]
+    },
+    {
+      "component1": 7.794379234313965,
+      "component2": -0.9513487815856934,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth2_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth2.cpp"
+      ]
+    },
+    {
+      "component1": 0.32950544357299805,
+      "component2": 0.4066866934299469,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth6_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth6.cpp"
+      ]
+    },
+    {
+      "component1": -2.288381814956665,
+      "component2": 0.868668794631958,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth6_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth6.cpp"
+      ]
+    },
+    {
+      "component1": 1.4492429494857788,
+      "component2": -0.15421554446220398,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth4_plag2.cpp",
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth4_plag3.cpp"
+      ]
+    },
+    {
+      "component1": 1.487070083618164,
+      "component2": -0.15615035593509674,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth4_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth4.cpp"
+      ]
+    },
+    {
+      "component1": -1.0272146463394165,
+      "component2": 1.867473840713501,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth3_plag1.cpp"
+      ]
+    },
+    {
+      "component1": 0.36474448442459106,
+      "component2": 0.40707993507385254,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth3_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth3.cpp"
+      ]
+    },
+    {
+      "component1": -2.170400381088257,
+      "component2": -0.10343106091022491,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z2/Z2/student7425.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z2/Z2/student9538.cpp"
+      ]
+    },
+    {
+      "component1": -1.0122164487838745,
+      "component2": 1.859041690826416,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth3_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth3.cpp"
+      ]
+    },
+    {
+      "component1": -1.644048810005188,
+      "component2": 1.8855715990066528,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth7.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth7_plag2.cpp"
+      ]
+    },
+    {
+      "component1": -2.651221990585327,
+      "component2": 1.286189317703247,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth7_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth7.cpp"
+      ]
+    },
+    {
+      "component1": 1.9683716297149658,
+      "component2": -0.7214127779006958,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth8_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth8.cpp"
+      ]
+    },
+    {
+      "component1": -0.8279997110366821,
+      "component2": 0.11209170520305634,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth8_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth8.cpp"
+      ]
+    },
+    {
+      "component1": 6.499131679534912,
+      "component2": -0.6443212032318115,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth3_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth3.cpp"
+      ]
+    },
+    {
+      "component1": -0.504212498664856,
+      "component2": 0.16018569469451904,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-19/auth7.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-19/auth7_plag1.cpp"
+      ]
+    },
+    {
+      "component1": -0.5010578632354736,
+      "component2": 0.17580589652061462,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-19/auth7_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-19/auth7.cpp"
+      ]
+    },
+    {
+      "component1": -1.9388999938964844,
+      "component2": 0.021925978362560272,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z4/Z3/student6956.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z4/Z3/student6956.cpp"
+      ]
+    },
+    {
+      "component1": 0.9897019267082214,
+      "component2": -0.603099524974823,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth3_plag3.cpp"
+      ]
+    },
+    {
+      "component1": 1.0751254558563232,
+      "component2": -0.9588727951049805,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth3_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth3.cpp"
+      ]
+    },
+    {
+      "component1": -1.6280667781829834,
+      "component2": 0.36565926671028137,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-8/auth5.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-8/auth5_plag1.cpp"
+      ]
+    },
+    {
+      "component1": -1.6431071758270264,
+      "component2": 0.6610559225082397,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-8/auth5_plag1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-8/auth5.cpp"
+      ]
+    },
+    {
+      "component1": 1.1865150928497314,
+      "component2": 0.22794470191001892,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth7.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth7_plag2.cpp"
+      ]
+    },
+    {
+      "component1": 1.0373737812042236,
+      "component2": 0.27599000930786133,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth7_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth7.cpp"
+      ]
+    },
+    {
+      "component1": 0.19164282083511353,
+      "component2": 0.5423556566238403,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth1_plag3.cpp"
+      ]
+    },
+    {
+      "component1": 0.20328743755817413,
+      "component2": 0.5257664322853088,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth1_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth1.cpp"
+      ]
+    },
+    {
+      "component1": -1.6483237743377686,
+      "component2": 1.8748210668563843,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-3/auth4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-3/auth4_plag4.cpp"
+      ]
+    },
+    {
+      "component1": -1.6483147144317627,
+      "component2": 1.8748142719268799,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-3/auth4_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-3/auth4.cpp"
+      ]
+    },
+    {
+      "component1": 0.2038603127002716,
+      "component2": -1.9006927013397217,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z2/Z4/student6631.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z2/Z4/student6631.cpp"
+      ]
+    },
+    {
+      "component1": 1.4462969303131104,
+      "component2": 0.6493571996688843,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth2_plag3.cpp"
+      ]
+    },
+    {
+      "component1": 1.3367056846618652,
+      "component2": 0.6667009592056274,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth2_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth2.cpp"
+      ]
+    },
+    {
+      "component1": -2.4856154918670654,
+      "component2": -0.9109395742416382,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z5/Z1/student7180.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z5/Z1/student7180.cpp"
+      ]
+    },
+    {
+      "component1": 0.9575695395469666,
+      "component2": -0.5258842706680298,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth4_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth4.cpp"
+      ]
+    },
+    {
+      "component1": 1.429855465888977,
+      "component2": -0.1760009229183197,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth4_plag2.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth4.cpp"
+      ]
+    },
+    {
+      "component1": -2.787787675857544,
+      "component2": -0.7927538156509399,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth5.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth5_plag3.cpp"
+      ]
+    },
+    {
+      "component1": -2.778500556945801,
+      "component2": -0.6987451910972595,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth5_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth5.cpp"
+      ]
+    },
+    {
+      "component1": -1.6334353685379028,
+      "component2": 0.7130885720252991,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z3/Z2/student8317.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z3/Z2/student8317.cpp"
+      ]
+    },
+    {
+      "component1": -1.3523911237716675,
+      "component2": 0.8568384051322937,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth2_plag4.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-13/auth2.cpp"
+      ]
+    },
+    {
+      "component1": -0.4419911205768585,
+      "component2": 0.14833717048168182,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth1.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth1_plag3.cpp"
+      ]
+    },
+    {
+      "component1": -0.5143545269966125,
+      "component2": 0.17421968281269073,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth1_plag3.cpp",
+      "plag_paths": [
+        "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth1.cpp"
+      ]
+    },
+    {
+      "component1": -1.6307079792022705,
+      "component2": 0.3460402190685272,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-8/auth4.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -1.6972370147705078,
+      "component2": 1.8295269012451172,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-3/auth7.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -0.7662662863731384,
+      "component2": 0.13918372988700867,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth3.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": 0.29565030336380005,
+      "component2": 0.456261545419693,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth3.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": 7.155864238739014,
+      "component2": -0.7962971925735474,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth8.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -0.8675600290298462,
+      "component2": -0.38020941615104675,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth6.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -0.8160711526870728,
+      "component2": 0.01898888126015663,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth3.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -0.9471814036369324,
+      "component2": -0.4483175277709961,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth8.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -1.4204882383346558,
+      "component2": 2.4282615184783936,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth8.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -1.6797120571136475,
+      "component2": 1.0163450241088867,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-3/auth2.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -1.311492919921875,
+      "component2": 2.0667829513549805,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth1.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -1.647164225578308,
+      "component2": 0.6296823620796204,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-8/auth3.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -3.0232224464416504,
+      "component2": -1.0941985845565796,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth3.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": 1.3426172733306885,
+      "component2": 0.6482307314872742,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-19/auth8.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -2.6297812461853027,
+      "component2": -1.3016904592514038,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-8/auth2.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": 0.15093229711055756,
+      "component2": 0.6023083925247192,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth4.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -1.627948522567749,
+      "component2": 0.3107711672782898,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-8/auth7.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": 0.588066577911377,
+      "component2": -0.16996808350086212,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-6/auth4.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -0.15284501016139984,
+      "component2": 0.05187992751598358,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-16/auth4.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": 1.243711233139038,
+      "component2": -0.31136366724967957,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth5.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -0.847831666469574,
+      "component2": -0.25924649834632874,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth1.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -1.877867341041565,
+      "component2": 1.6001302003860474,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth5.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -0.2167188972234726,
+      "component2": 1.2473891973495483,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth1.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -2.112098455429077,
+      "component2": 0.053316518664360046,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth1.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -0.8810211420059204,
+      "component2": -0.3401649594306946,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-12/auth3.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -1.6516220569610596,
+      "component2": 0.6720089316368103,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-8/auth6.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -2.737090826034546,
+      "component2": -1.0631005764007568,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth6.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": 0.40375691652297974,
+      "component2": 0.8387207388877869,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth5.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -2.2704758644104004,
+      "component2": 0.9967525005340576,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth2.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -0.1463511884212494,
+      "component2": 1.1542519330978394,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-14/auth8.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -2.697875738143921,
+      "component2": -1.2239751815795898,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth5.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": 0.4055592119693756,
+      "component2": 0.8346730470657349,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth1.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -2.88674259185791,
+      "component2": 1.1108585596084595,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-3/auth1.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -1.6282047033309937,
+      "component2": 0.3087190091609955,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-4/auth4.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -0.8856597542762756,
+      "component2": -0.39826011657714844,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth7.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": 2.0820224285125732,
+      "component2": -0.3358667492866516,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth4.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -2.341224193572998,
+      "component2": 0.8428255915641785,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-11/auth8.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -0.7068437337875366,
+      "component2": 0.39688315987586975,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-18/auth8.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -3.346282958984375,
+      "component2": 0.7722776532173157,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-15/auth2.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -2.0414445400238037,
+      "component2": -1.1337742805480957,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-19/auth2.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -1.3078397512435913,
+      "component2": 2.0678865909576416,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-3/auth8.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -2.6085000038146973,
+      "component2": 0.3192487359046936,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth1.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -2.3772709369659424,
+      "component2": -0.9900904893875122,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-5/auth4.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": 1.9944093227386475,
+      "component2": -0.5488251447677612,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-1/auth5.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -2.5502922534942627,
+      "component2": -1.7445346117019653,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z3/Z2/student3186.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -1.6279608011245728,
+      "component2": 0.3663576543331146,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z3/Z2/student9095.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": 7.780698299407959,
+      "component2": -0.9481179118156433,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-17/auth7.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -3.165886402130127,
+      "component2": -1.07965886592865,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth4.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -3.0327422618865967,
+      "component2": -2.3414909839630127,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z4/Z1/student6787.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -3.0401575565338135,
+      "component2": -2.3466567993164062,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z4/Z1/student6913.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": 0.6707927584648132,
+      "component2": 0.29090869426727295,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-19/auth4.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -2.5003390312194824,
+      "component2": -1.9182651042938232,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z1/Z4/student6776.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -2.4228384494781494,
+      "component2": -0.959740161895752,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/programming-homework-dataset-plagiarism-detection/src/B2016/Z1/Z4/student8387.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -0.8203153014183044,
+      "component2": 0.05821928754448891,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-10/auth4.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -0.7304444909095764,
+      "component2": 1.6904231309890747,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-7/auth8.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -0.4970923364162445,
+      "component2": 0.1770438402891159,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-20/auth3.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": 0.9337435960769653,
+      "component2": 0.5123229622840881,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-9/auth7.cpp",
+      "plag_paths": []
+    },
+    {
+      "component1": -2.619692325592041,
+      "component2": -1.2923678159713745,
+      "self_path": "/home/timerertim/Documents/Coding/Exercises/SKS/plagiarism/datasets/self-sourced-llm/src/task-2/auth7.cpp",
+      "plag_paths": []
+    }
+  ]

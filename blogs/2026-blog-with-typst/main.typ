@@ -149,7 +149,11 @@ With the tool choice being made, my first idea was to use the #link("https://myr
   show: figure.with(
     caption: [Proposal process for embedding a Typst document in a website],
   )
-  show: depth-shadow-block.with(color: theme.colors.border, inner-border: theme.layout.borderWidth.small, radius: theme.layout.radius.medium)
+  show: depth-shadow-block.with(
+    color: theme.colors.border,
+    inner-border: theme.layout.borderWidth.small,
+    radius: theme.layout.radius.medium,
+  )
   show: rect.with(inset: (left: -1em), fill: theme.colors.surface)
   pikchr(
     ```pikchr
@@ -378,7 +382,11 @@ How to embed fixed size content in a variable width container, like the web brow
   show: figure.with(
     caption: [Bundling multiple variants of the blog post with differing widths; the client side browser decides which one to display],
   )
-  show: depth-shadow-block.with(color: theme.colors.border, inner-border: theme.layout.borderWidth.small, radius: theme.layout.radius.medium)
+  show: depth-shadow-block.with(
+    color: theme.colors.border,
+    inner-border: theme.layout.borderWidth.small,
+    radius: theme.layout.radius.medium,
+  )
   show: rect.with(inset: (left: -1em), fill: theme.colors.surface)
   pikchr(
     ```pikchr
@@ -507,7 +515,11 @@ The reference variant is compressed without any delta compression: 2.4 MB #sym.a
 Let's go ahead and implement decompression and DOM node ingestion on the browser side. Simple enough, add a corresponding package, implement variant selection and...
 
 #{
-  show: depth-shadow-block.with(color: theme.colors.border, inner-border: theme.layout.borderWidth.small, radius: theme.layout.radius.medium)
+  show: depth-shadow-block.with(
+    color: theme.colors.border,
+    inner-border: theme.layout.borderWidth.small,
+    radius: theme.layout.radius.medium,
+  )
   show: rect.with(inset: 0.5em, fill: theme.colors.surface)
   set text(fill: theme.colors.danger)
   codly(enabled: false)
@@ -818,7 +830,12 @@ Because we actually insert a new DOM child and remove the previous one upon resi
   align: broader-than(560pt, top, center),
   {
     show: figure.with(caption: [Playing YouTube video before resize])
-    show: box.with(inset: 0pt, clip: true, stroke: theme.colors.border + theme.layout.borderWidth.medium, radius: theme.layout.radius.medium)
+    show: box.with(
+      inset: 0pt,
+      clip: true,
+      stroke: theme.colors.border + theme.layout.borderWidth.medium,
+      radius: theme.layout.radius.medium,
+    )
     image("assets/prereload-downsized.png")
   },
   grid.cell(align: center + horizon, {
@@ -827,7 +844,12 @@ Because we actually insert a new DOM child and remove the previous one upon resi
   }),
   {
     show: figure.with(caption: [Thumbnail after resize])
-    show: box.with(inset: 0pt, clip: true, stroke: theme.colors.border + theme.layout.borderWidth.medium, radius: theme.layout.radius.medium)
+    show: box.with(
+      inset: 0pt,
+      clip: true,
+      stroke: theme.colors.border + theme.layout.borderWidth.medium,
+      radius: theme.layout.radius.medium,
+    )
     image("assets/postreload-downsized.png")
   },
 )

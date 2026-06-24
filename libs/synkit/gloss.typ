@@ -56,9 +56,13 @@
   if c.has("children") {
     let result = ""
     for child in c.children {
-      if child.has("text") { result += child.text } else if child.has("children") {
+      if child.has("text") { result += child.text } else if child.has(
+        "children",
+      ) {
         for grandchild in child.children {
-          if grandchild.has("text") { result += grandchild.text } else { result += " " }
+          if grandchild.has("text") { result += grandchild.text } else {
+            result += " "
+          }
         }
       } else { result += " " }
     }
@@ -103,7 +107,14 @@
 // Build a full gloss grid: optional prefix columns + aligned tokens + free translation row
 // prefix-cols: number of extra columns before the token columns (for number/letter)
 // prefix-cells: flat array of cells to prepend to each row (length = prefix-cols per row)
-#let _build-full-gloss(items, spacing, title: none, prefix-cols: 0, prefix-cells: (), escape: ()) = {
+#let _build-full-gloss(
+  items,
+  spacing,
+  title: none,
+  prefix-cols: 0,
+  prefix-cells: (),
+  escape: (),
+) = {
   let n = items.len()
   let align-items = items.slice(0, n - 1)
   let free-trans = items.last().body
@@ -111,7 +122,10 @@
   let line-strings = align-items.map(it => _content-to-string(it.body))
   let tokenized = _tokenize-lines(line-strings)
   // Escaped lines don't contribute to column count (they span all columns)
-  let non-escaped-tokens = tokenized.enumerate().filter(((i, _)) => i not in escape).map(((_, t)) => t)
+  let non-escaped-tokens = tokenized
+    .enumerate()
+    .filter(((i, _)) => i not in escape)
+    .map(((_, t)) => t)
   let max-token-cols = if non-escaped-tokens.len() > 0 {
     calc.max(..non-escaped-tokens.map(t => t.len()))
   } else {
@@ -152,7 +166,10 @@
     }
     // Token cells (escaped lines span all token columns without tokenization)
     if row-idx in escape {
-      cells.push(grid.cell(colspan: max-token-cols, align-items.at(row-idx).body))
+      cells.push(grid.cell(
+        colspan: max-token-cols,
+        align-items.at(row-idx).body,
+      ))
     } else {
       for col in range(max-token-cols) {
         if col < row.len() {

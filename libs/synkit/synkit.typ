@@ -29,7 +29,9 @@
     it
   }
   let size = if it.text.starts-with("#") { 1.15em } else { 1.1em }
-  let bg = if in-pratique.get() { myYellow.lighten(70%) } else { rgb("#f0f0f0") }
+  let bg = if in-pratique.get() { myYellow.lighten(70%) } else {
+    rgb("#f0f0f0")
+  }
   box(
     fill: bg,
     inset: (x: 3pt, y: 0pt),
@@ -104,7 +106,13 @@
 #set figure(gap: 1em)
 
 // NOTE: Text
-#set text(font: "Libertinus Serif", size: 10pt, lang: "en", hyphenate: auto, number-type: "old-style")
+#set text(
+  font: "Libertinus Serif",
+  size: 10pt,
+  lang: "en",
+  hyphenate: auto,
+  number-type: "old-style",
+)
 
 // NOTE: Margins
 #set page(
@@ -237,7 +245,9 @@ _A toolkit to create syntactic representations in Typst_
     )[Pavillon Charles-De Koninck, 1030, Bureau DKN-3267\
       Département de langues, linguistique et traduction, #smallcaps[Université Laval] \
       Avenue des Sciences-Humaines, Québec QC, Canada\
-      #fa-earth-americas() #link("https://gdgarcia.ca")[`gdgarcia.ca`] #fa-github() #link(
+      #fa-earth-americas() #link(
+        "https://gdgarcia.ca",
+      )[`gdgarcia.ca`] #fa-github() #link(
         "https://github.com/guilhermegarcia",
       )[`guilhermegarcia`] #fa-envelope() #link(
         "mailto: guilherme.garcia@lli.ulaval.ca",
@@ -274,11 +284,17 @@ Any questions, comments or suggestions should be posted to the repository below 
 
 #fa-earth-americas() #link("https://gdgarcia.ca/synkit")[`gdgarcia.ca/synkit`]
 
-#fa-github() #link("https://github.com/guilhermegarcia/synkit")[`guilhermegarcia/synkit`]
+#fa-github() #link(
+  "https://github.com/guilhermegarcia/synkit",
+)[`guilhermegarcia/synkit`]
 
-#fa-comment() #link("https://github.com/guilhermegarcia/synkit/discussions")[`guilhermegarcia/synkit/discussions`]
+#fa-comment() #link(
+  "https://github.com/guilhermegarcia/synkit/discussions",
+)[`guilhermegarcia/synkit/discussions`]
 
-#fa-bug() #link("https://github.com/guilhermegarcia/synkit/issues")[`guilhermegarcia/synkit/issues`]
+#fa-bug() #link(
+  "https://github.com/guilhermegarcia/synkit/issues",
+)[`guilhermegarcia/synkit/issues`]
 
 
 #heading(numbering: none, outlined: false)[Note on development]
@@ -399,8 +415,13 @@ Next, let's complete the tree following the example in Chiang's tutorial. In @fi
         supplement: [Tree],
         kind: "tree",
       )[
-        #tree("[S [NP [Det the] [N cat]] [VP[V sat][PP[P on] [NP [Det the] [N mat]]]]]")
-        #tree("[S [NP [Det the] [N cat]] [VP[V sat][PP[P on] [NP [Det the] [N mat]]]]]", terminal-branch: true)
+        #tree(
+          "[S [NP [Det the] [N cat]] [VP[V sat][PP[P on] [NP [Det the] [N mat]]]]]",
+        )
+        #tree(
+          "[S [NP [Det the] [N cat]] [VP[V sat][PP[P on] [NP [Det the] [N mat]]]]]",
+          terminal-branch: true,
+        )
       ] <fig-tree-2>
     ],
   )
@@ -461,7 +482,9 @@ How can we manually add triangles? If the function is successful, you will likel
         kind: "tree",
       )[
         #tree("[S [N the-cat] [VP[V sat][PP[P on] [NP the mat]]]]")
-        #tree("[S [N the cat] [VP[V sat][PP[P on] [NP the mat]]]]", triangle: ("N1",))
+        #tree("[S [N the cat] [VP[V sat][PP[P on] [NP the mat]]]]", triangle: (
+          "N1",
+        ))
       ] <fig-tree-4>
     ],
   )
@@ -514,9 +537,22 @@ The parameters `shift` and `bend` are easy to interpret, and allow the user to a
         #tree(
           "[ CP [] [ C' [ C Ø_{[+Q]}+T+Mangez ] [ TP [ DP vous ] [ T' [ T t_i ] [ VP [ t_{DP} ] [ V' [V t_i ] [DP des pommes] ] ] ] ] ] ]",
           arrows: (
-            (from: "trace1", to: "C1", dash: "dotted", color: gray, line-width: 1.70),
+            (
+              from: "trace1",
+              to: "C1",
+              dash: "dotted",
+              color: gray,
+              line-width: 1.70,
+            ),
             (from: "trace3-198", to: "T1", dash: "solid", bend: 0.2, shift: -1),
-            (from: "trace2-255", to: "DP1", dash: "dashed", bend: 1, shift: -0.5, color: red),
+            (
+              from: "trace2-255",
+              to: "DP1",
+              dash: "dashed",
+              bend: 1,
+              shift: -0.5,
+              color: red,
+            ),
             (from: "trace1-556", to: "C1", dash: "solid", bend: 1, shift: -1.5),
           ),
         )
@@ -699,7 +735,10 @@ A parameter is dedicated to additional content between a given node and its bran
         #tree(
           "[DP [D every] [NP [NP [NP woman] [NP [and] [NP man] ] ] [CP who came in together] ] ]",
           annotation: (
-            ("DP1", [$lambda Q forall x [x "is a woman+man" and x "came in together"] arrow Q(x)$]),
+            (
+              "DP1",
+              [$lambda Q forall x [x "is a woman+man" and x "came in together"] arrow Q(x)$],
+            ),
             ("NP1", [$lambda x x "is a woman+man" and x "came in together"$]),
             ("NP2", [$lambda x x "is woman+man"$]),
             ("CP1", [$lambda x x "came in together"$]),
@@ -1399,14 +1438,21 @@ If we want the tree as a whole to have more horizontal separation, `spread` can 
           supplement: [Tree],
           kind: "tree",
         )[
-          #tree("[ A [ B [C] [D] ] [ E [F] [G] ] ]", spread: 2, arrows: ("C1", "F1"))
+          #tree("[ A [ B [C] [D] ] [ E [F] [G] ] ]", spread: 2, arrows: (
+            "C1",
+            "F1",
+          ))
         ] <fig-tree-spacing-spread>],
         [#figure(
           caption: [`spread-local` (C-D)],
           supplement: [Tree],
           kind: "tree",
         )[
-          #tree("[ A [ B [C] [D] ] [ E [F] [G] ] ]", spread-local: ("C1", 0.4), arrows: ("C1", "F1"))
+          #tree(
+            "[ A [ B [C] [D] ] [ E [F] [G] ] ]",
+            spread-local: ("C1", 0.4),
+            arrows: ("C1", "F1"),
+          )
         ] <fig-tree-spacing-spread-local>],
 
         [#figure(
@@ -1414,14 +1460,20 @@ If we want the tree as a whole to have more horizontal separation, `spread` can 
           supplement: [Tree],
           kind: "tree",
         )[
-          #tree("[ A [ B [C] [D] ] [ E [F] [G] ] ]", drop: 0.7, arrows: ("C1", "F1"))
+          #tree("[ A [ B [C] [D] ] [ E [F] [G] ] ]", drop: 0.7, arrows: (
+            "C1",
+            "F1",
+          ))
         ] <fig-tree-spacing-drop-low>],
         [#figure(
           caption: [`drop: 1.2`],
           supplement: [Tree],
           kind: "tree",
         )[
-          #tree("[ A [ B [C] [D] ] [ E [F] [G] ] ]", drop: 1.2, arrows: ("C1", "F1"))
+          #tree("[ A [ B [C] [D] ] [ E [F] [G] ] ]", drop: 1.2, arrows: (
+            "C1",
+            "F1",
+          ))
         ] <fig-tree-spacing-drop-high>],
         [#figure(
           caption: [`drop-local` (C-F)],
@@ -1469,13 +1521,23 @@ Another possible adjustment to spacing involves the vertical alignment of node c
       ] <code-tree-bottom>
     ],
     [
-      #figure(caption: [Bottom alignment --- looks better without triangles], supplement: [Tree], kind: "tree")[
+      #figure(
+        caption: [Bottom alignment --- looks better without triangles],
+        supplement: [Tree],
+        kind: "tree",
+      )[
         #grid(
           columns: 2,
           align: bottom,
           column-gutter: 1em,
-          tree("[S [NP the *cat*] [VP[V sat][PP[P on] [NP the mat]]]]", bottom: true),
-          tree("[S [NP [Det The] [N cat] ] [VP[V sat][PP[P on] [NP [Det the] [N mat]]]]]", bottom: true),
+          tree(
+            "[S [NP the *cat*] [VP[V sat][PP[P on] [NP the mat]]]]",
+            bottom: true,
+          ),
+          tree(
+            "[S [NP [Det The] [N cat] ] [VP[V sat][PP[P on] [NP [Det the] [N mat]]]]]",
+            bottom: true,
+          ),
         )
       ] <fig-tree-bottom>
     ],
@@ -1507,7 +1569,11 @@ Breaking lines is easy with `\\n`. This avoids having phrases that are too wide.
       ] <code-tree-break>
     ],
     [
-      #figure(caption: [Breaking lines within phrases], supplement: [Tree], kind: "tree")[
+      #figure(
+        caption: [Breaking lines within phrases],
+        supplement: [Tree],
+        kind: "tree",
+      )[
         #grid(
           columns: 2,
           align: bottom,
@@ -1550,7 +1616,10 @@ Let's now explore some important consequences of using a string as our main inpu
         supplement: [Tree],
         kind: "tree",
       )[
-        #tree("[S [NP_\\omega the *cat*] [VP[V @sat@][PP[P ~on~] [NP^\\phi the **mat**]]]]", highlight: ("P1",))
+        #tree(
+          "[S [NP_\\omega the *cat*] [VP[V @sat@][PP[P ~on~] [NP^\\phi the **mat**]]]]",
+          highlight: ("P1",),
+        )
       ] <fig-tree-5>
     ],
   )
@@ -1583,7 +1652,10 @@ Trees can also change direction with the `direction` parameter. By default, `dir
         supplement: [Tree],
         kind: "tree",
       )[
-        #tree("[S [NP_\\omega the *cat*] [VP[V @sat@][PP[P on] [NP^\\phi the **mat**]]]]", direction: "left")
+        #tree(
+          "[S [NP_\\omega the *cat*] [VP[V @sat@][PP[P on] [NP^\\phi the **mat**]]]]",
+          direction: "left",
+        )
         #tree(
           "[S [NP_\\omega the *cat*] [VP[V @sat@][PP[P on] [NP^\\phi the **mat**]]]]",
           direction: "up",
@@ -1845,64 +1917,127 @@ The package is in its infancy, so there will be bugs and limitations. That is wh
       table.hline(stroke: 0.25pt),
       [`scale`], [number], [`1.0`], [Uniform scale factor for the whole tree],
       table.hline(stroke: 0.25pt),
-      [`triangle`], [array], [`()`], [Anchor names whose branch renders as a triangle for elided structure],
+      [`triangle`],
+      [array],
+      [`()`],
+      [Anchor names whose branch renders as a triangle for elided structure],
       table.hline(stroke: 0.25pt),
-      [`content-size`], [number], [`0.8`], [Size multiplier for leaf content text],
+      [`content-size`],
+      [number],
+      [`0.8`],
+      [Size multiplier for leaf content text],
       table.hline(stroke: 0.25pt),
       [`node-size`], [number], [`1.0`], [Size multiplier for node label text],
       table.hline(stroke: 0.25pt),
-      [`curved`], [bool], [`false`], [Draw arrows as Bézier curves instead of rectangular paths],
+      [`curved`],
+      [bool],
+      [`false`],
+      [Draw arrows as Bézier curves instead of rectangular paths],
       table.hline(stroke: 0.25pt),
-      [`direction`], [string], [`"down"`], [Growth direction: `"down"`, `"up"`, `"right"`, or `"left"`],
+      [`direction`],
+      [string],
+      [`"down"`],
+      [Growth direction: `"down"`, `"up"`, `"right"`, or `"left"`],
       table.hline(stroke: 0.25pt),
-      [`highlight`], [array], [`()`], [Anchor names to draw a box around. Use `"DP1-down"` to box the leaf content],
+      [`highlight`],
+      [array],
+      [`()`],
+      [Anchor names to draw a box around. Use `"DP1-down"` to box the leaf content],
       table.hline(stroke: 0.25pt),
-      [`bottom`], [bool], [`false`], [Align all leaves at the lowest level regardless of depth],
+      [`bottom`],
+      [bool],
+      [`false`],
+      [Align all leaves at the lowest level regardless of depth],
       table.hline(stroke: 0.25pt),
-      [`terminal-branch`], [bool], [`false`], [Draw branches from non-terminal nodes to terminal (leaf) nodes],
+      [`terminal-branch`],
+      [bool],
+      [`false`],
+      [Draw branches from non-terminal nodes to terminal (leaf) nodes],
       table.hline(stroke: 0.25pt),
-      [`dash-branches`], [array], [`()`], [Array of `(parent, child)` anchor pairs whose branch is dashed],
+      [`dash-branches`],
+      [array],
+      [`()`],
+      [Array of `(parent, child)` anchor pairs whose branch is dashed],
       table.hline(stroke: 0.25pt),
-      [`delinks`], [array], [`()`], [Anchor names where a delink mark (two bars) is drawn on the arrow shaft],
+      [`delinks`],
+      [array],
+      [`()`],
+      [Anchor names where a delink mark (two bars) is drawn on the arrow shaft],
       table.hline(stroke: 0.25pt),
-      [`index`], [array], [`()`], [Coreference subscripts. Array of single-key dicts, e.g. `(("CP1": "i"),)`],
+      [`index`],
+      [array],
+      [`()`],
+      [Coreference subscripts. Array of single-key dicts, e.g. `(("CP1": "i"),)`],
       table.hline(stroke: 0.25pt),
-      [`append`], [array], [`()`], [Extra subscript text appended after a node label, e.g. `(("VP1", "θ"),)`],
+      [`append`],
+      [array],
+      [`()`],
+      [Extra subscript text appended after a node label, e.g. `(("VP1", "θ"),)`],
       table.hline(stroke: 0.25pt),
-      [`drop`], [number], [`1.0`], [Multiplier for vertical distance between levels],
+      [`drop`],
+      [number],
+      [`1.0`],
+      [Multiplier for vertical distance between levels],
       table.hline(stroke: 0.25pt),
       [`drop-local`],
       [array],
       [`()`],
       [Per-level or per-node branch length multipliers, e.g. `(1, 1.5)` or `("IP2", 0.5)`],
       table.hline(stroke: 0.25pt),
-      [`spread`], [number], [`1.0`], [Horizontal width per leaf in canvas units],
+      [`spread`],
+      [number],
+      [`1.0`],
+      [Horizontal width per leaf in canvas units],
       table.hline(stroke: 0.25pt),
-      [`spread-local`], [array], [`()`], [Per-level or per-node horizontal gap multipliers between sisters],
+      [`spread-local`],
+      [array],
+      [`()`],
+      [Per-level or per-node horizontal gap multipliers between sisters],
       table.hline(stroke: 0.25pt),
       [`dominance`],
       [array],
       [`()`],
       [Long-distance dominance lines. Entries: `("from", "to")` or dict with `ctrl`, `color`, `dash`],
       table.hline(stroke: 0.25pt),
-      [`color`], [array], [`()`], [Colorize nodes, leaves, or branches. E.g. `("NP1", red)` or `("VP1", "V1", yellow)`],
+      [`color`],
+      [array],
+      [`()`],
+      [Colorize nodes, leaves, or branches. E.g. `("NP1", red)` or `("VP1", "V1", yellow)`],
       table.hline(stroke: 0.25pt),
       [`annotation`],
       [array],
       [`()`],
       [Semantic annotations between node label and branches, e.g. `(("DP1", $lambda$),)`],
       table.hline(stroke: 0.25pt),
-      [`annotation-size`], [number], [`0.70`], [Size multiplier for annotation text],
+      [`annotation-size`],
+      [number],
+      [`0.70`],
+      [Size multiplier for annotation text],
       table.hline(stroke: 0.25pt),
-      [`annotation-leading`], [length or `auto`], [`auto`], [Line spacing for multi-line annotations],
+      [`annotation-leading`],
+      [length or `auto`],
+      [`auto`],
+      [Line spacing for multi-line annotations],
       table.hline(stroke: 0.25pt),
-      [`numbers`], [array], [`()`], [Circled numbers placed to the left of node labels, e.g. `(("DP1", 2),)`],
+      [`numbers`],
+      [array],
+      [`()`],
+      [Circled numbers placed to the left of node labels, e.g. `(("DP1", 2),)`],
       table.hline(stroke: 0.25pt),
-      [`numbers-size`], [number], [`0.85`], [Size multiplier for circled numbers relative to node labels],
+      [`numbers-size`],
+      [number],
+      [`0.85`],
+      [Size multiplier for circled numbers relative to node labels],
       table.hline(stroke: 0.25pt),
-      [`line-width`], [number], [`1.0`], [Stroke width multiplier for all tree lines],
+      [`line-width`],
+      [number],
+      [`1.0`],
+      [Stroke width multiplier for all tree lines],
       table.hline(stroke: 0.25pt),
-      [`font`], [string], [`none`], [Font family used in the function (local scope)],
+      [`font`],
+      [string],
+      [`none`],
+      [Font family used in the function (local scope)],
       table.hline(stroke: 0.75pt),
     )
   ] <tbl-args>

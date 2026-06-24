@@ -3,7 +3,9 @@
 // Usage: #tree("[CP [C' [C did] [TP [DP she] [T' [T e] [VP [V leave]]]]]]")
 
 #import "@preview/cetz:0.5.2"
-#import "_symbols.typ": apply-symbols as _apply-symbols, symbol-map as _symbol-map
+#import "_symbols.typ": (
+  apply-symbols as _apply-symbols, symbol-map as _symbol-map,
+)
 
 // ── Constants ────────────────────────────────────────────────────────────────
 #let _leaf-w = 1.0        // horizontal width per leaf
@@ -23,16 +25,20 @@
   for (i, ch) in chars.enumerate() {
     if skip-next {
       skip-next = false
-    } else if ch == "\\" and i + 1 < chars.len() and (chars.at(i + 1) == "[" or chars.at(i + 1) == "]") {
+    } else if (
+      ch == "\\"
+        and i + 1 < chars.len()
+        and (chars.at(i + 1) == "[" or chars.at(i + 1) == "]")
+    ) {
       // Escaped square brackets are literal label characters, not tree structure.
-        let next = chars.at(i + 1)
-        if next == "[" {
-          literal-bracket-depth = literal-bracket-depth + 1
-        } else {
-          literal-bracket-depth = calc.max(0, literal-bracket-depth - 1)
-        }
-        buf = buf + next
-        skip-next = true
+      let next = chars.at(i + 1)
+      if next == "[" {
+        literal-bracket-depth = literal-bracket-depth + 1
+      } else {
+        literal-bracket-depth = calc.max(0, literal-bracket-depth - 1)
+      }
+      buf = buf + next
+      skip-next = true
     } else if ch == "{" {
       brace-depth = brace-depth + 1
       buf = buf + ch
@@ -110,7 +116,10 @@
 // ── Anchor key ───────────────────────────────────────────────────────────────
 // Canonical anchor stem used everywhere labels become automatic anchor names.
 #let _anchor-key(label) = {
-  _strip-fmt(label).replace("'", "bar").replace("\u{2019}", "bar").replace(" ", "-")
+  _strip-fmt(label)
+    .replace("'", "bar")
+    .replace("\u{2019}", "bar")
+    .replace(" ", "-")
 }
 
 // ── Anchor name ──────────────────────────────────────────────────────────────
@@ -253,7 +262,13 @@
   // Match traces as leaves OR as bracketed nodes with no children (e.g., [*t*_DP])
   if node.is-leaf or (node.children.len() == 0 and _is-trace(node.label)) {
     if _is-trace(node.label) {
-      return ((leaf-anchor: node.anchor, parent-anchor: parent-anchor, label: node.label),)
+      return (
+        (
+          leaf-anchor: node.anchor,
+          parent-anchor: parent-anchor,
+          label: node.label,
+        ),
+      )
     }
     return ()
   }
@@ -308,14 +323,14 @@
 #let _annotation-boundary(ch) = {
   (
     ch == " "
-    or ch == "\t"
-    or ch == "\n"
-    or ch == "{"
-    or ch == "}"
-    or ch == "["
-    or ch == "]"
-    or ch == "_"
-    or ch == "^"
+      or ch == "\t"
+      or ch == "\n"
+      or ch == "{"
+      or ch == "}"
+      or ch == "["
+      or ch == "]"
+      or ch == "_"
+      or ch == "^"
   )
 }
 
@@ -331,7 +346,10 @@
   let rest-chars = ()
   let in-rest = false
   for (i, ch) in chars.enumerate() {
-    if not in-rest and (ch == "_" or ch == "^" or (i > 0 and (ch == "{" or ch == "["))) {
+    if (
+      not in-rest
+        and (ch == "_" or ch == "^" or (i > 0 and (ch == "{" or ch == "[")))
+    ) {
       in-rest = true
       rest-chars.push(ch)
     } else if in-rest {
@@ -436,7 +454,13 @@
   let parts = _parse-label-parts(_normalize-escapes(_apply-symbols(s)))
   let result = parts.main + parts.tail-text
   // Strip formatting markers and braces
-  result = result.replace("*", "").replace("@", "").replace("&", "").replace("~", "").replace("{", "").replace("}", "")
+  result = result
+    .replace("*", "")
+    .replace("@", "")
+    .replace("&", "")
+    .replace("~", "")
+    .replace("{", "")
+    .replace("}", "")
   result = _restore-escapes(result)
   // Strip sub/superscript markers but keep the content (it contributes to width)
   // _text and ^text → text is rendered smaller, count at ~0.7x
@@ -449,7 +473,13 @@
   let ann = ""
   if parts.sup-text != none { ann = ann + parts.sup-text }
   if parts.sub-text != none { ann = ann + parts.sub-text }
-  ann = _restore-escapes(_apply-symbols(ann).replace("*", "").replace("@", "").replace("&", "").replace("~", ""))
+  ann = _restore-escapes(
+    _apply-symbols(ann)
+      .replace("*", "")
+      .replace("@", "")
+      .replace("&", "")
+      .replace("~", ""),
+  )
   total = total + calc.ceil(ann.clusters().len() * 0.7)
   calc.max(0, total - 1) // remove trailing space
 }
@@ -458,7 +488,14 @@
 // If a node is in the triangle set, use at least 2 leaf widths for spacing.
 // When \n breaks are present, use the widest line's word count instead of total.
 // Wide leaf labels claim proportionally more slots.
-#let _leaf-count(node, tri-set, leaf-w: 1.0, content-size: 0.8, annotation-leaf-widths: (:), is-horiz: false) = {
+#let _leaf-count(
+  node,
+  tri-set,
+  leaf-w: 1.0,
+  content-size: 0.8,
+  annotation-leaf-widths: (:),
+  is-horiz: false,
+) = {
   if node.is-leaf or node.children.len() == 0 {
     if is-horiz {
       return 1
@@ -472,7 +509,9 @@
   if node.anchor in tri-set {
     if is-horiz {
       let lines = _collect-leaves(node).join(" ").split(" \\n ")
-      let lines = if lines.len() == 1 { _collect-leaves(node).join(" ").split("\\n") } else { lines }
+      let lines = if lines.len() == 1 {
+        _collect-leaves(node).join(" ").split("\\n")
+      } else { lines }
       return calc.max(1, lines.len())
     }
     // Use minimal slot count — triangle text overflows visually,
@@ -481,13 +520,16 @@
   }
   let total = 0
   for child in node.children {
-    total = total + _leaf-count(
-      child,
-      tri-set,
-      leaf-w: leaf-w,
-      content-size: content-size,
-      annotation-leaf-widths: annotation-leaf-widths,
-      is-horiz: is-horiz,
+    total = (
+      total
+        + _leaf-count(
+          child,
+          tri-set,
+          leaf-w: leaf-w,
+          content-size: content-size,
+          annotation-leaf-widths: annotation-leaf-widths,
+          is-horiz: is-horiz,
+        )
     )
   }
   if is-horiz {
@@ -588,19 +630,25 @@
   // the parent annotation enough room at the next level up.
   let natural-w = node
     .children
-    .map(c => _leaf-count(
-      c,
-      tri-set,
-      leaf-w: leaf-w,
-      content-size: content-size,
-      annotation-leaf-widths: annotation-leaf-widths,
-      is-horiz: is-horiz,
-    ) * leaf-w)
+    .map(c => (
+      _leaf-count(
+        c,
+        tri-set,
+        leaf-w: leaf-w,
+        content-size: content-size,
+        annotation-leaf-widths: annotation-leaf-widths,
+        is-horiz: is-horiz,
+      )
+        * leaf-w
+    ))
     .sum(default: 0)
   let reserved-w = if is-horiz {
     natural-w
   } else {
-    calc.max(natural-w, annotation-leaf-widths.at(node.anchor, default: 0) * leaf-w)
+    calc.max(
+      natural-w,
+      annotation-leaf-widths.at(node.anchor, default: 0) * leaf-w,
+    )
   }
   let cursor = x0 + calc.max(0, (reserved-w - natural-w) / 2)
 
@@ -628,7 +676,10 @@
     if child.is-leaf and not is-horiz {
       let char-w = 0.22 * content-size
       let label-chars = _rendered-len(child.label)
-      let text-half-w = calc.max(label-chars * char-w / 2, 0.3 * calc.min(child-width, 1.0))
+      let text-half-w = calc.max(
+        label-chars * char-w / 2,
+        0.3 * calc.min(child-width, 1.0),
+      )
       let slot-half-w = child-width / 2
       let left-overflow = text-half-w - slot-half-w
       if left-overflow > 0 {
@@ -646,7 +697,10 @@
       let widest-chars = lines.fold(0, (acc, l) => {
         calc.max(acc, _rendered-len(l.trim()))
       })
-      let text-half-w = calc.max(widest-chars * char-w / 2, 0.3 * calc.min(child-width, 1.0))
+      let text-half-w = calc.max(
+        widest-chars * char-w / 2,
+        0.3 * calc.min(child-width, 1.0),
+      )
       let slot-half-w = child-width / 2
       let left-overflow = text-half-w - slot-half-w
       if left-overflow > 0 {
@@ -707,7 +761,10 @@
       let widest-chars = lines.fold(0, (acc, l) => {
         calc.max(acc, _rendered-len(l.trim()))
       })
-      let text-half-w = calc.max(widest-chars * char-w / 2, 0.3 * calc.min(child-width, 1.0))
+      let text-half-w = calc.max(
+        widest-chars * char-w / 2,
+        0.3 * calc.min(child-width, 1.0),
+      )
       let slot-half-w = child-width / 2
       let overflow = text-half-w - slot-half-w
       if overflow > 0 {
@@ -735,7 +792,10 @@
     if child.is-leaf and not is-horiz {
       let char-w = 0.22 * content-size
       let label-chars = _rendered-len(child.label)
-      let text-half-w = calc.max(label-chars * char-w / 2, 0.3 * calc.min(child-width, 1.0))
+      let text-half-w = calc.max(
+        label-chars * char-w / 2,
+        0.3 * calc.min(child-width, 1.0),
+      )
       let slot-half-w = child-width / 2
       let overflow = text-half-w - slot-half-w
       if overflow > 0 {
@@ -746,7 +806,11 @@
     if child.anchor in append-map {
       let app-text = append-map.at(child.anchor)
       // Strip formatting markers for width estimation
-      let stripped = app-text.replace("@", "").replace("*", "").replace("&", "").replace("~", "")
+      let stripped = app-text
+        .replace("@", "")
+        .replace("*", "")
+        .replace("&", "")
+        .replace("~", "")
       let app-char-w = 0.15 // subscript chars are smaller
       let app-width = stripped.clusters().len() * app-char-w
       cursor = cursor + app-width
@@ -820,9 +884,22 @@
   let label = {
     let label-parts = _parse-label-parts(label)
     let main = label-parts.main
-    let bare = main.replace("*", "").replace("@", "").replace("&", "").replace("~", "")
-    if not bare.contains("0") and (bare == "t" or bare == "T") and label-parts.sub-text != none {
-      "*" + main + "*" + if label.len() > main.len() { label.slice(main.len()) } else { "" }
+    let bare = main
+      .replace("*", "")
+      .replace("@", "")
+      .replace("&", "")
+      .replace("~", "")
+    if (
+      not bare.contains("0")
+        and (bare == "t" or bare == "T")
+        and label-parts.sub-text != none
+    ) {
+      (
+        "*"
+          + main
+          + "*"
+          + if label.len() > main.len() { label.slice(main.len()) } else { "" }
+      )
     } else { label }
   }
   let parts = _parse-label-parts(label)
@@ -840,7 +917,10 @@
     let buf = ""
     for c in chars {
       if _greek-set.contains(c) {
-        if buf != "" { out = out + [#buf]; buf = "" }
+        if buf != "" {
+          out = out + [#buf]
+          buf = ""
+        }
         out = out + emph(c)
       } else {
         buf = buf + c
@@ -901,7 +981,9 @@
     let i = 0
     while i < chars.len() {
       let ch = chars.at(i)
-      let token = if ch == "*" and i + 1 < chars.len() and chars.at(i + 1) == "*" {
+      let token = if (
+        ch == "*" and i + 1 < chars.len() and chars.at(i + 1) == "*"
+      ) {
         "**"
       } else if ch == "*" or ch == "@" or ch == "&" or ch == "~" {
         ch
@@ -957,7 +1039,9 @@
     emph(_inline-content(s))
   }
   let body = _inline-content(main)
-  let result = if sup-text != none and sup-text != "" and sub-text != none and sub-text != "" {
+  let result = if (
+    sup-text != none and sup-text != "" and sub-text != none and sub-text != ""
+  ) {
     let sup-display = _inline-content(sup-text)
     let sub-display = _sub-content(sub-text)
     let sup-r = [#super[#sup-display]]
@@ -1228,7 +1312,10 @@
     let result = ()
     if not node.is-leaf and node.children.len() > 0 {
       let stripped = _strip-fmt(node.label)
-      let is-phrase = (stripped.len() > 1 and lower(stripped).ends-with("p")) or node.label.ends-with(">")
+      let is-phrase = (
+        (stripped.len() > 1 and lower(stripped).ends-with("p"))
+          or node.label.ends-with(">")
+      )
       let all-leaves = node.children.all(c => c.is-leaf)
 
       if is-phrase and all-leaves {
@@ -1266,7 +1353,9 @@
     let annotation-leaf-widths = (:)
     let annotation-gaps = (:)
     // Resolve annotation leading
-    let annotation-leading-val = if annotation-leading == auto { 0.45em } else { annotation-leading }
+    let annotation-leading-val = if annotation-leading == auto { 0.45em } else {
+      annotation-leading
+    }
     for (anchor, annotation-content) in annotation-map {
       let annotation-body = {
         set text(size: fsz * annotation-size)
@@ -1313,10 +1402,15 @@
       })
       // Also consider triangle leaf positions
       let min-y = nodes.fold(min-y, (acc, e) => {
-        if e.at("is-triangle", default: false) { calc.min(acc, e.at("tri-y")) } else { acc }
+        if e.at("is-triangle", default: false) {
+          calc.min(acc, e.at("tri-y"))
+        } else { acc }
       })
       nodes = nodes.map(e => {
-        if e.is-leaf { (..e, y: min-y) } else if e.at("is-triangle", default: false) {
+        if e.is-leaf { (..e, y: min-y) } else if e.at(
+          "is-triangle",
+          default: false,
+        ) {
           (..e, tri-y: min-y, bottom-aligned: true)
         } else { e }
       })
@@ -1343,7 +1437,9 @@
         if e.par != none {
           let pk = e.at("par-anchor", default: "")
           if pk != "" {
-            let cy = if e.at("is-triangle", default: false) { e.at("tri-y") } else if e.is-leaf { e.y } else { none }
+            let cy = if e.at("is-triangle", default: false) {
+              e.at("tri-y")
+            } else if e.is-leaf { e.y } else { none }
             if cy != none {
               let cur = parent-min-y.at(pk, default: cy)
               parent-min-y.insert(pk, calc.min(cur, cy))
@@ -1367,12 +1463,16 @@
 
     // Direction transform: map layout coords (always computed as "down") to final coords
     let _tx(x, y) = {
-      if direction == "up" { (x, -y) } else if direction == "right" { (-y, -x) } else if direction == "left" {
+      if direction == "up" { (x, -y) } else if direction == "right" {
+        (-y, -x)
+      } else if direction == "left" {
         (y, -x)
       } else { (x, y) }
     }
     // Growth direction vector (from parent toward child in final coords)
-    let (gdx, gdy) = if direction == "up" { (0, 1) } else if direction == "right" { (1, 0) } else if (
+    let (gdx, gdy) = if direction == "up" { (0, 1) } else if (
+      direction == "right"
+    ) { (1, 0) } else if (
       direction == "left"
     ) {
       (-1, 0)
@@ -1400,7 +1500,10 @@
     // Increase node-out for nodes with annotations to push branches below the annotation
     for (anchor, _) in annotation-map {
       let current = node-out.at(anchor, default: _loff)
-      node-out.insert(anchor, current + annotation-gaps.at(anchor, default: annotation-gap))
+      node-out.insert(
+        anchor,
+        current + annotation-gaps.at(anchor, default: annotation-gap),
+      )
     }
 
     // Transform all node coordinates
@@ -1440,11 +1543,16 @@
         // Leaf: "-down" is same as the node
         ntp.insert(node.anchor + "-down", ntp.at(node.anchor))
         aom.insert(node.anchor + "-down", regular-off)
-        lhw.insert(node.anchor + "-down", _rendered-len(node.label) * 0.28 / 2 + 0.05)
+        lhw.insert(
+          node.anchor + "-down",
+          _rendered-len(node.label) * 0.28 / 2 + 0.05,
+        )
         return (ntp, aom, lhw)
       }
       // Triangle node: "-down" = the combined label position (tri-y)
-      let tri-entry = nodes.filter(e => e.anchor == node.anchor and e.at("is-triangle", default: false))
+      let tri-entry = nodes.filter(e => (
+        e.anchor == node.anchor and e.at("is-triangle", default: false)
+      ))
       if tri-entry.len() > 0 {
         let te = tri-entry.at(0)
         ntp.insert(node.anchor + "-down", (te.x, te.at("tri-y"), _loff))
@@ -1454,8 +1562,12 @@
         // Triangle text width: use the widest line of the combined label
         let tri-label = te.at("tri-label")
         let tri-lines = tri-label.split(" \\n ")
-        let tri-lines = if tri-lines.len() == 1 { tri-label.split("\\n") } else { tri-lines }
-        let widest = tri-lines.fold(0, (acc, l) => calc.max(acc, _rendered-len(l.trim())))
+        let tri-lines = if tri-lines.len() == 1 {
+          tri-label.split("\\n")
+        } else { tri-lines }
+        let widest = tri-lines.fold(0, (acc, l) => calc.max(acc, _rendered-len(
+          l.trim(),
+        )))
         let char-w = 0.22 * content-size
         let tri-hw = calc.max(widest * char-w / 2, 0.3)
         lhw.insert(node.anchor + "-down", tri-hw)
@@ -1465,7 +1577,10 @@
       let leaf-anchors = _collect-leaf-anchors(node)
       let found = leaf-anchors.filter(a => a in ntp)
       if found.len() > 0 {
-        let avg-x = found.map(a => ntp.at(a).at(0)).fold(0.0, (a, b) => a + b) / found.len()
+        let avg-x = (
+          found.map(a => ntp.at(a).at(0)).fold(0.0, (a, b) => a + b)
+            / found.len()
+        )
         let ys = found.map(a => ntp.at(a).at(1))
         let leaf-y = if gdy < 0 { calc.min(..ys) } else { calc.max(..ys) }
         ntp.insert(node.anchor + "-down", (avg-x, leaf-y, _loff))
@@ -1476,7 +1591,14 @@
           (calc.max(..xs) - calc.min(..xs)) / 2 + 0.3
         } else {
           (
-            _rendered-len(nodes.filter(e => e.anchor == found.at(0)).at(0, default: (label: "XX")).label) * 0.28 / 2
+            _rendered-len(
+              nodes
+                .filter(e => e.anchor == found.at(0))
+                .at(0, default: (label: "XX"))
+                .label,
+            )
+              * 0.28
+              / 2
               + 0.05
           )
         }
@@ -1488,7 +1610,12 @@
       }
       (ntp, aom, lhw)
     }
-    (name-to-pos, arrow-off-map, label-hw-map) = _build-down(tree, name-to-pos, arrow-off-map, label-hw-map)
+    (name-to-pos, arrow-off-map, label-hw-map) = _build-down(
+      tree,
+      name-to-pos,
+      arrow-off-map,
+      label-hw-map,
+    )
 
     // Build trace anchors: trace1, trace2, etc.
     let trace-infos = _find-traces(tree)
@@ -1500,7 +1627,9 @@
       let parent-is-tri = ti.parent-anchor in tri-set
       if parent-is-tri {
         // Find the triangle entry to get its position
-        let tri-entries = nodes.filter(e => e.anchor == ti.parent-anchor and e.at("is-triangle", default: false))
+        let tri-entries = nodes.filter(e => (
+          e.anchor == ti.parent-anchor and e.at("is-triangle", default: false)
+        ))
         if tri-entries.len() > 0 {
           let te = tri-entries.at(0)
           let tri-leaves = te.at("tri-leaves")
@@ -1521,8 +1650,13 @@
             let char-w = 0.22 * content-size
             let tri-label = te.at("tri-label")
             let tri-text-lines = tri-label.split(" \\n ")
-            let tri-text-lines = if tri-text-lines.len() == 1 { tri-label.split("\\n") } else { tri-text-lines }
-            let widest = tri-text-lines.fold(0, (acc, l) => calc.max(acc, _rendered-len(l.trim())))
+            let tri-text-lines = if tri-text-lines.len() == 1 {
+              tri-label.split("\\n")
+            } else { tri-text-lines }
+            let widest = tri-text-lines.fold(0, (acc, l) => calc.max(
+              acc,
+              _rendered-len(l.trim()),
+            ))
             let half-w = calc.max(widest * char-w / 2, 0.3)
             let vert-growth = direction == "down" or direction == "up"
             let frac = (word-idx + 0.5) / total-words
@@ -1536,9 +1670,15 @@
             // units), shifting its apparent center; compensate in canvas units.
             let x-sub-correction = -0.08 / scale
             let (trace-x, trace-y) = if vert-growth {
-              (down-x - half-w + frac * 2 * half-w + x-sub-correction, down-y + gdy * center-shift)
+              (
+                down-x - half-w + frac * 2 * half-w + x-sub-correction,
+                down-y + gdy * center-shift,
+              )
             } else {
-              (down-x + gdx * center-shift, down-y - half-w + frac * 2 * half-w + x-sub-correction)
+              (
+                down-x + gdx * center-shift,
+                down-y - half-w + frac * 2 * half-w + x-sub-correction,
+              )
             }
             name-to-pos.insert(trace-anchor, (trace-x, trace-y, _loff))
             // Extra clearance: Typst's sub[] positions subscripts beyond the
@@ -1547,7 +1687,10 @@
             // scale to keep the physical gap consistent across scales.
             let trace-off = regular-off + 0.20 / scale
             arrow-off-map.insert(trace-anchor, trace-off)
-            label-hw-map.insert(trace-anchor, _rendered-len(ti.label) * 0.28 / 2 + 0.05)
+            label-hw-map.insert(
+              trace-anchor,
+              _rendered-len(ti.label) * 0.28 / 2 + 0.05,
+            )
           }
         }
       } else {
@@ -1600,7 +1743,9 @@
           // Bare name: default to "down" only if node has exactly one leaf descendant.
           // For complex nodes (CP with many children), stay on the node itself.
           let target = _find-node(tree, k)
-          if target != none and not target.is-leaf and target.children.len() > 0 {
+          if (
+            target != none and not target.is-leaf and target.children.len() > 0
+          ) {
             let leaves = _collect-leaf-anchors(target)
             if leaves.len() == 1 {
               index-map.insert(leaves.at(0), v)
@@ -1616,8 +1761,28 @@
 
     // Build numbers lookup: anchor → circled digit
     let numbers-map = (:)
-    let _circled = ("①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩",
-                     "⑪", "⑫", "⑬", "⑭", "⑮", "⑯", "⑰", "⑱", "⑲", "⑳")
+    let _circled = (
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤",
+      "⑥",
+      "⑦",
+      "⑧",
+      "⑨",
+      "⑩",
+      "⑪",
+      "⑫",
+      "⑬",
+      "⑭",
+      "⑮",
+      "⑯",
+      "⑰",
+      "⑱",
+      "⑲",
+      "⑳",
+    )
     // Normalize: single entry (("a", 1),) vs array of entries
     let num-entries = if numbers.len() > 0 and type(numbers.at(0)) == str {
       (numbers,)
@@ -1625,7 +1790,9 @@
     for entry in num-entries {
       let anchor = entry.at(0)
       let n = entry.at(1)
-      let display = if n >= 1 and n <= 20 { _circled.at(n - 1) } else { "(" + str(n) + ")" }
+      let display = if n >= 1 and n <= 20 { _circled.at(n - 1) } else {
+        "(" + str(n) + ")"
+      }
       numbers-map.insert(anchor, display)
     }
 
@@ -1640,7 +1807,9 @@
     } else { arrows }
 
     // Colors
-    let _norm = if foreground-color != none { foreground-color } else { luma(15%) }
+    let _norm = if foreground-color != none { foreground-color } else {
+      luma(15%)
+    }
 
     box(inset: 1.2em, baseline: 40%, {
       cetz.canvas(length: scale-factor * 1cm, {
@@ -1674,17 +1843,27 @@
                 fill: white,
                 stroke: 0.25pt + red,
                 inset: (x: 0.22em, y: 0.10em),
-                text(size: ref-fsz, fill: ref-color, font: "Courier New", weight: "bold", name),
+                text(
+                  size: ref-fsz,
+                  fill: ref-color,
+                  font: "Courier New",
+                  weight: "bold",
+                  name,
+                ),
               ),
               anchor: anch,
             )
           }
         }
 
-        let ref-side-node = if direction == "up" { "above" } else if direction == "right" {
+        let ref-side-node = if direction == "up" { "above" } else if (
+          direction == "right"
+        ) {
           "before"
         } else if direction == "left" { "after" } else { "below" }
-        let ref-side-down = if direction == "up" { "below" } else if direction == "right" {
+        let ref-side-down = if direction == "up" { "below" } else if (
+          direction == "right"
+        ) {
           "after"
         } else if direction == "left" { "before" } else { "above" }
 
@@ -1692,7 +1871,10 @@
         // Triangle nodes still get a line FROM their parent TO them;
         // the triangle itself replaces the lines from the node to its children.
         for e in nodes {
-          if e.par != none and (terminal-branch or not e.at("is-terminal", default: false)) {
+          if (
+            e.par != none
+              and (terminal-branch or not e.at("is-terminal", default: false))
+          ) {
             let branch-key = e.at("par-anchor", default: "") + "|" + e.anchor
             let col = branch-color-map.at(branch-key, default: _norm)
             let is-dashed = (
@@ -1730,13 +1912,20 @@
               // Vertical trees: base width from text character width
               let char-w = 0.22 * content-size
               let tri-text-lines = tri-label.split(" \\n ")
-              let tri-text-lines = if tri-text-lines.len() == 1 { tri-label.split("\\n") } else { tri-text-lines }
-              let widest = tri-text-lines.fold(0, (acc, l) => calc.max(acc, _rendered-len(l.trim())))
+              let tri-text-lines = if tri-text-lines.len() == 1 {
+                tri-label.split("\\n")
+              } else { tri-text-lines }
+              let widest = tri-text-lines.fold(0, (acc, l) => calc.max(
+                acc,
+                _rendered-len(l.trim()),
+              ))
               calc.max(widest * char-w / 2, 0.3)
             } else {
               // Horizontal trees: base height proportional to number of text lines
               let tri-text-lines = tri-label.split(" \\n ")
-              let tri-text-lines = if tri-text-lines.len() == 1 { tri-label.split("\\n") } else { tri-text-lines }
+              let tri-text-lines = if tri-text-lines.len() == 1 {
+                tri-label.split("\\n")
+              } else { tri-text-lines }
               let n-lines = tri-text-lines.len()
               let line-h = 0.55 // approximate height per line in canvas units
               calc.max(n-lines * line-h / 2, 0.4)
@@ -1777,14 +1966,19 @@
           // Also treat bracketed nodes with no uppercase letters as content-sized
           // (e.g., [and] is a conjunction, not a syntactic category).
           let _has-upper = _strip-fmt(e.label).match(regex("[A-Z]")) != none
-          let sz = if e.at("is-terminal", default: false) or (e.is-leaf and not _has-upper) { content-fsz } else {
+          let sz = if (
+            e.at("is-terminal", default: false)
+              or (e.is-leaf and not _has-upper)
+          ) { content-fsz } else {
             node-fsz
           }
           // Append coreference subscript if present
           let idx = index-map.at(e.anchor, default: none)
           // Build base label with optional coreference index
           let base-label = if idx != none {
-            let idx-style = if _is-bracketed-subscript(idx) { "normal" } else { "italic" }
+            let idx-style = if _is-bracketed-subscript(idx) { "normal" } else {
+              "italic"
+            }
             [#text(size: sz, fill: col, display)#sub[#text(
                 font: font,
                 size: sz * 0.75,
@@ -1805,12 +1999,20 @@
           }
 
           // CeTZ anchor for label alignment in horizontal trees
-          let label-anchor = if direction == "right" { "west" } else if direction == "left" { "east" } else { "center" }
+          let label-anchor = if direction == "right" { "west" } else if (
+            direction == "left"
+          ) { "east" } else { "center" }
 
           if e.at("is-triangle", default: false) {
             // Draw the node label (e.g. "DP")
             content((e.x, e.y), label-body, anchor: label-anchor)
-            if show-refs { ref-items.push((pos: (e.x, e.y), name: e.anchor, side: ref-side-node)) }
+            if show-refs {
+              ref-items.push((
+                pos: (e.x, e.y),
+                name: e.anchor,
+                side: ref-side-node,
+              ))
+            }
             // Draw combined triangle label using _display-label for formatting
             let tri-leaves = e.at("tri-leaves")
             let tri-leaf-boxed = highlight.any(h => h == e.anchor + "-down")
@@ -1828,17 +2030,25 @@
               // Render each word, then join into a single text element
               // to avoid paragraph-level line spacing from content joins
               let rendered = words.map(w => _display-label(w))
-              let joined = text(size: content-fsz, fill: tri-col, rendered.join([ ]))
-              if tri-leaf-boxed { box(stroke: 0.5pt + tri-col, inset: 2pt, joined) } else { joined }
+              let joined = text(size: content-fsz, fill: tri-col, rendered.join(
+                [ ],
+              ))
+              if tri-leaf-boxed {
+                box(stroke: 0.5pt + tri-col, inset: 2pt, joined)
+              } else { joined }
             })
-            let tri-align = if direction == "right" { left } else if direction == "left" { right } else { center }
+            let tri-align = if direction == "right" { left } else if (
+              direction == "left"
+            ) { right } else { center }
             let tri-body = if line-contents.len() > 1 {
               align(tri-align, stack(spacing: 0.35em, ..line-contents))
             } else {
               line-contents.at(0)
             }
             let is-bottom-aligned = e.at("bottom-aligned", default: false)
-            let tri-text-gap = if is-bottom-aligned { 0 } else if is-horiz { 0.80 } else { 0.05 }
+            let tri-text-gap = if is-bottom-aligned { 0 } else if is-horiz {
+              0.80
+            } else { 0.05 }
             let tlx2 = e.at("tri-x", default: e.x)
             let tly2 = e.at("tri-y")
             // Bottom-aligned triangles should use the same directional anchoring
@@ -1849,9 +2059,18 @@
             ) { "north" } else if (
               direction == "right"
             ) { "west" } else { "east" }
-            let tri-label-pos = (tlx2 + gdx * tri-text-gap, tly2 + gdy * tri-text-gap)
+            let tri-label-pos = (
+              tlx2 + gdx * tri-text-gap,
+              tly2 + gdy * tri-text-gap,
+            )
             content(tri-label-pos, tri-body, anchor: tri-anchor)
-            if show-refs { ref-items.push((pos: tri-label-pos, name: e.anchor + "-down", side: ref-side-down)) }
+            if show-refs {
+              ref-items.push((
+                pos: tri-label-pos,
+                name: e.anchor + "-down",
+                side: ref-side-down,
+              ))
+            }
           } else {
             // In horizontal trees, pull terminal leaves closer to their parent
             let (lx, ly) = (e.x, e.y)
@@ -1859,11 +2078,17 @@
             let is-terminal = e.at("is-terminal", default: false)
             let is-term-aligned = e.at("is-terminal-aligned", default: false)
             // Synchronize terminal nodes with triangles when terminal branches are drawn
-            if (is-terminal or is-term-aligned) and terminal-branch and not bottom {
+            if (
+              (is-terminal or is-term-aligned)
+                and terminal-branch
+                and not bottom
+            ) {
               let tri-text-gap = if is-horiz { 0.80 } else { 0.05 }
               lx = lx + gdx * tri-text-gap
               ly = ly + gdy * tri-text-gap
-              cur-anchor = if direction == "up" { "south" } else if direction == "down" { "north" } else if (
+              cur-anchor = if direction == "up" { "south" } else if (
+                direction == "down"
+              ) { "north" } else if (
                 direction == "right"
               ) { "west" } else { "east" }
             } else if not is-horiz and is-terminal {
@@ -1878,7 +2103,13 @@
               ly = ly + (e.par.at(1) - ly) * pull
             }
             content((lx, ly), label-body, anchor: cur-anchor)
-            if show-refs { ref-items.push((pos: (lx, ly), name: e.anchor, side: ref-side-node)) }
+            if show-refs {
+              ref-items.push((
+                pos: (lx, ly),
+                name: e.anchor,
+                side: ref-side-node,
+              ))
+            }
           }
           // Draw circled number to the left of the node
           let num-display = numbers-map.at(e.anchor, default: none)
@@ -1900,7 +2131,10 @@
           }
           // Draw annotation between node label and branches
           let annotation-content = annotation-map.at(e.anchor, default: none)
-          if annotation-content != none and not e.at("is-terminal", default: false) {
+          if (
+            annotation-content != none
+              and not e.at("is-terminal", default: false)
+          ) {
             let annotation-y-off = _loff + 0.10
             let annotation-body = {
               set text(size: fsz * annotation-size, fill: col)
@@ -1908,7 +2142,9 @@
               set align(center)
               annotation-content
             }
-            let annotation-anchor = if direction == "up" { "south" } else if direction == "right" { "west" } else if (
+            let annotation-anchor = if direction == "up" { "south" } else if (
+              direction == "right"
+            ) { "west" } else if (
               direction == "left"
             ) { "east" } else { "north" }
             content(
@@ -1926,12 +2162,18 @@
           // For "down": lowest y; for "up": highest y; for "right": rightmost x; for "left": leftmost x
           let y-floor = {
             let vals = nodes.map(e => {
-              let v = if direction == "right" or direction == "left" { e.x } else { e.y }
+              let v = if direction == "right" or direction == "left" {
+                e.x
+              } else { e.y }
               if e.at("is-triangle", default: false) {
-                let tv = if direction == "right" or direction == "left" { e.at("tri-x", default: e.x) } else {
+                let tv = if direction == "right" or direction == "left" {
+                  e.at("tri-x", default: e.x)
+                } else {
                   e.at("tri-y")
                 }
-                if direction == "up" or direction == "left" { calc.max(v, tv) } else { calc.min(v, tv) }
+                if direction == "up" or direction == "left" {
+                  calc.max(v, tv)
+                } else { calc.min(v, tv) }
               } else {
                 v
               }
@@ -1948,13 +2190,23 @@
             let is-dict = type(arrow) == dictionary
             let raw-from = if is-dict { arrow.at("from") } else { arrow.at(0) }
             let raw-to = if is-dict { arrow.at("to") } else { arrow.at(1) }
-            let paint = if is-dict { arrow.at("color", default: _norm) } else if arrow.len() >= 3 {
+            let paint = if is-dict {
+              arrow.at("color", default: _norm)
+            } else if arrow.len() >= 3 {
               arrow.at(2)
             } else { _norm }
-            let bend-val = if is-dict { arrow.at("bend", default: none) } else { none }
-            let shift-val = if is-dict { arrow.at("shift", default: 0.0) } else { 0.0 }
-            let dash-style = if is-dict { arrow.at("dash", default: "dashed") } else { "dashed" }
-            let arrow-lw = if is-dict { arrow.at("line-width", default: 1.0) } else { 1.0 }
+            let bend-val = if is-dict { arrow.at("bend", default: none) } else {
+              none
+            }
+            let shift-val = if is-dict {
+              arrow.at("shift", default: 0.0)
+            } else { 0.0 }
+            let dash-style = if is-dict {
+              arrow.at("dash", default: "dashed")
+            } else { "dashed" }
+            let arrow-lw = if is-dict {
+              arrow.at("line-width", default: 1.0)
+            } else { 1.0 }
 
             // Check if this arrow should be delinked (match raw from or to name)
             let is-delinked = delinks.any(d => d == raw-from or d == raw-to)
@@ -1983,7 +2235,9 @@
                 name
               } else {
                 let base = name
-                if base + "-down" in name-to-pos { base + "-down" } else { base }
+                if base + "-down" in name-to-pos { base + "-down" } else {
+                  base
+                }
               }
             }
             // Check for -top suffix (node label as endpoint)
@@ -2023,7 +2277,12 @@
                 fy = fy + f-off * calc.sin(rad)
               } else if from-is-top {
                 let side = if tx < fx { -1 } else { 1 } // left or right based on target
-                let hw = _label-half-w(nodes.filter(e => e.anchor == from-name).at(0, default: (label: "XX")).label)
+                let hw = _label-half-w(
+                  nodes
+                    .filter(e => e.anchor == from-name)
+                    .at(0, default: (label: "XX"))
+                    .label,
+                )
                 fx = fx + side * hw
               } else {
                 // Offset in growth direction (same as "to" endpoint)
@@ -2037,7 +2296,12 @@
                 ty = ty + t-off * calc.sin(rad)
               } else if to-is-top {
                 let side = if fx < tx { -1 } else { 1 }
-                let hw = _label-half-w(nodes.filter(e => e.anchor == to-name).at(0, default: (label: "XX")).label)
+                let hw = _label-half-w(
+                  nodes
+                    .filter(e => e.anchor == to-name)
+                    .at(0, default: (label: "XX"))
+                    .label,
+                )
                 tx = tx + side * hw
               } else {
                 tx = tx + gdx * t-off
@@ -2084,26 +2348,63 @@
                   (mid-x, ext)
                 }
                 // Convert quadratic to cubic: C1 = P0 + 2/3*(cp - P0), C2 = P2 + 2/3*(cp - P2)
-                let c1 = (fx + 2.0 / 3.0 * (cp.at(0) - fx), fy + 2.0 / 3.0 * (cp.at(1) - fy))
-                let c2 = (tx + 2.0 / 3.0 * (cp.at(0) - tx), ty + 2.0 / 3.0 * (cp.at(1) - ty))
+                let c1 = (
+                  fx + 2.0 / 3.0 * (cp.at(0) - fx),
+                  fy + 2.0 / 3.0 * (cp.at(1) - fy),
+                )
+                let c2 = (
+                  tx + 2.0 / 3.0 * (cp.at(0) - tx),
+                  ty + 2.0 / 3.0 * (cp.at(1) - ty),
+                )
                 // Tangent at endpoint (cubic: B'(1) = 3(P3 - C2))
                 let tang-x = tx - c2.at(0)
                 let tang-y = ty - c2.at(1)
                 let ed = calc.sqrt(tang-x * tang-x + tang-y * tang-y)
-                let (tang-x, tang-y) = if ed > 0 { (tang-x / ed, tang-y / ed) } else { (dx / len, dy / len) }
+                let (tang-x, tang-y) = if ed > 0 {
+                  (tang-x / ed, tang-y / ed)
+                } else { (dx / len, dy / len) }
                 let hb = calc.min(head-back, len * 0.4)
                 let hax = tx - tang-x * hb
                 let hay = ty - tang-y * hb
                 bezier((fx, fy), (hax, hay), c1, c2, stroke: shaft-stroke)
                 let tiny = 0.01
-                line((hax - tang-x * tiny, hay - tang-y * tiny), (tx, ty), stroke: head-stroke, mark: mark-style)
+                line(
+                  (hax - tang-x * tiny, hay - tang-y * tiny),
+                  (tx, ty),
+                  stroke: head-stroke,
+                  mark: mark-style,
+                )
                 if is-delinked {
                   // Cubic midpoint at t=0.5, using actual drawn endpoint (hax, hay)
-                  let mx = 0.125 * fx + 3 * 0.125 * c1.at(0) + 3 * 0.125 * c2.at(0) + 0.125 * hax
-                  let my = 0.125 * fy + 3 * 0.125 * c1.at(1) + 3 * 0.125 * c2.at(1) + 0.125 * hay
+                  let mx = (
+                    0.125 * fx
+                      + 3 * 0.125 * c1.at(0)
+                      + 3 * 0.125 * c2.at(0)
+                      + 0.125 * hax
+                  )
+                  let my = (
+                    0.125 * fy
+                      + 3 * 0.125 * c1.at(1)
+                      + 3 * 0.125 * c2.at(1)
+                      + 0.125 * hay
+                  )
                   // Cubic tangent at t=0.5
-                  let dtx = 3 * (0.25 * (c1.at(0) - fx) + 0.5 * (c2.at(0) - c1.at(0)) + 0.25 * (hax - c2.at(0)))
-                  let dty = 3 * (0.25 * (c1.at(1) - fy) + 0.5 * (c2.at(1) - c1.at(1)) + 0.25 * (hay - c2.at(1)))
+                  let dtx = (
+                    3
+                      * (
+                        0.25 * (c1.at(0) - fx)
+                          + 0.5 * (c2.at(0) - c1.at(0))
+                          + 0.25 * (hax - c2.at(0))
+                      )
+                  )
+                  let dty = (
+                    3
+                      * (
+                        0.25 * (c1.at(1) - fy)
+                          + 0.5 * (c2.at(1) - c1.at(1))
+                          + 0.25 * (hay - c2.at(1))
+                      )
+                  )
                   _draw-delink(mx, my, dtx, dty, (paint: paint, thickness: sw))
                 }
               } else {
@@ -2112,7 +2413,9 @@
                 let base-clearance = 1.0
                 let stagger = rect-count * 0.5
                 rect-count = rect-count + 1
-                let sign = if direction == "up" or direction == "left" { 1 } else { -1 }
+                let sign = if direction == "up" or direction == "left" {
+                  1
+                } else { -1 }
                 let base-floor = y-floor + sign * base-clearance
                 let bar-val = base-floor + sign * stagger
                 let hb = head-back
@@ -2122,10 +2425,18 @@
                   line((bar-val, fy), (bar-val, ty), stroke: shaft-stroke)
                   line((bar-val, ty), (tx + gdx * hb, ty), stroke: shaft-stroke)
                   let tiny = 0.01
-                  line((tx + gdx * (hb + tiny), ty), (tx, ty), stroke: head-stroke, mark: mark-style)
+                  line(
+                    (tx + gdx * (hb + tiny), ty),
+                    (tx, ty),
+                    stroke: head-stroke,
+                    mark: mark-style,
+                  )
                   if is-delinked {
                     let mid-y = (fy + ty) / 2
-                    _draw-delink(bar-val, mid-y, 0.0, 1.0, (paint: paint, thickness: sw))
+                    _draw-delink(bar-val, mid-y, 0.0, 1.0, (
+                      paint: paint,
+                      thickness: sw,
+                    ))
                   }
                 } else {
                   // Vertical growth: horizontal bar
@@ -2133,10 +2444,18 @@
                   line((fx, bar-val), (tx, bar-val), stroke: shaft-stroke)
                   line((tx, bar-val), (tx, ty + gdy * hb), stroke: shaft-stroke)
                   let tiny = 0.01
-                  line((tx, ty + gdy * (hb + tiny)), (tx, ty), stroke: head-stroke, mark: mark-style)
+                  line(
+                    (tx, ty + gdy * (hb + tiny)),
+                    (tx, ty),
+                    stroke: head-stroke,
+                    mark: mark-style,
+                  )
                   if is-delinked {
                     let mid-x = (fx + tx) / 2
-                    _draw-delink(mid-x, bar-val, 1.0, 0.0, (paint: paint, thickness: sw))
+                    _draw-delink(mid-x, bar-val, 1.0, 0.0, (
+                      paint: paint,
+                      thickness: sw,
+                    ))
                   }
                 }
               }
@@ -2148,9 +2467,14 @@
         // Normalize: single entry → array of entries
         let dom-entries = if dominance == () {
           ()
-        } else if type(dominance.at(0, default: none)) != array and type(dominance.at(0, default: none)) != dictionary {
+        } else if (
+          type(dominance.at(0, default: none)) != array
+            and type(dominance.at(0, default: none)) != dictionary
+        ) {
           // Single entry like ("np4", "np1") — wrap it
-          if type(dominance) == dictionary { (dominance,) } else { (dominance,) }
+          if type(dominance) == dictionary { (dominance,) } else {
+            (dominance,)
+          }
         } else {
           dominance
         }
@@ -2158,9 +2482,15 @@
           let is-dict = type(entry) == dictionary
           let raw-from = if is-dict { entry.at("from") } else { entry.at(0) }
           let raw-to = if is-dict { entry.at("to") } else { entry.at(1) }
-          let ctrl-val = if is-dict { entry.at("ctrl", default: none) } else { none }
-          let dom-color = if is-dict { entry.at("color", default: _norm) } else { _norm }
-          let dom-dash = if is-dict { entry.at("dash", default: "solid") } else { "solid" }
+          let ctrl-val = if is-dict { entry.at("ctrl", default: none) } else {
+            none
+          }
+          let dom-color = if is-dict {
+            entry.at("color", default: _norm)
+          } else { _norm }
+          let dom-dash = if is-dict {
+            entry.at("dash", default: "solid")
+          } else { "solid" }
 
           if raw-from in name-to-pos and raw-to in name-to-pos {
             let (fx, fy, _) = name-to-pos.at(raw-from)
@@ -2244,7 +2574,9 @@
 
   let _body = context {
     let fsz = 12 * scale-factor * 1pt
-    let _norm = if foreground-color != none { foreground-color } else { luma(15%) }
+    let _norm = if foreground-color != none { foreground-color } else {
+      luma(15%)
+    }
 
     // ── Per-tree computation ──────────────────────────────────────────────
     let all-td = () // array of tree-data dicts
@@ -2309,12 +2641,19 @@
       // Bottom-align
       if bottom {
         terminal-branch = true
-        let min-y = nodes.fold(0.0, (acc, e) => if e.is-leaf { calc.min(acc, e.y) } else { acc })
+        let min-y = nodes.fold(0.0, (acc, e) => if e.is-leaf {
+          calc.min(acc, e.y)
+        } else { acc })
         let min-y = nodes.fold(min-y, (acc, e) => {
-          if e.at("is-triangle", default: false) { calc.min(acc, e.at("tri-y")) } else { acc }
+          if e.at("is-triangle", default: false) {
+            calc.min(acc, e.at("tri-y"))
+          } else { acc }
         })
         nodes = nodes.map(e => {
-          if e.is-leaf { (..e, y: min-y) } else if e.at("is-triangle", default: false) {
+          if e.is-leaf { (..e, y: min-y) } else if e.at(
+            "is-triangle",
+            default: false,
+          ) {
             (..e, tri-y: min-y, bottom-aligned: true)
           } else { e }
         })
@@ -2332,11 +2671,15 @@
 
       // Direction transform
       let _tx(x, y) = {
-        if direction == "up" { (x, -y) } else if direction == "right" { (-y, -x) } else if direction == "left" {
+        if direction == "up" { (x, -y) } else if direction == "right" {
+          (-y, -x)
+        } else if direction == "left" {
           (y, -x)
         } else { (x, y) }
       }
-      let (gdx, gdy) = if direction == "up" { (0, 1) } else if direction == "right" { (1, 0) } else if (
+      let (gdx, gdy) = if direction == "up" { (0, 1) } else if (
+        direction == "right"
+      ) { (1, 0) } else if (
         direction == "left"
       ) { (-1, 0) } else { (0, -1) }
 
@@ -2388,10 +2731,15 @@
         if node.is-leaf or node.children.len() == 0 {
           ntp.insert(node.anchor + "-down" + sfx, ntp.at(node.anchor + sfx))
           aom.insert(node.anchor + "-down" + sfx, regular-off)
-          lhw.insert(node.anchor + "-down" + sfx, _rendered-len(node.label) * 0.28 / 2 + 0.05)
+          lhw.insert(
+            node.anchor + "-down" + sfx,
+            _rendered-len(node.label) * 0.28 / 2 + 0.05,
+          )
           return (ntp, aom, lhw)
         }
-        let tri-entry = nodes.filter(e => e.anchor == node.anchor and e.at("is-triangle", default: false))
+        let tri-entry = nodes.filter(e => (
+          e.anchor == node.anchor and e.at("is-triangle", default: false)
+        ))
         if tri-entry.len() > 0 {
           let te = tri-entry.at(0)
           ntp.insert(node.anchor + "-down" + sfx, (te.x, te.at("tri-y"), _loff))
@@ -2399,16 +2747,27 @@
           aom.insert(node.anchor + "-down" + sfx, tri-off)
           let tri-label = te.at("tri-label")
           let tri-lines = tri-label.split(" \\n ")
-          let tri-lines = if tri-lines.len() == 1 { tri-label.split("\\n") } else { tri-lines }
-          let widest = tri-lines.fold(0, (acc, l) => calc.max(acc, _rendered-len(l.trim())))
+          let tri-lines = if tri-lines.len() == 1 {
+            tri-label.split("\\n")
+          } else { tri-lines }
+          let widest = tri-lines.fold(0, (acc, l) => calc.max(
+            acc,
+            _rendered-len(l.trim()),
+          ))
           let char-w = 0.22 * content-size
-          lhw.insert(node.anchor + "-down" + sfx, calc.max(widest * char-w / 2, 0.3))
+          lhw.insert(node.anchor + "-down" + sfx, calc.max(
+            widest * char-w / 2,
+            0.3,
+          ))
           return (ntp, aom, lhw)
         }
         let leaf-anchors = _collect-leaf-anchors(node)
         let found = leaf-anchors.map(a => a + sfx).filter(a => a in ntp)
         if found.len() > 0 {
-          let avg-x = found.map(a => ntp.at(a).at(0)).fold(0.0, (a, b) => a + b) / found.len()
+          let avg-x = (
+            found.map(a => ntp.at(a).at(0)).fold(0.0, (a, b) => a + b)
+              / found.len()
+          )
           let ys = found.map(a => ntp.at(a).at(1))
           let leaf-y = if gdy < 0 { calc.min(..ys) } else { calc.max(..ys) }
           ntp.insert(node.anchor + "-down" + sfx, (avg-x, leaf-y, _loff))
@@ -2419,7 +2778,10 @@
           } else {
             (
               _rendered-len(
-                nodes.filter(e => e.anchor + sfx == found.at(0)).at(0, default: (label: "XX")).label,
+                nodes
+                  .filter(e => e.anchor + sfx == found.at(0))
+                  .at(0, default: (label: "XX"))
+                  .label,
               )
                 * 0.28
                 / 2
@@ -2438,11 +2800,15 @@
       // Compute tree vertical extents
       let y-min = nodes.fold(0.0, (acc, e) => {
         let y = e.y
-        if e.at("is-triangle", default: false) { calc.min(acc, y, e.at("tri-y")) } else { calc.min(acc, y) }
+        if e.at("is-triangle", default: false) {
+          calc.min(acc, y, e.at("tri-y"))
+        } else { calc.min(acc, y) }
       })
       let y-max = nodes.fold(0.0, (acc, e) => {
         let y = e.y
-        if e.at("is-triangle", default: false) { calc.max(acc, y, e.at("tri-y")) } else { calc.max(acc, y) }
+        if e.at("is-triangle", default: false) {
+          calc.max(acc, y, e.at("tri-y"))
+        } else { calc.max(acc, y) }
       })
 
       all-td.push((
@@ -2486,7 +2852,9 @@
     for (i, td) in all-td.enumerate() {
       let y-off = y-offsets.at(i)
       all-td.at(i).nodes = td.nodes.map(e => {
-        let new-par = if e.par != none { (e.par.at(0), e.par.at(1) + y-off) } else { none }
+        let new-par = if e.par != none {
+          (e.par.at(0), e.par.at(1) + y-off)
+        } else { none }
         let result = (..e, y: e.y + y-off, par: new-par)
         if e.at("is-triangle", default: false) {
           (..result, tri-y: e.at("tri-y") + y-off)
@@ -2518,8 +2886,16 @@
 
           // ── Edges ──
           for e in nodes {
-            if e.par != none and (td.terminal-branch or not e.at("is-terminal", default: false)) {
-              let par-off = td.node-out.at(e.at("par-anchor", default: ""), default: _loff)
+            if (
+              e.par != none
+                and (
+                  td.terminal-branch or not e.at("is-terminal", default: false)
+                )
+            ) {
+              let par-off = td.node-out.at(
+                e.at("par-anchor", default: ""),
+                default: _loff,
+              )
               let child-off = td.node-in.at(e.anchor, default: _loff)
               line(
                 (e.par.at(0) + gdx * par-off, e.par.at(1) + gdy * par-off),
@@ -2540,7 +2916,12 @@
                 let char-w = 0.22 * td.content-size
                 let tl = tri-label.split(" \\n ")
                 let tl = if tl.len() == 1 { tri-label.split("\\n") } else { tl }
-                calc.max(tl.fold(0, (acc, l) => calc.max(acc, _rendered-len(l.trim()))) * char-w / 2, 0.3)
+                calc.max(
+                  tl.fold(0, (acc, l) => calc.max(acc, _rendered-len(l.trim())))
+                    * char-w
+                    / 2,
+                  0.3,
+                )
               } else {
                 let tl = tri-label.split(" \\n ")
                 let tl = if tl.len() == 1 { tri-label.split("\\n") } else { tl }
@@ -2549,7 +2930,10 @@
               let tri-off = td.node-out.at(e.anchor, default: _loff)
               let apex = (e.x + gdx * tri-off, e.y + gdy * tri-off)
               let (b1, b2) = if vert {
-                ((tlx - half-w, tly - gdy * _loff), (tlx + half-w, tly - gdy * _loff))
+                (
+                  (tlx - half-w, tly - gdy * _loff),
+                  (tlx + half-w, tly - gdy * _loff),
+                )
               } else {
                 let bx = _loff
                 ((tlx + gdx * bx, tly - half-w), (tlx + gdx * bx, tly + half-w))
@@ -2564,11 +2948,16 @@
           for e in nodes {
             let display = _display-label(e.label)
             let _has-upper = _strip-fmt(e.label).match(regex("[A-Z]")) != none
-            let sz = if e.at("is-terminal", default: false) or (e.is-leaf and not _has-upper) {
+            let sz = if (
+              e.at("is-terminal", default: false)
+                or (e.is-leaf and not _has-upper)
+            ) {
               content-fsz
             } else { node-fsz }
             let label-body = text(size: sz, fill: _norm, display)
-            let label-anchor = if direction == "right" { "west" } else if direction == "left" { "east" } else {
+            let label-anchor = if direction == "right" { "west" } else if (
+              direction == "left"
+            ) { "east" } else {
               "center"
             }
 
@@ -2577,27 +2966,47 @@
               let tri-leaves = e.at("tri-leaves")
               let lines = ((),)
               for leaf in tri-leaves {
-                if leaf == "\\n" { lines.push(()) } else { lines.at(-1).push(leaf) }
+                if leaf == "\\n" { lines.push(()) } else {
+                  lines.at(-1).push(leaf)
+                }
               }
               let line-contents = lines.map(words => {
-                text(size: content-fsz, fill: _norm, words.map(w => _display-label(w)).join([ ]))
+                text(
+                  size: content-fsz,
+                  fill: _norm,
+                  words.map(w => _display-label(w)).join([ ]),
+                )
               })
-              let tri-align = if direction == "right" { left } else if direction == "left" { right } else { center }
+              let tri-align = if direction == "right" { left } else if (
+                direction == "left"
+              ) { right } else { center }
               let tri-body = if line-contents.len() > 1 {
                 align(tri-align, stack(spacing: 0.35em, ..line-contents))
               } else { line-contents.at(0) }
               let is-bottom-aligned = e.at("bottom-aligned", default: false)
-              let tri-text-gap = if is-bottom-aligned { 0 } else if is-horiz { 0.80 } else { 0.05 }
+              let tri-text-gap = if is-bottom-aligned { 0 } else if is-horiz {
+                0.80
+              } else { 0.05 }
               let tlx2 = e.at("tri-x", default: e.x)
               let tly2 = e.at("tri-y")
               let tri-anchor = if direction == "up" { "south" } else if (
                 direction == "down"
-              ) { "north" } else if direction == "right" { "west" } else { "east" }
-              content((tlx2 + gdx * tri-text-gap, tly2 + gdy * tri-text-gap), tri-body, anchor: tri-anchor)
+              ) { "north" } else if direction == "right" { "west" } else {
+                "east"
+              }
+              content(
+                (tlx2 + gdx * tri-text-gap, tly2 + gdy * tri-text-gap),
+                tri-body,
+                anchor: tri-anchor,
+              )
             } else {
               let (lx, ly) = (e.x, e.y)
               let cur-anchor = label-anchor
-              if is-horiz and e.at("is-terminal", default: false) and e.par != none {
+              if (
+                is-horiz
+                  and e.at("is-terminal", default: false)
+                  and e.par != none
+              ) {
                 lx = lx + (e.par.at(0) - lx) * 0.4
                 ly = ly + (e.par.at(1) - ly) * 0.4
               } else if not is-horiz and e.at("is-terminal", default: false) {
@@ -2609,7 +3018,9 @@
         }
 
         // ── Equivalence lines ──────────────────────────────────────────────
-        let eq-entries = if equivalence.len() > 0 and type(equivalence.at(0)) == str {
+        let eq-entries = if (
+          equivalence.len() > 0 and type(equivalence.at(0)) == str
+        ) {
           (equivalence,)
         } else { equivalence }
 
@@ -2617,9 +3028,15 @@
           let is-dict = type(eq) == dictionary
           let raw-from = if is-dict { eq.at("from") } else { eq.at(0) }
           let raw-to = if is-dict { eq.at("to") } else { eq.at(1) }
-          let eq-color = if is-dict { eq.at("color", default: _norm) } else { _norm }
-          let eq-dash = if is-dict { eq.at("dash", default: "dashed") } else { "dashed" }
-          let eq-lw = if is-dict { eq.at("line-width", default: 1.0) } else { 1.0 }
+          let eq-color = if is-dict { eq.at("color", default: _norm) } else {
+            _norm
+          }
+          let eq-dash = if is-dict { eq.at("dash", default: "dashed") } else {
+            "dashed"
+          }
+          let eq-lw = if is-dict { eq.at("line-width", default: 1.0) } else {
+            1.0
+          }
 
           // Resolve: bare "np1-1" → "np1-down-1" if available (default to leaf text).
           // "np1-1-top" → "np1-1" (node label position, stripping -top).

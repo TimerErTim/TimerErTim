@@ -1,5 +1,7 @@
 #import "parser.typ": h-graph-parser
-#import "render.typ": polar-render, render-help-draw-edge, tree-render, diagram as _diagram
+#import "render.typ": (
+  diagram as _diagram, polar-render, render-help-draw-edge, tree-render,
+)
 
 #let h-graph(code, render-fn) = {
   let res = h-graph-parser(code)

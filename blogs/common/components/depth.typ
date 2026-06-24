@@ -17,5 +17,5 @@
     right: depth * 2 + inner-border / 2,
     bottom: depth * 2 + inner-border / 2,
   ),
-  block(fill: fill, radius: radius, align(left + top, cont)),
+  block(fill: fill, radius: radius, clip: true, align(left + top, cont)),
 )

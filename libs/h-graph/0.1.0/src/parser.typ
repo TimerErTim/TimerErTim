@@ -4,7 +4,6 @@
   let s1_r = s1.matches(rgx).map(it => it.captures.at(0))
   let s2_r = s2.matches(rgx).map(it => it.captures.at(0))
 
-
   if (s1_r.len() != s2_r.len()) {
     return false
   }
@@ -18,7 +17,10 @@
     let part2 = s2_r.at(index)
     index += 1
 
-    if (part1.match(regex("^-?\d+$")) != none and part2.match(regex("^-?\d+$")) != none) {
+    if (
+      part1.match(regex("^-?\d+$")) != none
+        and part2.match(regex("^-?\d+$")) != none
+    ) {
       let n1 = int(part1)
       let n2 = int(part2)
       if (n1 > n2) { return false }
@@ -28,14 +30,23 @@
         )
         .flatten()
     } else if (
-      (part1.match(regex("[a-z]+")) != none and part2.matches(regex("[a-z]+")) != none)
-        or (part1.match(regex("[A-Z]+")) != none and part2.matches(regex("[A-Z]+")) != none)
+      (
+        part1.match(regex("[a-z]+")) != none
+          and part2.matches(regex("[a-z]+")) != none
+      )
+        or (
+          part1.match(regex("[A-Z]+")) != none
+            and part2.matches(regex("[A-Z]+")) != none
+        )
     ) {
       if (part1.len() != part2.len()) {
         return false
       }
 
-      let is_lower = (part1.match(regex("[a-z]+")) != none and part2.matches(regex("[a-z]+")) != none)
+      let is_lower = (
+        part1.match(regex("[a-z]+")) != none
+          and part2.matches(regex("[a-z]+")) != none
+      )
       let (aA, zZ) = if is_lower { ("a", "z") } else { ("A", "Z") }
       let index = 0
       while index < part1.len() {
@@ -101,7 +112,10 @@
     fields
       .filter(it => it.find(":") == none)
       .map(
-        it => it.trim().replace("_inner_sym_1_", ",").replace("_inner_sym_2_", ":"),
+        it => it
+          .trim()
+          .replace("_inner_sym_1_", ",")
+          .replace("_inner_sym_2_", ":"),
       ),
     fields
       .filter(it => it.find(":") != none)
@@ -109,7 +123,10 @@
         it => it
           .split(":")
           .map(
-            it => it.trim().replace("_inner_sym_1_", ",").replace("_inner_sym_2_", ":"),
+            it => it
+              .trim()
+              .replace("_inner_sym_1_", ",")
+              .replace("_inner_sym_2_", ":"),
           ),
       )
       .to-dict(),
@@ -228,9 +245,13 @@
 }
 
 
-#let _process_st(st: str, nodes: dictionary, edges: array, meta-info: dictionary) = {
+#let _process_st(
+  st: str,
+  nodes: dictionary,
+  edges: array,
+  meta-info: dictionary,
+) = {
   // metainfo
-
 
   let firstRes = _parse_of_node_ids(st: st)
   if (type(firstRes) == bool) { return false }
@@ -253,7 +274,11 @@
         content: if (nodes.at(new_name).content == none) {
           mid_content.replace("|_name|", new_name)
         } else {
-          nodes.at(new_name).content + "\n" + mid_content.replace("|_name|", new_name)
+          (
+            nodes.at(new_name).content
+              + "\n"
+              + mid_content.replace("|_name|", new_name)
+          )
         },
       ))
     }
@@ -298,15 +323,25 @@
               ed_info
                 .at(0)
                 .map(
-                  v => eval(v.replace("|_from|", pre_name).replace("|_to|", nn_name)),
+                  v => eval(
+                    v.replace("|_from|", pre_name).replace("|_to|", nn_name),
+                  ),
                 ),
               ed_info
                 .at(1)
                 .pairs()
                 .map(
                   p => (
-                    p.at(0).replace("|_from|", pre_name).replace("|_to|", nn_name),
-                    eval(p.at(1).replace("|_from|", pre_name).replace("|_to|", nn_name)),
+                    p
+                      .at(0)
+                      .replace("|_from|", pre_name)
+                      .replace("|_to|", nn_name),
+                    eval(
+                      p
+                        .at(1)
+                        .replace("|_from|", pre_name)
+                        .replace("|_to|", nn_name),
+                    ),
                   ),
                 )
                 .to-dict(), // dict
@@ -345,7 +380,11 @@
 }
 
 #let h-graph-parser(code) = {
-  let sentences = code.trim().split(";").map(it => it.trim()).filter(it => it != "")
+  let sentences = code
+    .trim()
+    .split(";")
+    .map(it => it.trim())
+    .filter(it => it != "")
   let nodes = (:)
   let edges = ()
   let render_args = (:)
@@ -363,7 +402,10 @@
       let is-ok = true
       (is-ok, meta-info) = _parse-meta-info(st: st.slice(1), pre: meta-info)
       if not is-ok {
-        return (false, [Error when processing line #{ index + 1 }: #highlight(sentences.at(index))])
+        return (
+          false,
+          [Error when processing line #{ index + 1 }: #highlight(sentences.at(index))],
+        )
       }
     } else if (st.trim().at(0) == "#") {
       let (k, v) = st.slice(1).split(":").slice(0, 2).map(v => v.trim())
@@ -376,7 +418,10 @@
         meta-info: meta-info,
       )
       if (type(res) == bool) {
-        return (false, [Error when processing line #{ index + 1 }: #highlight(sentences.at(index))])
+        return (
+          false,
+          [Error when processing line #{ index + 1 }: #highlight(sentences.at(index))],
+        )
       } else {
         (nodes, edges) = res
       }

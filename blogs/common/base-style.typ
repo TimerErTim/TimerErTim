@@ -1,7 +1,9 @@
 #import "components/callouts.typ": quote-callout
-#import "theming.typ": catppuccin-accents, catppuccin-flavor, theme, themes, color-cycle
+#import "theming.typ": (
+  catppuccin-accents, catppuccin-flavor, color-cycle, theme, themes,
+)
 #import "components/depth.typ": depth-shadow-block
-#import "variants.typ": light-or, targets-web, web-or, is-preview
+#import "variants.typ": is-preview, light-or, targets-web, web-or
 #import "deps.typ": catppuccin, codly, codly-init, codly-languages, lq
 #import "components/pikchr.typ": pikchr-init
 
@@ -24,11 +26,11 @@
 
 #let style-emoji(emoji) = {
   set text(
-    font: "OpenMoji", 
+    font: "OpenMoji",
   )
   // Scale up in web (and web based tinymist preview)because otherwise the emoji is too small idk shenanigans, because we use working but broken bounding box font
   set text(
-    size:  1.2em,
+    size: 1.2em,
     baseline: 0.15em,
   ) if targets-web or is-preview
   emoji
@@ -160,20 +162,20 @@
 }
 
 #let set-lilaq-style(
-  body
+  body,
 ) = {
   show: lq.set-diagram(
-    cycle: color-cycle
+    cycle: color-cycle,
   )
   show: lq.set-spine(
-    stroke: theme.colors.border
+    stroke: theme.colors.border,
   )
   show: lq.set-grid(
-    stroke: theme.colors.muted
+    stroke: theme.colors.muted,
   )
   show: lq.set-legend(
     fill: theme.colors.surface.transparentize(25%),
-    stroke: none
+    stroke: none,
   )
 
   body
@@ -192,7 +194,10 @@
   show quote: style-quote
   show: pikchr-init
 
-  set rect(stroke: theme.colors.border + theme.layout.borderWidth.medium, radius: theme.layout.radius.medium)
+  set rect(
+    stroke: theme.colors.border + theme.layout.borderWidth.medium,
+    radius: theme.layout.radius.medium,
+  )
   show figure: align.with(left)
   show figure.caption: set text(
     size: theme.layout.fontSize.tiny,
