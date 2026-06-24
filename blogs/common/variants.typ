@@ -24,10 +24,15 @@
 
 #let hide-in-preview(
   cont,
+) = in-preview-or.with(none)
+
+#let in-preview-or(
+  in-preview-variant,
+  not-in-preview-variant,
 ) = if is-preview {
-  none
+  in-preview-variant
 } else {
-  cont
+  not-in-preview-variant
 }
 
 /// Checks webpage width, if not webpage with, some is always returned
