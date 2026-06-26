@@ -42,9 +42,9 @@ If you're primarily interested in the workshop recording (German language only),
       let outer-height = width / 16 * 9
       // TODO: replace with actual youtube link
       let iframe = strfmt(```html
-      <iframe width="{outer-width}" height="{outer-height}" src="https://www.youtube.com/embed/GS978MRbqqo?si=KJ6Y-WodSd6uAKVz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true" ></iframe>
+      <iframe width="550" height="309" src="https://www.youtube.com/embed/GS978MRbqqo?si=KJ6Y-WodSd6uAKVz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true" ></iframe>
       ```.text, outer-width: outer-width, outer-height: outer-height)
-      xhtml(iframe, outer-width: outer-width, outer-height: outer-height, inner-width: outer-width, inner-height: outer-height)
+      xhtml(iframe, outer-width: outer-width, outer-height: outer-height, inner-width: 550pt, inner-height: 309pt)
     })
   ],
   [at #link(youtube-link)],
