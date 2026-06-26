@@ -18,15 +18,16 @@
 )
 
 #let color-cycle = (
-  catppuccin-accents.mauve,
-  catppuccin-accents.teal,
-  catppuccin-accents.peach,
-  catppuccin-accents.rosewater,
+  catppuccin-accents.blue,
   catppuccin-accents.green,
-  catppuccin-accents.pink,
-  catppuccin-accents.sky,
-  catppuccin-accents.yellow,
-  catppuccin-accents.flamingo,
+  catppuccin-accents.peach,
+  catppuccin-accents.mauve,
   catppuccin-accents.red,
+  catppuccin-accents.yellow,
+  catppuccin-accents.lavender,
+  catppuccin-accents.pink,
+  catppuccin-accents.teal,
+  catppuccin-accents.flamingo,
+  catppuccin-accents.sky,
 )
 

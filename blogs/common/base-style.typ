@@ -1,8 +1,8 @@
 #import "components/callouts.typ": quote-callout
-#import "theming.typ": catppuccin-accents, catppuccin-flavor, theme, themes
+#import "theming.typ": catppuccin-accents, catppuccin-flavor, theme, themes, color-cycle
 #import "components/depth.typ": depth-shadow-block
 #import "variants.typ": light-or, targets-web, web-or, is-preview
-#import "deps.typ": catppuccin, codly, codly-init, codly-languages
+#import "deps.typ": catppuccin, codly, codly-init, codly-languages, lq
 #import "components/pikchr.typ": pikchr-init
 
 #let set-text-style(
@@ -159,6 +159,26 @@
   body
 }
 
+#let set-lilaq-style(
+  body
+) = {
+  show: lq.set-diagram(
+    cycle: color-cycle
+  )
+  show: lq.set-spine(
+    stroke: theme.colors.border
+  )
+  show: lq.set-grid(
+    stroke: theme.colors.muted
+  )
+  show: lq.set-legend(
+    fill: theme.colors.surface.transparentize(25%),
+    stroke: none
+  )
+
+  body
+}
+
 #let base-style(
   cont,
 ) = {
@@ -167,6 +187,7 @@
   show: set-heading-style
   show: set-equation-style
   show: set-raw-style
+  show: set-lilaq-style
   show link: style-link
   show quote: style-quote
   show: pikchr-init
