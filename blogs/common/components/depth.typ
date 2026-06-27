@@ -10,7 +10,7 @@
 ) = block(
   fill: color,
   radius: radius,
-  breakable: false,
+  breakable: true,
   outset: (
     top: inner-border / 2,
     left: inner-border / 2,

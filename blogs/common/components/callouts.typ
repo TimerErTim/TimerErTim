@@ -74,6 +74,8 @@
   ]
 }
 
+#let callout = callout-block.with(color-val: theme.colors.foreground)
+#let accent-callout = callout-block.with(color-val: theme.colors.accent)
 #let info-callout = callout-block.with(color-val: theme.colors.info)
 #let warning-callout = callout-block.with(color-val: theme.colors.warning)
 #let danger-callout = callout-block.with(color-val: theme.colors.danger)

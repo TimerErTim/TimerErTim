@@ -38,7 +38,6 @@
   cont,
   ..args,
 ) = context {
-  // TODO: Provide default color variables
   let svg-src = pikchr-svg(cont)
 
   // Inject font family into the SVG

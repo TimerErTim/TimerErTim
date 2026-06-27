@@ -140,7 +140,7 @@
       (color, 40%),
     ),
     reference-sep: ":",
-    breakable: false,
+    breakable: true,
   )
 
   body

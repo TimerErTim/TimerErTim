@@ -13,6 +13,9 @@
   classic-variant
 }
 
+#let web-only = it => web-or(it, none)
+#let non-web-only = web-or.with(none)
+
 #let light-or(
   light-variant,
   dark-variant,
@@ -22,10 +25,6 @@
   dark-variant
 }
 
-#let hide-in-preview(
-  cont,
-) = in-preview-or.with(none)
-
 #let in-preview-or(
   in-preview-variant,
   not-in-preview-variant,
@@ -34,6 +33,8 @@
 } else {
   not-in-preview-variant
 }
+
+#let hide-in-preview = in-preview-or.with(none)
 
 /// Checks webpage width, if not webpage with, some is always returned
 #let broader-than(

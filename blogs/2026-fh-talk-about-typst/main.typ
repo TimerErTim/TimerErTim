@@ -1,7 +1,7 @@
 #import "../common/components/xhtml.typ": xhtml
 #import "../common/template.typ": blog-entry
 #import "../common/theming.typ": catppuccin-accents, theme
-#import "../common/deps.typ": codly, local as codly-local, strfmt
+#import "../common/deps.typ": codly, codly-local, strfmt
 #import "../common/components/callouts.typ": (
   danger-callout, info-callout, success-callout, warning-callout,
 )
@@ -40,11 +40,10 @@ If you're primarily interested in the workshop recording (German language only),
     #layout(((width, height)) => {
       let outer-width = width
       let outer-height = width / 16 * 9
-      // TODO: replace with actual youtube link
       let iframe = strfmt(```html
-      <iframe width="550" height="309" src="https://www.youtube.com/embed/GS978MRbqqo?si=KJ6Y-WodSd6uAKVz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true" ></iframe>
-      ```.text, outer-width: outer-width, outer-height: outer-height)
-      xhtml(iframe, outer-width: outer-width, outer-height: outer-height, inner-width: 550pt, inner-height: 309pt)
+      <iframe width="{{outer-width}}" height="{{outer-height}}" src="https://www.youtube.com/embed/GS978MRbqqo?si=KJ6Y-WodSd6uAKVz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true" ></iframe>
+      ```.text, outer-width: outer-width.pt(), outer-height: outer-height.pt())
+      xhtml(iframe, outer-width: outer-width, outer-height: outer-height)
     })
   ],
   [at #link(youtube-link)],

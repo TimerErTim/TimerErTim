@@ -1,7 +1,7 @@
 #import "../common/components/xhtml.typ": xhtml
 #import "../common/template.typ": blog-entry
 #import "../common/theming.typ": catppuccin-accents, theme
-#import "../common/deps.typ": codly, local as codly-local, strfmt
+#import "../common/deps.typ": codly, codly-local, strfmt
 #import "../common/components/depth.typ": depth-shadow-block
 #import "../common/components/callouts.typ": (
   danger-callout, info-callout, success-callout, warning-callout,
