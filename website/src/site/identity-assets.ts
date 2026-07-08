@@ -1,7 +1,9 @@
+import avatar from "../../../assets/picture/avatar.jpg";
 import bannerLight from "../../../assets/identity/banner.png";
 import bannerDark from "../../../assets/identity/banner_dark.png";
 
 export const identityAssets = {
+  avatar,
   bannerLight: bannerLight,
   bannerDark: bannerDark,
   /** Used for Open Graph / Twitter / WhatsApp link previews. Drop `assets/identity/social-preview.png` (1200×630 recommended). */

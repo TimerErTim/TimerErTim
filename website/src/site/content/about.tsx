@@ -1,18 +1,35 @@
+import ExportedImage from "next-image-export-optimizer";
+
 import { prose, title } from "@/components/primitives";
+import { site } from "@/site";
 
 export const aboutDescription =
   "Tim Peko (TimerErTim). Bioinformatics student in Hagenberg. I build things and write about them here.";
 
 export default function AboutContent() {
   return (
-    <article className="max-w-xl">
+    <article className="max-w-2xl">
       <h1 className={title()}>About</h1>
 
-      <div className={`${prose()} mt-2 flex flex-col gap-4`}>
-        <p>
-          I&apos;m Tim Peko, TimerErTim online. I start projects I tell myself are
-          useless and then keep going. Most of this site comes from that.
-        </p>
+      <div className="mt-4 flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
+        <ExportedImage
+          alt="Tim Peko"
+          className="order-1 h-auto w-36 shrink-0 self-start rounded-md border-md border-shadow shadow-md sm:order-2"
+          height={2205}
+          priority
+          src={site.identity.avatar}
+          width={1635}
+        />
+
+        <div className={`${prose()} order-2 flex flex-col gap-4 sm:order-1`}>
+          <p>
+            I&apos;m Tim Peko, TimerErTim online. I start projects I tell myself are
+            useless and then keep going. Most of this site comes from that.
+          </p>
+        </div>
+      </div>
+
+      <div className={`${prose()} mt-4 flex flex-col gap-4`}>
 
         <section>
           <h2 className={title({ size: "sm" })}>Now</h2>
