@@ -1,9 +1,6 @@
 #import "../common/template.typ": blog-entry
 #import "../common/theming.typ": catppuccin-accents, color-cycle, theme, themes
-#import "../common/variants.typ": (
-  broader-than, hide-in-preview, in-preview-or, web-only, web-or,
-  web-page-width,
-)
+#import "../common/variants.typ": broader-than, hide-in-preview, in-preview-or, web-only, web-or, web-page-width
 #import "../common/deps.typ": codly, codly-local, lq, no-codly, strfmt
 #import "../common/components/depth.typ": depth-shadow-block
 
@@ -26,15 +23,14 @@
 #show: blog-entry.with(
   target: auto,
   created-at: datetime(year: 2026, month: 7, day: 28),
-  //updated-at: datetime(year: 2026, month: 6, day: 12),
+  updated-at: datetime(year: 2026, month: 7, day: 29),
 )
 
 // Setup document content dependencies
 #import "deps.typ": *
 #import pinit: *
 #import "../common/components/callouts.typ": (
-  accent-callout, callout, danger-callout, info-callout, success-callout,
-  warning-callout,
+  accent-callout, callout, danger-callout, info-callout, success-callout, warning-callout,
 )
 #import "../common/calc/auc.typ": auc
 #import "../common/calc/analysis.typ": smooth_series
@@ -732,9 +728,7 @@ impl<B: Backend> PlagiarismDecider<B> {
 ]
 
 #{
-  let points = sj
-    .haltonset-f(16, skip: 42, size: ast-labels.len())
-    .map(it => it.map(x => x * 2 - 1))
+  let points = sj.haltonset-f(16, skip: 42, size: ast-labels.len()).map(it => it.map(x => x * 2 - 1))
   let abbrev-vec-map = array
     .zip(ast-labels.keys(), points.map(((x0, .., xlast)) => strfmt(
       ```typc
@@ -1281,10 +1275,7 @@ The model was instructed to
   #raw(
     block: true,
     lang: "show-md",
-    read("assets/custom-ds-task2-readme.md")
-      .split("\n")
-      .slice(0, 12)
-      .join("\n"),
+    read("assets/custom-ds-task2-readme.md").split("\n").slice(0, 12).join("\n"),
   )
 ]
 
@@ -1346,9 +1337,123 @@ Graph Isomorphism Networks (GINs) can be thought of pretty similar to GCNs, intr
   image("assets/gin-illustr.png")
 }
 
-// TODO: paste burn code
+#codly(
+  ranges: ((9, 26), (34, none)),
+  header: [GIN implementation],
+  highlights: (
+    (
+      line: 11,
+      start: 13,
+      end: 21,
+      fill: theme.colors.overlay,
+      tag: {
+        set text(fill: theme.colors.muted)
+        "[n, d]"
+      },
+    ),
+    (
+      line: 23,
+      start: 13,
+      end: 21,
+      fill: theme.colors.overlay,
+      tag: {
+        set text(fill: theme.colors.muted)
+        "[n, d]"
+      },
+    ),
+    (
+      line: 36,
+      start: 13,
+      end: 26,
+      fill: theme.colors.overlay,
+      tag: {
+        set text(fill: theme.colors.muted)
+        $[l, 1, d]$
+      },
+    ),
+    (
+      line: 39,
+      start: 45,
+      end: 60,
+      fill: theme.colors.overlay,
+      tag: {
+        set text(fill: theme.colors.muted)
+        "[n, d]"
+      },
+    ),
+    (
+      line: 39,
+      start: 21,
+      end: 41,
+      fill: theme.colors.overlay,
+      tag: {
+        set text(fill: theme.colors.muted)
+        "[1, d]"
+      },
+    ),
+    (
+      line: 44,
+      start: 17,
+      end: 37,
+      fill: theme.colors.overlay,
+      tag: {
+        set text(fill: theme.colors.muted)
+        "[l, d]"
+      },
+    ),
+  ),
+)
 ```rust
+#[derive(Module, Debug)]
+pub struct GINMLP<B: Backend> {
+    pub hidden_layers: Vec<Linear<B>>,
+    pub output_layer: Linear<B>,
+    pub layer_norm: Option<LayerNorm<B>>,
+    pub epsilon: f32,
+}
 
+impl<B: Backend> GINMLP<B> {
+    pub fn forward(&self, graph: Graph<B>) -> Graph<B> {
+        let mlp_input =
+            (1.0 + self.epsilon) * graph.nodes.clone() + graph.edges.clone().matmul(graph.nodes);
+
+        // Pass through MLP
+        let output = self.hidden_layers.iter().fold(mlp_input, |mut x, layer| {
+            x = layer.forward(x);
+            x = relu(x);
+            if let Some(layer_norm) = &self.layer_norm {
+                x = layer_norm.forward(x);
+            }
+            x
+        });
+        let new_nodes = self.output_layer.forward(output);
+        Graph::new(new_nodes, graph.edges)
+    }
+}
+
+#[derive(Module, Debug)]
+pub struct GINConv<B: Backend> {
+    layers: Vec<GINMLP<B>>,
+    layer_norm: Option<LayerNorm<B>>,
+}
+
+impl<B: Backend> GINConv<B> {
+    pub fn forward(&self, graph: Graph<B>) -> Tensor<B, 2> {
+        let layer_features = std::iter::once(graph.nodes.clone().sum_dim(0)).chain(
+            self.layers.iter().scan(graph, |prev_graph, mlp_layer| {
+                let next_graph = mlp_layer.forward(prev_graph.clone());
+                let next_nodes_aggregated = next_graph.nodes.clone().sum_dim(0);
+                *prev_graph = next_graph;
+                Some(next_nodes_aggregated)
+            }),
+        );
+        let mut concatenated_features = Tensor::cat(layer_features.collect::<Vec<_>>(), 0);
+        if let Some(layer_norm) = &self.layer_norm {
+            concatenated_features = layer_norm.forward(concatenated_features);
+        }
+        concatenated_features
+    }
+}
 ```
 
 With that, the new high level architecture becomes:
@@ -1857,8 +1962,7 @@ I love the idea of embeddings. There is something intriguing about encoding some
 )
 
 #let other-gin-embeddings = gin-embedding-reduced.filter(it => (
-  it.self_path != highest-plag-embedding.self_path
-    and it.self_path not in highest-plag-embedding.plag_paths
+  it.self_path != highest-plag-embedding.self_path and it.self_path not in highest-plag-embedding.plag_paths
 ))
 #let grouped-gin-embeddings = gin-embedding-reduced.filter(it => (
   it.self_path not in other-gin-embeddings.map(it => it.self_path)
@@ -1890,9 +1994,7 @@ I love the idea of embeddings. There is something intriguing about encoding some
     lq.scatter(
       other-gin-embeddings.map(it => it.component1),
       other-gin-embeddings.map(it => it.component2),
-      color: other-gin-embeddings
-        .map(it => color-from-path(it.self_path))
-        .map(it => it.transparentize(25%)),
+      color: other-gin-embeddings.map(it => color-from-path(it.self_path)).map(it => it.transparentize(25%)),
       stroke: none,
       size: 5pt,
     ),
@@ -1934,9 +2036,7 @@ I love the idea of embeddings. There is something intriguing about encoding some
         #show: scale.with(200%, reflow: true)
         #lq.diagram(
           width: 1.5cm,
-          height: 1.5cm
-            / (zoom.x.at(1) - zoom.x.at(0))
-            * (zoom.y.at(1) - zoom.y.at(0)),
+          height: 1.5cm / (zoom.x.at(1) - zoom.x.at(0)) * (zoom.y.at(1) - zoom.y.at(0)),
           fill: theme.colors.base,
           xlim: zoom.x,
           ylim: zoom.y,
@@ -2037,9 +2137,19 @@ Backpropagation is great! Using the gradients for a single forward pass, we get 
   #layout(((width, height)) => {
     let height = width / 16 * 9
 
-  xhtml(strfmt(```html
-  <iframe data-testid="embed-iframe" src="https://timerertim.github.io/plagiarinator/" width="{width}" height="{height}" frameBorder="0" allowfullscreen="true" allow="encrypted-media; fullscreen;" loading="lazy"></iframe>
-  ```.text, width: width.pt(), height: height.pt()), inner-width: width, inner-height: height, outer-width: width, outer-height: height)
+    xhtml(
+      strfmt(
+        ```html
+        <iframe data-testid="embed-iframe" src="https://timerertim.github.io/plagiarinator/" width="{width}" height="{height}" frameBorder="0" allowfullscreen="true" allow="encrypted-media; fullscreen;" loading="lazy"></iframe>
+        ```.text,
+        width: width.pt(),
+        height: height.pt(),
+      ),
+      inner-width: width,
+      inner-height: height,
+      outer-width: width,
+      outer-height: height,
+    )
   })
 ][
   #link("https://timerertim.github.io/plagiarinator/")[GitHub Pages Deployment]
