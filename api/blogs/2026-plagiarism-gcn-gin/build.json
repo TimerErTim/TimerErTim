@@ -1,13 +1,13 @@
 {
   "slug": "2026-plagiarism-gcn-gin",
-  "contentHash": "06704578c157476eeb94786a8a11b72c6a5bf2b102acdba93927903926c29eb3",
+  "contentHash": "45c533ea779453a701e83ec08c189e7b0169914fcc297e625cd24c4157b2ef80",
   "variants": [
     {
       "filename": "main_light_320pt.svg",
       "theme": "light",
       "width_pt": 320,
       "compressedFilename": "main_light_320pt.svg.br",
-      "referenceVariant": "main_dark_320pt.svg"
+      "referenceVariant": "main_light_448pt.svg"
     },
     {
       "filename": "main_light_448pt.svg",
@@ -28,63 +28,63 @@
       "theme": "light",
       "width_pt": 704,
       "compressedFilename": "main_light_704pt.svg.br",
-      "referenceVariant": "main_light_1088pt.svg"
+      "referenceVariant": "main_dark_704pt.svg"
     },
     {
       "filename": "main_light_832pt.svg",
       "theme": "light",
       "width_pt": 832,
       "compressedFilename": "main_light_832pt.svg.br",
-      "referenceVariant": "main_light_960pt.svg"
+      "referenceVariant": "main_dark_832pt.svg"
     },
     {
       "filename": "main_light_960pt.svg",
       "theme": "light",
       "width_pt": 960,
       "compressedFilename": "main_light_960pt.svg.br",
-      "referenceVariant": "main_dark_960pt.svg"
+      "referenceVariant": "main_light_704pt.svg"
     },
     {
       "filename": "main_light_1088pt.svg",
       "theme": "light",
       "width_pt": 1088,
       "compressedFilename": "main_light_1088pt.svg.br",
-      "referenceVariant": "main_dark_1088pt.svg"
+      "referenceVariant": "main_light_960pt.svg"
     },
     {
       "filename": "main_dark_320pt.svg",
       "theme": "dark",
       "width_pt": 320,
       "compressedFilename": "main_dark_320pt.svg.br",
-      "referenceVariant": "main_dark_960pt.svg"
+      "referenceVariant": "main_light_320pt.svg"
     },
     {
       "filename": "main_dark_448pt.svg",
       "theme": "dark",
       "width_pt": 448,
       "compressedFilename": "main_dark_448pt.svg.br",
-      "referenceVariant": "main_dark_704pt.svg"
+      "referenceVariant": "main_dark_960pt.svg"
     },
     {
       "filename": "main_dark_576pt.svg",
       "theme": "dark",
       "width_pt": 576,
       "compressedFilename": "main_dark_576pt.svg.br",
-      "referenceVariant": "main_dark_832pt.svg"
+      "referenceVariant": "main_light_576pt.svg"
     },
     {
       "filename": "main_dark_704pt.svg",
       "theme": "dark",
       "width_pt": 704,
       "compressedFilename": "main_dark_704pt.svg.br",
-      "referenceVariant": "main_dark_960pt.svg"
+      "referenceVariant": "main_dark_1088pt.svg"
     },
     {
       "filename": "main_dark_832pt.svg",
       "theme": "dark",
       "width_pt": 832,
       "compressedFilename": "main_dark_832pt.svg.br",
-      "referenceVariant": "main_dark_960pt.svg"
+      "referenceVariant": "main_dark_704pt.svg"
     },
     {
       "filename": "main_dark_960pt.svg",
@@ -116,5 +116,5 @@
     "Similarity"
   ],
   "createdAt": 1785196800,
-  "updatedAt": 1785196800
+  "updatedAt": 1785283200
 }

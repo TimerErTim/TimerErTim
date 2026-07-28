@@ -11,6 +11,7 @@
       <link>https://timerertim.eu/blog/2026-plagiarism-gcn-gin/</link>
       <description>Neural networks seem like a perfect fit for detecting plagiarism attempts in coding exercises. In the Rust deep learning framework burn-rs, I built a graph convolution network with subpar accuracy, After a quick recap about that, we will explore how graph isomorphism networks and different similarity metrics can be used to improve the accuracy of the model.</description>
       <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
+      <atom:updated>2026-07-29T00:00:00.000Z</atom:updated>
       <guid isPermaLink="true">https://timerertim.eu/blog/2026-plagiarism-gcn-gin/</guid>
       <author>Tim Peko (TimerErTim)</author>
       <category>Rust</category>
