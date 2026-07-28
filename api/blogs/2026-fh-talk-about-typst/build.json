@@ -1,104 +1,104 @@
 {
   "slug": "2026-fh-talk-about-typst",
-  "contentHash": "e3a607f1a3611bbad495c3b45f51cdf4dd3798063f015391718c2468cf16ed3e",
+  "contentHash": "cf89820cbaeb5211c1541d1d159d202a74e4f6569c17f7c5718cee229f926152",
   "variants": [
     {
       "filename": "main_light_320pt.svg",
       "theme": "light",
       "width_pt": 320,
       "compressedFilename": "main_light_320pt.svg.br",
-      "referenceVariant": "main_dark_320pt.svg"
+      "referenceVariant": "main_light_576pt.svg"
     },
     {
       "filename": "main_light_448pt.svg",
       "theme": "light",
       "width_pt": 448,
       "compressedFilename": "main_light_448pt.svg.br",
-      "referenceVariant": "main_dark_448pt.svg"
+      "referenceVariant": "main_light_960pt.svg"
     },
     {
       "filename": "main_light_576pt.svg",
       "theme": "light",
       "width_pt": 576,
       "compressedFilename": "main_light_576pt.svg.br",
-      "referenceVariant": "main_dark_576pt.svg"
+      "referenceVariant": "main_light_960pt.svg"
     },
     {
       "filename": "main_light_704pt.svg",
       "theme": "light",
       "width_pt": 704,
       "compressedFilename": "main_light_704pt.svg.br",
-      "referenceVariant": "main_light_832pt.svg"
+      "referenceVariant": "main_light_960pt.svg"
     },
     {
       "filename": "main_light_832pt.svg",
       "theme": "light",
       "width_pt": 832,
       "compressedFilename": "main_light_832pt.svg.br",
-      "referenceVariant": "main_dark_832pt.svg"
+      "referenceVariant": "main_light_960pt.svg"
     },
     {
       "filename": "main_light_960pt.svg",
       "theme": "light",
       "width_pt": 960,
       "compressedFilename": "main_light_960pt.svg.br",
-      "referenceVariant": "main_light_1088pt.svg"
+      "referenceVariant": null
     },
     {
       "filename": "main_light_1088pt.svg",
       "theme": "light",
       "width_pt": 1088,
       "compressedFilename": "main_light_1088pt.svg.br",
-      "referenceVariant": "main_dark_1088pt.svg"
+      "referenceVariant": "main_light_960pt.svg"
     },
     {
       "filename": "main_dark_320pt.svg",
       "theme": "dark",
       "width_pt": 320,
       "compressedFilename": "main_dark_320pt.svg.br",
-      "referenceVariant": "main_dark_576pt.svg"
+      "referenceVariant": "main_light_320pt.svg"
     },
     {
       "filename": "main_dark_448pt.svg",
       "theme": "dark",
       "width_pt": 448,
       "compressedFilename": "main_dark_448pt.svg.br",
-      "referenceVariant": "main_dark_960pt.svg"
+      "referenceVariant": "main_light_448pt.svg"
     },
     {
       "filename": "main_dark_576pt.svg",
       "theme": "dark",
       "width_pt": 576,
       "compressedFilename": "main_dark_576pt.svg.br",
-      "referenceVariant": "main_dark_960pt.svg"
+      "referenceVariant": "main_light_576pt.svg"
     },
     {
       "filename": "main_dark_704pt.svg",
       "theme": "dark",
       "width_pt": 704,
       "compressedFilename": "main_dark_704pt.svg.br",
-      "referenceVariant": "main_dark_1088pt.svg"
+      "referenceVariant": "main_dark_960pt.svg"
     },
     {
       "filename": "main_dark_832pt.svg",
       "theme": "dark",
       "width_pt": 832,
       "compressedFilename": "main_dark_832pt.svg.br",
-      "referenceVariant": "main_dark_1088pt.svg"
+      "referenceVariant": "main_light_832pt.svg"
     },
     {
       "filename": "main_dark_960pt.svg",
       "theme": "dark",
       "width_pt": 960,
       "compressedFilename": "main_dark_960pt.svg.br",
-      "referenceVariant": "main_dark_1088pt.svg"
+      "referenceVariant": "main_dark_576pt.svg"
     },
     {
       "filename": "main_dark_1088pt.svg",
       "theme": "dark",
       "width_pt": 1088,
       "compressedFilename": "main_dark_1088pt.svg.br",
-      "referenceVariant": null
+      "referenceVariant": "main_light_1088pt.svg"
     }
   ],
   "author": [

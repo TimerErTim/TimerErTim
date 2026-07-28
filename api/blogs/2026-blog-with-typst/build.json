@@ -1,6 +1,6 @@
 {
   "slug": "2026-blog-with-typst",
-  "contentHash": "7c512332783a9b4fce5880341bb07546ba55acd1095960f5c8873cfd6428e457",
+  "contentHash": "44618d3146da8023db443de8a92798f0ee5badec36fac33a36b451d582e1b7f2",
   "variants": [
     {
       "filename": "main_light_320pt.svg",
@@ -21,14 +21,14 @@
       "theme": "light",
       "width_pt": 576,
       "compressedFilename": "main_light_576pt.svg.br",
-      "referenceVariant": "main_dark_576pt.svg"
+      "referenceVariant": "main_light_1088pt.svg"
     },
     {
       "filename": "main_light_704pt.svg",
       "theme": "light",
       "width_pt": 704,
       "compressedFilename": "main_light_704pt.svg.br",
-      "referenceVariant": "main_light_832pt.svg"
+      "referenceVariant": "main_dark_704pt.svg"
     },
     {
       "filename": "main_light_832pt.svg",
@@ -42,7 +42,7 @@
       "theme": "light",
       "width_pt": 960,
       "compressedFilename": "main_light_960pt.svg.br",
-      "referenceVariant": "main_light_1088pt.svg"
+      "referenceVariant": "main_dark_960pt.svg"
     },
     {
       "filename": "main_light_1088pt.svg",
@@ -63,14 +63,14 @@
       "theme": "dark",
       "width_pt": 448,
       "compressedFilename": "main_dark_448pt.svg.br",
-      "referenceVariant": "main_dark_576pt.svg"
+      "referenceVariant": "main_dark_704pt.svg"
     },
     {
       "filename": "main_dark_576pt.svg",
       "theme": "dark",
       "width_pt": 576,
       "compressedFilename": "main_dark_576pt.svg.br",
-      "referenceVariant": "main_dark_1088pt.svg"
+      "referenceVariant": "main_dark_704pt.svg"
     },
     {
       "filename": "main_dark_704pt.svg",
@@ -91,14 +91,14 @@
       "theme": "dark",
       "width_pt": 960,
       "compressedFilename": "main_dark_960pt.svg.br",
-      "referenceVariant": "main_light_960pt.svg"
+      "referenceVariant": "main_dark_704pt.svg"
     },
     {
       "filename": "main_dark_1088pt.svg",
       "theme": "dark",
       "width_pt": 1088,
       "compressedFilename": "main_dark_1088pt.svg.br",
-      "referenceVariant": "main_dark_704pt.svg"
+      "referenceVariant": "main_dark_960pt.svg"
     }
   ],
   "author": [
