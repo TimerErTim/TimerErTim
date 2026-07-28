@@ -7,6 +7,21 @@
     <language>en</language>
     <atom:link href="https://timerertim.eu/feed.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Using Graph Neural Networks for coding assignment plagiarism detection based on source</title>
+      <link>https://timerertim.eu/blog/2026-plagiarism-gcn-gin/</link>
+      <description>Neural networks seem like a perfect fit for detecting plagiarism attempts in coding exercises. In the Rust deep learning framework burn-rs, I built a graph convolution network with subpar accuracy, After a quick recap about that, we will explore how graph isomorphism networks and different similarity metrics can be used to improve the accuracy of the model.</description>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://timerertim.eu/blog/2026-plagiarism-gcn-gin/</guid>
+      <author>Tim Peko (TimerErTim)</author>
+      <category>Rust</category>
+      <category>burn-rs</category>
+      <category>GNN</category>
+      <category>GCN</category>
+      <category>GIN</category>
+      <category>Plagiarism</category>
+      <category>Similarity</category>
+    </item>
+    <item>
       <title>Writing a static blog with Typst</title>
       <link>https://timerertim.eu/blog/2026-blog-with-typst/</link>
       <description>Let&apos;s dive into the world of Typst and see how we can use it to power this very blog website. We will investigate potential solutions, the custom build process I settled on, and the technologies necessary. For static hosting, highly efficient compression and patching are necessary.
