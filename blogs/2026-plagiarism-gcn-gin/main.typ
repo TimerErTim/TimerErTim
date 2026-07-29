@@ -943,7 +943,7 @@ pub fn graph_convolution<B: Backend>(
 
 === Graph Diff Pooling
 
-Graph DiffPool is a technique to reduce the number of nodes in a graph by calculating an assignment matrix $S in R^(n times n')$ where $n$ is the number of nodes in the original graph and $m$ is the number of supernodes in the pooled graph. $N in R^(n times d)$ is the node features of the original graph and $F in R^(n times d')$ is the embeded node features of the graph. Then $N' in R^(n' times d')$ is the node features of the pooled graph. Formally expressed in @eq-diff-pool:
+Graph DiffPool is a technique to reduce the number of nodes in a graph by calculating an assignment matrix $S in R^(n times n')$ where $n$ is the number of nodes in the original graph and $n'$ is the number of supernodes in the pooled graph. $N in R^(n times d)$ is the node features of the original graph and $F in R^(n times d')$ is the embeded node features of the graph. Then $N' in R^(n' times d')$ is the node features of the pooled graph. Formally expressed in @eq-diff-pool:
 
 $
    S & = "softmax"("GNN"_"Assigment" (N)) \
