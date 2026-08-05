@@ -1,12 +1,13 @@
 [tasks."build:cv"]
-depends = ["build:cv:lang en",] #"build:cv:lang de"]
+depends = ["build:cv:lang en"] #"build:cv:lang de"]
 
 [tasks."build:biodata"]
-depends = ["build:biodata:lang en",] #"build:biodata:lang de"]
+depends = ["build:biodata:lang en"] #"build:biodata:lang de"]
 
 [tasks."build:cv:lang"]
 usage = """
 arg <lang> default="en"
+flag "--with-signature" default="false"
 """
 sources = [
     "**/*.typ",
@@ -18,8 +19,8 @@ sources = [
 outputs = ["out/cvs/CV_*_latest.pdf"]
 run = [
     'mkdir -p out/cvs',
-    'typst compile --input lang=${usage_lang} cv.typ "out/cvs/CV_${usage_lang}_$(date +%Y-%m-%d).pdf"',
-    'cp out/cvs/CV_${usage_lang}_$(date +%Y-%m-%d).pdf out/cvs/CV_${usage_lang}_latest.pdf'
+    'typst compile --input lang=${usage_lang} --input with-signature={{usage.with_signature}} cv.typ "out/cvs/CV_${usage_lang}_$(date +%Y-%m-%d){{ "_signed" if usage.with_signature else "" }}.pdf"',
+    'cp out/cvs/CV_${usage_lang}_$(date +%Y-%m-%d){{ "_signed" if usage.with_signature else "" }}.pdf out/cvs/CV_${usage_lang}_latest{{ "_signed" if usage.with_signature else "" }}.pdf',
 ]
 
 [tasks."build:biodata:lang"]
@@ -37,7 +38,7 @@ outputs = ["out/biodatas/Biodata_*_latest.pdf"]
 run = [
     'mkdir -p out/biodatas',
     'typst compile --input lang=${usage_lang} biodata.typ "out/biodatas/Biodata_${usage_lang}_$(date +%Y-%m-%d).pdf"',
-    'cp out/biodatas/Biodata_${usage_lang}_$(date +%Y-%m-%d).pdf out/biodatas/Biodata_${usage_lang}_latest.pdf'
+    'cp out/biodatas/Biodata_${usage_lang}_$(date +%Y-%m-%d).pdf out/biodatas/Biodata_${usage_lang}_latest.pdf',
 ]
 
 [tasks."build"]

@@ -1,6 +1,7 @@
 #import "common.typ": *
 
 #show: base-configuration
+#let with-signature = eval(sys.inputs.at("with-signature", default: "false"))
 
 #let muted = text.with(fill: luma(100))
 #let sidebarSection = {
@@ -278,5 +279,28 @@
     columns: (2fr, 5fr),
     column-gutter: 2em,
     sidebarSection, mainSection,
+  )
+}
+
+#if with-signature {
+  line(length: 100%, stroke: 0.5pt + luma(200))
+  v(0em)
+
+  grid(
+    columns: (1fr, auto),
+    align: (left, horizon),
+    [
+      #set text(
+        size: eval(settings.font.size.description),
+        font: themes.fonts.sans.family,
+        fill: themes.light.foreground,
+      )
+      I hereby declare that all the above information is correct to the best of my knowledge and belief.\
+
+      *#configuration.contacts.name*, #muted(size: 0.9em)[#datetime.today().display()]
+    ],
+    [
+      #box(image("src/sensitive/signature.svg", height: 3em), inset: (right: 1em))
+    ],
   )
 }
