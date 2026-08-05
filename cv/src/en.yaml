@@ -48,6 +48,12 @@ skills:
       - Biochemistry
       - Sequencing
       - Analysis
+  - category: Agents
+    items:
+      - Cursor
+      - OpenHuman
+      - MCP
+      - OpenRouter
   - category: Soft Skills
     items:
       - Remarkable Ability to Learn Quickly and Self-Driven
