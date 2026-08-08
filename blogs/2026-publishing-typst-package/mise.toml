@@ -1,0 +1,12 @@
+[tools]
+"cargo:https://github.com/Myriad-Dreamin/typst.ts" = { version = "tag:v0.8.0-rc3", crate = "typst-ts-cli" }
+typst = "0.15.0"
+
+[task_config]
+includes = [
+    "../../website/tasks/blog.toml",  # Include this blog in the website embedding
+    "../tasks/blog.toml"
+]
+
+
+
