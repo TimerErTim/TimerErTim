@@ -45,11 +45,7 @@
 #show raw.where(lang: "show-md", block: true): it => cmarker.render(it.text)
 
 
-The finished project is available under #web-or[
-  @try-it-out-yourself
-][
-  // TODO: insert hosted link
-]
+The finished project is available under @try-it-out-yourself.
 
 = What has already happened? <chapter-recap>
 
