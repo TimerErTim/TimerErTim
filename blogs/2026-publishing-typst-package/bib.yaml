@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mkdjr/hayagriva/refs/heads/main/hayagriva.schema.json
+
+typst-package-manager:
+  type: web
+  url:
+    value: https://typst.app/blog/2023/package-manager/
+    date: 2026-08-12

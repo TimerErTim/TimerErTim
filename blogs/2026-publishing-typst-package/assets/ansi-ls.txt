@@ -1,0 +1,29 @@
+[1;34m.[0m
+[1;90m├── [34mtemplate[0m
+[1;90m│   ├── [0mbib.yaml
+[1;90m│   ├── [34mchapters[0m
+[1;90m│   │   ├── [0mabstract.typ
+[1;90m│   │   ├── [0macknowledgement.typ
+[1;90m│   │   ├── [0mappendix.typ
+[1;90m│   │   ├── [0mconclusion.typ
+[1;90m│   │   ├── [0mintroduction.typ
+[1;90m│   │   ├── [0mkurzfassung.typ
+[1;90m│   │   ├── [0mmethodology.typ
+[1;90m│   │   └── [0mpreamble.typ
+[1;90m│   ├── [0mdeps.typ
+[1;90m│   ├── [0mmain.typ
+[1;90m│   └── [0mmise.toml
+[1;90m├── [34mcomponents[0m
+[1;90m│   ├── [0mconstants.typ
+[1;90m│   ├── [0mdeclaration_de.typ
+[1;90m│   ├── [0mdeclaration_en.typ
+[1;90m│   ├── [0mi8n.typ
+[1;90m│   ├── [0msections.typ
+[1;90m│   ├── [0mstyles_classic.typ
+[1;90m│   ├── [0mstyles_modern.typ
+[1;90m│   ├── [0mtemplate.typ
+[1;90m│   ├── [0mtitlepage.typ
+[1;90m│   └── [0mutils.typ
+[1;90m├── [0mlib.typ
+[1;90m├── [0mmise.toml
+[1;90m└── [0mtypst.toml
