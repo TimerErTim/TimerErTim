@@ -30,7 +30,7 @@
 #show: blog-entry.with(
   target: auto,
   created-at: datetime(year: 2026, month: 6, day: 12),
-  updated-at: datetime(year: 2026, month: 6, day: 12),
+  updated-at: datetime(year: 2026, month: 8, day: 11),
 )
 
 #import "deps.typ": fl, lq
@@ -231,7 +231,7 @@ The document is then rendered on the client side by the browser using the `typst
 
 Turns out we have problems embedding HTML content in Typst and responsiveness is not really responding. HTML content is important because it allows us to do things like#web-or[:
   #xhtml(```html
-  <iframe data-testid="embed-iframe" src="https://open.spotify.com/embed/track/7mixpZVqU8AWHvSqOL0wKy?utm_source=generator&amp;si=156c406b2fff4d4a" width="512" height="352" frameBorder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  <iframe id="spotify-iframe" data-testid="embed-iframe" src="https://open.spotify.com/embed/track/7mixpZVqU8AWHvSqOL0wKy?utm_source=generator&amp;si=156c406b2fff4d4a" width="512" height="352" frameBorder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
   ```, outer-width: 50%, inner-height: 352pt, inner-width: 512pt)
 ][
   embedding an iframe of a totally unrelated Spotify track.
@@ -822,6 +822,7 @@ writeFileSync("src/app/theme.generated.css", css);
 The solution is not yet perfect. While pretty much fully functional, there are things left to improve.
 
 == Remove iframe reloading upon resize
+
 Because we actually insert a new DOM child and remove the previous one upon resize, the iframe is considered to be different by the browser, which causes a reset of its state, effectively canceling any ongoing playback.
 
 #grid(
@@ -853,6 +854,14 @@ Because we actually insert a new DOM child and remove the previous one upon resi
     image("assets/postreload-downsized.png")
   },
 )
+
+#success-callout(heading: [Solution: *Idiomorph* by the creator of htmx!])[
+  // TODO: link here
+  // TODO: better explain
+  This is a library that changes the DOM to a desired target state by retaining as much of the original as possible. 
+  It leaves most original DOM nodes in place, which allows us to retain the YouTube (and similar) iframe embeds even during
+  resizes when setting a new SVG content variant.
+]
 
 == More Website integration
 The current solution only writes the following metadata to the filesystem during the export process:

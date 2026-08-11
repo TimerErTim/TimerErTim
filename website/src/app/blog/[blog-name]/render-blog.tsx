@@ -3,6 +3,7 @@
 import { TransitBlogMetadata } from "@/model/blogs";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { decompress } from "brotli-compress/js";
+import { Idiomorph } from 'idiomorph';
 import { decode } from "@ably/vcdiff-decoder";
 import { useTheme } from "@/lib/theme";
 import { useContainerWidth } from "@/lib/container-width";
@@ -92,21 +93,18 @@ export default function RenderBlog({ blogData }: { blogData: TransitBlogMetadata
     const theme = useTheme();
     const [divRef, divWidth] = useContainerWidth();
 
-    const svgContent = useMemo(() => {
+    const svgVariant = useMemo(() => {
         if (!ready) return null;
         if (blogData.variants.length === 1) {
-            const onlyVariant = blogData.variants[0];
-            if (!onlyVariant) return null;
-            return decodeText(getDecodedBytes(onlyVariant.filename));
+            return blogData.variants[0];
         }
-        const variant = selectVariant(blogData.variants, theme, divWidth);
-        const fallbackVariant = blogData.variants[0];
-        if (!variant) {
-            if (!fallbackVariant) return null;
-            return decodeText(getDecodedBytes(fallbackVariant.filename));
-        }
-        return decodeText(getDecodedBytes(variant.filename));
-    }, [blogData.variants, theme, divWidth, ready, getDecodedBytes]);
+        return selectVariant(blogData.variants, theme, divWidth);
+    }, [blogData.variants, theme, divWidth, ready]);
+
+    const svgContent = useMemo(() => {
+        if (!svgVariant) return null;
+        return decodeText(getDecodedBytes(svgVariant.filename));
+    }, [svgVariant, getDecodedBytes]);
 
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -114,25 +112,50 @@ export default function RenderBlog({ blogData }: { blogData: TransitBlogMetadata
     useEffect(() => {
         if (!containerRef.current || !svgContent) return;
 
-        // 1. Set the raw HTML
-        containerRef.current.innerHTML = svgContent;
+        // 1. Set the raw HTML using idiomorph
+        try {
+            //containerRef.current.innerHTML = svgContent;
+            Idiomorph.morph(containerRef.current, svgContent, {
+                morphStyle: 'innerHTML',
+                callbacks: {
+                    afterNodeMorphed(_old, newNode) {
+                        // 2. Wait for the next animation frame
+                        requestAnimationFrame(() => {
 
-        // 2. Find and "re-run" the scripts
-        const scripts = containerRef.current.getElementsByTagName('script');
-        // Remove any previous scripts that were inserted from this source
-        const prevScripts = document.querySelectorAll('script[typst-svg-script-applied="1"]');
-        prevScripts.forEach(s => s.parentNode?.removeChild(s));
-        for (let script of scripts) {
-            // Mark original script for identification
-            script.setAttribute('typst-svg-script', '1');
+                            if (newNode instanceof SVGGraphicsElement) {
+                                const triggerReflow = (newNode as any as HTMLElement).offsetHeight;
+                                // 3. Synchronously read clientRect to flush the layout queue
+                                void newNode.getBoundingClientRect();
+                                const rect = newNode.getBBox()
+                                if (rect.width == 0 && rect.height == 0) {
+                                    console.log(newNode)
+                                    console.log(newNode.getElementsByTagName("image").length > 0)
+                                    // Remount the node in the DOM by removing and re-inserting it
+                                    const parent = newNode.parentNode;
+                                    if (parent) {
+                                        const next = newNode.nextSibling;
+                                        parent.removeChild(newNode);
+                                        if (next) {
+                                            parent.insertBefore(newNode, next);
+                                        } else {
+                                            parent.appendChild(newNode);
+                                        }
+                                        console.log("reinserted")
+                                        console.log(newNode.getBBox())
+                                    }
 
-            // Create and append the new script
-            const newScript = document.createElement('script');
-            // Wrap the script content in a catch-all block
-            newScript.textContent = 
-            `try {${script.textContent}} catch (e) {console.warn("Injected script error suppressed:", e);}`;
-            newScript.setAttribute('typst-svg-script-applied', '1');
-            document.body.appendChild(newScript);
+                                }
+                            } else if (newNode instanceof HTMLElement) {
+                                void newNode.offsetWidth // TypeScript knows this is safe
+                            }
+                        });
+                    }
+                }
+            });
+        } catch (error) {
+            if (!(error instanceof SyntaxError)) {
+                console.error('Error morphing SVG content:', error);
+            }
         }
     }, [svgContent]);
 
