@@ -1,4 +1,4 @@
-#import "../variants.typ": is-pdf, targets-web
+#import "../variants.typ": input-is-pdf, targets-web
 
 /// HTML extension
 #let xhtml(
@@ -88,8 +88,8 @@
       "</svg>"
     }
 
-    if (
-      targets-web and is-pdf
+    context if (
+      targets-web.get() and input-is-pdf
     ) {
       show: pdf.artifact
       show: box.with(width: outer-width, height: outer-height)

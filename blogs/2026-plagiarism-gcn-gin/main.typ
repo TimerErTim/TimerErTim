@@ -1,6 +1,6 @@
 #import "../common/template.typ": blog-entry
 #import "../common/theming.typ": catppuccin-accents, color-cycle, theme, themes
-#import "../common/variants.typ": broader-than, hide-in-preview, in-preview-or, web-only, web-or, web-page-width
+#import "../common/variants.typ": broader-than, hide-in-preview, in-preview-or, web-only, web-or, input-web-page-width
 #import "../common/deps.typ": codly, codly-local, lq, no-codly, strfmt
 #import "../common/components/depth.typ": depth-shadow-block
 
@@ -1210,7 +1210,7 @@ Now all the building blocks for the @fig-compress-graph are available. With that
 }
 
 #{
-  show: web-or(it => it, place.with(auto, float: true))
+  show: it => web-or(it, place(auto, it, float: true))
   set figure(placement: none)
   grid(
     columns: broader-than(560pt, 2, 1),
@@ -1927,7 +1927,7 @@ The sharp corner in these curves shows that the model is very good at differenti
 }
 
 #{
-  show: web-or(it => it, place.with(auto, float: true))
+  show: it => web-or(it, place(auto, it, float: true))
   set figure(placement: none)
   grid(
     columns: broader-than(560pt, 2, 1),

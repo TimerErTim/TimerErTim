@@ -24,6 +24,7 @@
 #let pdf-template(
   cont,
 ) = {
+  // TODO: replace with easy-hgb-thesis template
   set page(
     paper: "a4",
     margin: (top: 2cm, x: 2cm, bottom: 2.5cm),

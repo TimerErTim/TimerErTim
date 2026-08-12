@@ -1,5 +1,5 @@
 #import "../../look-and-feel/index.typ": themes
-#import "variants.typ": targets-web, theme-name, web-page-width
+#import "variants.typ": input-theme-name, input-web-page-width
 #import "theming.typ": theme
 
 #let style-footnote(
@@ -50,14 +50,14 @@
   cont,
 ) = {
   set page(
-    width: if web-page-width != none {
-      eval(web-page-width)
+    width: if input-web-page-width != none {
+      eval(input-web-page-width)
     } else {
       640pt
     },
     height: auto,
     fill: white.transparentize(100%),
-    margin: if web-page-width != none {
+    margin: if input-web-page-width != none {
       0pt
     } else {
       1cm

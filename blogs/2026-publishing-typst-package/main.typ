@@ -1,13 +1,8 @@
 #import "../common/template.typ": blog-entry
 #import "../common/theming.typ": catppuccin-accents, color-cycle, theme, themes
-#import "../common/variants.typ": broader-than, hide-in-preview, in-preview-or, web-only, web-or, web-page-width
+#import "../common/variants.typ": broader-than, hide-in-preview, in-preview-or, web-only, input-web-page-width
 #import "../common/deps.typ": codly, codly-local, lq, no-codly, strfmt
 #import "../common/components/depth.typ": depth-shadow-block
-
-// TODO: Make context based web or pdf type
-// TOOD: Make pdf variant to bachelor thesis style
-#show cite: super
-#set cite(form: "prose")
 
 #set text(lang: "en")
 #set document(
@@ -27,6 +22,7 @@
   target: auto,
   created-at: datetime(year: 2026, month: 8, day: 12),
   //updated-at: datetime(year: 2026, month: 7, day: 29),
+  bibl: bibliography("bib.yaml"),
 )
 
 // Setup document content dependencies
@@ -276,17 +272,5 @@ manual/
 ```
 
 That's it, the `publish` task will now take care of the rest. Thanks for reading this far!
-
-= References
-
-#context {
-  let links-in-doc = query(selector(link).before(here())).map(it => it.dest).filter(it => type(it) == str).dedup()
-  let hayagriva-values = links-in-doc.map(it => (
-    type: "web",
-    url: it
-  )).enumerate().map(((idx, it)) => ("_link-" + str(idx), it)).to-dict()
-  let links-yaml = yaml.encode(hayagriva-values)
-  bibliography(("bib.yaml", bytes(links-yaml)), style: "springer-lecture-notes-in-computer-science", title: none, full: true)
-}
 
 

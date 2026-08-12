@@ -1,9 +1,7 @@
 #import "components/callouts.typ": quote-callout
-#import "theming.typ": (
-  catppuccin-accents, catppuccin-flavor, color-cycle, theme, themes,
-)
+#import "theming.typ": catppuccin-accents, catppuccin-flavor, color-cycle, theme, themes
 #import "components/depth.typ": depth-shadow-block
-#import "variants.typ": is-preview, light-or, targets-web, web-or
+#import "variants.typ": input-is-preview, light-or, web-or, targets-web
 #import "deps.typ": catppuccin, codly, codly-init, codly-languages, lq
 #import "components/pikchr.typ": pikchr-init
 
@@ -13,26 +11,35 @@
   set text(
     fill: theme.colors.foreground,
     font: theme.fonts.sans.family,
-    size: web-or(
-      theme.layout.fontSize.small,
-      theme.layout.fontSize.tiny, // Tiny font for pdf
-    ),
   )
+  show: it => {
+    web-or(
+      {
+        set text(size: theme.layout.fontSize.small)
+        it
+      },
+      {
+        // Tiny font for pdf
+        set text(size: theme.layout.fontSize.tiny)
+        it
+      },
+    )
+  }
 
   set par(leading: theme.layout.lineHeight.tiny / 11pt * 1em - 0.8em)
 
   body
 }
 
-#let style-emoji(emoji) = {
+#let style-emoji(emoji) = context {
   set text(
     font: "OpenMoji",
   )
-  // Scale up in web (and web based tinymist preview)because otherwise the emoji is too small idk shenanigans, because we use working but broken bounding box font
+  // Scale up in web (and web based tinymist preview) because otherwise the emoji is too small idk shenanigans, because we use working but broken bounding box font
   set text(
     size: 1.2em,
     baseline: 0.15em,
-  ) if targets-web or is-preview
+  ) if targets-web.get() or input-is-preview
   emoji
 }
 
@@ -181,6 +188,14 @@
   body
 }
 
+#let set-cite-style(
+  body,
+) = {
+  show cite: super
+  set cite(form: "normal")
+  body
+}
+
 #let base-style(
   cont,
 ) = {
@@ -190,6 +205,7 @@
   show: set-equation-style
   show: set-raw-style
   show: set-lilaq-style
+  show: set-cite-style
   show link: style-link
   show quote: style-quote
   show: pikchr-init
