@@ -22,9 +22,11 @@ run = ["cp build/main.pdf {{ vars.REPO_ROOT }}/build/website/blogs/{{ config_roo
 ["website-embedding:export"]
 description = "Export the all website embedding files"
 depends = ["prepare:website-build-dir", "export:metadata"]
-depends_post = ["website-embedding:compress"]
 env.REPO_ROOT = "{{ vars.REPO_ROOT }}"
-run = "{{ vars.REPO_ROOT }}/website/tasks/scripts/embed-blog.py"
+run = [
+    "{{ vars.REPO_ROOT }}/website/tasks/scripts/embed-blog.py",
+    { task = "website-embedding:compress" }
+]
 
 ["website-embedding:compress"]
 description = "Compress the website embedding files using brotli"

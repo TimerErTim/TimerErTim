@@ -61,6 +61,7 @@ run = ["mkdir -p dist/website/"]
 [tasks."export"]
 description = "Copy static export to repo out/website/"
 depends = ["build", "prepare:output_dir"]
+wait_for = ["//blogs/...:website-embedding:compress"]
 run = [
     "rm -rf {{ vars.REPO_ROOT }}/dist/website",
     "cp -r out/ {{ vars.REPO_ROOT }}/dist/website",
