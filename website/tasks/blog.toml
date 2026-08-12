@@ -12,7 +12,7 @@ run = ["mkdir -p build/website/blogs/{{ config_root | basename }}/"]
 
 ["website-embedding"]
 description = "Embed the blog in the website build directory"
-depends = ["website-embedding:?*"]
+depends = ["website-embedding:pdf", "website-embedding:export"]
 
 ["website-embedding:pdf"]
 description = "Add the blog pdf to the website build directory"
@@ -24,7 +24,7 @@ description = "Export the all website embedding files"
 depends = ["prepare:website-build-dir", "export:metadata"]
 depends_post = ["website-embedding:compress"]
 env.REPO_ROOT = "{{ vars.REPO_ROOT }}"
-file = "{{ vars.REPO_ROOT }}/website/tasks/scripts/embed-blog.py"
+run = "{{ vars.REPO_ROOT }}/website/tasks/scripts/embed-blog.py"
 
 ["website-embedding:compress"]
 description = "Compress the website embedding files using brotli"
@@ -32,4 +32,4 @@ dir = "{{ vars.REPO_ROOT }}/build/website/blogs/{{ config_root | basename }}"
 sources = ["*.svg"]
 outputs = ["*.svg.br"]
 env.REPO_ROOT = "{{ vars.REPO_ROOT }}"
-file = "{{ vars.REPO_ROOT }}/website/tasks/scripts/compress-blog.py"
+run = "{{ vars.REPO_ROOT }}/website/tasks/scripts/compress-blog.py"
