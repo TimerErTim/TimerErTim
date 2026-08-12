@@ -1,6 +1,9 @@
 #import "../common/template.typ": blog-entry
 #import "../common/theming.typ": catppuccin-accents, color-cycle, theme, themes
-#import "../common/variants.typ": broader-than, hide-in-preview, in-preview-or, web-only, web-or, input-web-page-width
+#import "../common/variants.typ": (
+  broader-than, hide-in-preview, in-preview-or, input-web-page-width, web-only,
+  web-or,
+)
 #import "../common/deps.typ": codly, codly-local, lq, no-codly, strfmt
 #import "../common/components/depth.typ": depth-shadow-block
 
@@ -30,7 +33,8 @@
 #import "deps.typ": *
 #import pinit: *
 #import "../common/components/callouts.typ": (
-  accent-callout, callout, danger-callout, info-callout, success-callout, warning-callout,
+  accent-callout, callout, danger-callout, info-callout, success-callout,
+  warning-callout,
 )
 #import "../common/calc/auc.typ": auc
 #import "../common/calc/analysis.typ": smooth_series
@@ -724,7 +728,9 @@ impl<B: Backend> PlagiarismDecider<B> {
 ]
 
 #{
-  let points = sj.haltonset-f(16, skip: 42, size: ast-labels.len()).map(it => it.map(x => x * 2 - 1))
+  let points = sj
+    .haltonset-f(16, skip: 42, size: ast-labels.len())
+    .map(it => it.map(x => x * 2 - 1))
   let abbrev-vec-map = array
     .zip(ast-labels.keys(), points.map(((x0, .., xlast)) => strfmt(
       ```typc
@@ -1271,7 +1277,10 @@ The model was instructed to
   #raw(
     block: true,
     lang: "show-md",
-    read("assets/custom-ds-task2-readme.md").split("\n").slice(0, 12).join("\n"),
+    read("assets/custom-ds-task2-readme.md")
+      .split("\n")
+      .slice(0, 12)
+      .join("\n"),
   )
 ]
 
@@ -1958,7 +1967,8 @@ I love the idea of embeddings. There is something intriguing about encoding some
 )
 
 #let other-gin-embeddings = gin-embedding-reduced.filter(it => (
-  it.self_path != highest-plag-embedding.self_path and it.self_path not in highest-plag-embedding.plag_paths
+  it.self_path != highest-plag-embedding.self_path
+    and it.self_path not in highest-plag-embedding.plag_paths
 ))
 #let grouped-gin-embeddings = gin-embedding-reduced.filter(it => (
   it.self_path not in other-gin-embeddings.map(it => it.self_path)
@@ -1990,7 +2000,9 @@ I love the idea of embeddings. There is something intriguing about encoding some
     lq.scatter(
       other-gin-embeddings.map(it => it.component1),
       other-gin-embeddings.map(it => it.component2),
-      color: other-gin-embeddings.map(it => color-from-path(it.self_path)).map(it => it.transparentize(25%)),
+      color: other-gin-embeddings
+        .map(it => color-from-path(it.self_path))
+        .map(it => it.transparentize(25%)),
       stroke: none,
       size: 5pt,
     ),
@@ -2032,7 +2044,9 @@ I love the idea of embeddings. There is something intriguing about encoding some
         #show: scale.with(200%, reflow: true)
         #lq.diagram(
           width: 1.5cm,
-          height: 1.5cm / (zoom.x.at(1) - zoom.x.at(0)) * (zoom.y.at(1) - zoom.y.at(0)),
+          height: 1.5cm
+            / (zoom.x.at(1) - zoom.x.at(0))
+            * (zoom.y.at(1) - zoom.y.at(0)),
           fill: theme.colors.base,
           xlim: zoom.x,
           ylim: zoom.y,

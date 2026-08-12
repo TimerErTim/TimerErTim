@@ -1,6 +1,8 @@
 #import "../common/template.typ": blog-entry
 #import "../common/theming.typ": catppuccin-accents, color-cycle, theme, themes
-#import "../common/variants.typ": broader-than, hide-in-preview, in-preview-or, web-only, input-web-page-width
+#import "../common/variants.typ": (
+  broader-than, hide-in-preview, in-preview-or, input-web-page-width, web-only,
+)
 #import "../common/deps.typ": codly, codly-local, lq, no-codly, strfmt
 #import "../common/components/depth.typ": depth-shadow-block
 
@@ -28,7 +30,8 @@
 // Setup document content dependencies
 #import "deps.typ": *
 #import "../common/components/callouts.typ": (
-  accent-callout, callout, danger-callout, info-callout, success-callout, warning-callout,
+  accent-callout, callout, danger-callout, info-callout, success-callout,
+  warning-callout,
 )
 #import "../common/components/xhtml.typ": xhtml
 
@@ -54,8 +57,8 @@ There are two main parts: The package itself and the ready to get going template
   width: 100%,
   title: [File structure of the package],
   style: (
-    inset: (top: -0.5em, rest: 1em)
-  )
+    inset: (top: -0.5em, rest: 1em),
+  ),
 )[
   #conch.render-ansi(read("assets/ansi-ls.txt"))
 ]
@@ -189,7 +192,7 @@ An additional user serving artifact is the manual, which is available #link("htt
 
 == Technical introduction
 
-*Typst* went for an easy and straightforward approach for its early-stage package registry: Hosting everything in a public GitHub repository #link("https://github.com/typst/packages/")[typst/packages]. 
+*Typst* went for an easy and straightforward approach for its early-stage package registry: Hosting everything in a public GitHub repository #link("https://github.com/typst/packages/")[typst/packages].
 Because this is a (albeit indentionally long-term) bandaid solution, @typst-package-manager the only available package namespace for now is `@preview/`.
 
 *Typst Universe*, the package browser on the web, is effectively just a mirror of this GitHub repo. Submitting a new package is therefore as simple as opening a Pull Request.
@@ -197,8 +200,8 @@ Because this is a (albeit indentionally long-term) bandaid solution, @typst-pack
 == Creating the Pull Request
 
 Using the #link("https://medium.com/@abhijit838/git-fork-development-workflow-and-best-practices-fb5b3573ab74")[GitHub Pull Request Flow]
-+ Create a new branch on the locally cloned fork 
-+ Copy the package files into `packages/preview/easy-hgb-thesis/<version>/` 
++ Create a new branch on the locally cloned fork
++ Copy the package files into `packages/preview/easy-hgb-thesis/<version>/`
 + Create and push a new commit
 + Open a Pull Request on the upstream packages repo
 
@@ -252,10 +255,15 @@ The whole git workspace management can be automated as well. The whole publishin
 + *Copy package files* to the correct version directory
 + *Commit*
 
-#codly(ranges: ((45, 47), (101, 120),), highlights: ((
-  line: 116,
-  fill: catppuccin-accents.peach.transparentize(70%)
-),))
+#codly(
+  ranges: ((45, 47), (101, 120)),
+  highlights: (
+    (
+      line: 116,
+      fill: catppuccin-accents.peach.transparentize(70%),
+    ),
+  ),
+)
 #mise-toml
 
 The magic happens in line 116, because the `publish:copy-to` task#footnote[a simple python script] has a certain gimmick: It respects a `.publishignore` file, that works like a `.gitignore` file but for the publish process. There are some files we do not want to publish but want to track in the project repo, such as the root `mise.toml` file.

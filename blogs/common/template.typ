@@ -6,7 +6,10 @@
 
 #let build-references(bibl: none) = context {
   let is-targeting-web = targets-web.get()
-  let links-in-doc = query(selector(link).before(here())).map(it => it.dest).filter(it => type(it) == str).dedup()
+  let links-in-doc = query(selector(link).before(here()))
+    .map(it => it.dest)
+    .filter(it => type(it) == str)
+    .dedup()
 
   set bibliography(title: [References], style: "iso-690-numeric")
   set bibliography(style: "chicago-notes") if is-targeting-web
@@ -21,7 +24,9 @@
     }
   ]
   set bibliography(title: none) if bibl != none
-  let links-in-doc-not-in-bibl = links-in-doc.filter(it => not links-in-bibl.contains(it))
+  let links-in-doc-not-in-bibl = links-in-doc.filter(it => {
+    not links-in-bibl.contains(it)
+  })
 
   let hayagriva-values = links-in-doc-not-in-bibl
     .map(it => (

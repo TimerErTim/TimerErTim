@@ -300,7 +300,9 @@
       *#configuration.contacts.name*, #muted(size: 0.9em)[#datetime.today().display()]
     ],
     [
-      #box(image("src/sensitive/signature.svg", height: 3em), inset: (right: 1em))
+      #box(image("src/sensitive/signature.svg", height: 3em), inset: (
+        right: 1em,
+      ))
     ],
   )
 }

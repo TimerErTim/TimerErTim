@@ -1,5 +1,5 @@
 #import "../../look-and-feel/index.typ": get-theme, themes
-#import "variants.typ": light-or, input-theme-name
+#import "variants.typ": input-theme-name, light-or
 #import "deps.typ": catppuccin
 
 #let theme = get-theme(input-theme-name)

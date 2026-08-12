@@ -1,7 +1,9 @@
 #import "components/callouts.typ": quote-callout
-#import "theming.typ": catppuccin-accents, catppuccin-flavor, color-cycle, theme, themes
+#import "theming.typ": (
+  catppuccin-accents, catppuccin-flavor, color-cycle, theme, themes,
+)
 #import "components/depth.typ": depth-shadow-block
-#import "variants.typ": input-is-preview, light-or, web-or, targets-web
+#import "variants.typ": input-is-preview, light-or, targets-web, web-or
 #import "deps.typ": catppuccin, codly, codly-init, codly-languages, lq
 #import "components/pikchr.typ": pikchr-init
 
