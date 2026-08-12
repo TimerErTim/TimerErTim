@@ -7,6 +7,20 @@
     <language>en</language>
     <atom:link href="https://timerertim.eu/feed.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Publishing a Typst Template Package on Typst Universe</title>
+      <link>https://timerertim.eu/blog/2026-publishing-typst-package/</link>
+      <description>As part of my current bachelor thesis writing and efforts to establish Typst at my university, I recently published the ready to use easy-hgb-thesis package for usage at Campus Hagenberg. The package can be found on the official Typst Universe, and I am going to show how easy that process was. This can be thought of as a tutorial with my personal tone and choice of tools: mise, jujutsu and Typst CLI.</description>
+      <pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://timerertim.eu/blog/2026-publishing-typst-package/</guid>
+      <author>Tim Peko (TimerErTim)</author>
+      <category>Typst</category>
+      <category>Templates</category>
+      <category>Thesis Writing</category>
+      <category>Campus Hagenberg</category>
+      <category>Mise</category>
+      <category>Jujutsu</category>
+    </item>
+    <item>
       <title>Using Graph Neural Networks for coding assignment plagiarism detection based on source</title>
       <link>https://timerertim.eu/blog/2026-plagiarism-gcn-gin/</link>
       <description>Neural networks seem like a perfect fit for detecting plagiarism attempts in coding exercises. In the Rust deep learning framework burn-rs, I built a graph convolution network with subpar accuracy, After a quick recap about that, we will explore how graph isomorphism networks and different similarity metrics can be used to improve the accuracy of the model.</description>
