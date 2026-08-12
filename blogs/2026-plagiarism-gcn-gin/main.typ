@@ -24,9 +24,10 @@
   ),
 )
 #show: blog-entry.with(
-  target: auto,
+  target: "web",
   created-at: datetime(year: 2026, month: 7, day: 28),
   updated-at: datetime(year: 2026, month: 7, day: 29),
+  bibl: bibliography("bib.yaml", full: true)
 )
 
 // Setup document content dependencies
@@ -1323,8 +1324,6 @@ The model was instructed to
   raw(block: true, lang: "cpp", read("assets/auth2.cpp"))
 }
 
-This synthetic dataset is available under the projects repository in @references.
-
 == Graph Isomorphism Networks <graph-isomorphism-networks-trials>
 
 Graph Isomorphism Networks (GINs) can be thought of pretty similar to GCNs, introduced in @gcn-recap, where the main difference is the aggregation function being a sum of the node's neighbors' embeddings instead of a mean. The single GIN passes are repeated in order to extend the aggregation reach to multiple hops. For further processing, the residuals (the individual passes) are summed up along all nodes in the graph and concatenated to form a final graph embedding in the shape of $"number of passes" times "embedding size"$.
@@ -2166,10 +2165,6 @@ Backpropagation is great! Using the gradients for a single forward pass, we get 
 ]
 
 
-= References <references>
 
-Project Repository: #link("https://github.com/TimerErTim/plagiarinator")[TimerErTim/plagiarinator]
 
-C++ Dataset: #link("https://ieee-dataport.org/open-access/programming-homework-dataset-plagiarism-detection")[Programming Homework Dataset for Plagiarism Detection | IEEE DataPort]
 
-Dimensionality Reduction: #link("https://github.com/jean-pierreboth/annembed")[annembed]

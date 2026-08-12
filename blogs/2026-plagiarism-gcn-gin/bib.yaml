@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mkdjr/hayagriva/refs/heads/main/hayagriva.schema.json
+
+project-repository:
+  type: web
+  title: Project Repository
+  url:
+    value: https://github.com/TimerErTim/plagiarinator
+
+c++-dataset:
+  type: web
+  title: C++ Dataset
+  url:
+    value: https://ieee-dataport.org/open-access/programming-homework-dataset-plagiarism-detection
+
+dimensionality-reduction:
+  type: web
+  title: Dimensionality Reduction
+  url:
+    value: https://github.com/jean-pierreboth/annembed
