@@ -9,8 +9,9 @@
     <item>
       <title>Publishing a Typst Template Package on Typst Universe</title>
       <link>https://timerertim.eu/blog/2026-publishing-typst-package/</link>
-      <description>As part of my current bachelor thesis writing and efforts to establish Typst at my university, I recently published the ready to use easy-hgb-thesis package for usage at Campus Hagenberg. The package can be found on the official Typst Universe, and I am going to show how easy that process was. This can be thought of as a tutorial with my personal tone and choice of tools: mise, jujutsu and Typst CLI.</description>
+      <description>As part of my current bachelor&apos;s thesis writing and efforts to establish Typst at my university, I recently published the ready-to-use easy-hgb-thesis package for usage at Campus Hagenberg. The package can be found on the official Typst Universe, and I am going to show how easy that process was. This can be thought of as a tutorial with my personal tone and choice of tools: mise, jujutsu and Typst CLI.</description>
       <pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate>
+      <atom:updated>2026-08-13T00:00:00.000Z</atom:updated>
       <guid isPermaLink="true">https://timerertim.eu/blog/2026-publishing-typst-package/</guid>
       <author>Tim Peko (TimerErTim)</author>
       <category>Typst</category>

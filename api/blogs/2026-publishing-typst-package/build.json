@@ -1,111 +1,111 @@
 {
   "slug": "2026-publishing-typst-package",
-  "contentHash": "e30fda7f403d7964a63763a5aaebc3f9c071daaa6b05b7580bf8a9d48fdde1b2",
+  "contentHash": "68843eb5da49da7fed606914a3ff794a4f113528f7497aa3adb3f16f1bc7e894",
   "variants": [
     {
       "filename": "main_light_320pt.svg",
       "theme": "light",
       "width_pt": 320,
       "compressedFilename": "main_light_320pt.svg.br",
-      "referenceVariant": "main_light_576pt.svg"
+      "referenceVariant": "main_dark_320pt.svg"
     },
     {
       "filename": "main_light_448pt.svg",
       "theme": "light",
       "width_pt": 448,
       "compressedFilename": "main_light_448pt.svg.br",
-      "referenceVariant": "main_light_832pt.svg"
+      "referenceVariant": "main_dark_448pt.svg"
     },
     {
       "filename": "main_light_576pt.svg",
       "theme": "light",
       "width_pt": 576,
       "compressedFilename": "main_light_576pt.svg.br",
-      "referenceVariant": "main_light_1088pt.svg"
+      "referenceVariant": "main_light_704pt.svg"
     },
     {
       "filename": "main_light_704pt.svg",
       "theme": "light",
       "width_pt": 704,
       "compressedFilename": "main_light_704pt.svg.br",
-      "referenceVariant": "main_light_960pt.svg"
+      "referenceVariant": "main_dark_704pt.svg"
     },
     {
       "filename": "main_light_832pt.svg",
       "theme": "light",
       "width_pt": 832,
       "compressedFilename": "main_light_832pt.svg.br",
-      "referenceVariant": "main_light_960pt.svg"
+      "referenceVariant": "main_dark_832pt.svg"
     },
     {
       "filename": "main_light_960pt.svg",
       "theme": "light",
       "width_pt": 960,
       "compressedFilename": "main_light_960pt.svg.br",
-      "referenceVariant": null
+      "referenceVariant": "main_dark_960pt.svg"
     },
     {
       "filename": "main_light_1088pt.svg",
       "theme": "light",
       "width_pt": 1088,
       "compressedFilename": "main_light_1088pt.svg.br",
-      "referenceVariant": "main_light_960pt.svg"
+      "referenceVariant": "main_light_832pt.svg"
     },
     {
       "filename": "main_dark_320pt.svg",
       "theme": "dark",
       "width_pt": 320,
       "compressedFilename": "main_dark_320pt.svg.br",
-      "referenceVariant": "main_light_320pt.svg"
+      "referenceVariant": "main_dark_576pt.svg"
     },
     {
       "filename": "main_dark_448pt.svg",
       "theme": "dark",
       "width_pt": 448,
       "compressedFilename": "main_dark_448pt.svg.br",
-      "referenceVariant": "main_light_448pt.svg"
+      "referenceVariant": "main_dark_832pt.svg"
     },
     {
       "filename": "main_dark_576pt.svg",
       "theme": "dark",
       "width_pt": 576,
       "compressedFilename": "main_dark_576pt.svg.br",
-      "referenceVariant": "main_dark_704pt.svg"
+      "referenceVariant": "main_dark_1088pt.svg"
     },
     {
       "filename": "main_dark_704pt.svg",
       "theme": "dark",
       "width_pt": 704,
       "compressedFilename": "main_dark_704pt.svg.br",
-      "referenceVariant": "main_light_704pt.svg"
+      "referenceVariant": "main_dark_832pt.svg"
     },
     {
       "filename": "main_dark_832pt.svg",
       "theme": "dark",
       "width_pt": 832,
       "compressedFilename": "main_dark_832pt.svg.br",
-      "referenceVariant": "main_dark_960pt.svg"
+      "referenceVariant": null
     },
     {
       "filename": "main_dark_960pt.svg",
       "theme": "dark",
       "width_pt": 960,
       "compressedFilename": "main_dark_960pt.svg.br",
-      "referenceVariant": "main_light_960pt.svg"
+      "referenceVariant": "main_dark_1088pt.svg"
     },
     {
       "filename": "main_dark_1088pt.svg",
       "theme": "dark",
       "width_pt": 1088,
       "compressedFilename": "main_dark_1088pt.svg.br",
-      "referenceVariant": "main_light_1088pt.svg"
+      "referenceVariant": "main_dark_832pt.svg"
     }
   ],
   "author": [
     "Tim Peko (TimerErTim)"
   ],
   "title": "Publishing a Typst Template Package on Typst Universe",
-  "description": "As part of my current bachelor thesis writing and efforts to establish Typst at my university, I recently published the ready to use easy-hgb-thesis package for usage at Campus Hagenberg. The package can be found on the official Typst Universe, and I am going to show how easy that process was. This can be thought of as a tutorial with my personal tone and choice of tools: mise, jujutsu and Typst CLI.",
+  "description": "As part of my current bachelor's thesis writing and efforts to establish Typst at my university, I recently published the ready-to-use easy-hgb-thesis package for usage at Campus Hagenberg. The package can be found on the official Typst Universe, and I am going to show how easy that process was. This can be thought of as a tutorial with my personal tone and choice of tools: mise, jujutsu and Typst CLI.",
   "keywords": [
     "Typst",
     "Templates",
@@ -115,5 +115,5 @@
     "Jujutsu"
   ],
   "createdAt": 1786492800,
-  "updatedAt": 1786492800
+  "updatedAt": 1786579200
 }
