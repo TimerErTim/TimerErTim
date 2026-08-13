@@ -107,7 +107,7 @@ We also provide different premade thesis styles, controlling the default style f
 ```
 
 *Multiple languages*\
-By using a `#set text(lang: ..)` rule before the `full-thesis` invocation, users can switch between german and english language. Every text content passes through a `#i18n(key)` function, returning the appropriate variant from a central translation dictionary based on the current `text.lang` value.
+By using a `#set text(lang: ..)` rule before the `full-thesis` invocation, users can switch between German and English language. Every text content passes through a `#i18n(key)` function, returning the appropriate variant from a central translation dictionary based on the current `text.lang` value.
 
 *Advanced customization*\
 Style hooks are very powerful and allow users to override stylings as well as the whole content of individual sections. By adhering to the principle of only using fully reversible `#set`- or impactless `#show`-rules inside the package, users retain the ability to fully override all styling.
@@ -240,7 +240,7 @@ Let's break this down:
 
 - `TYPST_PACKAGE_PATH = "{{config_root}}/local-packages/"`: Tells *Typst* to look for packages inside the `local-packages/` folder.
 - `[tasks."setup:editable-package"]`: Symlinks the project root to the `local-packages/` folder so *Typst* can find the package.
-  + Extract package `name` and `version` from the `typst.toml` file using _yq_ (_jq_-like for TOMLY and YAML)
+  + Extract package `name` and `version` from the `typst.toml` file using _yq_ (_jq_-like for TOML and YAML)
   + *Typst* will look for the package at `<namespace>/<name>/<version>/` of the local package registry. Store that as symlink target.
   + Create a relative symlink from the project root to the target directory.
 
