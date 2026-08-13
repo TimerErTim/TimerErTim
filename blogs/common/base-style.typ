@@ -65,18 +65,6 @@
   body
 }
 
-#let style-link(
-  it,
-) = {
-  show: strong
-  set text(fill: theme.colors.info)
-  underline(
-    it,
-    stroke: theme.colors.shadow + theme.layout.borderWidth.small,
-    offset: theme.layout.borderWidth.large,
-  )
-}
-
 #let style-quote(
   quote,
 ) = {
@@ -157,19 +145,6 @@
   body
 }
 
-#let set-heading-style(
-  body,
-) = {
-  show heading.where(level: 1): set text(size: 1.4em)
-  show heading.where(level: 2): set text(size: 1.25em)
-  show heading.where(level: 3): set text(size: 1.15em)
-  show heading.where(level: 4): set text(size: 1.10em)
-
-  show heading: set block(above: 1em, below: 0.7547em)
-
-  body
-}
-
 #let set-lilaq-style(
   body,
 ) = {
@@ -203,12 +178,10 @@
 ) = {
   show: set-text-style
   show: set-emoji-style
-  show: set-heading-style
   show: set-equation-style
   show: set-raw-style
   show: set-lilaq-style
   show: set-cite-style
-  show link: style-link
   show quote: style-quote
   show: pikchr-init
 

@@ -1,4 +1,7 @@
 #import "theming.typ": theme
+#import "deps.typ": easy-hgb-thesis
+#import easy-hgb-thesis: *
+#import "components.typ": build-references
 
 #let intro-page() = context [
   #{
@@ -21,27 +24,50 @@
   outline(title: "Table of Contents")
 }
 
+#let style-link(it) = {
+  show: underline
+  set text(fill: theme.colors.info)
+  it
+}
+
 #let pdf-template(
   cont,
-) = {
-  // TODO: replace with easy-hgb-thesis template
-  set page(
-    paper: "a4",
-    margin: (top: 2cm, x: 2cm, bottom: 2.5cm),
-    fill: theme.colors.base,
+  bibl: none,
+) = context {
+  let font = text.font
+  show: full-thesis.with(
+    titlepage: none,
+    thesis-style: THESIS_STYLE.modern,
+    include-declaration: false,
+    include-figureoutline: false,
+    include-tableoutline: false,
+
+    kurzfassung: none,
+    abstract: context document.description,
+
+    bibl: build-references(bibl: bibl),
+
+    global-style: it => {
+      set text(font: font)
+      set page(fill: theme.colors.base)
+      it
+    },
+    content-style: it => {
+      show link: style-link
+      set figure(placement: auto)
+      set cite(form: "prose")
+      it
+    },
+    bibliography-style: it => {
+      show link: style-link
+      it
+    },
+    abstract-style: it => {
+      heading(level: 1)[Description]
+      show heading: none
+      it
+    },
   )
-  intro-page()
-  line(length: 100%, stroke: theme.colors.border)
-
-  // Only show outline if we have more than 3 pages
-  context if counter(page).final().first() > 3 {
-    pagebreak()
-    content-outline()
-    pagebreak()
-  }
-
-  set heading(numbering: "1.1")
-  set figure(placement: auto)
 
   cont
 }

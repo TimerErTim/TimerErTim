@@ -1,6 +1,7 @@
 #import "../../look-and-feel/index.typ": themes
 #import "variants.typ": input-theme-name, input-web-page-width
 #import "theming.typ": theme
+#import "components.typ": build-references
 
 #let style-footnote(
   footnote,
@@ -46,8 +47,34 @@
   body
 }
 
+#let set-heading-style(
+  body,
+) = {
+  show heading.where(level: 1): set text(size: 1.4em)
+  show heading.where(level: 2): set text(size: 1.25em)
+  show heading.where(level: 3): set text(size: 1.15em)
+  show heading.where(level: 4): set text(size: 1.10em)
+
+  show heading: set block(above: 1em, below: 0.7547em)
+
+  body
+}
+
+#let style-link(
+  it,
+) = {
+  show: strong
+  set text(fill: theme.colors.info)
+  underline(
+    it,
+    stroke: theme.colors.shadow + theme.layout.borderWidth.small,
+    offset: theme.layout.borderWidth.large,
+  )
+}
+
 #let web-template(
   cont,
+  bibl: none,
 ) = {
   set page(
     width: if input-web-page-width != none {
@@ -68,6 +95,10 @@
   show: set-footnote-style
   show: set-reference-style
   show: set-figure-style
+  show: set-heading-style
+  show link: style-link
 
   cont
+
+  build-references(bibl: bibl)
 }
