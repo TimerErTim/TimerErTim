@@ -21,9 +21,9 @@
   ),
 )
 #show: blog-entry.with(
-  target: auto,
+  target: "web",
   created-at: datetime(year: 2026, month: 8, day: 12),
-  //updated-at: datetime(year: 2026, month: 7, day: 29),
+  updated-at: datetime(year: 2026, month: 8, day: 13),
   bibl: bibliography("bib.yaml"),
 )
 
@@ -193,7 +193,7 @@ An additional user serving artifact is the manual, which is available #link("htt
 == Technical introduction
 
 *Typst* went for an easy and straightforward approach for its early-stage package registry: Hosting everything in a public GitHub repository #link("https://github.com/typst/packages/")[typst/packages].
-Because this is a (albeit indentionally long-term) bandaid solution, @typst-package-manager the only available package namespace for now is `@preview/`.
+Because there is no namespacing solution in place yet, the only available package namespace for now is `@preview/` @typst-package-manager.
 
 *Typst Universe*, the package browser on the web, is effectively just a mirror of this GitHub repo. Submitting a new package is therefore as simple as opening a Pull Request.
 
