@@ -9,7 +9,7 @@
 #set text(lang: "en")
 #set document(
   title: "Publishing a Typst Template Package on Typst Universe",
-  description: "As part of my current bachelor thesis writing and efforts to establish Typst at my university, I recently published the ready to use easy-hgb-thesis package for usage at Campus Hagenberg. The package can be found on the official Typst Universe, and I am going to show how easy that process was. This can be thought of as a tutorial with my personal tone and choice of tools: mise, jujutsu and Typst CLI.",
+  description: "As part of my current bachelor's thesis writing and efforts to establish Typst at my university, I recently published the ready-to-use easy-hgb-thesis package for usage at Campus Hagenberg. The package can be found on the official Typst Universe, and I am going to show how easy that process was. This can be thought of as a tutorial with my personal tone and choice of tools: mise, jujutsu and Typst CLI.",
   author: "Tim Peko (TimerErTim)",
   keywords: (
     "Typst",
@@ -37,21 +37,21 @@
 
 = Goal
 
-Being the *Typst* enthusiast that I am, my bachelor thesis shall be written in *Typst* as well. There is only one problem: There is no ready to use template for the university of applied sciences Upper Austria... at least not outside of the _LaTeX_ world. That has to change before I can start writing! The #link("https://typst.app/universe/package/easy-hgb-thesis")[*easy-hgb-thesis* package] was born.
+Being the *Typst* enthusiast that I am, my bachelor's thesis shall be written in *Typst* as well. There is only one problem: There is no ready to use template for the University of Applied Sciences Upper Austria... at least not outside of the _LaTeX_ world. That has to change before I can start writing! The #link("https://typst.app/universe/package/easy-hgb-thesis")[*easy-hgb-thesis* package] was born.
 
 With that being settled, I have the following goals in mind:
-+ The template should be easy to use and understand
-+ It should get you going very quickly
-+ Flexibility for every unique constellation
-+ Support of german and english language
-+ Covers advanced customization needs
-+ Good documentation and examples.
++ Easy to use and quick to understand
++ Fast setup for new projects
++ Flexible enough for unique use cases
++ Support for German and English
++ Advanced customization options via style hooks
++ Comprehensive documentation and clear examples
 
-All in all, the package should be a well-rounded solution for the typical bachelor thesis writing process. Easy for newcomers but powerful for experienced typesetting users, accessable on the official package registry, #link("https://typst.app/universe")[Typst Universe].
+All in all, the package should be a well-rounded solution for the typical bachelor's thesis writing process. Easy for newcomers but powerful for experienced typesetting users, accessible on the official package registry, #link("https://typst.app/universe")[Typst Universe].
 
 = Writing the package
 
-There are two main parts: The package itself and the ready to get going template. Conceptionally, the package is the real content with styles and convetions, whereas the template can be thought of a new project starter.
+There are two main parts: The package itself and the starter template. Conceptually, the package is the real content with styles and conventions, whereas the template can be thought of as a new project starter.
 
 #conch.terminal-frame(
   width: 100%,
@@ -91,7 +91,7 @@ The `full-thesis` function is kept simple and straightforward. It pairs well wit
 - *Style hooks* (`show`-Rules spanning the according sections) for customization
 
 *Gets you going very quickly*\
-By providing a ready to use template with chapters, typical configurations and compilation scripts already set up, users can get going simple by invoking `typst init @preview/easy-hgb-thesis`. This will create a new directory with the template and all necessary files.
+By providing a ready to use template with chapters, typical configurations and compilation scripts already set up, users can get going simply by invoking `typst init @preview/easy-hgb-thesis`. This will create a new directory with the template and all necessary files.
 @template-chapter further down below expands on this.
 
 *Flexibility for every unique constellation*\
@@ -107,13 +107,13 @@ We also provide different premade thesis styles, controlling the default style f
 ```
 
 *Multiple languages*\
-By using a `#set text(lang: ..)` rule before the `full-thesis` invocation, users can switch between german and english language. Every text content passes through a `#i8n(key)` function, returning the appropriate variant from a central translation dictionary based on the current `text.lang` value.
+By using a `#set text(lang: ..)` rule before the `full-thesis` invocation, users can switch between german and english language. Every text content passes through a `#i18n(key)` function, returning the appropriate variant from a central translation dictionary based on the current `text.lang` value.
 
 *Advanced customization*\
 Style hooks are very powerful and allow users to override stylings as well as the whole content of individual sections. By adhering to the principle of only using fully reversible `#set`- or impactless `#show`-rules inside the package, users retain the ability to fully override all styling.
 
 *Documentation*\
-Every publicly facing function is well documented, the template is blastered with helpful comments and a manual is provided with detailed explanations and examples for common customizations.
+Every publicly facing function is well documented, the template is packed with helpful comments and a manual is provided with detailed explanations and examples for common customizations.
 
 #info-callout(heading: [The repository is available on GitHub])[
   If you want to inspect the source code or contribute yourself, the repository is available at: #link("https://github.com/TimerErTim/hagenberg-thesis-typst")[TimerErTim/hagenberg-thesis-typst]
@@ -123,7 +123,7 @@ Every publicly facing function is well documented, the template is blastered wit
 
 There are other resources you might want to include when uploading to *Typst Universe* without being required for the package to work in *Typst*, for example a thumbnail image referenced in the `README.md` (so *Typst Universe* can display a nice preview image).
 
-There is an option specifically exclude published files from being fetched by *Typst* when installing the package:
+There is an option to specifically exclude published files from being fetched by *Typst* when installing the package:
 
 #codly(skips: ((2, 6),))
 ```toml
@@ -186,7 +186,7 @@ The `main.typ` is the entrypoint for the template and should always use the *Typ
 #include "chapters/conclusion.typ"
 ```
 
-An additional user serving artifact is the manual, which is available #link("https://github.com/TimerErTim/hagenberg-thesis-typst/blob/main/easy-hgb-thesis-manual.pdf")[in the repository]. It uses the template with `THESIS_STYLE.modern`. The source functions as example for how to use the package template.
+An additional user-serving artifact is the manual, which is available #link("https://github.com/TimerErTim/hagenberg-thesis-typst/blob/main/easy-hgb-thesis-manual.pdf")[in the repository]. It uses the template with `THESIS_STYLE.modern`. The source functions as an example for how to use the package template.
 
 = Publishing to Typst Universe <publishing-to-universe>
 
@@ -220,16 +220,16 @@ We are going to start by adding basic tools and environment variables to the `mi
 
 == Formatting
 
-#link("https://github.com/typstyle-rs/typstyle")[typstyle] is a great *Typst* formatter that we can easily integrate into our workflow with just one tool and according task defintion:
+#link("https://github.com/typstyle-rs/typstyle")[typstyle] is a great *Typst* formatter that we can easily integrate into our workflow with just one tool and according task definition:
 
 #codly(ranges: ((1, 1), (3, 3), (10, 14)))
 #mise-toml
 
-Listing the individual subdirectories manually is tedius but required for the next chapter.
+Listing the individual subdirectories manually is tedious but required for the next chapter.
 
 == Local compilation
 
-*Typst Universe* recommends compiling the exact template version locally before publishing to ensure compilability. So the unreleased, local package version has to become available to the template via `#import "@preview/easy-hgb-thesis:<unreleased-version>"` directive.
+*Typst Universe* recommends compiling the exact template version locally before publishing to ensure compilability. So the unreleased, local package version has to become available to the template via the `#import "@preview/easy-hgb-thesis:<unreleased-version>"` directive.
 
 *Typst* supports local package registries via the `TYPST_PACKAGE_PATH` environment variable. Instead of probing into the `packages/` folder of the GitHub repo mentioned in @publishing-to-universe, it probes into the folder this environment variable points to.
 
@@ -240,7 +240,7 @@ Let's break this down:
 
 - `TYPST_PACKAGE_PATH = "{{config_root}}/local-packages/"`: Tells *Typst* to look for packages inside the `local-packages/` folder.
 - `[tasks."setup:editable-package"]`: Symlinks the project root to the `local-packages/` folder so *Typst* can find the package.
-  + Extract package `name` and `version` from the `typst.toml` file using _yq_ (the yaml equivalent of _jq_)
+  + Extract package `name` and `version` from the `typst.toml` file using _yq_ (_jq_-like for TOMLY and YAML)
   + *Typst* will look for the package at `<namespace>/<name>/<version>/` of the local package registry. Store that as symlink target.
   + Create a relative symlink from the project root to the target directory.
 
