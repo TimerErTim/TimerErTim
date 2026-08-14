@@ -1,13 +1,13 @@
 {
   "slug": "2026-fh-talk-about-typst",
-  "contentHash": "725b8afa8cc6cf5257036f96071738a571a2848b715a9d85b5814f8e0edacd08",
+  "contentHash": "e27308a742e3a54ab5abc8dc7f3dd8b9339dc674d5f03148d2017a39ebda22e1",
   "variants": [
     {
       "filename": "main_light_320pt.svg",
       "theme": "light",
       "width_pt": 320,
       "compressedFilename": "main_light_320pt.svg.br",
-      "referenceVariant": "main_light_576pt.svg"
+      "referenceVariant": "main_dark_320pt.svg"
     },
     {
       "filename": "main_light_448pt.svg",
@@ -28,35 +28,35 @@
       "theme": "light",
       "width_pt": 704,
       "compressedFilename": "main_light_704pt.svg.br",
-      "referenceVariant": "main_light_1088pt.svg"
+      "referenceVariant": "main_dark_704pt.svg"
     },
     {
       "filename": "main_light_832pt.svg",
       "theme": "light",
       "width_pt": 832,
       "compressedFilename": "main_light_832pt.svg.br",
-      "referenceVariant": "main_light_960pt.svg"
+      "referenceVariant": "main_dark_832pt.svg"
     },
     {
       "filename": "main_light_960pt.svg",
       "theme": "light",
       "width_pt": 960,
       "compressedFilename": "main_light_960pt.svg.br",
-      "referenceVariant": "main_dark_1088pt.svg"
+      "referenceVariant": "main_light_1088pt.svg"
     },
     {
       "filename": "main_light_1088pt.svg",
       "theme": "light",
       "width_pt": 1088,
       "compressedFilename": "main_light_1088pt.svg.br",
-      "referenceVariant": "main_light_576pt.svg"
+      "referenceVariant": "main_light_704pt.svg"
     },
     {
       "filename": "main_dark_320pt.svg",
       "theme": "dark",
       "width_pt": 320,
       "compressedFilename": "main_dark_320pt.svg.br",
-      "referenceVariant": "main_light_320pt.svg"
+      "referenceVariant": "main_dark_576pt.svg"
     },
     {
       "filename": "main_dark_448pt.svg",
@@ -84,21 +84,21 @@
       "theme": "dark",
       "width_pt": 832,
       "compressedFilename": "main_dark_832pt.svg.br",
-      "referenceVariant": "main_dark_960pt.svg"
+      "referenceVariant": "main_dark_1088pt.svg"
     },
     {
       "filename": "main_dark_960pt.svg",
       "theme": "dark",
       "width_pt": 960,
       "compressedFilename": "main_dark_960pt.svg.br",
-      "referenceVariant": "main_dark_1088pt.svg"
+      "referenceVariant": null
     },
     {
       "filename": "main_dark_1088pt.svg",
       "theme": "dark",
       "width_pt": 1088,
       "compressedFilename": "main_dark_1088pt.svg.br",
-      "referenceVariant": null
+      "referenceVariant": "main_dark_960pt.svg"
     }
   ],
   "author": [
