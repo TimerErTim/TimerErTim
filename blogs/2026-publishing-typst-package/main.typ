@@ -57,7 +57,7 @@ There are two main parts: The package itself and the starter template. Conceptua
   width: 100%,
   title: [File structure of the package],
   style: (
-    inset: (top: -0.5em, rest: 1em),
+    inset: (top: -5mm, rest: 1em),
   ),
 )[
   #conch.render-ansi(read("assets/ansi-ls.txt"))

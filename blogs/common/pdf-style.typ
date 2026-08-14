@@ -49,7 +49,6 @@
 
     global-style: it => {
       set text(font: font)
-      set page(fill: theme.colors.base)
       it
     },
     content-style: it => {
@@ -63,6 +62,7 @@
       it
     },
     abstract-style: it => {
+      set page(numbering: "I")
       heading(level: 1)[Description]
       show heading: none
       it
