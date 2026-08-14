@@ -64,7 +64,8 @@
     abstract-style: it => {
       set page(numbering: "I")
       heading(level: 1)[Description]
-      show heading: none
+      show heading.where(level: 1): none
+      set heading(outlined: false)
       it
     },
   )
