@@ -36,7 +36,7 @@ sources = ["{{ vars.REPO_ROOT }}/cv/out/cvs/CV_en_latest.pdf"]
 outputs = ["public/cv/tim-peko-cv.pdf"]
 run = [
     "mkdir -p public/cv",
-    "cp {{ vars.REPO_ROOT }}/cv/out/cvs/CV_en_latest.pdf public/cv/tim-peko-cv.pdf",
+    "cp {{ vars.REPO_ROOT }}/cv/out/cvs/Tim Peko CV en latest_image.pdf public/cv/tim-peko-cv.pdf",
 ]
 
 [tasks."generate:assets"]

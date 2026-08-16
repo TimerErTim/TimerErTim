@@ -29,10 +29,13 @@
 
 `> Load successful.`
 
-#align(center, image(themed(
-  "out/typing-banner-light.svg",
-  "out/typing-banner-dark.svg",
-), alt: "!typst-embed-command"))
+#align(center, image(
+  themed(
+    "out/typing-banner-light.svg",
+    "out/typing-banner-dark.svg",
+  ),
+  alt: "!typst-embed-command",
+))
 #v(-1em)
 
 #align(center)[

@@ -118,11 +118,11 @@ education:
       link: "https://fh-ooe.at/campus-hagenberg"
     degree: "B.Sc."
     major: "Medical- & Bioinformatics"
-    track: "Bioinformatics"
+    #track: "Bioinformatics"
     # final_work:
     #   link:
     #     name: "Data Optimization Techniques"
-    location: Hagenberg, Austria
+    #location: Hagenberg, Austria
     from: "2025"
     to: "current"
   - place:
@@ -133,7 +133,7 @@ education:
     final_work:
       link:
         name: "Synde - Document Dataset Synthesizer"
-    location: Grieskirchen, Austria
+    #location: Grieskirchen, Austria
     from: "2018"
     to: "2023"
 

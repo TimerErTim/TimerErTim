@@ -4,6 +4,41 @@
 #let with-signature = eval(sys.inputs.at("with-signature", default: "false"))
 #let with-image = eval(sys.inputs.at("with-image", default: "false"))
 
+#let visit-me-on-section = [
+          Visit me on
+          #import "@preview/pinit:0.2.2": *
+
+          #let items = (
+            link(configuration.contacts.linkedin, image(
+              "../assets/logos/linkedin-square.png",
+              height: 12pt,
+            )),
+            link(configuration.contacts.github, image(
+              "../assets/logos/github-invertocat.svg",
+              height: 12pt,
+            )),
+            {
+              link(configuration.contacts.website, image(
+                "../assets/identity/icon.png",
+                height: 12pt,
+              ))
+              place(pin(1))
+            },
+          )
+
+          #items.map(box).join(h(1em))
+          #pinit-point-from(
+            1,
+            offset-dy: -1cm,
+            body-dy: -1em,
+            pin-dy: -4mm,
+            pin-dx: 6mm,
+          )[
+            #set text(size: 0.9em)
+            personal Website
+          ]
+        ]
+
 #let muted = text.with(fill: luma(100))
 #let sidebarSection = {
   [
@@ -14,17 +49,20 @@
       font: themes.fonts.sans.family,
     )
 
-    #link("mailto:" + configuration.contacts.email) \
-    #link("tel:" + configuration.contacts.phone) \
-    #set text(size: eval(settings.font.size.description))
-    #configuration.contacts.city,
-    #configuration.contacts.homecountry
+    #if with-image {
+      show: block.with(stroke: black, radius: 1em, clip: true)
+      image("../assets/picture/avatar.jpg", width: 100%)
+    } else [
 
-    LinkedIn:\ #link(configuration.contacts.linkedin) \
-    GitHub:\ #link(configuration.contacts.github) \
-    Website: #link(configuration.contacts.website)
+      #link("mailto:" + configuration.contacts.email) \
+      #link("tel:" + configuration.contacts.phone) \
+      #set text(size: eval(settings.font.size.description))
+      #configuration.contacts.city,
+      #configuration.contacts.homecountry
 
-    #line(length: 100%)
+      #visit-me-on-section
+      #line(length: 100%)
+    ]
 
     = Summary
 
@@ -50,7 +88,7 @@
           #{
             if "to" in place and "from" in place [
               #place.from
-              – #place.to \
+              \– #place.to \
             ] else if "arbitrary_interval" in place [
               #place.arbitrary_interval
             ]
@@ -133,6 +171,26 @@
         top-edge: 0pt,
       )
       #configuration.contacts.title
+    ]
+
+    #if with-image [
+      #set text(
+        size: eval(settings.font.size.description),
+        font: themes.fonts.sans.family,
+      )
+      #grid(
+        columns: (1fr, 1fr),
+        align: (left, center),
+        [
+          #configuration.contacts.city,
+          #configuration.contacts.homecountry\
+          #link("mailto:" + configuration.contacts.email) \
+          #link("tel:" + configuration.contacts.phone) \
+
+        ],
+        visit-me-on-section,
+      )
+      #line(length: 100%)
     ]
 
     = Experience
