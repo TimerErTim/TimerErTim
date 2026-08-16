@@ -26,7 +26,6 @@
 }
 #set rect(stroke: theme.colors.foreground)
 #set par(spacing: 1em)
-#show link: set text(fill: theme.colors.info)
 
 `> Load successful.`
 
@@ -104,9 +103,6 @@ I specialize in writing code that is safe, concurrent, and occasionally panics. 
     )
 
     #set align(left)
-    #link("YouTube", "https://www.youtube.com/@timerertim"),
-    #link("GitHub", "https://github.com/timerertim"),
-    #link("Website", "https://timerertim.eu"),
   ],
 ))
 
@@ -129,7 +125,6 @@ I specialize in writing code that is safe, concurrent, and occasionally panics. 
 = How this README works
 
 Using `typst-ts-cli` with the `svg_html` format, we can inline SVG `#image(...)` elements directly into the exported SVG document. A post-processing step extracts the root `<svg>` and decodes nested base64 embeds.
-Read more in #link("https://timerertim.eu/blog/2026-blog-with-typst/")[blogpost here]
 
 #let titled-content-card(
   title: [],
@@ -222,5 +217,5 @@ This effectively allows us to have animated SVGs in the README.
 #v(1em)
 #align(center)[
   #set text(size: 10pt, fill: theme.colors.foreground.transparentize(25%))
-  Last compilation: *#now.display()* | Typst based on: *#sys.version* | Deployed to: *GitHub*
+  Last compilation: *#now.display()* | Typst version: *#sys.version* | Deployed to: *GitHub*
 ]
