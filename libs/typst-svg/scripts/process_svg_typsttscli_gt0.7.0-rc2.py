@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Post-process typst-ts-cli svg_html output (v0.8.0-rc3+).
+"""Post-process typst-ts-cli svg_html output (typst-ts-cli > 0.7.0-rc2).
 
 Extract the root <svg> and recursively inline base64 SVG embeds marked with
 alt="!typst-embed-command".

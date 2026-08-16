@@ -1,8 +1,8 @@
 #:schema https://mise.en.dev/schema/mise-task.json
-# Post-processing for typst-ts-cli svg_html output (v0.8.0-rc3+).
-# Keep typst-ts-cli version in consumer mise.toml aligned with helper suffix.
+# Post-processing for typst-ts-cli svg_html output (> 0.7.0-rc2).
+# Add a new versioned helper when output format changes; keep typst-ts-cli in consumer mise.toml aligned.
 
-["process_svg_typsttscli_v0.8.0-rc3"]
-description = "Extract root <svg> and inline typst-ts-cli v0.8.0-rc3+ base64 embeds"
+["process_svg_typsttscli_gt0.7.0-rc2"]
+description = "Extract root <svg> and inline typst-ts-cli >0.7.0-rc2 base64 embeds"
 usage = 'arg "<file>" help="The target SVG file to process"'
-run = "python3 \"{{ vars.REPO_ROOT }}/libs/typst-svg/scripts/process_svg_typsttscli_v0.8.0-rc3.py\""
+run = "python3 \"{{ vars.REPO_ROOT }}/libs/typst-svg/scripts/process_svg_typsttscli_gt0.7.0-rc2.py\""

@@ -2,7 +2,7 @@
 "_".file = "{{ config_root }}/.env.local"
 _.python.venv = { path = ".venv", create = true }
 
-# typst-ts-cli version must stay aligned with libs/typst-svg helper suffix (v0.8.0-rc3)
+# typst-ts-cli must be > 0.7.0-rc2 (see libs/typst-svg helper suffix)
 [tools]
 "cargo:https://github.com/Myriad-Dreamin/typst.ts" = { version = "tag:v0.8.0-rc3", crate = "typst-ts-cli" }
 node = "latest"
@@ -38,8 +38,8 @@ mv "${output_file}" "{{ usage.output }}"
 [tasks.build]
 description = "Build README.typ and write to dist/"
 depends_post = [
-  ":process_svg_typsttscli_v0.8.0-rc3 dist/light.svg",
-  ":process_svg_typsttscli_v0.8.0-rc3 dist/dark.svg",
+  ":process_svg_typsttscli_gt0.7.0-rc2 dist/light.svg",
+  ":process_svg_typsttscli_gt0.7.0-rc2 dist/dark.svg",
 ]
 run = [
   "mkdir -p dist/",

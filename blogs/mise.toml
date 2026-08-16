@@ -1,4 +1,4 @@
-# typst-ts-cli version must stay aligned with libs/typst-svg helper suffix (v0.8.0-rc3)
+# typst-ts-cli must be > 0.7.0-rc2 (see libs/typst-svg helper suffix)
 [tools]
 "cargo:https://github.com/Myriad-Dreamin/typst.ts" = { version = "tag:v0.8.0-rc3", crate = "typst-ts-cli" }
 typst = "0.15.0"

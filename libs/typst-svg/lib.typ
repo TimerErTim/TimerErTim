@@ -1,1 +1,1 @@
-#import "xhtml_typsttscli_v0.8.0-rc3.typ": xhtml
+#import "xhtml_typsttscli_gt0.7.0-rc2.typ": xhtml
