@@ -29,6 +29,11 @@ typst-ts-cli compile -e README.typ --workspace {{ env.TIMERERTIM_REPO_ROOT }} --
 mv "${TMPDIR}/README.artifact.svg.html" "{{ usage.output }}"
 '''
 
+[tasks."remove-svg-scripts"]
+description = "Remove script elements from typst-ts-cli svg output"
+usage = 'arg "<file>" help="The target SVG file to process"'
+run = "python3 processing/remove_svg_scripts.py"
+
 [tasks.build]
 description = "Build README.typ and write to dist/"
 run = [
@@ -40,6 +45,10 @@ run = [
   { tasks = [
     ":process_svg_typsttscli_gt0.7.0-rc2 dist/light.svg",
     ":process_svg_typsttscli_gt0.7.0-rc2 dist/dark.svg",
+  ] },
+  { tasks = [
+    ":remove-svg-scripts dist/light.svg",
+    ":remove-svg-scripts dist/dark.svg",
   ] },
 ]
 
