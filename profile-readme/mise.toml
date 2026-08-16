@@ -20,7 +20,6 @@ flag "--theme <theme>" help="The theme to use for the export" default="light" {
   choices "light" "dark"
 }
 flag "--output <output>" help="The output file" default="dist/light.svg"
-flag "--format <format>" help="The format to use for the export" default="svg_html"
 """
 run = '''
 #!/usr/bin/env bash
@@ -30,9 +29,8 @@ TMPDIR="$(mktemp -d)"
 cleanup() { rm -rf "${TMPDIR}"; }
 trap cleanup EXIT
 
-typst-ts-cli compile -e README.typ --workspace {{ env.TIMERERTIM_REPO_ROOT }} --input "x-theme={{ usage.theme }}" --input x-target=web --input x-format={{ usage.format }} --output "${TMPDIR}/" --format {{ usage.format }}
-output_file="$(find "${TMPDIR}" -maxdepth 1 -type f | head -n 1)"
-mv "${output_file}" "{{ usage.output }}"
+typst-ts-cli compile -e README.typ --workspace {{ env.TIMERERTIM_REPO_ROOT }} --input "x-theme={{ usage.theme }}" --output "${TMPDIR}/" --format svg_html
+mv "${TMPDIR}/README.artifact.svg.html" "{{ usage.output }}"
 '''
 
 [tasks.build]
@@ -43,8 +41,8 @@ depends_post = [
 ]
 run = [
   "mkdir -p dist/",
-  "mise run :build:typst-ts-cli --theme light --output dist/light.svg",
-  "mise run :build:typst-ts-cli --theme dark --output dist/dark.svg",
+  {task = ":build:typst-ts-cli --theme light --output dist/light.svg"},
+  {task = ":build:typst-ts-cli --theme dark --output dist/dark.svg"},
 ]
 
 [tasks.rebuild]

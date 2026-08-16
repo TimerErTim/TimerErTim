@@ -1,13 +1,15 @@
 #import "@preview/fletcher:0.5.8" as fletcher: edge, node
 
-#import "../look-and-feel/index.typ": themes
+#import "../look-and-feel/index.typ": get-theme
 #import "lib.typ": *
 
+#let theme = themed(get-theme("light"), get-theme("dark"))
+
 #set page(margin: (x: 0pt, y: 4pt), height: auto)
-#set text(size: 12pt, font: (themes.fonts.sans.family, "Noto Color Emoji"))
-#show raw: set text(font: themes.fonts.mono.family)
+#set text(size: 12pt, font: (theme.fonts.sans.family, "Noto Color Emoji"))
+#show raw: set text(font: theme.fonts.mono.family)
 #show math.equation: set text(font: "Fira Math")
-#set text(fill: themed(black, white))
+#set text(fill: theme.colors.foreground)
 #show heading: it => {
   set block(below: 0.75em)
   set text(size: 16pt - it.level * 1.5pt)
@@ -17,13 +19,14 @@
     v(-0.5em)
     line(
       length: 100%,
-      stroke: themed(gray.lighten(25%), gray).transparentize(50%),
+      stroke: theme.colors.neutral.transparentize(50%),
     )
     v(0.5em)
   }
 }
-#set rect(stroke: themed(black, white))
+#set rect(stroke: theme.colors.foreground)
 #set par(spacing: 1em)
+#show link: set text(fill: theme.colors.info)
 
 `> Load successful.`
 
@@ -142,6 +145,7 @@ I specialize in writing code that is safe, concurrent, and occasionally panics. 
 = How this README works
 
 Using `typst-ts-cli` with the `svg_html` format, we can inline SVG `#image(...)` elements directly into the exported SVG document. A post-processing step extracts the root `<svg>` and decodes nested base64 embeds.
+Read more in #link("https://timerertim.eu/blog/2026-blog-with-typst/")[blogpost here]
 
 #let titled-content-card(
   title: [],

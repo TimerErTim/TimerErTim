@@ -105,7 +105,7 @@ flag "--theme <theme>" help="The theme to use for the export" default="light" {
 flag "--page-width <page-width>" help="The width of the page" default="1088pt"
 """
 depends_post = [
-  ":process_svg_typsttscli_gt0.7.0-rc2 build/main_{{ usage.theme }}_{{ usage.page_width }}.svg",
+  "//blogs:process_svg_typsttscli_gt0.7.0-rc2 build/main_{{ usage.theme }}_{{ usage.page_width }}.svg",
 ]
 run = [
   '''

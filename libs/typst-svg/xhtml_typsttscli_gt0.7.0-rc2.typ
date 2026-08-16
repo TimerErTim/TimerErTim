@@ -1,12 +1,10 @@
-#let input-targets-web = sys.inputs.at("x-target", default: "classic") == "web"
-#let input-is-pdf = sys.inputs.at("x-format", default: "") == "pdf"
-
 /// Embed XHTML inside an SVG foreignObject for typst-ts-cli svg_html export.
 #let xhtml(
   outer-width: 160pt,
   outer-height: 90pt,
   inner-width: none,
   inner-height: none,
+  placeholder: false,
   cont,
 ) = {
   // From https://github.com/Myriad-Dreamin/typst.ts/blob/main/contrib/templates/xhtml/lib.typ
@@ -87,7 +85,7 @@
       "</svg>"
     }
 
-    context if (input-targets-web and input-is-pdf) {
+    if placeholder {
       show: pdf.artifact
       show: box.with(width: outer-width, height: outer-height)
       html-embed
