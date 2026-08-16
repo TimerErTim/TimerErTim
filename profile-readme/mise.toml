@@ -7,9 +7,7 @@
 node = "latest"
 
 [task_config]
-includes = [
-  "{{ vars.REPO_ROOT }}/libs/typst-svg/tasks.toml",
-]
+includes = ["{{ vars.REPO_ROOT }}/libs/typst-svg/tasks.toml"]
 
 [tasks."build:typst-ts-cli"]
 description = "Compile README.typ to SVG via typst-ts-cli"
@@ -33,14 +31,16 @@ mv "${TMPDIR}/README.artifact.svg.html" "{{ usage.output }}"
 
 [tasks.build]
 description = "Build README.typ and write to dist/"
-depends_post = [
-  ":process_svg_typsttscli_gt0.7.0-rc2 dist/light.svg",
-  ":process_svg_typsttscli_gt0.7.0-rc2 dist/dark.svg",
-]
 run = [
   "mkdir -p dist/",
-  {task = ":build:typst-ts-cli --theme light --output dist/light.svg"},
-  {task = ":build:typst-ts-cli --theme dark --output dist/dark.svg"},
+  { tasks = [
+    ":build:typst-ts-cli --theme light --output dist/light.svg",
+    ":build:typst-ts-cli --theme dark --output dist/dark.svg",
+  ] },
+  { tasks = [
+    ":process_svg_typsttscli_gt0.7.0-rc2 dist/light.svg",
+    ":process_svg_typsttscli_gt0.7.0-rc2 dist/dark.svg",
+  ] },
 ]
 
 [tasks.rebuild]
