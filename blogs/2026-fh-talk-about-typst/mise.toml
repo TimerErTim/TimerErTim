@@ -1,5 +1,6 @@
 [task_config]
 includes = [
+    "{{ vars.REPO_ROOT }}/libs/typst-svg/tasks.toml",
     "../../website/tasks/blog.toml",  # Include this blog in the website embedding
     "../tasks/blog.toml"
 ]

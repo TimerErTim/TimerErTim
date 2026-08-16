@@ -30,7 +30,7 @@ TIMERERTIM_REPO_ROOT = "{{ config_root }}"
 REPO_ROOT = "{{ config_root }}"
 
 [tools]
-typst = "0.14.2"
+typst = "0.15.0"
 uv = "0.11.7"
 jujutsu = "0.41.0"
 

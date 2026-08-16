@@ -141,7 +141,7 @@ I specialize in writing code that is safe, concurrent, and occasionally panics. 
 
 = How this README works
 
-Using a modified version of the `reflexo-vec2svg` crate, we can inline SVG `#image(...)` elements directly into the SVG exported Typst document.
+Using `typst-ts-cli` with the `svg_html` format, we can inline SVG `#image(...)` elements directly into the exported SVG document. A post-processing step extracts the root `<svg>` and decodes nested base64 embeds.
 
 #let titled-content-card(
   title: [],

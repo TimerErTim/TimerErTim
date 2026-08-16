@@ -2,16 +2,49 @@
 "_".file = "{{ config_root }}/.env.local"
 _.python.venv = { path = ".venv", create = true }
 
+# typst-ts-cli version must stay aligned with libs/typst-svg helper suffix (v0.8.0-rc3)
 [tools]
-rust = "nightly"
+"cargo:https://github.com/Myriad-Dreamin/typst.ts" = { version = "tag:v0.8.0-rc3", crate = "typst-ts-cli" }
 node = "latest"
 python = "3.8"
 
+[task_config]
+includes = [
+  "{{ vars.REPO_ROOT }}/libs/typst-svg/tasks.toml",
+]
+
+[tasks."build:typst-ts-cli"]
+description = "Compile README.typ to SVG via typst-ts-cli"
+usage = """
+flag "--theme <theme>" help="The theme to use for the export" default="light" {
+  choices "light" "dark"
+}
+flag "--output <output>" help="The output file" default="dist/light.svg"
+flag "--format <format>" help="The format to use for the export" default="svg_html"
+"""
+run = '''
+#!/usr/bin/env bash
+set -euo pipefail
+
+TMPDIR="$(mktemp -d)"
+cleanup() { rm -rf "${TMPDIR}"; }
+trap cleanup EXIT
+
+typst-ts-cli compile -e README.typ --workspace {{ env.TIMERERTIM_REPO_ROOT }} --input "x-theme={{ usage.theme }}" --input x-target=web --input x-format={{ usage.format }} --output "${TMPDIR}/" --format {{ usage.format }}
+output_file="$(find "${TMPDIR}" -maxdepth 1 -type f | head -n 1)"
+mv "${output_file}" "{{ usage.output }}"
+'''
+
 [tasks.build]
 description = "Build README.typ and write to dist/"
+depends_post = [
+  ":process_svg_typsttscli_v0.8.0-rc3 dist/light.svg",
+  ":process_svg_typsttscli_v0.8.0-rc3 dist/dark.svg",
+]
 run = [
   "mkdir -p dist/",
-  "processing/compile-typst/target/release/compile-typst README.typ dist/",
+  "mise run :build:typst-ts-cli --theme light --output dist/light.svg",
+  "mise run :build:typst-ts-cli --theme dark --output dist/dark.svg",
 ]
 
 [tasks.rebuild]
@@ -22,16 +55,8 @@ arg "<github-token>" env="GITHUB_TOKEN" help="GitHub token for snake contributio
 """
 run = [
   'GITHUB_TOKEN="$usage_github_token" GITHUB_USERNAME="$usage_github_username" mise run generate-snake ::: generate-typing-banner ::: generate-spotify-playing ::: generate-tech-stack ::: generate-github-stats',
-  "mise run compile:builder",
   "mise run build",
 ]
-
-[tasks."compile:builder"]
-description = "Compile the compile-typst crate"
-dir = "{{ config_root }}/processing/compile-typst"
-sources = ["src/**/*.rs", "Cargo.toml", "Cargo.lock"]
-outputs = ["compile-typst"]
-run = ["cargo build --release"]
 
 
 [tasks."generate-snake"]
