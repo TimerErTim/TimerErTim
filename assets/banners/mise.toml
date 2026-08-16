@@ -1,5 +1,5 @@
 [tools]
-typst = "0.14.2"
+typst = "0.15.0"
 
 [tasks."build:github"]
 description = "Build GitHub banner"
