@@ -2,6 +2,7 @@
 
 #show: base-configuration
 #let with-signature = eval(sys.inputs.at("with-signature", default: "false"))
+#let with-image = eval(sys.inputs.at("with-image", default: "false"))
 
 #let muted = text.with(fill: luma(100))
 #let sidebarSection = {

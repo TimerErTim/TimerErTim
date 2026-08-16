@@ -17,11 +17,38 @@ sources = [
     "{{ vars.REPO_ROOT }}/look-and-feel/**",
 ]
 outputs = ['out/cvs/CV_*_latest*.pdf']
-run = [
-    'mkdir -p out/cvs',
-    'typst compile --input lang=${usage_lang} --input with-signature={{usage.with_signature}} cv.typ "out/cvs/CV_${usage_lang}_$(date +%Y-%m-%d){{ "_signed" if usage.with_signature else "" }}.pdf"',
-    'cp out/cvs/CV_${usage_lang}_$(date +%Y-%m-%d){{ "_signed" if usage.with_signature else "" }}.pdf out/cvs/CV_${usage_lang}_latest{{ "_signed" if usage.with_signature else "" }}.pdf',
-]
+run = '''
+#!/usr/bin/env bash
+set -euo pipefail
+
+mkdir -p out/cvs
+
+suffix=""
+if [[ "${usage_with_signature:-false}" == "true" ]]; then
+  suffix="_signed"
+fi
+
+build_cv_pdf() {
+  local with_image="$1"
+  if [[ "${with_image}" == "true" ]]; then
+    final_suffix="${suffix}_image"
+  else
+    final_suffix="${suffix}_imageless"
+  fi
+  out_pdf="out/cvs/Tim Peko CV ${usage_lang} $(date +%Y-%m-%d)${final_suffix}.pdf"
+  latest_pdf="out/cvs/Tim Peko CV ${usage_lang} latest${final_suffix}.pdf"
+
+  typst compile \
+    --input lang="${usage_lang}" \
+    --input with-signature="${usage_with_signature:-false}" \
+    --input with-image="${with_image}" \
+    cv.typ "${out_pdf}"
+  cp "${out_pdf}" "${latest_pdf}"
+}
+
+build_cv_pdf false
+build_cv_pdf true
+'''
 
 [tasks."build:biodata:lang"]
 usage = """
