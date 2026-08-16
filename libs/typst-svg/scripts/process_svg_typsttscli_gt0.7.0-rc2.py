@@ -27,6 +27,7 @@ img_pattern = re.compile(
 )
 
 svg_open_pattern = re.compile(r"<svg\b[^>]*>", re.IGNORECASE)
+viewbox_pattern = re.compile(r"\bviewBox\s*=", re.IGNORECASE)
 
 
 def extract_dimension(tag, name):
@@ -36,6 +37,28 @@ def extract_dimension(tag, name):
         re.IGNORECASE,
     )
     return match.group(1) if match else None
+
+
+def ensure_viewbox_from_dimensions(svg_text):
+    """If root <svg> has width/height but no viewBox, set viewBox="0 0 width height"."""
+
+    def replace_svg_open(match):
+        tag = match.group(0)
+        if viewbox_pattern.search(tag):
+            return tag
+
+        width = extract_dimension(tag, "width")
+        height = extract_dimension(tag, "height")
+        if width is None or height is None:
+            return tag
+
+        viewbox = f' viewBox="0 0 {width} {height}"'
+        if tag.endswith("/>"):
+            return tag[:-2] + viewbox + "/>"
+
+        return tag[:-1] + viewbox + ">"
+
+    return svg_open_pattern.sub(replace_svg_open, svg_text, count=1)
 
 
 def apply_svg_dimensions(svg_text, width, height):
@@ -67,6 +90,7 @@ def decode_and_inline(text):
         except Exception:
             return full_tag
 
+        decoded = ensure_viewbox_from_dimensions(decoded)
         return apply_svg_dimensions(decoded, width, height)
 
     processed_text, count = img_pattern.subn(replacer, text)
