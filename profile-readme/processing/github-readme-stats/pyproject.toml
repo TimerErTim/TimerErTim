@@ -1,0 +1,12 @@
+[project]
+name = "github-readme-stats"
+version = "0.0.0"
+description = "Generate GitHub profile readme stats SVGs"
+requires-python = ">=3.8"
+dependencies = [
+    "aiohttp",
+    "requests",
+]
+
+[tool.uv]
+package = false

@@ -1,12 +1,10 @@
 [env]
 "_".file = "{{ config_root }}/.env.local"
-_.python.venv = { path = ".venv", create = true }
 
 # typst-ts-cli must be > 0.7.0-rc2 (see libs/typst-svg helper suffix)
 [tools]
 "cargo:https://github.com/Myriad-Dreamin/typst.ts" = { version = "tag:v0.8.0-rc3", crate = "typst-ts-cli" }
 node = "latest"
-python = "3.8"
 
 [task_config]
 includes = [
@@ -97,21 +95,11 @@ usage = """
 arg "<github-token>" env="GITHUB_TOKEN" help="GitHub token for github stats"
 arg "<github-username>" env="GITHUB_USERNAME" help="GitHub username for github stats"
 """
-depends = [
-  "generate-github-stats:install-packages",
-]
 dir = "processing/github-readme-stats"
 env = { EXCLUDE_FORKED_REPOS = true }
 run = [
-  'ACCESS_TOKEN="$usage_github_token" GITHUB_ACTOR="$usage_github_username" python generate_images.py',
+  'ACCESS_TOKEN="$usage_github_token" GITHUB_ACTOR="$usage_github_username" uv run python generate_images.py',
   "cp generated/* ../../out/",
-]
-
-[tasks."generate-github-stats:install-packages"]
-description = "Install packages for generate-github-stats"
-run = [
-  "pip install --upgrade pip setuptools wheel",
-  "pip install -r processing/github-readme-stats/requirements.txt",
 ]
 
 [tasks."generate-tech-stack"]
