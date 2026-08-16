@@ -9,3 +9,5 @@
 } else {
   light-variant
 }
+
+#let config = json("../config/values.json")

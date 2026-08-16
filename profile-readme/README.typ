@@ -1,7 +1,9 @@
 #import "@preview/fletcher:0.5.8" as fletcher: edge, node
+#import "@preview/pinit:0.2.2": pin, pinit-point-from
 
 #import "../look-and-feel/index.typ": get-theme
 #import "lib.typ": *
+#show image.where(format: "svg"): set image(alt: "!typst-embed-command")
 
 #let theme = themed(get-theme("light"), get-theme("dark"))
 
@@ -26,6 +28,8 @@
 }
 #set rect(stroke: theme.colors.foreground)
 #set par(spacing: 1em)
+#show link: set text(fill: theme.colors.info)
+#show link: strong
 
 `> Load successful.`
 
@@ -79,6 +83,30 @@ I specialize in writing code that is safe, concurrent, and occasionally panics. 
     )
   ],
   grid.cell()[
+    #[
+      #set align(left)
+
+      #let item(icon, text) = {
+        set align(horizon)
+        set image(height: 16pt)
+        grid(
+          columns: 2,
+          align: horizon,
+          gutter: 0.5em,
+          icon,
+          text
+        )
+      }
+
+      #item(image("../assets/logos/yt-square.png"), link(config.TIMERERTIM_YOUTUBE_URL.trim(regex(`https?://`.text))))
+
+      #item(image("../assets/logos/github-invertocat.svg"), link(config.TIMERERTIM_GITHUB_URL.trim(regex(`https?://`.text))))
+
+      #item(image("../assets/logos/linkedin-square.png"), link(config.TIMERERTIM_LINKEDIN_URL.trim(regex(`https?://`.text))))
+
+      #item(image("../assets/identity/icon.png"), link(config.TIMERERTIM_SITE_ORIGIN.trim(regex(`https?://`.text))))
+    ]
+
     ⚙️ Tech Stack 🔧
 
     #pad(
@@ -105,7 +133,6 @@ I specialize in writing code that is safe, concurrent, and occasionally panics. 
       ),
     )
 
-    #set align(left)
   ],
 ))
 
