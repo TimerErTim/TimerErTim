@@ -2,6 +2,13 @@
 
 #let _merge_dicts(a, b) = {
   let merged = (:)
+  if type(b) != dictionary {
+    return a
+  }
+  if type(a) != dictionary {
+    return b
+  }
+
   for key in (a.keys() + b.keys()).dedup() {
     if key in a and key not in b {
       merged.insert(key, a.at(key))
@@ -36,6 +43,10 @@
 #let get-configuration(lang) = {
   let global-config = json("../config/values.json")
   let cv-config = yaml("src/" + lang + ".yaml")
+  if lang != "en" {
+    cv-config = _merge_dicts(yaml("src/en.yaml"), cv-config)
+  }
+
   cv-config.contacts.email = global-config.TIMERERTIM_EMAIL
   cv-config.contacts.phone = global-config.TIMERERTIM_PHONE
   cv-config.contacts.website = global-config.TIMERERTIM_SITE_ORIGIN
@@ -48,6 +59,9 @@
 #let add-sensitive-configuration(lang) = {
   let base = get-configuration(lang)
   let sensitive = yaml("src/sensitive/" + lang + ".yaml")
+  if lang != "en" {
+    sensitive = _merge_dicts(yaml("src/sensitive/en.yaml"), sensitive)
+  }
   return _merge_dicts(base, sensitive)
 }
 #let settings = yaml("settings.yaml")
