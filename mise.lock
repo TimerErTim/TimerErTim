@@ -2,10 +2,68 @@
 
 lockfile_version = 2
 
+[[tools."cargo:https://github.com/Myriad-Dreamin/typst.ts"]]
+version = "tag:v0.8.0-rc3"
+backend = "cargo:https://github.com/Myriad-Dreamin/typst.ts"
+specifiers = ["tag:v0.8.0-rc3"]
+
+[tools."cargo:https://github.com/Myriad-Dreamin/typst.ts".options]
+crate = "typst-ts-cli"
+
+[[tools.jq]]
+version = "1.8.1"
+backend = "aqua:jqlang/jq"
+specifiers = ["1.8.1"]
+
+[tools.jq."platforms.linux-arm64"]
+checksum = "sha256:6bc62f25981328edd3cfcfe6fe51b073f2d7e7710d7ef7fcdac28d4e384fc3d4"
+url = "https://github.com/jqlang/jq/releases/download/jq-1.8.1/jq-linux-arm64"
+url_api = "https://api.github.com/repos/jqlang/jq/releases/assets/268981481"
+provenance = "github-attestations"
+
+[tools.jq."platforms.linux-arm64-musl"]
+checksum = "sha256:6bc62f25981328edd3cfcfe6fe51b073f2d7e7710d7ef7fcdac28d4e384fc3d4"
+url = "https://github.com/jqlang/jq/releases/download/jq-1.8.1/jq-linux-arm64"
+url_api = "https://api.github.com/repos/jqlang/jq/releases/assets/268981481"
+provenance = "github-attestations"
+
+[tools.jq."platforms.linux-x64"]
+checksum = "sha256:020468de7539ce70ef1bceaf7cde2e8c4f2ca6c3afb84642aabc5c97d9fc2a0d"
+url = "https://github.com/jqlang/jq/releases/download/jq-1.8.1/jq-linux-amd64"
+url_api = "https://api.github.com/repos/jqlang/jq/releases/assets/268981484"
+provenance = "github-attestations"
+
+[tools.jq."platforms.linux-x64-musl"]
+checksum = "sha256:020468de7539ce70ef1bceaf7cde2e8c4f2ca6c3afb84642aabc5c97d9fc2a0d"
+url = "https://github.com/jqlang/jq/releases/download/jq-1.8.1/jq-linux-amd64"
+url_api = "https://api.github.com/repos/jqlang/jq/releases/assets/268981484"
+provenance = "github-attestations"
+
+[tools.jq."platforms.macos-arm64"]
+checksum = "sha256:a9fe3ea2f86dfc72f6728417521ec9067b343277152b114f4e98d8cb0e263603"
+url = "https://github.com/jqlang/jq/releases/download/jq-1.8.1/jq-macos-arm64"
+url_api = "https://api.github.com/repos/jqlang/jq/releases/assets/268981506"
+provenance = "github-attestations"
+
+[tools.jq."platforms.macos-x64"]
+checksum = "sha256:e80dbe0d2a2597e3c11c404f03337b981d74b4a8504b70586c354b7697a7c27f"
+url = "https://github.com/jqlang/jq/releases/download/jq-1.8.1/jq-macos-amd64"
+url_api = "https://api.github.com/repos/jqlang/jq/releases/assets/268981505"
+provenance = "github-attestations"
+
+[tools.jq."platforms.windows-x64"]
+checksum = "sha256:23cb60a1354eed6bcc8d9b9735e8c7b388cd1fdcb75726b93bc299ef22dd9334"
+url = "https://github.com/jqlang/jq/releases/download/jq-1.8.1/jq-windows-amd64.exe"
+url_api = "https://api.github.com/repos/jqlang/jq/releases/assets/268981509"
+provenance = "github-attestations"
+
 [[tools.jujutsu]]
 version = "0.45.1"
 backend = "aqua:jj-vcs/jj"
-specifiers = ["0.45.1"]
+specifiers = [
+    "0.45.1",
+    "latest",
+]
 
 [tools.jujutsu."platforms.linux-arm64"]
 checksum = "sha256:7349a43dd5a20dbc998b10114daa0ee63d2ab863fb822c7eb6b0ebca5903cc69"
@@ -42,50 +100,96 @@ checksum = "sha256:5dbf2619272c897394d34190a94b21a6ab8d1e8e59fcf7dfc173d8fa8aa90
 url = "https://github.com/jj-vcs/jj/releases/download/v0.45.1/jj-v0.45.1-x86_64-pc-windows-msvc.zip"
 url_api = "https://api.github.com/repos/jj-vcs/jj/releases/assets/543038773"
 
+[[tools.node]]
+version = "26.10.0"
+backend = "core:node"
+specifiers = ["26"]
+
+[tools.node."platforms.linux-arm64"]
+checksum = "sha256:423a41bff8e2a2fa15e702fefe2919ef95823b2378744daccb8439302534b44f"
+url = "https://nodejs.org/dist/v26.10.0/node-v26.10.0-linux-arm64.tar.gz"
+
+[tools.node."platforms.linux-arm64-musl"]
+checksum = "sha256:d26027bff3197050d2a2b0bfa151b18e8378ed81affa2bf5093804db158979b6"
+url = "https://unofficial-builds.nodejs.org/download/release/v26.10.0/node-v26.10.0-linux-arm64-musl.tar.gz"
+
+[tools.node."platforms.linux-x64"]
+checksum = "sha256:cb5c9ce9c80d7b8821e3a258543c71b939138cf17c74d5cc44bbe85d6dbc5ad8"
+url = "https://nodejs.org/dist/v26.10.0/node-v26.10.0-linux-x64.tar.gz"
+
+[tools.node."platforms.linux-x64-musl"]
+checksum = "sha256:e42da94821b9422eb76bf5aaf4de0977e04ba320b8aff6148d895a94b08ee223"
+url = "https://unofficial-builds.nodejs.org/download/release/v26.10.0/node-v26.10.0-linux-x64-musl.tar.gz"
+
+[tools.node."platforms.macos-arm64"]
+checksum = "sha256:751fdf7439f115d87ee2a8f3f18c065b6151852068e3e666ac60ac2996f75ac9"
+url = "https://nodejs.org/dist/v26.10.0/node-v26.10.0-darwin-arm64.tar.gz"
+
+[tools.node."platforms.macos-x64"]
+checksum = "sha256:ebbe9ab9b58ad6bb54390d6e2c862c1afa7d4475fb7e8ae8146acde211bf70df"
+url = "https://nodejs.org/dist/v26.10.0/node-v26.10.0-darwin-x64.tar.gz"
+
+[tools.node."platforms.windows-x64"]
+checksum = "sha256:9fef7eca6743a6b910989cd8e78712376b394fcb9b6e1e9c44a0799a287f90c5"
+url = "https://nodejs.org/dist/v26.10.0/node-v26.10.0-win-x64.zip"
+
+[[tools.python]]
+version = "3.8.20"
+backend = "core:python"
+specifiers = ["3.8"]
+
+[[tools.rust]]
+version = "nightly-2026-09-22"
+backend = "core:rust"
+specifiers = ["nightly"]
+
 [[tools.typst]]
-version = "0.15.0"
+version = "0.15.1"
 backend = "aqua:typst/typst"
-specifiers = ["0.15.0"]
+specifiers = ["0.15"]
 
 [tools.typst."platforms.linux-arm64"]
-checksum = "sha256:cdf50ffc7b8ba759ed02200632eda3d78eb8b99aacb6611f4f75684990647620"
-url = "https://github.com/typst/typst/releases/download/v0.15.0/typst-aarch64-unknown-linux-musl.tar.xz"
-url_api = "https://api.github.com/repos/typst/typst/releases/assets/448380804"
+checksum = "sha256:5aa8d74a3d906e60ea12a66ac2f37f8eef1b14cbad7182a745e393a10c23dcee"
+url = "https://github.com/typst/typst/releases/download/v0.15.1/typst-aarch64-unknown-linux-musl.tar.xz"
+url_api = "https://api.github.com/repos/typst/typst/releases/assets/480300408"
 
 [tools.typst."platforms.linux-arm64-musl"]
-checksum = "sha256:cdf50ffc7b8ba759ed02200632eda3d78eb8b99aacb6611f4f75684990647620"
-url = "https://github.com/typst/typst/releases/download/v0.15.0/typst-aarch64-unknown-linux-musl.tar.xz"
-url_api = "https://api.github.com/repos/typst/typst/releases/assets/448380804"
+checksum = "sha256:5aa8d74a3d906e60ea12a66ac2f37f8eef1b14cbad7182a745e393a10c23dcee"
+url = "https://github.com/typst/typst/releases/download/v0.15.1/typst-aarch64-unknown-linux-musl.tar.xz"
+url_api = "https://api.github.com/repos/typst/typst/releases/assets/480300408"
 
 [tools.typst."platforms.linux-x64"]
-checksum = "sha256:59b207df01be2dab9f13e80f73d04d7ff8273ffd46b3dd1b9eef5c60f3eeabea"
-url = "https://github.com/typst/typst/releases/download/v0.15.0/typst-x86_64-unknown-linux-musl.tar.xz"
-url_api = "https://api.github.com/repos/typst/typst/releases/assets/448379958"
+checksum = "sha256:a6d077d0a95eed5a2eba715b2dae06be954f624ccbf85758a03f389ded33118c"
+url = "https://github.com/typst/typst/releases/download/v0.15.1/typst-x86_64-unknown-linux-musl.tar.xz"
+url_api = "https://api.github.com/repos/typst/typst/releases/assets/480300761"
 
 [tools.typst."platforms.linux-x64-musl"]
-checksum = "sha256:59b207df01be2dab9f13e80f73d04d7ff8273ffd46b3dd1b9eef5c60f3eeabea"
-url = "https://github.com/typst/typst/releases/download/v0.15.0/typst-x86_64-unknown-linux-musl.tar.xz"
-url_api = "https://api.github.com/repos/typst/typst/releases/assets/448379958"
+checksum = "sha256:a6d077d0a95eed5a2eba715b2dae06be954f624ccbf85758a03f389ded33118c"
+url = "https://github.com/typst/typst/releases/download/v0.15.1/typst-x86_64-unknown-linux-musl.tar.xz"
+url_api = "https://api.github.com/repos/typst/typst/releases/assets/480300761"
 
 [tools.typst."platforms.macos-arm64"]
-checksum = "sha256:fe53838737abf93a774495952a1a797b4686e9c4a21c2d99b9fdf77f46cc3572"
-url = "https://github.com/typst/typst/releases/download/v0.15.0/typst-aarch64-apple-darwin.tar.xz"
-url_api = "https://api.github.com/repos/typst/typst/releases/assets/448379808"
+checksum = "sha256:48f62ed034aa3a7978309579ac6ca00045e2ef0da73114e8af27cfd8e74dc05a"
+url = "https://github.com/typst/typst/releases/download/v0.15.1/typst-aarch64-apple-darwin.tar.xz"
+url_api = "https://api.github.com/repos/typst/typst/releases/assets/480299147"
 
 [tools.typst."platforms.macos-x64"]
-checksum = "sha256:30210c7c539c7954db94c063cd98b43fd0a0cad285d656dbbce2a40aee2e79be"
-url = "https://github.com/typst/typst/releases/download/v0.15.0/typst-x86_64-apple-darwin.tar.xz"
-url_api = "https://api.github.com/repos/typst/typst/releases/assets/448379654"
+checksum = "sha256:7f9fdd9584866245de9a79e0add8f9236fae6f40a8a45e2c4771ccc14db4e0fa"
+url = "https://github.com/typst/typst/releases/download/v0.15.1/typst-x86_64-apple-darwin.tar.xz"
+url_api = "https://api.github.com/repos/typst/typst/releases/assets/480300018"
 
 [tools.typst."platforms.windows-x64"]
-checksum = "sha256:66ae7f0907b4b9afed5c7d6cb9b21e07f0f3c3d4e293ba3e0026a54d88202fe9"
-url = "https://github.com/typst/typst/releases/download/v0.15.0/typst-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/typst/typst/releases/assets/448381935"
+checksum = "sha256:19ce3551153c2fe7ee9fa2f95208310c8f4d3209fedb699e0333faf8913f6736"
+url = "https://github.com/typst/typst/releases/download/v0.15.1/typst-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/typst/typst/releases/assets/480303335"
 
 [[tools.typstyle]]
 version = "0.15.1"
 backend = "aqua:Enter-tainer/typstyle"
-specifiers = ["latest"]
+specifiers = [
+    "0.15",
+    "latest",
+]
 
 [tools.typstyle."platforms.linux-arm64"]
 checksum = "sha256:2e7bff51079d2f1faaf8629972e79c3d51a3deeaf9b16386ea83334b94773ad1"
@@ -118,48 +222,48 @@ url = "https://github.com/typstyle-rs/typstyle/releases/download/v0.15.1/typstyl
 url_api = "https://api.github.com/repos/typstyle-rs/typstyle/releases/assets/498612929"
 
 [[tools.uv]]
-version = "0.11.7"
+version = "0.12.17"
 backend = "aqua:astral-sh/uv"
-specifiers = ["0.11.7"]
+specifiers = ["0.12"]
 
 [tools.uv."platforms.linux-arm64"]
-checksum = "sha256:f2ee1cde9aabb4c6e43bd3f341dadaf42189a54e001e521346dc31547310e284"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.7/uv-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/397306019"
+checksum = "sha256:d636d1b678e9e7f367ecb22b46bd1cabbed234d6bc3b4d96365d2b507f72f86c"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.17/uv-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/573252936"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-arm64-musl"]
-checksum = "sha256:46647dc16cbb7d6700f762fdd7a67d220abe18570914732bc310adc91308d272"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.7/uv-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/397306022"
+checksum = "sha256:a6096da273d548cb9f277d237a01ac7344a39ef0f455c0e148e4dc9737c1596b"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.17/uv-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/573252947"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64"]
-checksum = "sha256:6681d691eb7f9c00ac6a3af54252f7ab29ae72f0c8f95bdc7f9d1401c23ea868"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.7/uv-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/397306063"
+checksum = "sha256:fa82fd8dde8e8eefdecada6aa0889666556cfceb690d06e0c3bca49eb3070a63"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.17/uv-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/573253080"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64-musl"]
-checksum = "sha256:64ddb5f1087649e3f75aa50d139aa4f36ddde728a5295a141e0fa9697bfb7b0f"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.7/uv-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/397306071"
+checksum = "sha256:6401c4665d8fa2a9893e087c91f585430738e3170f5398a1141483efb4a93310"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.17/uv-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/573253085"
 provenance = "github-attestations"
 
 [tools.uv."platforms.macos-arm64"]
-checksum = "sha256:66e37d91f839e12481d7b932a1eccbfe732560f42c1cfb89faddfa2454534ba8"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.7/uv-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/397306011"
+checksum = "sha256:85f00cbdc6dd3e97eba4c31b4d014375a9fdfe8f570023b84e5102fc3456896b"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.17/uv-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/573252913"
 provenance = "github-attestations"
 
 [tools.uv."platforms.macos-x64"]
-checksum = "sha256:0a4bc8fcde4974ea3560be21772aeecab600a6f43fa6e58169f9fa7b3b71d302"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.7/uv-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/397306059"
+checksum = "sha256:8dcf05a8c809bb3c471d2b614788ba27a6e41298fc8c31ac84b5f4339fd468e5"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.17/uv-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/573253060"
 provenance = "github-attestations"
 
 [tools.uv."platforms.windows-x64"]
-checksum = "sha256:fe0c7815acf4fc45f8a5eff58ed3cf7ae2e15c3cf1dceadbd10c816ec1690cc1"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.7/uv-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/397306062"
+checksum = "sha256:a252121d5b59398fcb137c6ea448176459a44010f33f67e0072305a637119ca7"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.17/uv-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/573253071"
 provenance = "github-attestations"

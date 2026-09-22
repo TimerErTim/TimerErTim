@@ -4,7 +4,7 @@
 # typst-ts-cli must be > 0.7.0-rc2 (see libs/typst-svg helper suffix)
 [tools]
 "cargo:https://github.com/Myriad-Dreamin/typst.ts" = { version = "tag:v0.8.0-rc3", crate = "typst-ts-cli" }
-node = "latest"
+node = "26"
 
 [task_config]
 includes = ["{{ vars.REPO_ROOT }}/libs/typst-svg/tasks.toml"]

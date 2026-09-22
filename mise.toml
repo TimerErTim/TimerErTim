@@ -12,6 +12,7 @@ config_roots = [
   "assets/*",
   "cv",
 ]
+lockfile = true
 
 [settings]
 experimental = true
@@ -30,13 +31,13 @@ TIMERERTIM_REPO_ROOT = "{{ config_root }}"
 REPO_ROOT = "{{ config_root }}"
 
 [tools]
-typst = "0.15.0"
-uv = "0.11.7"
-jujutsu = "0.45.1"
+typst = "0.15"
+uv = "0.12"
+jujutsu = "latest"
 
 [tasks."fmt:typst"]
 description = "Format all Typst files in the repository"
-tools.typstyle = "latest"
+tools.typstyle = "0.15"
 run = [
   "typstyle -i ./ --timing",
 ]
