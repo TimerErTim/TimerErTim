@@ -139,7 +139,7 @@ backend = "core:python"
 specifiers = ["3.8"]
 
 [[tools.rust]]
-version = "nightly-2026-09-22"
+version = "nightly-2026-09-23"
 backend = "core:rust"
 specifiers = ["nightly"]
 

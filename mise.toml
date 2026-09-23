@@ -17,6 +17,7 @@ lockfile = true
 [settings]
 experimental = true
 lockfile = true
+lockfile_mode = "generate"
 
 [env]
 MISE_EXPERIMENTAL = true
@@ -29,6 +30,9 @@ TIMERERTIM_REPO_ROOT = "{{ config_root }}"
 
 [vars]
 REPO_ROOT = "{{ config_root }}"
+
+[tool_config]
+locked = true
 
 [tools]
 typst = "0.15"
