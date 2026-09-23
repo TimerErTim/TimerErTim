@@ -1,4 +1,4 @@
 {
   "extends": "@canvas-commons/2d/tsconfig.project.json",
-  "include": ["src"]
+  "include": ["libs", "projects"]
 }

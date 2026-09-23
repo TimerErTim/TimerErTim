@@ -3,6 +3,10 @@ import canvasCommons from '@canvas-commons/vite-plugin';
 
 export default defineConfig({
   plugins: [
-    canvasCommons(),
+    canvasCommons({
+      project: [
+        "./projects/*/index.ts"
+      ]
+    }),
   ],
 });
