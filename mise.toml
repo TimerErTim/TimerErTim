@@ -19,6 +19,10 @@ experimental = true
 lockfile = true
 lockfile_mode = "generate"
 
+[settings.python]
+# Disable attestations because 3.8.20 is not queryable => deadLOCK
+github_attestations = false
+
 [env]
 MISE_EXPERIMENTAL = true
 TYPST_FONT_PATHS = "{{ config_root }}/fonts"
