@@ -17,7 +17,6 @@ import shutil
 # refers to the task file not the including mise config root
 BLOG_SLUG = os.path.basename(os.getcwd())
 REPO_ROOT = os.environ["REPO_ROOT"]
-os.environ["MISE_TASK_OUTPUT"] = "quiet"
 
 old_print = print
 print = lambda *args, **kwargs: old_print(*args, **{k: v for k, v in kwargs.items() if k != 'flush'}, flush=True)
@@ -30,7 +29,7 @@ def get_build_hash() -> str:
     # Run 'mise run build:ref-hash' with the timestamp argument
     try:
         subprocess.run(
-            ["mise", "run", "build:ref-hash"],
+            ["mise", "run", "--output=interleave", "--quiet", "build:ref-hash"],
             check=True,
             stdout=None,  # link to parent stdout
             stderr=None   # link to parent stderr
@@ -63,7 +62,7 @@ def export_blog_variants(variants: List[BlogSvgVariant], dst_dir_rel: str):
     try:
         cmd = " ::: ".join([f"export:web-format:single --theme {variant.theme} --page-width {variant.page_width}pt" for variant in variants])
         subprocess.run(
-            ["mise", "run", *cmd.split(" ")],
+            ["mise", "run", "--output=interleave", "--quiet", *cmd.split(" ")],
             check=True,
             stdout=None,  # link to parent stdout
             stderr=None   # link to parent stderr

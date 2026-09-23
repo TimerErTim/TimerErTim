@@ -5,4 +5,6 @@
 ["process_svg_typsttscli_gt0.7.0-rc2"]
 description = "Extract root <svg> and inline typst-ts-cli >0.7.0-rc2 base64 embeds"
 usage = 'arg "<file>" help="The target SVG file to process"'
-run = "python3 \"{{ vars.REPO_ROOT }}/libs/typst-svg/scripts/process_svg_typsttscli_gt0.7.0-rc2.py\""
+run = [
+    "python3 \"{{ vars.REPO_ROOT }}/libs/typst-svg/scripts/process_svg_typsttscli_gt0.7.0-rc2.py\"",
+]
