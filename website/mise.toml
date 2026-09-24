@@ -6,12 +6,10 @@ auto = true
 
 [tasks."generate:theme"]
 description = "Generate theme CSS and TS from look-and-feel"
-depends = ["//look-and-feel:build:json"]
 file = "tasks/scripts/generate-theme.mjs"
 
 [tasks."prepare:fonts"]
 description = "Copy repo fonts into website public/fonts for Next.js"
-depends = ["//look-and-feel:build:json"]
 file = "tasks/scripts/prepare-fonts.mjs"
 
 [tasks."generate:fonts"]
