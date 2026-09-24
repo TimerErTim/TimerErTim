@@ -665,9 +665,10 @@ delta_bytes = xdelta3.encode(reference_bytes, file_bytes)
 
 And now, finally, after almost no hassle at all, the build process is complete! The client side decompression and rendering works as evidenced by you reading this.
 
-*Stats*\
+#block(sticky: true)[*Stats*]
 #conch.terminal-frame(
   width: 100%,
+  breakable: false,
   theme: "catppuccin",
   font: theme.fonts.mono.family,
   title: [static files @ out/blog/2026-blog-with-typst/],

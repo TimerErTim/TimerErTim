@@ -55,6 +55,7 @@
       show link: style-link
       set figure(placement: auto)
       set cite(form: "prose")
+      set block(spacing: 1.5em)
       it
     },
     bibliography-style: it => {

@@ -1,5 +1,6 @@
 #import "../theming.typ": theme
 #import "depth.typ": depth-shadow-block
+#import "../variants.typ": targets-web
 
 #let callout-tint(color-val) = {
   color.mix(
@@ -19,11 +20,11 @@
   stroke-color: theme.colors.border,
   fill: theme.colors.surface,
   cont,
-) = {
+) = context {
   show: block.with(
     stroke: stroke-color + theme.layout.borderWidth.small,
     radius: theme.layout.radius.medium,
-    fill: fill,
+    fill: if targets-web.get() { fill } else { none },
     width: 100%,
     inset: 1em,
   )

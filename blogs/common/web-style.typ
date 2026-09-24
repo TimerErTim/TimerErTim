@@ -55,7 +55,7 @@
   show heading.where(level: 3): set text(size: 1.15em)
   show heading.where(level: 4): set text(size: 1.10em)
 
-  show heading: set block(above: 1em, below: 0.7547em)
+  show heading: set block(above: 1.5em, below: 1em)
 
   body
 }
@@ -91,6 +91,7 @@
     },
   )
   show pagebreak: none
+  set block(spacing: 1.75em)
 
   show: set-footnote-style
   show: set-reference-style

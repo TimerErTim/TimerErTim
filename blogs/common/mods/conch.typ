@@ -4,6 +4,7 @@
 
 #let terminal-frame(
   body,
+  breakable: true,
   ..args,
 ) = {
   let color = theme.colors.border
@@ -11,6 +12,7 @@
     color: color,
   )
   show: block.with(
+    breakable: breakable,
     stroke: color + theme.layout.borderWidth.medium,
     radius: theme.layout.radius.medium,
   )
