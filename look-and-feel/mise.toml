@@ -2,10 +2,9 @@
 typst = "0.15"
 
 
-[tasks."build:json"]
+[deps."build:json"]
 description = "Build the look and feel"
+auto = true
 sources = ["*.typ"]
 outputs = ["themes.json"]
-run = [
-    'typst query export.typ "<themes>" --field value --one --pretty > themes.json',
-]
+run = 'typst query export.typ "<themes>" --field value --one --pretty > themes.json'
