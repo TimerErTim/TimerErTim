@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { title } from "@/components/primitives";
 import { BlogSidebar } from "@/components/blog-sidebar";
 import { PageShell } from "@/components/page-shell";
 import {
@@ -36,14 +35,9 @@ export default async function BlogPage() {
 
   return (
     <PageShell sidebar={<BlogSidebar />} sidebarLayout="fill">
-      <div className="flex flex-1 flex-col">
-        <h1 className={title()}>Blog</h1>
-        <div className="mt-8">
-          <Suspense fallback={<BlogOverviewFallback blogs={overviewItems} />}>
-            <BlogOverview blogs={overviewItems} />
-          </Suspense>
-        </div>
-      </div>
+      <Suspense fallback={<BlogOverviewFallback blogs={overviewItems} />}>
+        <BlogOverview blogs={overviewItems} />
+      </Suspense>
     </PageShell>
   );
 }

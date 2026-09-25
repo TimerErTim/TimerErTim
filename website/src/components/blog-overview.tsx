@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
+import { title } from "@/components/primitives";
 import { Card, Tag } from "@/components/ui";
 import { routes } from "@/paths";
 
@@ -54,7 +55,19 @@ export function BlogOverviewList({
 }
 
 export function BlogOverviewFallback({ blogs }: { blogs: BlogOverviewItem[] }) {
-  return <BlogOverviewList blogs={blogs} />;
+  return (
+    <div className="flex flex-1 flex-col">
+      <div className="flex items-baseline gap-3">
+        <h1 className={title()}>Blog</h1>
+        <span className="text-small text-muted font-normal">
+          ({blogs.length})
+        </span>
+      </div>
+      <div className="mt-8">
+        <BlogOverviewList blogs={blogs} />
+      </div>
+    </div>
+  );
 }
 
 export function BlogOverview({ blogs }: { blogs: BlogOverviewItem[] }) {
@@ -72,47 +85,51 @@ export function BlogOverview({ blogs }: { blogs: BlogOverviewItem[] }) {
   }, [blogs, activeTag]);
 
   return (
-    <div className="flex flex-col gap-4">
-      {activeTag && (
-        <div className="flex items-center gap-2 text-tiny text-muted">
-          <span>Tagged with</span>
-          <Tag active href={routes.blog()}>
-            {activeTag}
-            <span aria-hidden className="font-bold ml-1">
-              ×
-            </span>
-          </Tag>
-          <span>
-            ({filteredBlogs.length} {filteredBlogs.length === 1 ? "post" : "posts"})
-          </span>
-          <span>·</span>
-          <Link
-            href={routes.blog()}
-            className="text-muted hover:text-accent no-underline hover:underline font-medium"
-          >
-            Clear
-          </Link>
-        </div>
-      )}
+    <div className="flex flex-1 flex-col">
+      <div className="flex flex-wrap items-baseline gap-3">
+        <h1 className={title()}>Blog</h1>
+        <span className="text-small text-muted font-normal">
+          ({filteredBlogs.length})
+        </span>
+        {activeTag && (
+          <div className="flex items-center gap-2 text-tiny text-muted">
+            <Tag active href={routes.blog()}>
+              {activeTag}
+              <span aria-hidden className="font-bold ml-1">
+                ×
+              </span>
+            </Tag>
+            <span>·</span>
+            <Link
+              href={routes.blog()}
+              className="text-muted hover:text-accent no-underline hover:underline font-medium"
+            >
+              Clear
+            </Link>
+          </div>
+        )}
+      </div>
 
-      {filteredBlogs.length > 0 ? (
-        <BlogOverviewList blogs={filteredBlogs} />
-      ) : (
-        <div className="flex flex-col items-center justify-center rounded-md border-md border-dashed border-shadow py-12 text-center">
-          <p className="text-medium font-bold text-foreground m-0">
-            No blog posts found
-          </p>
-          <p className="text-small text-muted mt-1 mb-4">
-            There are no posts tagged with &ldquo;{activeTag}&rdquo;.
-          </p>
-          <Link
-            href={routes.blog()}
-            className="text-small font-bold text-accent hover:underline"
-          >
-            Show all posts
-          </Link>
-        </div>
-      )}
+      <div className="mt-8">
+        {filteredBlogs.length > 0 ? (
+          <BlogOverviewList blogs={filteredBlogs} />
+        ) : (
+          <div className="flex flex-col items-center justify-center rounded-md border-md border-dashed border-shadow py-12 text-center">
+            <p className="text-medium font-bold text-foreground m-0">
+              No blog posts found
+            </p>
+            <p className="text-small text-muted mt-1 mb-4">
+              There are no posts tagged with &ldquo;{activeTag}&rdquo;.
+            </p>
+            <Link
+              href={routes.blog()}
+              className="text-small font-bold text-accent hover:underline"
+            >
+              Show all posts
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

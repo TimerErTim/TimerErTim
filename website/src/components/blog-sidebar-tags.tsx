@@ -37,8 +37,8 @@ export function BlogSidebarTagList({ tags }: { tags: BlogTagCount[] }) {
     if (!el) return;
 
     const checkOverflow = () => {
-      // Temporarily check unconstrained scroll height vs 52px (2 rows)
-      setHasOverflow(el.scrollHeight > 54);
+      // 2 rows take ~54px; check if content extends past 2 rows
+      setHasOverflow(el.scrollHeight > 56);
     };
 
     checkOverflow();
@@ -53,7 +53,7 @@ export function BlogSidebarTagList({ tags }: { tags: BlogTagCount[] }) {
         className={`m-0 p-0 list-none flex flex-wrap gap-1.5 transition-all duration-200 ${
           isExpanded
             ? "max-h-none"
-            : "max-h-[52px] overflow-hidden"
+            : "max-h-[56px] overflow-hidden"
         }`}
       >
         {tags.map(({ tag, count }) => {
@@ -76,7 +76,7 @@ export function BlogSidebarTagList({ tags }: { tags: BlogTagCount[] }) {
         <button
           type="button"
           onClick={() => setIsExpanded((prev) => !prev)}
-          className="self-start text-tiny leading-tiny font-bold text-muted hover:text-accent border-0 bg-transparent p-0 cursor-pointer transition-colors"
+          className="self-start text-tiny leading-tiny font-medium text-muted hover:text-foreground hover:underline border-0 bg-transparent p-0 cursor-pointer transition-colors"
         >
           {isExpanded ? "Show fewer tags ↑" : "Show all tags ↓"}
         </button>
