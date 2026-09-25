@@ -35,11 +35,19 @@ const blogsRoot = () => path.join(buildInfo.repoRoot, "build/website/blogs");
 /** Relative site routes for Next.js navigation and links. */
 export const routes = {
     home: () => asRoute("/"),
-    blog: (tag?: string) => {
-        if (!tag) {
+    blog: (tags?: string | string[]) => {
+        if (!tags) {
             return asRoute(routePath("blog"));
         }
-        return asRoute(`${routePath("blog")}?tag=${encodeURIComponent(tag)}`);
+        const tagList = Array.isArray(tags) ? tags.filter(Boolean) : [tags];
+        if (tagList.length === 0) {
+            return asRoute(routePath("blog"));
+        }
+        const searchParams = new URLSearchParams();
+        for (const t of tagList) {
+            searchParams.append("tag", t);
+        }
+        return asRoute(`${routePath("blog")}?${searchParams.toString()}`);
     },
     about: () => asRoute(routePath("about")),
     feed: () => asRoute("/feed.xml"),

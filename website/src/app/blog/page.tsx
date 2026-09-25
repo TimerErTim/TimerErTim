@@ -3,7 +3,6 @@ import { BlogSidebar } from "@/components/blog-sidebar";
 import { PageShell } from "@/components/page-shell";
 import {
   BlogOverview,
-  BlogOverviewFallback,
   type BlogOverviewItem,
 } from "@/components/blog-overview";
 import { buildSitePageMetadata } from "@/lib/site-metadata";
@@ -35,7 +34,7 @@ export default async function BlogPage() {
 
   return (
     <PageShell sidebar={<BlogSidebar />} sidebarLayout="fill">
-      <Suspense fallback={<BlogOverviewFallback blogs={overviewItems} />}>
+      <Suspense>
         <BlogOverview blogs={overviewItems} />
       </Suspense>
     </PageShell>

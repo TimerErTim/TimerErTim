@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Tag } from "@/components/ui";
 import { routes } from "@/paths";
 
@@ -27,7 +27,7 @@ export function BlogSidebarTagListFallback({ tags }: { tags: BlogTagCount[] }) {
 
 export function BlogSidebarTagList({ tags }: { tags: BlogTagCount[] }) {
   const searchParams = useSearchParams();
-  const currentTag = searchParams.get("tag");
+  const currentTags = searchParams ? searchParams.getAll("tag").filter(Boolean) : [];
   const [isExpanded, setIsExpanded] = useState(false);
   const [hasOverflow, setHasOverflow] = useState(false);
   const containerRef = useRef<HTMLUListElement>(null);
@@ -57,11 +57,17 @@ export function BlogSidebarTagList({ tags }: { tags: BlogTagCount[] }) {
         }`}
       >
         {tags.map(({ tag, count }) => {
-          const isActive = currentTag?.toLowerCase() === tag.toLowerCase();
+          const isActive = currentTags.some(
+            (t) => t.toLowerCase() === tag.toLowerCase(),
+          );
+          const nextTags = isActive
+            ? currentTags.filter((t) => t.toLowerCase() !== tag.toLowerCase())
+            : [...currentTags, tag];
+
           return (
             <li key={tag}>
               <Tag
-                href={isActive ? routes.blog() : routes.blog(tag)}
+                href={routes.blog(nextTags)}
                 active={isActive}
               >
                 <span>{tag}</span>
