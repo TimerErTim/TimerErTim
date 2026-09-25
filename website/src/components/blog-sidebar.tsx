@@ -7,7 +7,13 @@ import {
 import { getAllServerBlogMetadata } from "@/model/blogs";
 import { routes } from "@/paths";
 
-export async function BlogSidebar({ currentSlug }: { currentSlug?: string }) {
+export async function BlogSidebar({
+  currentSlug,
+  showTags = !currentSlug,
+}: {
+  currentSlug?: string;
+  showTags?: boolean;
+}) {
   const blogs = await getAllServerBlogMetadata();
   const recent = blogs
     .filter((b) => b.slug !== currentSlug)
@@ -46,7 +52,7 @@ export async function BlogSidebar({ currentSlug }: { currentSlug?: string }) {
         ))}
       </ul>
 
-      {allTags.length > 0 && (
+      {showTags && allTags.length > 0 && (
         <>
           <Divider className="my-4" />
           <h2 className="shrink-0 text-small leading-small font-bold text-foreground m-0 mb-3">

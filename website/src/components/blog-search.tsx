@@ -152,7 +152,15 @@ export function BlogSearch({ entries }: BlogSearchProps) {
       if (exactTag) {
         router.push(routes.blog(exactTag.tag));
       } else {
-        router.push(routes.blog({ search: search.trim() }));
+        // Tag search by prefix or closest match
+        const matchingTag = tagCounts.find((t) =>
+          t.tag.toLowerCase().includes(clean.toLowerCase()),
+        );
+        if (matchingTag) {
+          router.push(routes.blog(matchingTag.tag));
+        } else {
+          router.push(routes.blog());
+        }
       }
       setQuery("");
       setIsOpen(false);
