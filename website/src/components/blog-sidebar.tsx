@@ -1,9 +1,5 @@
-import { Suspense } from "react";
 import { AppLink, Card, Divider } from "@/components/ui";
-import {
-  BlogSidebarTagList,
-  BlogSidebarTagListFallback,
-} from "@/components/blog-sidebar-tags";
+import { BlogSidebarTagList } from "@/components/blog-sidebar-tags";
 import { getAllServerBlogMetadata } from "@/model/blogs";
 import { routes } from "@/paths";
 
@@ -58,9 +54,7 @@ export async function BlogSidebar({
           <h2 className="shrink-0 text-small leading-small font-bold text-foreground m-0 mb-2 md:mb-3">
             Tags
           </h2>
-          <Suspense fallback={<BlogSidebarTagListFallback tags={allTags} />}>
-            <BlogSidebarTagList tags={allTags} />
-          </Suspense>
+          <BlogSidebarTagList tags={allTags} />
         </>
       )}
     </Card>
