@@ -1,7 +1,11 @@
-import { Card } from "@/components/ui";
+import { Suspense } from "react";
+import { AppLink, Card, Divider } from "@/components/ui";
+import {
+  BlogSidebarTagList,
+  BlogSidebarTagListFallback,
+} from "@/components/blog-sidebar-tags";
 import { getAllServerBlogMetadata } from "@/model/blogs";
 import { routes } from "@/paths";
-import { AppLink } from "@/components/ui";
 
 export async function BlogSidebar({ currentSlug }: { currentSlug?: string }) {
   const blogs = await getAllServerBlogMetadata();
@@ -9,6 +13,16 @@ export async function BlogSidebar({ currentSlug }: { currentSlug?: string }) {
     .filter((b) => b.slug !== currentSlug)
     .sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime())
     .slice(0, 12);
+
+  const tagCounts = new Map<string, number>();
+  for (const blog of blogs) {
+    for (const tag of blog.keywords ?? []) {
+      tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+    }
+  }
+  const allTags = Array.from(tagCounts.entries())
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
 
   return (
     <Card className="flex h-fit max-h-full flex-col overflow-hidden pb-0">
@@ -31,6 +45,18 @@ export async function BlogSidebar({ currentSlug }: { currentSlug?: string }) {
           </li>
         ))}
       </ul>
+
+      {allTags.length > 0 && (
+        <>
+          <Divider className="my-4" />
+          <h2 className="shrink-0 text-small leading-small font-bold text-foreground m-0 mb-3">
+            Tags
+          </h2>
+          <Suspense fallback={<BlogSidebarTagListFallback tags={allTags} />}>
+            <BlogSidebarTagList tags={allTags} />
+          </Suspense>
+        </>
+      )}
     </Card>
   );
 }

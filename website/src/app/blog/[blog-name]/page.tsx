@@ -16,6 +16,7 @@ import {
     getServerBlogMetadata,
     loadTransitBlogMetadata,
 } from "@/model/blogs";
+import { routes } from "@/paths";
 import { site } from "@/site";
 import RenderBlog from "./render-blog";
 
@@ -102,7 +103,9 @@ export default async function BlogPage({ params }: { params: Promise<{ "blog-nam
                     {blogMetadata.keywords && blogMetadata.keywords.length > 0 && (
                         <div className="mt-5 flex flex-wrap gap-2">
                             {blogMetadata.keywords.map((keyword) => (
-                                <Tag key={keyword}>{keyword}</Tag>
+                                <Tag key={keyword} href={routes.blog(keyword)}>
+                                    {keyword}
+                                </Tag>
                             ))}
                         </div>
                     )}

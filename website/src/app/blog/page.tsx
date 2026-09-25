@@ -1,12 +1,16 @@
+import { Suspense } from "react";
 import { title } from "@/components/primitives";
 import { BlogSidebar } from "@/components/blog-sidebar";
 import { PageShell } from "@/components/page-shell";
-import { Card, Tag } from "@/components/ui";
+import {
+  BlogOverview,
+  BlogOverviewFallback,
+  type BlogOverviewItem,
+} from "@/components/blog-overview";
 import { buildSitePageMetadata } from "@/lib/site-metadata";
 import { getAllServerBlogMetadata } from "@/model/blogs";
 import { routes } from "@/paths";
 import { site } from "@/site";
-import Link from "next/link";
 
 export const metadata = buildSitePageMetadata({
   title: "Blog",
@@ -18,40 +22,26 @@ export default async function BlogPage() {
   const blogs = await getAllServerBlogMetadata();
   blogs.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime());
 
+  const overviewItems: BlogOverviewItem[] = blogs.map((blog) => ({
+    slug: blog.slug,
+    title: blog.title,
+    description: blog.description,
+    keywords: blog.keywords ?? [],
+    updatedAtDisplay: blog.updatedAt.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    }),
+  }));
+
   return (
     <PageShell sidebar={<BlogSidebar />} sidebarLayout="fill">
       <div className="flex flex-1 flex-col">
         <h1 className={title()}>Blog</h1>
-        <div className="mt-8 flex flex-col gap-4">
-          {blogs.map((blog) => (
-            <Link href={routes.blogPost(blog.slug)} key={blog.slug} className="contents">
-              <Card hoverable>
-                <h2 className="text-medium leading-medium font-bold text-foreground m-0">
-                  {blog.title}
-                </h2>
-                {blog.description && (
-                  <p className="mt-2 text-small leading-small text-foreground m-0 font-medium">
-                    {blog.description}
-                  </p>
-                )}
-                {blog.keywords && blog.keywords.length > 0 && (
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {blog.keywords.map((keyword) => (
-                      <Tag key={keyword}>{keyword}</Tag>
-                    ))}
-                  </div>
-                )}
-                <p className="mt-3 text-tiny leading-tiny text-muted m-0">
-                  Last updated:{" "}
-                  {blog.updatedAt.toLocaleDateString(undefined, {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </p>
-              </Card>
-            </Link>
-          ))}
+        <div className="mt-8">
+          <Suspense fallback={<BlogOverviewFallback blogs={overviewItems} />}>
+            <BlogOverview blogs={overviewItems} />
+          </Suspense>
         </div>
       </div>
     </PageShell>
