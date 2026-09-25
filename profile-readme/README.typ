@@ -93,18 +93,25 @@ I specialize in writing code that is safe, concurrent, and occasionally panics. 
           columns: 2,
           align: horizon,
           gutter: 0.5em,
-          icon,
-          text
+          icon, text,
         )
       }
 
-      #item(image("../assets/logos/yt-square.png"), link(config.TIMERERTIM_YOUTUBE_URL.trim(regex(`https?://`.text))))
+      #item(image("../assets/logos/yt-square.png"), link(
+        config.TIMERERTIM_YOUTUBE_URL.trim(regex(`https?://`.text)),
+      ))
 
-      #item(image("../assets/logos/github-invertocat.svg"), link(config.TIMERERTIM_GITHUB_URL.trim(regex(`https?://`.text))))
+      #item(image("../assets/logos/github-invertocat.svg"), link(
+        config.TIMERERTIM_GITHUB_URL.trim(regex(`https?://`.text)),
+      ))
 
-      #item(image("../assets/logos/linkedin-square.png"), link(config.TIMERERTIM_LINKEDIN_URL.trim(regex(`https?://`.text))))
+      #item(image("../assets/logos/linkedin-square.png"), link(
+        config.TIMERERTIM_LINKEDIN_URL.trim(regex(`https?://`.text)),
+      ))
 
-      #item(image("../assets/identity/icon.png"), link(config.TIMERERTIM_SITE_ORIGIN.trim(regex(`https?://`.text))))
+      #item(image("../assets/identity/icon.png"), link(
+        config.TIMERERTIM_SITE_ORIGIN.trim(regex(`https?://`.text)),
+      ))
     ]
 
     ⚙️ Tech Stack 🔧

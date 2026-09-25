@@ -21,7 +21,7 @@
     "Motion Canvas",
     "Canvas Commons",
     "vite",
-    "TypeScript"
+    "TypeScript",
   ),
 )
 #show: blog-entry.with(

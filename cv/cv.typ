@@ -5,39 +5,39 @@
 #let with-image = eval(sys.inputs.at("with-image", default: "false"))
 
 #let visit-me-on-section = [
-          Visit me on
-          #import "@preview/pinit:0.2.2": *
+  Visit me on
+  #import "@preview/pinit:0.2.2": *
 
-          #let items = (
-            link(configuration.contacts.linkedin, image(
-              "../assets/logos/linkedin-square.png",
-              height: 12pt,
-            )),
-            link(configuration.contacts.github, image(
-              "../assets/logos/github-invertocat.svg",
-              height: 12pt,
-            )),
-            {
-              link(configuration.contacts.website, image(
-                "../assets/identity/icon.png",
-                height: 12pt,
-              ))
-              place(pin(1))
-            },
-          )
+  #let items = (
+    link(configuration.contacts.linkedin, image(
+      "../assets/logos/linkedin-square.png",
+      height: 12pt,
+    )),
+    link(configuration.contacts.github, image(
+      "../assets/logos/github-invertocat.svg",
+      height: 12pt,
+    )),
+    {
+      link(configuration.contacts.website, image(
+        "../assets/identity/icon.png",
+        height: 12pt,
+      ))
+      place(pin(1))
+    },
+  )
 
-          #items.map(box).join(h(1em))
-          #pinit-point-from(
-            1,
-            offset-dy: -1cm,
-            body-dy: -1em,
-            pin-dy: -4mm,
-            pin-dx: 6mm,
-          )[
-            #set text(size: 0.9em)
-            personal Website
-          ]
-        ]
+  #items.map(box).join(h(1em))
+  #pinit-point-from(
+    1,
+    offset-dy: -1cm,
+    body-dy: -1em,
+    pin-dy: -4mm,
+    pin-dx: 6mm,
+  )[
+    #set text(size: 0.9em)
+    personal Website
+  ]
+]
 
 #let muted = text.with(fill: luma(100))
 #let sidebarSection = {
