@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import { title } from "@/components/primitives";
-import { Card, Tag } from "@/components/ui";
+import { Card, Tag, buttonStyles } from "@/components/ui";
 import { routes } from "@/paths";
 
 export type BlogOverviewItem = {
@@ -123,7 +123,7 @@ export function BlogOverview({ blogs }: { blogs: BlogOverviewItem[] }) {
             </p>
             <Link
               href={routes.blog()}
-              className="text-small font-bold text-accent hover:underline"
+              className={buttonStyles({ variant: "primary", size: "sm" })}
             >
               Show all posts
             </Link>

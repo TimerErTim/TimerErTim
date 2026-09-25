@@ -30,18 +30,12 @@ export function PageShell({
 
   const layoutClass =
     sidebarLayout === "fill"
-      ? "flex flex-col gap-8 md:grid md:min-h-[calc(100vh-14rem)] md:grid-cols-[minmax(0,1fr)_220px] md:grid-rows-[auto_auto] md:items-stretch md:gap-x-10 md:gap-y-8"
+      ? "flex flex-col gap-8 md:grid md:min-h-[calc(100vh-14rem)] md:grid-cols-[minmax(0,1fr)_220px] md:grid-rows-[auto_auto] md:gap-x-10 md:gap-y-8"
       : "flex flex-col gap-8 md:grid md:grid-cols-[minmax(0,1fr)_220px] md:grid-rows-[auto_auto] md:gap-x-10 md:gap-y-8";
 
-  const sidebarClass =
-    sidebarLayout === "fill"
-      ? "order-3 min-w-0 md:col-start-2 md:row-start-1 md:flex md:min-h-0 md:flex-col"
-      : "order-3 min-w-0 md:col-start-2 md:row-start-1 md:self-start";
+  const sidebarClass = "order-3 min-w-0 md:col-start-2 md:row-start-1 md:self-start";
 
-  const sidebarInnerClass =
-    sidebarLayout === "fill"
-      ? "md:sticky md:top-6 md:min-h-0 md:flex-1 md:overflow-y-auto"
-      : "md:sticky md:top-6";
+  const sidebarInnerClass = "md:sticky md:top-6";
 
   return (
     <div className={shellClass}>

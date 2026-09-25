@@ -12,7 +12,7 @@ export type BlogTagCount = {
 
 export function BlogSidebarTagListFallback({ tags }: { tags: BlogTagCount[] }) {
   return (
-    <ul className="m-0 p-0 list-none flex flex-wrap gap-1.5 pb-4">
+    <ul className="m-0 p-0 list-none flex flex-wrap gap-x-1.5 gap-y-1 md:gap-y-1.5 pb-3 md:pb-4">
       {tags.map(({ tag, count }) => (
         <li key={tag}>
           <Tag href={routes.blog(tag)}>
@@ -47,10 +47,10 @@ export function BlogSidebarTagList({ tags }: { tags: BlogTagCount[] }) {
   }, [tags]);
 
   return (
-    <div className="flex flex-col gap-2 pb-4">
+    <div className="flex flex-col gap-1.5 md:gap-2 pb-3 md:pb-4">
       <ul
         ref={containerRef}
-        className={`m-0 p-0 list-none flex flex-wrap gap-1.5 transition-all duration-200 ${
+        className={`m-0 p-0 list-none flex flex-wrap gap-x-1.5 gap-y-1 md:gap-y-1.5 transition-all duration-200 ${
           isExpanded
             ? "max-h-none"
             : "max-h-[56px] overflow-hidden"

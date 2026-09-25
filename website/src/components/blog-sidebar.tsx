@@ -31,7 +31,7 @@ export async function BlogSidebar({
     .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
 
   return (
-    <Card className="flex h-fit max-h-full flex-col overflow-hidden pb-0">
+    <Card className="flex h-fit max-h-full flex-col pb-0">
       <h2 className="shrink-0 text-small leading-small font-bold text-foreground m-0 mb-4">
         Recent blogs
       </h2>
@@ -54,8 +54,8 @@ export async function BlogSidebar({
 
       {showTags && allTags.length > 0 && (
         <>
-          <Divider className="my-4" />
-          <h2 className="shrink-0 text-small leading-small font-bold text-foreground m-0 mb-3">
+          <Divider className="my-2 md:my-4" />
+          <h2 className="shrink-0 text-small leading-small font-bold text-foreground m-0 mb-2 md:mb-3">
             Tags
           </h2>
           <Suspense fallback={<BlogSidebarTagListFallback tags={allTags} />}>
