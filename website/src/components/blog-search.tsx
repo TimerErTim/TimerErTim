@@ -268,12 +268,9 @@ export function BlogSearch({ entries }: BlogSearchProps) {
                       type="button"
                     >
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] text-muted uppercase tracking-wider font-bold">
-                          Tag
-                        </span>
-                        <Tag active={false}>#{result.tag}</Tag>
+                        <Tag active={false}>{result.tag}</Tag>
                       </div>
-                      <span className="text-tiny text-muted font-normal">
+                      <span className="text-tiny font-normal">
                         {result.count} {result.count === 1 ? "post" : "posts"}
                       </span>
                     </button>
@@ -303,7 +300,7 @@ export function BlogSearch({ entries }: BlogSearchProps) {
                   >
                     <span className="block font-bold">{item.title}</span>
                     {item.description && (
-                      <span className="block text-tiny leading-tiny text-muted mt-0.5 line-clamp-2 font-normal">
+                      <span className="block text-tiny leading-tiny mt-0.5 line-clamp-2 font-light">
                         {item.description}
                       </span>
                     )}
@@ -315,14 +312,14 @@ export function BlogSearch({ entries }: BlogSearchProps) {
                             <Tag
                               key={kw}
                               active={isMatch}
-                              className="text-[10px] px-1.5 py-0"
+                              className="text-[8px] px-1.5 py-0 h-4"
                             >
                               {kw}
                             </Tag>
                           );
                         })}
                         {item.keywords.length > 4 && (
-                          <span className="text-[10px] text-muted self-center">
+                          <span className="text-[10px] text-muted self-center -mt-0.5">
                             +{item.keywords.length - 4}
                           </span>
                         )}
