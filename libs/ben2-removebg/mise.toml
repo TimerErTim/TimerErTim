@@ -1,0 +1,13 @@
+[tools]
+python = "3.8.20"
+
+[env]
+# Makes sure the mise managed python installation is used
+UV_PYTHON = { value = "{{ tools.python.path }}", tools = true }
+
+[tasks."run"]
+description = "Run the remove-bg script"
+dir = "{{ cwd }}"
+raw_args = true
+raw = true
+file = "remove-bg.py"

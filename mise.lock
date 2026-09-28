@@ -133,7 +133,10 @@ url = "https://nodejs.org/dist/v26.10.0/node-v26.10.0-win-x64.zip"
 [[tools.python]]
 version = "3.8.20"
 backend = "core:python"
-specifiers = ["3.8"]
+specifiers = [
+    "3.8",
+    "3.8.20",
+]
 
 [tools.python."platforms.linux-arm64"]
 checksum = "sha256:75a187ebfab81096e3f3d91d70c1349e64defbdfb0e8a067cb5233d017655e31"
@@ -160,7 +163,7 @@ checksum = "sha256:ec2f723dcfbf09581578a716c05cc67823a43d77111e6dd9e0d1557ccc6dc
 url = "https://github.com/astral-sh/python-build-standalone/releases/download/20241002/cpython-3.8.20+20241002-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
 
 [[tools.rust]]
-version = "nightly-2026-09-23"
+version = "nightly-2026-09-28"
 backend = "core:rust"
 specifiers = ["nightly"]
 
