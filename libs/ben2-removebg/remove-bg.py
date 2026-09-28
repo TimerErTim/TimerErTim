@@ -4,13 +4,22 @@
 #     "ben2 @ git+https://github.com/PramaLLC/BEN2.git",
 #     "torch>=2.1.0",
 #     "opencv-python>=4.10.0",
+#     "numpy",
+#     "pillow",
 # ]
 # ///
 
 import argparse
+import subprocess
 from pathlib import Path
+
+import cv2
+import numpy as np
 import torch
 from ben2 import BEN_Base
+from ben2.modeling_ben2 import add_audio_to_video
+from PIL import Image
+
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -50,6 +59,7 @@ def parse_args():
     )
     return parser.parse_args()
 
+
 def parse_color(color_str):
     try:
         parts = [int(c.strip()) for c in color_str.split(",")]
@@ -61,8 +71,189 @@ def parse_color(color_str):
             "Fehler: --bg-color muss im Format 'R,G,B' angegeben werden (z. B. '0,255,0')."
         )
 
+
+def _as_frame_list(batch_results):
+    if isinstance(batch_results, Image.Image):
+        return [batch_results]
+    return batch_results
+
+
+class Mp4FrameWriter:
+    def __init__(self, output_path, fps, size, rgb_value):
+        width, height = size
+        Path(output_path).parent.mkdir(parents=True, exist_ok=True)
+        fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+        self._writer = cv2.VideoWriter(str(output_path), fourcc, fps, (width, height))
+        if not self._writer.isOpened():
+            raise IOError("Cannot open MP4 writer: {}".format(output_path))
+        self._background = Image.new("RGBA", size, rgb_value + (255,))
+
+    def write(self, image):
+        if image.mode == "RGBA":
+            frame = Image.alpha_composite(self._background, image).convert("RGB")
+        else:
+            frame = image.convert("RGB")
+        self._writer.write(cv2.cvtColor(np.array(frame), cv2.COLOR_RGB2BGR))
+
+    def close(self):
+        self._writer.release()
+
+
+class WebmAlphaWriter:
+    def __init__(self, output_path, fps, size):
+        width, height = size
+        Path(output_path).parent.mkdir(parents=True, exist_ok=True)
+        self._output_path = str(output_path)
+        try:
+            self._proc = subprocess.Popen(
+                [
+                    "ffmpeg",
+                    "-hide_banner",
+                    "-loglevel",
+                    "error",
+                    "-y",
+                    "-f",
+                    "rawvideo",
+                    "-pix_fmt",
+                    "rgba",
+                    "-s",
+                    "{}x{}".format(width, height),
+                    "-r",
+                    str(fps),
+                    "-i",
+                    "pipe:0",
+                    "-an",
+                    "-c:v",
+                    "libvpx-vp9",
+                    "-pix_fmt",
+                    "yuva420p",
+                    "-auto-alt-ref",
+                    "0",
+                    self._output_path,
+                ],
+                stdin=subprocess.PIPE,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.PIPE,
+            )
+        except FileNotFoundError as exc:
+            raise RuntimeError("ffmpeg not found; required for WebM alpha output") from exc
+
+    def write(self, image):
+        if image.mode != "RGBA":
+            image = image.convert("RGBA")
+        try:
+            self._proc.stdin.write(image.tobytes())
+        except BrokenPipeError as exc:
+            stderr = self._proc.stderr.read().decode("utf-8", errors="replace")
+            raise RuntimeError("ffmpeg failed while writing WebM: {}".format(stderr)) from exc
+
+    def close(self):
+        if self._proc.stdin is not None:
+            self._proc.stdin.close()
+        stderr = self._proc.stderr.read().decode("utf-8", errors="replace")
+        return_code = self._proc.wait()
+        if return_code != 0:
+            raise RuntimeError("ffmpeg failed ({}): {}".format(return_code, stderr))
+        print("WebM with alpha saved to {}".format(self._output_path))
+
+def segment_video(
+    model,
+    video_path,
+    output_path="./",
+    fps=0,
+    refine_foreground=False,
+    batch=1,
+    print_frames_processed=True,
+    webm=False,
+    rgb_value=(0, 255, 0),
+):
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        raise IOError("Cannot open video: {}".format(video_path))
+
+    original_fps = cap.get(cv2.CAP_PROP_FPS)
+    original_fps = 30 if original_fps == 0 else original_fps
+    fps = original_fps if fps == 0 else fps
+
+    ret, first_frame = cap.read()
+    if not ret:
+        cap.release()
+        raise ValueError("No frames found in the video.")
+    height, width = first_frame.shape[:2]
+    cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+
+    output_path = Path(output_path)
+    if output_path.is_dir() or str(output_path).endswith(("/", "\\")):
+        output_file = output_path / ("foreground.webm" if webm else "foreground.mp4")
+    elif output_path.suffix.lower() in {".webm", ".mp4", ".mov", ".mkv"}:
+        output_file = output_path
+    else:
+        output_file = output_path / ("foreground.webm" if webm else "foreground.mp4")
+
+    writer = None
+    frame_idx = 0
+    batch_frames = []
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+
+    try:
+        if webm:
+            writer = WebmAlphaWriter(output_file, fps, (width, height))
+        else:
+            writer = Mp4FrameWriter(output_file, fps, (width, height), rgb_value)
+
+        while True:
+            ret, frame = cap.read()
+            if not ret:
+                if batch_frames:
+                    batch_results = model.inference(batch_frames, refine_foreground)
+                    for foreground in _as_frame_list(batch_results):
+                        writer.write(foreground)
+                    if print_frames_processed:
+                        print(
+                            "Processed frames {} to {} of {}".format(
+                                frame_idx - len(batch_frames) + 1, frame_idx, total_frames
+                            )
+                        )
+                break
+
+            frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            batch_frames.append(Image.fromarray(frame_rgb))
+
+            if len(batch_frames) == batch:
+                batch_results = model.inference(batch_frames, refine_foreground)
+                for foreground in _as_frame_list(batch_results):
+                    writer.write(foreground)
+                if print_frames_processed:
+                    print(
+                        "Processed frames {} to {} of {}".format(
+                            frame_idx - batch + 1, frame_idx, total_frames
+                        )
+                    )
+                batch_frames = []
+
+            frame_idx += 1
+    finally:
+        cap.release()
+        if writer is not None:
+            writer.close()
+
+    if not webm:
+        try:
+            audio_output = output_file.with_name(
+                "{}_output_with_audio{}".format(output_file.stem, output_file.suffix)
+            )
+            add_audio_to_video(str(output_file), video_path, str(audio_output))
+            audio_output.replace(output_file)
+        except Exception as e:
+            print("No audio found in the original video")
+            print(e)
+
+    return str(output_file)
+
+
 def main():
     import sys
+
     print("Python version:", sys.version)
     args = parse_args()
     video_path = Path(args.input)
@@ -81,7 +272,6 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print("Gerät: {}".format(device))
 
-    # Offizieller Ladevorgang von HuggingFace
     print("Lade BEN2 Modellgewichte von HuggingFace (PramaLLC/BEN2)...")
     model = BEN_Base.from_pretrained("PramaLLC/BEN2")
     model.to(device).eval()
@@ -91,14 +281,18 @@ def main():
     print("Starte Video-Segmentierung...")
     print("{} -> {}".format(video_path, expected_output))
     print(
-        "Format: {}".format("Transparente WebM (Alpha-Kanal)" if args.webm else "MP4 mit Hintergrund {}".format(rgb_color))
+        "Format: {}".format(
+            "Transparente WebM (Alpha-Kanal)"
+            if args.webm
+            else "MP4 mit Hintergrund {}".format(rgb_color)
+        )
     )
 
-    # Native Video-Segmentierung von BEN2
-    model.segment_video(
+    written = segment_video(
+        model,
         video_path=str(video_path),
         output_path=str(expected_output),
-        fps=0,  # 0 = Original-FPS beibehalten
+        fps=0,
         refine_foreground=args.refine,
         batch=args.batch,
         print_frames_processed=True,
@@ -106,7 +300,8 @@ def main():
         rgb_value=rgb_color,
     )
 
-    print("\nFertig! Ausgabedatei: {}".format(expected_output))
+    print("\nFertig! Ausgabedatei: {}".format(written))
+
 
 if __name__ == "__main__":
     main()
