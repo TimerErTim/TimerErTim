@@ -131,8 +131,7 @@ education:
     degree: "A-Levels"
     major: "Medical Informatics"
     final_work:
-      link:
-        name: "Synde - Document Dataset Synthesizer"
+      name: "Synde - Document Dataset Synthesizer"
     #location: Grieskirchen, Austria
     from: "2018"
     to: "2023"
