@@ -19,6 +19,8 @@ import torch
 from ben2 import BEN_Base
 from ben2.modeling_ben2 import add_audio_to_video
 from PIL import Image
+import concurrent.futures
+
 
 
 def parse_args():
@@ -32,8 +34,8 @@ def parse_args():
         "--output-dir",
         "-o",
         type=str,
-        default="./",
-        help="Ausgabeordner (Standard: './')",
+        default=None,
+        help="Ausgabeordner (Standard: gleiches Verzeichnis wie das Eingabevideo)",
     )
     parser.add_argument(
         "--webm",
@@ -205,7 +207,11 @@ def segment_video(
             ret, frame = cap.read()
             if not ret:
                 if batch_frames:
-                    batch_results = model.inference(batch_frames, refine_foreground)
+                    def infer_single(img):
+                        return model.inference(img, refine_foreground)
+                    with concurrent.futures.ThreadPoolExecutor() as executor:
+                        batch_results = list(executor.map(infer_single, batch_frames))
+               
                     for foreground in _as_frame_list(batch_results):
                         writer.write(foreground)
                     if print_frames_processed:
@@ -257,14 +263,14 @@ def main():
     print("Python version:", sys.version)
     args = parse_args()
     video_path = Path(args.input)
-    output_dir = str(Path(args.output_dir).resolve())
-    if Path(output_dir).is_dir():
+    output_dir = Path(args.output_dir).resolve() if args.output_dir else video_path.parent
+    if output_dir.is_dir():
         if args.webm:
-            expected_output = Path(output_dir) / "foreground.webm"
+            expected_output = output_dir / "foreground.webm"
         else:
-            expected_output = Path(output_dir) / "foreground.mp4"
+            expected_output = output_dir / "foreground.mp4"
     else:
-        expected_output = Path(output_dir)
+        expected_output = output_dir
 
     if not video_path.exists():
         raise SystemExit("Fehler: Die Datei '{}' existiert nicht.".format(video_path))
@@ -296,7 +302,7 @@ def main():
         refine_foreground=args.refine,
         batch=args.batch,
         print_frames_processed=True,
-        webm=args.webm,
+        webm=args.webm or expected_output.suffix.lower() == ".webm",
         rgb_value=rgb_color,
     )
 
