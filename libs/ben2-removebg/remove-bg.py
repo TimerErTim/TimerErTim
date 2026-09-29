@@ -6,11 +6,16 @@
 #     "opencv-python>=4.10.0",
 #     "numpy",
 #     "pillow",
+#     "tqdm",
 # ]
 # ///
 
 import argparse
+import copy
+import queue
 import subprocess
+import sys
+import threading
 from pathlib import Path
 
 import cv2
@@ -19,7 +24,7 @@ import torch
 from ben2 import BEN_Base
 from ben2.modeling_ben2 import add_audio_to_video
 from PIL import Image
-import concurrent.futures
+from tqdm import tqdm
 
 
 
@@ -52,7 +57,7 @@ def parse_args():
         "--batch",
         type=int,
         default=1,
-        help="Batch-Größe (Empfehlung: 1 bis max. 3 für Endverbraucher-GPUs)",
+        help="Anzahl paralleler Worker/Modell-Kopien (Empfehlung: 1 bis max. 3 für Endverbraucher-GPUs)",
     )
     parser.add_argument(
         "--refine",
@@ -78,6 +83,46 @@ def _as_frame_list(batch_results):
     if isinstance(batch_results, Image.Image):
         return [batch_results]
     return batch_results
+
+
+def _inference_worker(work_queue, result_queue, model, refine_foreground):
+    while True:
+        item = work_queue.get()
+        try:
+            if item is None:
+                return
+            frame_idx, pil_image = item
+            foreground = model.inference(pil_image, refine_foreground)
+            result_queue.put((frame_idx, foreground))
+        except Exception as exc:
+            result_queue.put(exc)
+            return
+        finally:
+            work_queue.task_done()
+
+
+def _drain_results(
+    result_queue, writer, pending, next_write_idx, block, total_frames, progress
+):
+    while next_write_idx < total_frames:
+        while next_write_idx in pending:
+            for foreground in _as_frame_list(pending.pop(next_write_idx)):
+                writer.write(foreground)
+            progress.update(1)
+            next_write_idx += 1
+
+        if next_write_idx >= total_frames:
+            break
+
+        try:
+            item = result_queue.get() if block else result_queue.get_nowait()
+        except queue.Empty:
+            break
+        if isinstance(item, Exception):
+            raise item
+        pending[item[0]] = item[1]
+
+    return next_write_idx
 
 
 class Mp4FrameWriter:
@@ -165,7 +210,6 @@ def segment_video(
     fps=0,
     refine_foreground=False,
     batch=1,
-    print_frames_processed=True,
     webm=False,
     rgb_value=(0, 255, 0),
 ):
@@ -193,9 +237,23 @@ def segment_video(
         output_file = output_path / ("foreground.webm" if webm else "foreground.mp4")
 
     writer = None
-    frame_idx = 0
-    batch_frames = []
-    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    progress = None
+    num_workers = max(1, batch)
+    total_frames_expected = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    models = [copy.deepcopy(model) for _ in range(num_workers - 1)] + [model]
+    work_queue = queue.Queue(maxsize=num_workers * 3)
+    result_queue = queue.Queue()
+    pending = {}
+    next_write_idx = 0
+
+    workers = [
+        threading.Thread(
+            target=_inference_worker,
+            args=(work_queue, result_queue, worker_model, refine_foreground),
+            daemon=True,
+        )
+        for worker_model in models
+    ]
 
     try:
         if webm:
@@ -203,42 +261,57 @@ def segment_video(
         else:
             writer = Mp4FrameWriter(output_file, fps, (width, height), rgb_value)
 
+        for worker in workers:
+            worker.start()
+
+        # CAP_PROP_FRAME_COUNT is often 0 or plain wrong for some containers;
+        # the real count is set after reading below so the bar ends at 100%.
+        total = max(total_frames_expected, 1)
+        progress = tqdm(total=total, desc="Segmenting frames", unit="frame")
+
+        frame_idx = 0
         while True:
             ret, frame = cap.read()
             if not ret:
-                if batch_frames:
-                    def infer_single(img):
-                        return model.inference(img, refine_foreground)
-                    with concurrent.futures.ThreadPoolExecutor() as executor:
-                        batch_results = list(executor.map(infer_single, batch_frames))
-               
-                    for foreground in _as_frame_list(batch_results):
-                        writer.write(foreground)
-                    if print_frames_processed:
-                        print(
-                            "Processed frames {} to {} of {}".format(
-                                frame_idx - len(batch_frames) + 1, frame_idx, total_frames
-                            )
-                        )
                 break
-
             frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            batch_frames.append(Image.fromarray(frame_rgb))
-
-            if len(batch_frames) == batch:
-                batch_results = model.inference(batch_frames, refine_foreground)
-                for foreground in _as_frame_list(batch_results):
-                    writer.write(foreground)
-                if print_frames_processed:
-                    print(
-                        "Processed frames {} to {} of {}".format(
-                            frame_idx - batch + 1, frame_idx, total_frames
-                        )
-                    )
-                batch_frames = []
-
+            work_queue.put((frame_idx, Image.fromarray(frame_rgb)))
             frame_idx += 1
+            next_write_idx = _drain_results(
+                result_queue,
+                writer,
+                pending,
+                next_write_idx,
+                block=False,
+                total_frames=frame_idx,
+                progress=progress,
+            )
+
+        total_frames = frame_idx
+        progress.total = total_frames
+        progress.refresh()
+
+        for _ in range(num_workers):
+            work_queue.put(None)
+
+        while next_write_idx < total_frames:
+            next_write_idx = _drain_results(
+                result_queue,
+                writer,
+                pending,
+                next_write_idx,
+                block=True,
+                total_frames=total_frames,
+                progress=progress,
+            )
+
+        progress.close()
+
+        for worker in workers:
+            worker.join()
     finally:
+        if progress is not None:
+            progress.close()
         cap.release()
         if writer is not None:
             writer.close()
@@ -258,8 +331,6 @@ def segment_video(
 
 
 def main():
-    import sys
-
     print("Python version:", sys.version)
     args = parse_args()
     video_path = Path(args.input)
@@ -301,7 +372,6 @@ def main():
         fps=0,
         refine_foreground=args.refine,
         batch=args.batch,
-        print_frames_processed=True,
         webm=args.webm or expected_output.suffix.lower() == ".webm",
         rgb_value=rgb_color,
     )
