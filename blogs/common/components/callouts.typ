@@ -45,6 +45,7 @@
     #if heading != none {
       set text(size: 1.05em, weight: "bold")
       set text(fill: color-val)
+      show: block.with(sticky: true)
       heading
     }
 
