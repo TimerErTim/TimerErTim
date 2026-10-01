@@ -163,7 +163,7 @@ checksum = "sha256:ec2f723dcfbf09581578a716c05cc67823a43d77111e6dd9e0d1557ccc6dc
 url = "https://github.com/astral-sh/python-build-standalone/releases/download/20241002/cpython-3.8.20+20241002-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
 
 [[tools.rust]]
-version = "nightly-2026-09-28"
+version = "nightly-2026-10-01"
 backend = "core:rust"
 specifiers = ["nightly"]
 
