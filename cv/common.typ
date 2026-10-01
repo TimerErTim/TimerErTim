@@ -75,7 +75,7 @@
     lang: lang,
   )
 
-  show link: set text(themes.light.info.lighten(25%))
+  show link: set text(themes.light.accent.lighten(25%))
   show link: underline
 
   set page(
