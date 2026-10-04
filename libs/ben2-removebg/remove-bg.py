@@ -12,6 +12,7 @@
 
 import argparse
 import copy
+import os
 import queue
 import subprocess
 import sys
@@ -22,8 +23,16 @@ import cv2
 import numpy as np
 import torch
 from ben2 import BEN_Base
-from ben2.modeling_ben2 import add_audio_to_video
+from ben2.modeling_ben2 import (
+    add_audio_to_video,
+    img_transform,
+    img_transform32,
+    postprocess_image,
+    refine_foreground_process,
+    rgb_loader_refiner,
+)
 from PIL import Image
+from torchvision import transforms
 from tqdm import tqdm
 
 
@@ -85,20 +94,67 @@ def _as_frame_list(batch_results):
     return batch_results
 
 
-def _inference_worker(work_queue, result_queue, model, refine_foreground):
+def _gpu_inference(model, pil_image, refine):
+    """Runs the network on GPU. With refine=False this is the whole job;
+    with refine=True it only produces the raw mask and the blur-fusion
+    refine pass runs later on a CPU worker."""
+    image, h, w, original_image = rgb_loader_refiner(pil_image)
+    if torch.cuda.is_available():
+        img_tensor = img_transform(image).unsqueeze(0).to(next(model.parameters()).device)
+    else:
+        img_tensor = img_transform32(image).unsqueeze(0).to(next(model.parameters()).device)
+
+    with torch.no_grad():
+        res = model.forward(img_tensor)
+
+    if not refine:
+        alpha = postprocess_image(res, im_size=[w, h])
+        pred_pil = transforms.ToPILImage()(alpha)
+        mask = pred_pil.resize(original_image.size)
+        original_image.putalpha(mask)
+        return original_image
+
+    # Deliver the full-res frame plus the mask to the refine stage.
+    pred_pil = transforms.ToPILImage()(res.squeeze())
+    return (original_image, pred_pil.resize(original_image.size))
+
+
+def _refine_on_cpu(item):
+    frame_idx, (original_image, mask) = item
+    image_masked = refine_foreground_process(original_image, mask)
+    image_masked.putalpha(mask)
+    return frame_idx, image_masked
+
+
+def _inference_worker(work_queue, refine_queue, result_queue, model, refine):
+    out_queue = refine_queue if refine_queue is not None else result_queue
     while True:
         item = work_queue.get()
         try:
             if item is None:
                 return
             frame_idx, pil_image = item
-            foreground = model.inference(pil_image, refine_foreground)
-            result_queue.put((frame_idx, foreground))
+            out_queue.put((frame_idx, _gpu_inference(model, pil_image, refine)))
         except Exception as exc:
+            # Bypass the pipeline so a dead GPU worker surfaces immediately.
             result_queue.put(exc)
             return
         finally:
             work_queue.task_done()
+
+
+def _refine_worker(refine_queue, result_queue):
+    while True:
+        item = refine_queue.get()
+        try:
+            if item is None:
+                return
+            result_queue.put(_refine_on_cpu(item))
+        except Exception as exc:
+            result_queue.put(exc)
+            return
+        finally:
+            refine_queue.task_done()
 
 
 def _drain_results(
@@ -246,10 +302,26 @@ def segment_video(
     pending = {}
     next_write_idx = 0
 
+    # With --refine the blur-fusion pass is pure CPU work; run it in its own
+    # workers so it never blocks a GPU worker between forward passes.
+    refine_workers = []
+    refine_queue = None
+    if refine_foreground:
+        num_refine_workers = max(1, (os.cpu_count() or 2) // 2)
+        refine_queue = queue.Queue(maxsize=num_refine_workers * 2)
+        refine_workers = [
+            threading.Thread(
+                target=_refine_worker,
+                args=(refine_queue, result_queue),
+                daemon=True,
+            )
+            for _ in range(num_refine_workers)
+        ]
+
     workers = [
         threading.Thread(
             target=_inference_worker,
-            args=(work_queue, result_queue, worker_model, refine_foreground),
+            args=(work_queue, refine_queue, result_queue, worker_model, refine_foreground),
             daemon=True,
         )
         for worker_model in models
@@ -261,7 +333,7 @@ def segment_video(
         else:
             writer = Mp4FrameWriter(output_file, fps, (width, height), rgb_value)
 
-        for worker in workers:
+        for worker in workers + refine_workers:
             worker.start()
 
         # CAP_PROP_FRAME_COUNT is often 0 or plain wrong for some containers;
@@ -275,7 +347,24 @@ def segment_video(
             if not ret:
                 break
             frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            work_queue.put((frame_idx, Image.fromarray(frame_rgb)))
+            while True:
+                try:
+                    work_queue.put((frame_idx, Image.fromarray(frame_rgb)), timeout=1)
+                    break
+                except queue.Full:
+                    pass
+                # Drain while feeding: if a worker died, its exception is
+                # sitting on result_queue and must not be stuck behind a
+                # full work_queue.
+                next_write_idx = _drain_results(
+                    result_queue,
+                    writer,
+                    pending,
+                    next_write_idx,
+                    block=False,
+                    total_frames=frame_idx,
+                    progress=progress,
+                )
             frame_idx += 1
             next_write_idx = _drain_results(
                 result_queue,
@@ -291,9 +380,9 @@ def segment_video(
         progress.total = total_frames
         progress.refresh()
 
-        for _ in range(num_workers):
-            work_queue.put(None)
-
+        # Drain everything the workers produced for frames we already fed
+        # before asking any worker to shut down; a worker exception raised
+        # here tears the pipeline down without waiting on joins.
         while next_write_idx < total_frames:
             next_write_idx = _drain_results(
                 result_queue,
@@ -305,9 +394,30 @@ def segment_video(
                 progress=progress,
             )
 
+        for _ in range(num_workers):
+            while True:
+                try:
+                    work_queue.put(None, timeout=1)
+                    break
+                except queue.Full:
+                    pass
+        # Join GPU workers before poisoning the refine stage: their last
+        # results may still land on refine_queue after the read loop ends.
+        for worker in workers:
+            worker.join()
+
+        if refine_queue is not None:
+            for _ in refine_workers:
+                while True:
+                    try:
+                        refine_queue.put(None, timeout=1)
+                        break
+                    except queue.Full:
+                        pass
+
         progress.close()
 
-        for worker in workers:
+        for worker in refine_workers:
             worker.join()
     finally:
         if progress is not None:
