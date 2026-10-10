@@ -4,7 +4,7 @@
 )
 #import "components/depth.typ": depth-shadow-block
 #import "variants.typ": input-is-preview, light-or, targets-web, web-or
-#import "deps.typ": catppuccin, codly, codly-init, codly-languages, lq
+#import "deps.typ": catppuccin, codly, codly-init, codly-languages, lq, zebraw
 #import "components/pikchr.typ": pikchr-init
 
 #let set-text-style(
@@ -103,46 +103,63 @@
 
 #let set-raw-style(
   body,
+  with-zebraw: true,
 ) = {
   show: catppuccin.set-code-theme.with(
     catppuccin-flavor,
   )
-  show: codly-init.with()
-  show raw: style-raw
-  codly(
-    languages: codly-languages,
-    lang-format: (name, icon, color) => {
-      set text(fill: theme.colors.foreground, weight: "bold", size: 0.9em)
-      show: pad.with(right: theme.layout.radius.small)
-      set align(horizon)
-      show: box.with(
-        fill: color.mix((theme.colors.surface, 70%), (color, 30%)),
-        height: 1em,
-        inset: 1pt,
-        outset: 2pt,
-        radius: theme.layout.radius.small,
-      )
-      [#web-or(none, icon) #name]
-    },
-    smart-indent: true,
-    number-align: left + horizon,
-    zebra-fill: none,
-    fill: theme.colors.surface,
-    stroke: theme.colors.border + theme.layout.borderWidth.small,
-    radius: theme.layout.radius.medium,
-    smart-skip: true,
-    skip-number: align(center)[#sym.dots.v],
-    default-color: catppuccin-accents.blue,
-    highlight-radius: theme.layout.radius.small,
-    highlight-fill: color => color.mix(
-      (theme.colors.surface, 60%),
-      (color, 40%),
-    ),
-    reference-sep: ":",
-    breakable: true,
-  )
 
-  body
+  if with-zebraw {
+    show: zebraw.with(
+      background-color: (theme.colors.base),
+      radius: theme.layout.radius.medium,
+    )
+    show raw: style-raw
+    show raw.where(block: true): depth-shadow-block.with(
+      color: theme.colors.border,
+      fill: none,
+      inner-border: theme.layout.borderWidth.small,
+      clip: false
+    )
+    body
+  } else {
+    show: codly-init.with()
+    show raw: style-raw
+    codly(
+      languages: codly-languages,
+      lang-format: (name, icon, color) => {
+        set text(fill: theme.colors.foreground, weight: "bold", size: 0.9em)
+        show: pad.with(right: theme.layout.radius.small)
+        set align(horizon)
+        show: box.with(
+          fill: color.mix((theme.colors.surface, 70%), (color, 30%)),
+          height: 1em,
+          inset: 1pt,
+          outset: 2pt,
+          radius: theme.layout.radius.small,
+        )
+        [#web-or(none, icon) #name]
+      },
+      smart-indent: true,
+      number-align: left + horizon,
+      zebra-fill: none,
+      fill: theme.colors.surface,
+      stroke: theme.colors.border + theme.layout.borderWidth.small,
+      radius: theme.layout.radius.medium,
+      smart-skip: true,
+      skip-number: align(center)[#sym.dots.v],
+      default-color: catppuccin-accents.blue,
+      highlight-radius: theme.layout.radius.small,
+      highlight-fill: color => color.mix(
+        (theme.colors.surface, 60%),
+        (color, 40%),
+      ),
+      reference-sep: ":",
+      breakable: true,
+    )
+
+    body
+  }
 }
 
 #let set-lilaq-style(
@@ -175,11 +192,12 @@
 
 #let base-style(
   cont,
+  with-zebraw: true,
 ) = {
   show: set-text-style
   show: set-emoji-style
   show: set-equation-style
-  show: set-raw-style
+  show: set-raw-style.with(with-zebraw: with-zebraw)
   show: set-lilaq-style
   show: set-cite-style
   show quote: style-quote

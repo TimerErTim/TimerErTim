@@ -27,6 +27,7 @@
 #show: blog-entry.with(
   created-at: datetime(year: 2026, month: 6, day: 9),
   updated-at: datetime(year: 2026, month: 6, day: 10),
+  with-zebraw: false,
 )
 
 

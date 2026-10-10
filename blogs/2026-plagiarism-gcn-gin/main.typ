@@ -28,6 +28,7 @@
   created-at: datetime(year: 2026, month: 7, day: 28),
   updated-at: datetime(year: 2026, month: 7, day: 29),
   bibl: bibliography("bib.yaml", full: true),
+  with-zebraw: false,
 )
 
 // Setup document content dependencies

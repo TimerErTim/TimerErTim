@@ -10,12 +10,14 @@
   created-at: datetime.today(),
   updated-at: auto,
   bibl: none,
+
+  with-zebraw: true,
 ) = {
   blog-metadata(
     created-at: created-at,
     updated-at: updated-at,
   )
-  show: base-style
+  show: base-style.with(with-zebraw: with-zebraw)
 
   // Set style target (only in preview)
   if is-preview {

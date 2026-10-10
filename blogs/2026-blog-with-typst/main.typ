@@ -31,6 +31,7 @@
   target: auto,
   created-at: datetime(year: 2026, month: 6, day: 12),
   updated-at: datetime(year: 2026, month: 6, day: 12),
+  with-zebraw: false,
 )
 
 #import "deps.typ": fl, lq

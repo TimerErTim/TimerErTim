@@ -7,6 +7,7 @@
   radius: theme.layout.radius.medium,
   fill: theme.colors.base,
   inner-border: 0pt,
+  clip: true,
   cont,
 ) = context if targets-web.get() {
   block(
@@ -19,7 +20,7 @@
       right: depth * 2 + inner-border / 2,
       bottom: depth * 2 + inner-border / 2,
     ),
-    block(fill: fill, radius: radius, clip: true, align(left + top, cont)),
+    block(fill: fill, radius: radius, clip: clip, align(left + top, cont)),
   )
 } else {
   // no shadow for pdf
