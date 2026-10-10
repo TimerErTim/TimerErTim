@@ -66,8 +66,7 @@ export default function AboutContent() {
         </section>
 
         <p>
-          From February or March 2027 I want three months abroad for an internship in a deep learning or bioinformatics team. Until
-          then: blog and side builds on this site.
+          I will have the opportunity to travel to the USA for a research internship at Fort Hays State University in Kansas in early 2027. If you are interested in the application of machine learning to the analysis of organellar genome assemblies, I look forward to keeping you updated and sharing the results on this website.
         </p>
       </div>
     </article>
