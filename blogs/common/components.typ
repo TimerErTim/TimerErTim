@@ -8,7 +8,7 @@
     .dedup()
 
   set bibliography(title: [References], style: "iso-690-numeric")
-  set bibliography(style: "chicago-notes") if is-targeting-web
+  set bibliography(style: "chicago-shortened-notes") if is-targeting-web
   let links-in-bibl = ()
   if bibl != none [
     #bibl <_blog-user-bibl>
