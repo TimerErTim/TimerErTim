@@ -49,3 +49,10 @@ tools.typstyle = "0.15"
 run = [
   "typstyle -i ./ --timing",
 ]
+
+[tasks."tokei"]
+description = "Run tokei line counting"
+raw = true
+raw_args = true
+tools.tokei = "latest"
+run = "tokei"
