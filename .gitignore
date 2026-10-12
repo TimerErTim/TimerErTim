@@ -6,6 +6,7 @@ tmp/
 build/
 dist/
 .venv/
+__pycache__/
 
 # Windows shenanigans
 *:Zone.Identifier
