@@ -1,0 +1,34 @@
+{
+  "model": "jev-latest",
+  "state": {
+    "utterance": "Zoom the camera in",
+    "camera_zoom": 3
+  },
+  "questions": {
+    "camera_zoom": {
+      "type": "score",
+      "instructions": "Score the target zoom level of the camera",
+      "criteria": [
+        "The lowest zoom level",
+        "Between lowest and medium zoom level",
+        "Moderate zoom level",
+        "Between medium and highest zoom level",
+        "The highest zoom level"
+      ]
+    },
+    "light_mode": {
+      "type": "choice",
+      "instructions": "Choose the target light mode based on the utterance",
+      "criteria": {
+        "normal": "Normal light operating mode",
+        "cavity_focus": "Cavity focus light operating mode",
+        "red_light": "Red light operating mode",
+        "null": "No light change requested in the utterance"
+      }
+    },
+    "light_activated": {
+      "type": "noul",
+      "instructions": "Should the light be activated or deactivated?"
+    }
+  }
+}

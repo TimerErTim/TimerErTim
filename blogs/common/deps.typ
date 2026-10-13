@@ -3,9 +3,11 @@
   codly, codly-init, local as codly-local, no-codly,
 )
 #import "@preview/codly-languages:0.1.10": *
-#import "@preview/zebraw:0.6.3": zebraw
+#import "@preview/zebraw:0.6.3": zebraw, zebraw-init
 #import "@preview/kip:0.1.0": kip
 #import "@preview/oxifmt:1.0.0": strfmt
 #import "@preview/fletcher:0.5.8" as fl
 #import "@preview/lilaq:0.6.0" as lq
+#import "@preview/suiji:0.5.1" as sj
+#import "@preview/sanor:0.3.0" as sr
 #import "@preview/easy-hgb-thesis:0.2.2"

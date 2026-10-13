@@ -4,7 +4,9 @@
 )
 #import "components/depth.typ": depth-shadow-block
 #import "variants.typ": input-is-preview, light-or, targets-web, web-or
-#import "deps.typ": catppuccin, codly, codly-init, codly-languages, lq, zebraw
+#import "deps.typ": (
+  catppuccin, codly, codly-init, codly-languages, lq, zebraw, zebraw-init,
+)
 #import "components/pikchr.typ": pikchr-init
 
 #let set-text-style(
@@ -81,21 +83,22 @@
 ) = {
   set text(font: theme.fonts.mono.family)
   if raw.block == true {
-    show block.where(
-      radius: theme.layout.radius.medium,
-      width: 100%,
-    ): depth-shadow-block.with(
+    show: depth-shadow-block.with(
       color: theme.colors.border,
       fill: none,
       inner-border: theme.layout.borderWidth.small,
+      clip: false,
     )
     raw
   } else {
-    show: box.with(inset: (x: theme.layout.borderWidth.small))
+    show: box.with(inset: (
+      x: theme.layout.borderWidth.small + theme.layout.borderWidth.small,
+    ))
     show: highlight.with(
       radius: theme.layout.radius.small,
-      fill: theme.colors.surface.mix(theme.colors.muted),
+      fill: theme.colors.muted.transparentize(50%),
       extent: theme.layout.borderWidth.medium,
+      stroke: theme.colors.border + theme.layout.borderWidth.small / 2,
     )
     raw.text
   }
@@ -108,23 +111,31 @@
   show: catppuccin.set-code-theme.with(
     catppuccin-flavor,
   )
-
-  if with-zebraw {
-    show: zebraw.with(
+  show: if with-zebraw {
+    zebraw-init.with(
       background-color: (theme.colors.base),
       radius: theme.layout.radius.medium,
+      extend: false,
+      lang-color: catppuccin-accents.sky,
+      highlight-color: catppuccin-accents.sapphire.transparentize(50%),
+      comment-color: theme.colors.base,
+      comment-flag: "#",
+      numbering-separator: true,
+      fast-preview: input-is-preview,
+      comment-font-args: (
+        "font": theme.fonts.sans.family,
+      ),
     )
-    show raw: style-raw
-    show raw.where(block: true): depth-shadow-block.with(
-      color: theme.colors.border,
-      fill: none,
-      inner-border: theme.layout.borderWidth.small,
-      clip: false
-    )
+  } else {
+    codly-init.with()
+  }
+  show raw: style-raw
+
+  if with-zebraw {
+    show: zebraw
+    show raw.where(block: true): style-raw
     body
   } else {
-    show: codly-init.with()
-    show raw: style-raw
     codly(
       languages: codly-languages,
       lang-format: (name, icon, color) => {

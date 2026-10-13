@@ -15,10 +15,10 @@
     radius: radius,
     breakable: true,
     outset: (
-      top: inner-border / 2,
-      left: inner-border / 2,
-      right: depth * 2 + inner-border / 2,
-      bottom: depth * 2 + inner-border / 2,
+      top: inner-border,
+      left: inner-border,
+      right: depth * 2 + inner-border,
+      bottom: depth * 2 + inner-border,
     ),
     block(fill: fill, radius: radius, clip: clip, align(left + top, cont)),
   )

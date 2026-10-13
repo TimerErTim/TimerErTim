@@ -21,10 +21,14 @@
   fill: theme.colors.surface,
   cont,
 ) = context {
+  let stroke = if stroke-color == none { none } else {
+    stroke-color + theme.layout.borderWidth.small
+  }
+
   show: block.with(
-    stroke: stroke-color + theme.layout.borderWidth.small,
+    stroke: stroke,
     radius: theme.layout.radius.medium,
-    fill: if targets-web.get() { fill } else { none },
+    fill: fill,
     width: 100%,
     inset: 1em,
   )
@@ -35,13 +39,18 @@
   color-val: theme.colors.accent,
   heading: none,
   body,
-) = {
+) = context {
   show: depth-shadow-block.with(
+    fill: theme.colors.surface,
     color: color-val,
     inner-border: theme.layout.borderWidth.small,
     radius: theme.layout.radius.medium,
+    clip: false,
   )
-  callout-base(stroke-color: color-val)[
+  callout-base(
+    stroke-color: if not targets-web.get() { color-val },
+    fill: theme.colors.surface,
+  )[
     #if heading != none {
       set text(size: 1.05em, weight: "bold")
       set text(fill: color-val)
@@ -57,13 +66,16 @@
 #let quote-callout(
   body,
   attribution: none,
-) = {
+) = context {
   show: depth-shadow-block.with(
     color: theme.colors.border,
     inner-border: theme.layout.borderWidth.small,
     radius: theme.layout.radius.medium,
   )
-  callout-base(stroke-color: theme.colors.border, fill: theme.colors.surface)[
+  callout-base(
+    stroke-color: if not targets-web.get() { theme.colors.border },
+    fill: theme.colors.surface,
+  )[
     #set text(fill: theme.colors.foreground)
     #emph(body)
     #if attribution != none {

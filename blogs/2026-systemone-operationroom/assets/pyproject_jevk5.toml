@@ -1,0 +1,22 @@
+[project]                                   
+name = "jevk5-timerertim"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "jevk5[fast]",
+    "causal_conv1d; sys_platform == 'linux'"
+]
+
+[build-system]
+requires = ["uv_build>=0.12.17,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv.sources]
+causal-conv1d = { index = "astral-gpu-cu130" }
+jevk5 = { git = "https://github.com/allebee/jevk5", rev = "v0.3.0" }
+
+[[tool.uv.index]]
+name = "astral-gpu-cu130"
+url = "https://wheels.astral.sh/simple/cu130"
+explicit = true
+

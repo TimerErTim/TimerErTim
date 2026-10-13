@@ -1,0 +1,34 @@
+{
+  "model": "jev-latest",
+  "answers": {
+    "camera_zoom": {
+      "type": "score",
+      "score": 3.79,
+      "confidence": 0.95,
+      "probabilities": {
+        "0": 0.01,
+        "1": 0.02,
+        "2": 0.03,
+        "3": 0.26,
+        "4": 0.67,
+        "5": 0.01
+      }
+    },
+    "light_mode": {
+      "type": "choice",
+      "choice": "null", 
+      "confidence": 0.95,
+      "probabilities": {
+        "normal": 0.04,
+        "cavity_focus": 0.01,
+        "red_light": 0.01,
+        "null": 0.94
+      }
+    },
+    "light_activated": {
+      "type": "noul",
+      "noul": 0.921,
+      "confidence": 0.921
+    }
+  }
+}

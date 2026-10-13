@@ -1,0 +1,20 @@
+#:schema https://mise.en.dev/schema/mise-task.json
+
+["export:presentation"]
+description = "Export the slides as a presentable PDF"
+depends = ["prepare:output_dir"]
+run = [
+  "typst compile --format pdf presentation.typ 'build/presentation.pdf' --input x-handout=false",
+]
+
+["export:handout"]
+description = "Export the slides as a handout PDF"
+depends = ["prepare:output_dir"]
+run = [
+  "typst compile --format pdf presentation.typ 'build/handout.pdf' --input x-handout=true",
+]
+
+["export:slides"]
+description = "Export the slides as mutliple PDFs"
+depends = ["export:presentation", "export:handout"]
+

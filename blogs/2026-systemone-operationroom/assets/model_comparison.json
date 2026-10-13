@@ -1,0 +1,1623 @@
+{
+  "models": [
+    {
+      "model_name": "jev-latest",
+      "cases": 1000,
+      "entries": 12000,
+      "exact_match_fresh": 0.024,
+      "exact_match_rolling": 0.023,
+      "accuracy_fresh": 0.8871666666666667,
+      "accuracy_rolling": 0.6191666666666666,
+      "action_accuracy_fresh": 0.7802510460251046,
+      "no_change_false_positive_rate": 0.006804979253112033,
+      "field_macro_f1": 0.8855128222098355,
+      "field_f1": [
+        {
+          "field": "light_brightness",
+          "true_positives": 1059,
+          "false_positives": 71,
+          "false_negatives": 74,
+          "precision": 0.9371681415929204,
+          "recall": 0.9346866725507502,
+          "f1": 0.9359257622624835
+        },
+        {
+          "field": "light_mode",
+          "true_positives": 1046,
+          "false_positives": 1,
+          "false_negatives": 9,
+          "precision": 0.9990448901623686,
+          "recall": 0.9914691943127962,
+          "f1": 0.9952426260704091
+        },
+        {
+          "field": "zoom_level",
+          "true_positives": 1115,
+          "false_positives": 17,
+          "false_negatives": 20,
+          "precision": 0.984982332155477,
+          "recall": 0.9823788546255506,
+          "f1": 0.9836788707543008
+        },
+        {
+          "field": "white_balance_locked",
+          "true_positives": 527,
+          "false_positives": 6,
+          "false_negatives": 8,
+          "precision": 0.9887429643527205,
+          "recall": 0.9850467289719627,
+          "f1": 0.9868913857677902
+        },
+        {
+          "field": "irrigation_active",
+          "true_positives": 1007,
+          "false_positives": 10,
+          "false_negatives": 1,
+          "precision": 0.9901671583087512,
+          "recall": 0.9990079365079365,
+          "f1": 0.994567901234568
+        },
+        {
+          "field": "target_pressure_mmhg",
+          "true_positives": 1086,
+          "false_positives": 8,
+          "false_negatives": 11,
+          "precision": 0.9926873857404022,
+          "recall": 0.9899726526891522,
+          "f1": 0.9913281606572342
+        },
+        {
+          "field": "gas_flow_l_min",
+          "true_positives": 1046,
+          "false_positives": 27,
+          "false_negatives": 8,
+          "precision": 0.9748369058713886,
+          "recall": 0.9924098671726755,
+          "f1": 0.9835448989186648
+        },
+        {
+          "field": "insufflator_active",
+          "true_positives": 255,
+          "false_positives": 13,
+          "false_negatives": 4,
+          "precision": 0.9514925373134329,
+          "recall": 0.9845559845559846,
+          "f1": 0.967741935483871
+        },
+        {
+          "field": "table_tilt_degrees",
+          "true_positives": 820,
+          "false_positives": 120,
+          "false_negatives": 220,
+          "precision": 0.8723404255319149,
+          "recall": 0.7884615384615384,
+          "f1": 0.8282828282828283
+        },
+        {
+          "field": "table_height_cm",
+          "true_positives": 977,
+          "false_positives": 14,
+          "false_negatives": 17,
+          "precision": 0.9858728557013118,
+          "recall": 0.9828973843058351,
+          "f1": 0.9843828715365239
+        },
+        {
+          "field": "safety_interlock_active",
+          "true_positives": 48,
+          "false_positives": 0,
+          "false_negatives": 982,
+          "precision": 1.0,
+          "recall": 0.04660194174757282,
+          "f1": 0.08905380333951762
+        }
+      ],
+      "failed_rate_fresh": 0.0,
+      "failed_rate_rolling": 0.0,
+      "passes_per_utterance": 1.0001666666666666,
+      "latency_p50_ms": 260.782859,
+      "latency_p95_ms": 358.65844400000003,
+      "drift": 0.268,
+      "calibration": {
+        "samples": 120000,
+        "ece": 0.03514700000001196,
+        "brier": 0.009337356666668661,
+        "bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 3,
+            "mean_confidence": 0.05000000000000001,
+            "accuracy": 1.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 10,
+            "mean_confidence": 0.175,
+            "accuracy": 0.5
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.30000000000000004,
+            "count": 98,
+            "mean_confidence": 0.2651020408163265,
+            "accuracy": 0.7551020408163265
+          },
+          {
+            "lower": 0.30000000000000004,
+            "upper": 0.4,
+            "count": 268,
+            "mean_confidence": 0.34604477611940304,
+            "accuracy": 0.7126865671641791
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 434,
+            "mean_confidence": 0.44868663594470004,
+            "accuracy": 0.8387096774193549
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6000000000000001,
+            "count": 540,
+            "mean_confidence": 0.5475925925925927,
+            "accuracy": 0.9055555555555556
+          },
+          {
+            "lower": 0.6000000000000001,
+            "upper": 0.7000000000000001,
+            "count": 819,
+            "mean_confidence": 0.6521001221001247,
+            "accuracy": 0.960927960927961
+          },
+          {
+            "lower": 0.7000000000000001,
+            "upper": 0.8,
+            "count": 2521,
+            "mean_confidence": 0.7553391511305007,
+            "accuracy": 0.9861166203887346
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 11816,
+            "mean_confidence": 0.8563930264048941,
+            "accuracy": 0.9940758293838863
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "count": 103491,
+            "mean_confidence": 0.9871379153742678,
+            "accuracy": 0.9991303591616663
+          }
+        ]
+      },
+      "sweep": [
+        {
+          "threshold": 0.0,
+          "accuracy": 0.8890833333333333,
+          "abstention_rate": 0.0,
+          "no_change_false_positive_rate": 0.00995850622406639
+        },
+        {
+          "threshold": 0.01,
+          "accuracy": 0.8890833333333333,
+          "abstention_rate": 0.0,
+          "no_change_false_positive_rate": 0.00995850622406639
+        },
+        {
+          "threshold": 0.02,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 8.333333333333334e-6,
+          "no_change_false_positive_rate": 0.00979253112033195
+        },
+        {
+          "threshold": 0.03,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 8.333333333333334e-6,
+          "no_change_false_positive_rate": 0.00979253112033195
+        },
+        {
+          "threshold": 0.04,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 8.333333333333334e-6,
+          "no_change_false_positive_rate": 0.00979253112033195
+        },
+        {
+          "threshold": 0.05,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 8.333333333333334e-6,
+          "no_change_false_positive_rate": 0.00979253112033195
+        },
+        {
+          "threshold": 0.06,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 8.333333333333334e-6,
+          "no_change_false_positive_rate": 0.00979253112033195
+        },
+        {
+          "threshold": 0.07,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 8.333333333333334e-6,
+          "no_change_false_positive_rate": 0.00979253112033195
+        },
+        {
+          "threshold": 0.08,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 0.000025,
+          "no_change_false_positive_rate": 0.00979253112033195
+        },
+        {
+          "threshold": 0.09,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 0.000025,
+          "no_change_false_positive_rate": 0.00979253112033195
+        },
+        {
+          "threshold": 0.1,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 0.000025,
+          "no_change_false_positive_rate": 0.00979253112033195
+        },
+        {
+          "threshold": 0.11,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 0.000025,
+          "no_change_false_positive_rate": 0.00979253112033195
+        },
+        {
+          "threshold": 0.12,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 0.000025,
+          "no_change_false_positive_rate": 0.00979253112033195
+        },
+        {
+          "threshold": 0.13,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 0.000025,
+          "no_change_false_positive_rate": 0.00979253112033195
+        },
+        {
+          "threshold": 0.14,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 0.000025,
+          "no_change_false_positive_rate": 0.00979253112033195
+        },
+        {
+          "threshold": 0.15,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 0.000041666666666666665,
+          "no_change_false_positive_rate": 0.00979253112033195
+        },
+        {
+          "threshold": 0.16,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 0.000041666666666666665,
+          "no_change_false_positive_rate": 0.00979253112033195
+        },
+        {
+          "threshold": 0.17,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 0.000041666666666666665,
+          "no_change_false_positive_rate": 0.00979253112033195
+        },
+        {
+          "threshold": 0.18,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 0.00005,
+          "no_change_false_positive_rate": 0.00979253112033195
+        },
+        {
+          "threshold": 0.19,
+          "accuracy": 0.88925,
+          "abstention_rate": 0.000075,
+          "no_change_false_positive_rate": 0.009626556016597511
+        },
+        {
+          "threshold": 0.2,
+          "accuracy": 0.88925,
+          "abstention_rate": 0.00010833333333333333,
+          "no_change_false_positive_rate": 0.009626556016597511
+        },
+        {
+          "threshold": 0.21,
+          "accuracy": 0.88925,
+          "abstention_rate": 0.000125,
+          "no_change_false_positive_rate": 0.009626556016597511
+        },
+        {
+          "threshold": 0.22,
+          "accuracy": 0.8893333333333333,
+          "abstention_rate": 0.00014166666666666668,
+          "no_change_false_positive_rate": 0.009626556016597511
+        },
+        {
+          "threshold": 0.23,
+          "accuracy": 0.88925,
+          "abstention_rate": 0.00015,
+          "no_change_false_positive_rate": 0.009626556016597511
+        },
+        {
+          "threshold": 0.24,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 0.00018333333333333334,
+          "no_change_false_positive_rate": 0.009626556016597511
+        },
+        {
+          "threshold": 0.25,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 0.0002,
+          "no_change_false_positive_rate": 0.009626556016597511
+        },
+        {
+          "threshold": 0.26,
+          "accuracy": 0.8893333333333333,
+          "abstention_rate": 0.00035833333333333333,
+          "no_change_false_positive_rate": 0.009294605809128631
+        },
+        {
+          "threshold": 0.27,
+          "accuracy": 0.8890833333333333,
+          "abstention_rate": 0.0003916666666666667,
+          "no_change_false_positive_rate": 0.009294605809128631
+        },
+        {
+          "threshold": 0.28,
+          "accuracy": 0.8895,
+          "abstention_rate": 0.0006,
+          "no_change_false_positive_rate": 0.008630705394190872
+        },
+        {
+          "threshold": 0.29,
+          "accuracy": 0.88925,
+          "abstention_rate": 0.0008583333333333333,
+          "no_change_false_positive_rate": 0.008464730290456432
+        },
+        {
+          "threshold": 0.3,
+          "accuracy": 0.8893333333333333,
+          "abstention_rate": 0.000925,
+          "no_change_false_positive_rate": 0.008298755186721992
+        },
+        {
+          "threshold": 0.31,
+          "accuracy": 0.889,
+          "abstention_rate": 0.0011666666666666668,
+          "no_change_false_positive_rate": 0.008132780082987552
+        },
+        {
+          "threshold": 0.32,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 0.0014333333333333333,
+          "no_change_false_positive_rate": 0.007468879668049793
+        },
+        {
+          "threshold": 0.33,
+          "accuracy": 0.8891666666666667,
+          "abstention_rate": 0.0014833333333333332,
+          "no_change_false_positive_rate": 0.007468879668049793
+        },
+        {
+          "threshold": 0.34,
+          "accuracy": 0.8889166666666667,
+          "abstention_rate": 0.0016416666666666667,
+          "no_change_false_positive_rate": 0.007468879668049793
+        },
+        {
+          "threshold": 0.35,
+          "accuracy": 0.8886666666666667,
+          "abstention_rate": 0.0019166666666666666,
+          "no_change_false_positive_rate": 0.007468879668049793
+        },
+        {
+          "threshold": 0.36,
+          "accuracy": 0.8885,
+          "abstention_rate": 0.0022583333333333335,
+          "no_change_false_positive_rate": 0.006970954356846473
+        },
+        {
+          "threshold": 0.37,
+          "accuracy": 0.888,
+          "abstention_rate": 0.0024,
+          "no_change_false_positive_rate": 0.006970954356846473
+        },
+        {
+          "threshold": 0.38,
+          "accuracy": 0.88775,
+          "abstention_rate": 0.002766666666666667,
+          "no_change_false_positive_rate": 0.006970954356846473
+        },
+        {
+          "threshold": 0.39,
+          "accuracy": 0.8875,
+          "abstention_rate": 0.003075,
+          "no_change_false_positive_rate": 0.006804979253112033
+        },
+        {
+          "threshold": 0.4,
+          "accuracy": 0.8871666666666667,
+          "abstention_rate": 0.0031583333333333333,
+          "no_change_false_positive_rate": 0.006804979253112033
+        },
+        {
+          "threshold": 0.41,
+          "accuracy": 0.8869166666666667,
+          "abstention_rate": 0.0035083333333333334,
+          "no_change_false_positive_rate": 0.006804979253112033
+        },
+        {
+          "threshold": 0.42,
+          "accuracy": 0.88725,
+          "abstention_rate": 0.0039,
+          "no_change_false_positive_rate": 0.006307053941908713
+        },
+        {
+          "threshold": 0.43,
+          "accuracy": 0.8865,
+          "abstention_rate": 0.0040416666666666665,
+          "no_change_false_positive_rate": 0.006307053941908713
+        },
+        {
+          "threshold": 0.44,
+          "accuracy": 0.8856666666666667,
+          "abstention_rate": 0.004433333333333333,
+          "no_change_false_positive_rate": 0.006307053941908713
+        },
+        {
+          "threshold": 0.45,
+          "accuracy": 0.88525,
+          "abstention_rate": 0.0045583333333333335,
+          "no_change_false_positive_rate": 0.006307053941908713
+        },
+        {
+          "threshold": 0.46,
+          "accuracy": 0.884,
+          "abstention_rate": 0.005141666666666667,
+          "no_change_false_positive_rate": 0.005809128630705394
+        },
+        {
+          "threshold": 0.47,
+          "accuracy": 0.883,
+          "abstention_rate": 0.005641666666666666,
+          "no_change_false_positive_rate": 0.005809128630705394
+        },
+        {
+          "threshold": 0.48,
+          "accuracy": 0.8823333333333333,
+          "abstention_rate": 0.005841666666666667,
+          "no_change_false_positive_rate": 0.005643153526970954
+        },
+        {
+          "threshold": 0.49,
+          "accuracy": 0.8814166666666666,
+          "abstention_rate": 0.0063,
+          "no_change_false_positive_rate": 0.005643153526970954
+        },
+        {
+          "threshold": 0.5,
+          "accuracy": 0.8803333333333333,
+          "abstention_rate": 0.006775,
+          "no_change_false_positive_rate": 0.0054771784232365145
+        },
+        {
+          "threshold": 0.51,
+          "accuracy": 0.8798333333333334,
+          "abstention_rate": 0.006875,
+          "no_change_false_positive_rate": 0.0054771784232365145
+        },
+        {
+          "threshold": 0.52,
+          "accuracy": 0.8786666666666667,
+          "abstention_rate": 0.007625,
+          "no_change_false_positive_rate": 0.0053112033195020746
+        },
+        {
+          "threshold": 0.53,
+          "accuracy": 0.8776666666666667,
+          "abstention_rate": 0.008058333333333334,
+          "no_change_false_positive_rate": 0.0053112033195020746
+        },
+        {
+          "threshold": 0.54,
+          "accuracy": 0.8768333333333334,
+          "abstention_rate": 0.008525,
+          "no_change_false_positive_rate": 0.005145228215767635
+        },
+        {
+          "threshold": 0.55,
+          "accuracy": 0.8759166666666667,
+          "abstention_rate": 0.008783333333333334,
+          "no_change_false_positive_rate": 0.005145228215767635
+        },
+        {
+          "threshold": 0.56,
+          "accuracy": 0.8750833333333333,
+          "abstention_rate": 0.009358333333333333,
+          "no_change_false_positive_rate": 0.004647302904564316
+        },
+        {
+          "threshold": 0.57,
+          "accuracy": 0.874,
+          "abstention_rate": 0.009933333333333334,
+          "no_change_false_positive_rate": 0.004647302904564316
+        },
+        {
+          "threshold": 0.58,
+          "accuracy": 0.8728333333333333,
+          "abstention_rate": 0.010125,
+          "no_change_false_positive_rate": 0.004647302904564316
+        },
+        {
+          "threshold": 0.59,
+          "accuracy": 0.872,
+          "abstention_rate": 0.010775,
+          "no_change_false_positive_rate": 0.004647302904564316
+        },
+        {
+          "threshold": 0.6,
+          "accuracy": 0.8715833333333334,
+          "abstention_rate": 0.011275,
+          "no_change_false_positive_rate": 0.004647302904564316
+        },
+        {
+          "threshold": 0.61,
+          "accuracy": 0.8704166666666666,
+          "abstention_rate": 0.011466666666666667,
+          "no_change_false_positive_rate": 0.004647302904564316
+        },
+        {
+          "threshold": 0.62,
+          "accuracy": 0.8698333333333333,
+          "abstention_rate": 0.012241666666666666,
+          "no_change_false_positive_rate": 0.004315352697095436
+        },
+        {
+          "threshold": 0.63,
+          "accuracy": 0.86925,
+          "abstention_rate": 0.013108333333333333,
+          "no_change_false_positive_rate": 0.003983402489626556
+        },
+        {
+          "threshold": 0.64,
+          "accuracy": 0.8680833333333333,
+          "abstention_rate": 0.01335,
+          "no_change_false_positive_rate": 0.003817427385892116
+        },
+        {
+          "threshold": 0.65,
+          "accuracy": 0.8670833333333333,
+          "abstention_rate": 0.014125,
+          "no_change_false_positive_rate": 0.0034854771784232365
+        },
+        {
+          "threshold": 0.66,
+          "accuracy": 0.866,
+          "abstention_rate": 0.014391666666666667,
+          "no_change_false_positive_rate": 0.0034854771784232365
+        },
+        {
+          "threshold": 0.67,
+          "accuracy": 0.86525,
+          "abstention_rate": 0.0153,
+          "no_change_false_positive_rate": 0.0033195020746887966
+        },
+        {
+          "threshold": 0.68,
+          "accuracy": 0.8641666666666666,
+          "abstention_rate": 0.016525,
+          "no_change_false_positive_rate": 0.0033195020746887966
+        },
+        {
+          "threshold": 0.69,
+          "accuracy": 0.8636666666666667,
+          "abstention_rate": 0.016833333333333332,
+          "no_change_false_positive_rate": 0.0033195020746887966
+        },
+        {
+          "threshold": 0.7,
+          "accuracy": 0.8633333333333333,
+          "abstention_rate": 0.0181,
+          "no_change_false_positive_rate": 0.0031535269709543567
+        },
+        {
+          "threshold": 0.71,
+          "accuracy": 0.863,
+          "abstention_rate": 0.019216666666666667,
+          "no_change_false_positive_rate": 0.002821576763485477
+        },
+        {
+          "threshold": 0.72,
+          "accuracy": 0.8615,
+          "abstention_rate": 0.019791666666666666,
+          "no_change_false_positive_rate": 0.002821576763485477
+        },
+        {
+          "threshold": 0.73,
+          "accuracy": 0.8595,
+          "abstention_rate": 0.0216,
+          "no_change_false_positive_rate": 0.0026556016597510373
+        },
+        {
+          "threshold": 0.74,
+          "accuracy": 0.8585,
+          "abstention_rate": 0.0238,
+          "no_change_false_positive_rate": 0.0026556016597510373
+        },
+        {
+          "threshold": 0.75,
+          "accuracy": 0.8574166666666667,
+          "abstention_rate": 0.025741666666666666,
+          "no_change_false_positive_rate": 0.0026556016597510373
+        },
+        {
+          "threshold": 0.76,
+          "accuracy": 0.856,
+          "abstention_rate": 0.026933333333333333,
+          "no_change_false_positive_rate": 0.0026556016597510373
+        },
+        {
+          "threshold": 0.77,
+          "accuracy": 0.8541666666666666,
+          "abstention_rate": 0.030233333333333334,
+          "no_change_false_positive_rate": 0.0026556016597510373
+        },
+        {
+          "threshold": 0.78,
+          "accuracy": 0.85225,
+          "abstention_rate": 0.034091666666666666,
+          "no_change_false_positive_rate": 0.0026556016597510373
+        },
+        {
+          "threshold": 0.79,
+          "accuracy": 0.8514166666666667,
+          "abstention_rate": 0.034308333333333337,
+          "no_change_false_positive_rate": 0.0026556016597510373
+        },
+        {
+          "threshold": 0.8,
+          "accuracy": 0.8495833333333334,
+          "abstention_rate": 0.039108333333333335,
+          "no_change_false_positive_rate": 0.0026556016597510373
+        },
+        {
+          "threshold": 0.81,
+          "accuracy": 0.8464166666666667,
+          "abstention_rate": 0.045941666666666665,
+          "no_change_false_positive_rate": 0.0026556016597510373
+        },
+        {
+          "threshold": 0.82,
+          "accuracy": 0.8425,
+          "abstention_rate": 0.05081666666666667,
+          "no_change_false_positive_rate": 0.0026556016597510373
+        },
+        {
+          "threshold": 0.83,
+          "accuracy": 0.8413333333333334,
+          "abstention_rate": 0.05450833333333333,
+          "no_change_false_positive_rate": 0.002323651452282158
+        },
+        {
+          "threshold": 0.84,
+          "accuracy": 0.8366666666666667,
+          "abstention_rate": 0.06454166666666666,
+          "no_change_false_positive_rate": 0.001991701244813278
+        },
+        {
+          "threshold": 0.85,
+          "accuracy": 0.83075,
+          "abstention_rate": 0.07229166666666667,
+          "no_change_false_positive_rate": 0.0018257261410788382
+        },
+        {
+          "threshold": 0.86,
+          "accuracy": 0.8240833333333333,
+          "abstention_rate": 0.085375,
+          "no_change_false_positive_rate": 0.0018257261410788382
+        },
+        {
+          "threshold": 0.87,
+          "accuracy": 0.823,
+          "abstention_rate": 0.09108333333333334,
+          "no_change_false_positive_rate": 0.0014937759336099586
+        },
+        {
+          "threshold": 0.88,
+          "accuracy": 0.8139166666666666,
+          "abstention_rate": 0.10070833333333333,
+          "no_change_false_positive_rate": 0.0014937759336099586
+        },
+        {
+          "threshold": 0.89,
+          "accuracy": 0.8025,
+          "abstention_rate": 0.117625,
+          "no_change_false_positive_rate": 0.001161825726141079
+        },
+        {
+          "threshold": 0.9,
+          "accuracy": 0.78825,
+          "abstention_rate": 0.137575,
+          "no_change_false_positive_rate": 0.001161825726141079
+        },
+        {
+          "threshold": 0.91,
+          "accuracy": 0.7818333333333334,
+          "abstention_rate": 0.13876666666666668,
+          "no_change_false_positive_rate": 0.001161825726141079
+        },
+        {
+          "threshold": 0.92,
+          "accuracy": 0.7715,
+          "abstention_rate": 0.16021666666666667,
+          "no_change_false_positive_rate": 0.000995850622406639
+        },
+        {
+          "threshold": 0.93,
+          "accuracy": 0.7544166666666666,
+          "abstention_rate": 0.18423333333333333,
+          "no_change_false_positive_rate": 0.000995850622406639
+        },
+        {
+          "threshold": 0.94,
+          "accuracy": 0.739,
+          "abstention_rate": 0.19255,
+          "no_change_false_positive_rate": 0.000995850622406639
+        },
+        {
+          "threshold": 0.95,
+          "accuracy": 0.72525,
+          "abstention_rate": 0.21355,
+          "no_change_false_positive_rate": 0.0008298755186721991
+        },
+        {
+          "threshold": 0.96,
+          "accuracy": 0.7090833333333333,
+          "abstention_rate": 0.24919166666666667,
+          "no_change_false_positive_rate": 0.0006639004149377593
+        },
+        {
+          "threshold": 0.97,
+          "accuracy": 0.69975,
+          "abstention_rate": 0.25298333333333334,
+          "no_change_false_positive_rate": 0.0006639004149377593
+        },
+        {
+          "threshold": 0.98,
+          "accuracy": 0.69725,
+          "abstention_rate": 0.300725,
+          "no_change_false_positive_rate": 0.0006639004149377593
+        },
+        {
+          "threshold": 0.99,
+          "accuracy": 0.6840833333333334,
+          "abstention_rate": 0.3882333333333333,
+          "no_change_false_positive_rate": 0.0004979253112033195
+        },
+        {
+          "threshold": 1.0,
+          "accuracy": 0.6764166666666667,
+          "abstention_rate": 0.40455833333333335,
+          "no_change_false_positive_rate": 0.0004979253112033195
+        }
+      ]
+    },
+    {
+      "model_name": "alibiserikbay/JevK5-2B",
+      "cases": 188,
+      "entries": 2256,
+      "exact_match_fresh": 0.0,
+      "exact_match_rolling": 0.0,
+      "accuracy_fresh": 0.5731382978723404,
+      "accuracy_rolling": 0.08776595744680851,
+      "action_accuracy_fresh": 0.22727272727272727,
+      "no_change_false_positive_rate": 0.08465608465608465,
+      "field_macro_f1": 0.5739242131560078,
+      "field_f1": [
+        {
+          "field": "light_brightness",
+          "true_positives": 192,
+          "false_positives": 44,
+          "false_negatives": 19,
+          "precision": 0.8135593220338984,
+          "recall": 0.909952606635071,
+          "f1": 0.8590604026845637
+        },
+        {
+          "field": "light_mode",
+          "true_positives": 184,
+          "false_positives": 2,
+          "false_negatives": 7,
+          "precision": 0.989247311827957,
+          "recall": 0.9633507853403142,
+          "f1": 0.9761273209549072
+        },
+        {
+          "field": "zoom_level",
+          "true_positives": 185,
+          "false_positives": 27,
+          "false_negatives": 28,
+          "precision": 0.8726415094339622,
+          "recall": 0.8685446009389671,
+          "f1": 0.8705882352941177
+        },
+        {
+          "field": "white_balance_locked",
+          "true_positives": 88,
+          "false_positives": 401,
+          "false_negatives": 8,
+          "precision": 0.17995910020449898,
+          "recall": 0.9166666666666666,
+          "f1": 0.30085470085470084
+        },
+        {
+          "field": "irrigation_active",
+          "true_positives": 155,
+          "false_positives": 77,
+          "false_negatives": 32,
+          "precision": 0.6681034482758621,
+          "recall": 0.8288770053475936,
+          "f1": 0.7398568019093079
+        },
+        {
+          "field": "target_pressure_mmhg",
+          "true_positives": 137,
+          "false_positives": 191,
+          "false_negatives": 69,
+          "precision": 0.4176829268292683,
+          "recall": 0.6650485436893204,
+          "f1": 0.5131086142322098
+        },
+        {
+          "field": "gas_flow_l_min",
+          "true_positives": 138,
+          "false_positives": 321,
+          "false_negatives": 59,
+          "precision": 0.3006535947712418,
+          "recall": 0.700507614213198,
+          "f1": 0.42073170731707316
+        },
+        {
+          "field": "insufflator_active",
+          "true_positives": 45,
+          "false_positives": 101,
+          "false_negatives": 2,
+          "precision": 0.3082191780821918,
+          "recall": 0.9574468085106383,
+          "f1": 0.46632124352331605
+        },
+        {
+          "field": "table_tilt_degrees",
+          "true_positives": 62,
+          "false_positives": 70,
+          "false_negatives": 131,
+          "precision": 0.4696969696969697,
+          "recall": 0.32124352331606215,
+          "f1": 0.38153846153846155
+        },
+        {
+          "field": "table_height_cm",
+          "true_positives": 129,
+          "false_positives": 19,
+          "false_negatives": 56,
+          "precision": 0.8716216216216216,
+          "recall": 0.6972972972972973,
+          "f1": 0.7747747747747747
+        },
+        {
+          "field": "safety_interlock_active",
+          "true_positives": 1,
+          "false_positives": 0,
+          "false_negatives": 194,
+          "precision": 1.0,
+          "recall": 0.005128205128205128,
+          "f1": 0.01020408163265306
+        }
+      ],
+      "failed_rate_fresh": 0.0,
+      "failed_rate_rolling": 0.004875886524822695,
+      "passes_per_utterance": 1.0,
+      "latency_p50_ms": 15171.170457,
+      "latency_p95_ms": 19573.280761,
+      "drift": 0.4853723404255319,
+      "calibration": {
+        "samples": 22560,
+        "ece": 0.28709281536730685,
+        "brier": 0.16332513428271764,
+        "bins": [
+          {
+            "lower": 0.0,
+            "upper": 0.1,
+            "count": 0,
+            "mean_confidence": 0.0,
+            "accuracy": 0.0
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 16,
+            "mean_confidence": 0.1794601483270526,
+            "accuracy": 0.9375
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.30000000000000004,
+            "count": 531,
+            "mean_confidence": 0.2653697106404942,
+            "accuracy": 0.8455743879472694
+          },
+          {
+            "lower": 0.30000000000000004,
+            "upper": 0.4,
+            "count": 2126,
+            "mean_confidence": 0.3592150782428591,
+            "accuracy": 0.8861712135465664
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 3772,
+            "mean_confidence": 0.4537585028866948,
+            "accuracy": 0.8297985153764581
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6000000000000001,
+            "count": 3739,
+            "mean_confidence": 0.5456058593891814,
+            "accuracy": 0.8908799144156192
+          },
+          {
+            "lower": 0.6000000000000001,
+            "upper": 0.7000000000000001,
+            "count": 2589,
+            "mean_confidence": 0.6490143439906958,
+            "accuracy": 0.9378138277327154
+          },
+          {
+            "lower": 0.7000000000000001,
+            "upper": 0.8,
+            "count": 4031,
+            "mean_confidence": 0.755918231636796,
+            "accuracy": 0.9846192011907715
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 3412,
+            "mean_confidence": 0.8403956317643069,
+            "accuracy": 0.996189917936694
+          },
+          {
+            "lower": 0.9,
+            "upper": 1.0,
+            "count": 2344,
+            "mean_confidence": 0.9455120926627527,
+            "accuracy": 0.9991467576791809
+          }
+        ]
+      },
+      "sweep": [
+        {
+          "threshold": 0.0,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.0,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.01,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.0,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.02,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.0,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.03,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.0,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.04,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.0,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.05,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.0,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.06,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.0,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.07,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.0,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.08,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.0,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.09,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.0,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.1,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.0,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.11,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.0,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.12,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.0,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.13,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.0,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.14,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.0,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.15,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.00008865248226950355,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.16,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.00008865248226950355,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.17,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.00008865248226950355,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.18,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.0003102836879432624,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.19,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.000576241134751773,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.2,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.0007092198581560284,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.21,
+          "accuracy": 0.5053191489361702,
+          "abstention_rate": 0.001152482269503546,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.22,
+          "accuracy": 0.5066489361702128,
+          "abstention_rate": 0.0020390070921985815,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.23,
+          "accuracy": 0.5075354609929078,
+          "abstention_rate": 0.003324468085106383,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.24,
+          "accuracy": 0.5075354609929078,
+          "abstention_rate": 0.005186170212765957,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.25,
+          "accuracy": 0.5075354609929078,
+          "abstention_rate": 0.00673758865248227,
+          "no_change_false_positive_rate": 0.17195767195767195
+        },
+        {
+          "threshold": 0.26,
+          "accuracy": 0.5084219858156028,
+          "abstention_rate": 0.009086879432624113,
+          "no_change_false_positive_rate": 0.1710758377425044
+        },
+        {
+          "threshold": 0.27,
+          "accuracy": 0.5110815602836879,
+          "abstention_rate": 0.012278368794326242,
+          "no_change_false_positive_rate": 0.1710758377425044
+        },
+        {
+          "threshold": 0.28,
+          "accuracy": 0.5132978723404256,
+          "abstention_rate": 0.016134751773049644,
+          "no_change_false_positive_rate": 0.1710758377425044
+        },
+        {
+          "threshold": 0.29,
+          "accuracy": 0.5146276595744681,
+          "abstention_rate": 0.020124113475177306,
+          "no_change_false_positive_rate": 0.17019400352733685
+        },
+        {
+          "threshold": 0.3,
+          "accuracy": 0.5164007092198581,
+          "abstention_rate": 0.02424645390070922,
+          "no_change_false_positive_rate": 0.1693121693121693
+        },
+        {
+          "threshold": 0.31,
+          "accuracy": 0.5199468085106383,
+          "abstention_rate": 0.029432624113475178,
+          "no_change_false_positive_rate": 0.1693121693121693
+        },
+        {
+          "threshold": 0.32,
+          "accuracy": 0.5217198581560284,
+          "abstention_rate": 0.03550531914893617,
+          "no_change_false_positive_rate": 0.1693121693121693
+        },
+        {
+          "threshold": 0.33,
+          "accuracy": 0.526595744680851,
+          "abstention_rate": 0.0424645390070922,
+          "no_change_false_positive_rate": 0.1693121693121693
+        },
+        {
+          "threshold": 0.34,
+          "accuracy": 0.5336879432624113,
+          "abstention_rate": 0.04920212765957447,
+          "no_change_false_positive_rate": 0.16490299823633156
+        },
+        {
+          "threshold": 0.35,
+          "accuracy": 0.5394503546099291,
+          "abstention_rate": 0.05775709219858156,
+          "no_change_false_positive_rate": 0.15961199294532627
+        },
+        {
+          "threshold": 0.36,
+          "accuracy": 0.5465425531914894,
+          "abstention_rate": 0.06644503546099291,
+          "no_change_false_positive_rate": 0.15079365079365079
+        },
+        {
+          "threshold": 0.37,
+          "accuracy": 0.5558510638297872,
+          "abstention_rate": 0.07819148936170213,
+          "no_change_false_positive_rate": 0.13403880070546736
+        },
+        {
+          "threshold": 0.38,
+          "accuracy": 0.56072695035461,
+          "abstention_rate": 0.0912677304964539,
+          "no_change_false_positive_rate": 0.1164021164021164
+        },
+        {
+          "threshold": 0.39,
+          "accuracy": 0.5664893617021277,
+          "abstention_rate": 0.10363475177304965,
+          "no_change_false_positive_rate": 0.10052910052910052
+        },
+        {
+          "threshold": 0.4,
+          "accuracy": 0.5731382978723404,
+          "abstention_rate": 0.11848404255319149,
+          "no_change_false_positive_rate": 0.08465608465608465
+        },
+        {
+          "threshold": 0.41,
+          "accuracy": 0.5749113475177305,
+          "abstention_rate": 0.13204787234042553,
+          "no_change_false_positive_rate": 0.07760141093474426
+        },
+        {
+          "threshold": 0.42,
+          "accuracy": 0.5757978723404256,
+          "abstention_rate": 0.14454787234042554,
+          "no_change_false_positive_rate": 0.06878306878306878
+        },
+        {
+          "threshold": 0.43,
+          "accuracy": 0.5815602836879432,
+          "abstention_rate": 0.16161347517730495,
+          "no_change_false_positive_rate": 0.0582010582010582
+        },
+        {
+          "threshold": 0.44,
+          "accuracy": 0.5842198581560284,
+          "abstention_rate": 0.1761081560283688,
+          "no_change_false_positive_rate": 0.05026455026455026
+        },
+        {
+          "threshold": 0.45,
+          "accuracy": 0.5908687943262412,
+          "abstention_rate": 0.19188829787234044,
+          "no_change_false_positive_rate": 0.042328042328042326
+        },
+        {
+          "threshold": 0.46,
+          "accuracy": 0.5988475177304965,
+          "abstention_rate": 0.21152482269503547,
+          "no_change_false_positive_rate": 0.03439153439153439
+        },
+        {
+          "threshold": 0.47,
+          "accuracy": 0.598404255319149,
+          "abstention_rate": 0.22779255319148936,
+          "no_change_false_positive_rate": 0.03262786596119929
+        },
+        {
+          "threshold": 0.48,
+          "accuracy": 0.6019503546099291,
+          "abstention_rate": 0.24645390070921985,
+          "no_change_false_positive_rate": 0.02821869488536155
+        },
+        {
+          "threshold": 0.49,
+          "accuracy": 0.6046099290780141,
+          "abstention_rate": 0.2662677304964539,
+          "no_change_false_positive_rate": 0.02292768959435626
+        },
+        {
+          "threshold": 0.5,
+          "accuracy": 0.6063829787234043,
+          "abstention_rate": 0.28568262411347517,
+          "no_change_false_positive_rate": 0.02204585537918871
+        },
+        {
+          "threshold": 0.51,
+          "accuracy": 0.6054964539007093,
+          "abstention_rate": 0.3074468085106383,
+          "no_change_false_positive_rate": 0.01763668430335097
+        },
+        {
+          "threshold": 0.52,
+          "accuracy": 0.6085992907801419,
+          "abstention_rate": 0.3265514184397163,
+          "no_change_false_positive_rate": 0.014991181657848324
+        },
+        {
+          "threshold": 0.53,
+          "accuracy": 0.6081560283687943,
+          "abstention_rate": 0.3465868794326241,
+          "no_change_false_positive_rate": 0.012345679012345678
+        },
+        {
+          "threshold": 0.54,
+          "accuracy": 0.6094858156028369,
+          "abstention_rate": 0.36316489361702126,
+          "no_change_false_positive_rate": 0.01146384479717813
+        },
+        {
+          "threshold": 0.55,
+          "accuracy": 0.6068262411347518,
+          "abstention_rate": 0.3792553191489362,
+          "no_change_false_positive_rate": 0.010582010582010581
+        },
+        {
+          "threshold": 0.56,
+          "accuracy": 0.6085992907801419,
+          "abstention_rate": 0.39516843971631205,
+          "no_change_false_positive_rate": 0.009700176366843033
+        },
+        {
+          "threshold": 0.57,
+          "accuracy": 0.6068262411347518,
+          "abstention_rate": 0.41041666666666665,
+          "no_change_false_positive_rate": 0.009700176366843033
+        },
+        {
+          "threshold": 0.58,
+          "accuracy": 0.6094858156028369,
+          "abstention_rate": 0.42411347517730497,
+          "no_change_false_positive_rate": 0.008818342151675485
+        },
+        {
+          "threshold": 0.59,
+          "accuracy": 0.6112588652482269,
+          "abstention_rate": 0.4401595744680851,
+          "no_change_false_positive_rate": 0.007936507936507936
+        },
+        {
+          "threshold": 0.6,
+          "accuracy": 0.6134751773049646,
+          "abstention_rate": 0.45141843971631207,
+          "no_change_false_positive_rate": 0.006172839506172839
+        },
+        {
+          "threshold": 0.61,
+          "accuracy": 0.6134751773049646,
+          "abstention_rate": 0.46538120567375885,
+          "no_change_false_positive_rate": 0.005291005291005291
+        },
+        {
+          "threshold": 0.62,
+          "accuracy": 0.6134751773049646,
+          "abstention_rate": 0.47699468085106383,
+          "no_change_false_positive_rate": 0.004409171075837742
+        },
+        {
+          "threshold": 0.63,
+          "accuracy": 0.612145390070922,
+          "abstention_rate": 0.48718971631205676,
+          "no_change_false_positive_rate": 0.004409171075837742
+        },
+        {
+          "threshold": 0.64,
+          "accuracy": 0.6099290780141844,
+          "abstention_rate": 0.499113475177305,
+          "no_change_false_positive_rate": 0.003527336860670194
+        },
+        {
+          "threshold": 0.65,
+          "accuracy": 0.6094858156028369,
+          "abstention_rate": 0.5094858156028369,
+          "no_change_false_positive_rate": 0.0026455026455026454
+        },
+        {
+          "threshold": 0.66,
+          "accuracy": 0.6054964539007093,
+          "abstention_rate": 0.5216755319148936,
+          "no_change_false_positive_rate": 0.0026455026455026454
+        },
+        {
+          "threshold": 0.67,
+          "accuracy": 0.6032801418439716,
+          "abstention_rate": 0.5311170212765958,
+          "no_change_false_positive_rate": 0.0026455026455026454
+        },
+        {
+          "threshold": 0.68,
+          "accuracy": 0.598404255319149,
+          "abstention_rate": 0.542508865248227,
+          "no_change_false_positive_rate": 0.0026455026455026454
+        },
+        {
+          "threshold": 0.69,
+          "accuracy": 0.5953014184397163,
+          "abstention_rate": 0.5537234042553192,
+          "no_change_false_positive_rate": 0.0026455026455026454
+        },
+        {
+          "threshold": 0.7,
+          "accuracy": 0.5935283687943262,
+          "abstention_rate": 0.5661790780141844,
+          "no_change_false_positive_rate": 0.001763668430335097
+        },
+        {
+          "threshold": 0.71,
+          "accuracy": 0.5917553191489362,
+          "abstention_rate": 0.579831560283688,
+          "no_change_false_positive_rate": 0.001763668430335097
+        },
+        {
+          "threshold": 0.72,
+          "accuracy": 0.588209219858156,
+          "abstention_rate": 0.5904255319148937,
+          "no_change_false_positive_rate": 0.001763668430335097
+        },
+        {
+          "threshold": 0.73,
+          "accuracy": 0.5833333333333334,
+          "abstention_rate": 0.6064716312056737,
+          "no_change_false_positive_rate": 0.001763668430335097
+        },
+        {
+          "threshold": 0.74,
+          "accuracy": 0.5784574468085106,
+          "abstention_rate": 0.623758865248227,
+          "no_change_false_positive_rate": 0.001763668430335097
+        },
+        {
+          "threshold": 0.75,
+          "accuracy": 0.5735815602836879,
+          "abstention_rate": 0.6402039007092198,
+          "no_change_false_positive_rate": 0.001763668430335097
+        },
+        {
+          "threshold": 0.76,
+          "accuracy": 0.5660460992907801,
+          "abstention_rate": 0.655363475177305,
+          "no_change_false_positive_rate": 0.0008818342151675485
+        },
+        {
+          "threshold": 0.77,
+          "accuracy": 0.5585106382978723,
+          "abstention_rate": 0.6731826241134752,
+          "no_change_false_positive_rate": 0.0008818342151675485
+        },
+        {
+          "threshold": 0.78,
+          "accuracy": 0.5509751773049646,
+          "abstention_rate": 0.6989804964539007,
+          "no_change_false_positive_rate": 0.0008818342151675485
+        },
+        {
+          "threshold": 0.79,
+          "accuracy": 0.538563829787234,
+          "abstention_rate": 0.7179964539007092,
+          "no_change_false_positive_rate": 0.0008818342151675485
+        },
+        {
+          "threshold": 0.8,
+          "accuracy": 0.5323581560283688,
+          "abstention_rate": 0.7448581560283688,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.81,
+          "accuracy": 0.5270390070921985,
+          "abstention_rate": 0.768040780141844,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.82,
+          "accuracy": 0.5212765957446809,
+          "abstention_rate": 0.7897606382978724,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.83,
+          "accuracy": 0.5186170212765957,
+          "abstention_rate": 0.8083333333333333,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.84,
+          "accuracy": 0.5150709219858156,
+          "abstention_rate": 0.8281914893617022,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.85,
+          "accuracy": 0.5124113475177305,
+          "abstention_rate": 0.8420656028368795,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.86,
+          "accuracy": 0.5106382978723404,
+          "abstention_rate": 0.8563829787234043,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.87,
+          "accuracy": 0.5101950354609929,
+          "abstention_rate": 0.8683067375886525,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.88,
+          "accuracy": 0.5088652482269503,
+          "abstention_rate": 0.8785904255319149,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.89,
+          "accuracy": 0.5075354609929078,
+          "abstention_rate": 0.8882978723404256,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.9,
+          "accuracy": 0.5070921985815603,
+          "abstention_rate": 0.8960992907801418,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.91,
+          "accuracy": 0.5062056737588653,
+          "abstention_rate": 0.9032358156028368,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.92,
+          "accuracy": 0.5057624113475178,
+          "abstention_rate": 0.9105496453900709,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.93,
+          "accuracy": 0.5048758865248227,
+          "abstention_rate": 0.919813829787234,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.94,
+          "accuracy": 0.5048758865248227,
+          "abstention_rate": 0.9335106382978723,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.95,
+          "accuracy": 0.5039893617021277,
+          "abstention_rate": 0.9531914893617022,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.96,
+          "accuracy": 0.5031028368794326,
+          "abstention_rate": 0.9702127659574468,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.97,
+          "accuracy": 0.5031028368794326,
+          "abstention_rate": 0.9884751773049646,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.98,
+          "accuracy": 0.5026595744680851,
+          "abstention_rate": 0.999822695035461,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 0.99,
+          "accuracy": 0.5026595744680851,
+          "abstention_rate": 1.0,
+          "no_change_false_positive_rate": 0.0
+        },
+        {
+          "threshold": 1.0,
+          "accuracy": 0.5026595744680851,
+          "abstention_rate": 1.0,
+          "no_change_false_positive_rate": 0.0
+        }
+      ]
+    }
+  ],
+  "paired": [
+    {
+      "model_a": "alibiserikbay/JevK5-2B",
+      "model_b": "jev-latest",
+      "shared_entries": 2256,
+      "only_a_correct": 4,
+      "only_b_correct": 710,
+      "chi_squared": 696.1134453781513,
+      "p_value": 2.3327499657520653e-153
+    }
+  ]
+}

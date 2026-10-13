@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mkdjr/hayagriva/refs/heads/main/hayagriva.schema.json
+
+src:typesafe-systemone:
+  type: web
+  url:
+    value: https://typesafe.ai/blog/introducing-system-one-models-and-jev
+    date: 2026-10-10
+  author:
+    - Almeida, Diogo
+  organization: TypeSafe AI
+  title: "Introducing System-One Models and Jev"
+
+src:kahnemann-thinking-fast-and-slow:
+  type: book
+  title: Thinking, Fast and Slow
+  author: Kahneman, Daniel
+  date: 2011
+  publisher:
+    name: Farrar, Straus, Giroux
+    location: New York
+  edition: First paperback
+  serial-number:
+    isbn: 0374533555 9780374533557
+  abstract: |
+    In this work the author, a recipient of the Nobel Prize in Economic Sciences for his seminal work in psychology that challenged the rational model of judgment and decision making, has brought together his many years of research and thinking in one book. He explains the two systems that drive the way we think. System 1 is fast, intuitive, and emotional; System 2 is slower, more deliberative, and more logical. He exposes the extraordinary capabilities, and also the faults and biases, of fast thinking, and reveals the pervasive influence of intuitive impressions on our thoughts and behavior. He reveals where we can and cannot trust our intuitions and how we can tap into the benefits of slow thinking. He offers practical and enlightening insights into how choices are made in both our business and our personal lives, and how we can use different techniques to guard against the mental glitches that often get us into trouble. This author's work has transformed cognitive psychology and launched the new fields of behavioral economics and happiness studies. In this book, he takes us on a tour of the mind and explains the two systems that drive the way we think and the way we make choices.
+
+src:systemone-docs:
+  type: web
+  url:
+    value: https://docs.typesafe.ai/concepts/system-one
+    date: 2026-10-10
+  organization: TypeSafe AI
+  author: TypeSafe AI
+  title: "Documentation: Concepts - System One"
