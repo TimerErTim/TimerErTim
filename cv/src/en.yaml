@@ -84,6 +84,7 @@ jobs:
     company:
       name: opta data Österreich GmbH
       link: https://www.optadata.at/
+    location: Linz, Upper Austria
     description:
       - One of three core developers, designing and implementing a diabetes order platform from scratch
       - Involved in setting up and planning of core software system deprecation and implementation of new platform
@@ -99,11 +100,11 @@ jobs:
     company:
       name: opta data Österreich GmbH
       link: https://www.optadata.at/
+    location: Linz, Upper Austria
     description:
       - Developed a reporting tool for in-house AI text extraction model drift detection in production
       - Trained autoencoder based on above model's architecture for document classification
       - Presented findings to stakeholders
-
     from: "2022 Jul."
     to: "2022 Aug."
     tags:
@@ -125,6 +126,7 @@ education:
     #location: Hagenberg, Austria
     from: "2025"
     to: "current"
+    location: Hagenberg, Upper Austria
   - place:
       name: Higher Technical College Grieskirchen
       link: "https://www.htl-grieskirchen.at/wp/"
@@ -132,7 +134,7 @@ education:
     major: "Medical Informatics"
     final_work:
       name: "Synde - Document Dataset Synthesizer"
-    #location: Grieskirchen, Austria
+    location: Grieskirchen, Upper Austria
     from: "2018"
     to: "2023"
 

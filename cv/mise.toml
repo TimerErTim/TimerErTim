@@ -16,7 +16,7 @@ sources = [
     "{{ vars.REPO_ROOT }}/config/values.json",
     "{{ vars.REPO_ROOT }}/look-and-feel/**",
 ]
-outputs = ['out/cvs/CV_*_latest*.pdf']
+outputs = ['out/cvs/Tim Peko CV * latest_*.pdf']
 run = '''
 #!/usr/bin/env bash
 set -euo pipefail

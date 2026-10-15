@@ -97,7 +97,7 @@
     }
   }
   if "location" in place {
-    description-items.push([#place.location])
+    description-items.push([📌 #place.location])
   }
   [
     #{
@@ -143,6 +143,7 @@
       size: eval(settings.font.size.description),
       font: themes.fonts.sans.family,
     )
+    if "location" in job [📌 #job.location]
     list(..job.description)
   }
   #{
