@@ -1,14 +1,4 @@
-#!/usr/bin/env -S uv run --script
-# /// script
-# dependencies = [
-#     "ben2 @ git+https://github.com/PramaLLC/BEN2.git",
-#     "torch>=2.1.0",
-#     "opencv-python>=4.10.0",
-#     "numpy",
-#     "pillow",
-#     "tqdm",
-# ]
-# ///
+#!/usr/bin/env python
 
 import argparse
 import copy
@@ -22,17 +12,16 @@ from pathlib import Path
 import cv2
 import numpy as np
 import torch
+import torch.nn.functional as F
 from ben2 import BEN_Base
 from ben2.modeling_ben2 import (
     add_audio_to_video,
     img_transform,
     img_transform32,
-    postprocess_image,
     refine_foreground_process,
     rgb_loader_refiner,
 )
 from PIL import Image
-from torchvision import transforms
 from tqdm import tqdm
 
 
@@ -73,7 +62,122 @@ def parse_args():
         action="store_true",
         help="Aktiviert 'refine_foreground' für saubere Kanten (dauert etwas länger)",
     )
-    return parser.parse_args()
+    parser.add_argument(
+        "--alpha-threshold",
+        type=float,
+        default=0.5,
+        metavar="0..1",
+        help=(
+            "Verwirft BEN2-Sigmoid-Alpha-Werte unter diesem Wert (0..1; Standard: 0.5). "
+            "Höher reduziert schwache Fehlmasken, kann aber feine Kanten entfernen."
+        ),
+    )
+    parser.add_argument(
+        "--min-region-area",
+        type=int,
+        default=64,
+        metavar="PIXELS",
+        help="Kleinste verbundene Maskenregion auf dem 1024x1024 BEN2-Maskenraster (Standard: 64)",
+    )
+    parser.add_argument(
+        "--all-regions",
+        action="store_true",
+        help="Behält statt nur der größten auch andere Regionen ab --min-region-area",
+    )
+    parser.add_argument(
+        "--temporal-smoothing",
+        type=float,
+        default=0.2,
+        metavar="0..1",
+        help=(
+            "Anteil der vorherigen Maske zur zeitlichen Stabilisierung (Standard: 0.2; "
+            "0 deaktiviert, höhere Werte können Nachzieheffekte verursachen)"
+        ),
+    )
+    return validate_args(parser.parse_args())
+
+
+def validate_args(args):
+    if not 0 <= args.alpha_threshold <= 1:
+        raise SystemExit("Fehler: --alpha-threshold muss zwischen 0 und 1 liegen.")
+    if args.min_region_area < 0:
+        raise SystemExit("Fehler: --min-region-area darf nicht negativ sein.")
+    if not 0 <= args.temporal_smoothing < 1:
+        raise SystemExit("Fehler: --temporal-smoothing muss zwischen 0 (inklusive) und 1 (exklusive) liegen.")
+    return args
+
+
+def _clean_mask(mask, alpha_threshold, min_region_area, keep_largest):
+    """Suppress weak alpha and disconnected noise on BEN2's 1024x1024 mask grid."""
+    alpha = np.asarray(mask, dtype=np.uint8)
+    threshold = max(1, int(round(alpha_threshold * 255)))
+    alpha = np.where(alpha >= threshold, alpha, 0).astype(np.uint8)
+    if min_region_area == 0 and not keep_largest:
+        return alpha
+    binary = (alpha > 0).astype(np.uint8)
+    count, labels, stats, _ = cv2.connectedComponentsWithStats(binary, connectivity=8)
+    if count <= 1:
+        return np.where(binary, alpha, 0).astype(np.uint8)
+
+    component_areas = stats[1:, cv2.CC_STAT_AREA]
+    largest_label = int(np.argmax(component_areas)) + 1
+    keep = np.zeros(count, dtype=bool)
+    for label in range(1, count):
+        area = int(stats[label, cv2.CC_STAT_AREA])
+        keep[label] = area >= min_region_area and (not keep_largest or label == largest_label)
+    return np.where(keep[labels], alpha, 0).astype(np.uint8)
+
+
+class TemporalMaskStabilizer:
+    def __init__(self, smoothing, alpha_threshold, scene_cut_threshold=40):
+        self.smoothing = smoothing
+        self.alpha_threshold = int(round(alpha_threshold * 255))
+        self.scene_cut_threshold = scene_cut_threshold
+        self.previous_mask = None
+        self.previous_frame = None
+
+    def apply(self, image):
+        if self.smoothing == 0 or image.mode != "RGBA":
+            return image
+        rgba = np.asarray(image).copy()
+        frame = cv2.resize(rgba[:, :, :3], (160, 90), interpolation=cv2.INTER_AREA)
+        mask = rgba[:, :, 3]
+        scene_cut = False
+        if self.previous_frame is not None:
+            difference = cv2.absdiff(frame, self.previous_frame).mean()
+            scene_cut = difference >= self.scene_cut_threshold
+        if self.previous_mask is not None and not scene_cut:
+            mask = cv2.addWeighted(
+                mask, 1.0 - self.smoothing, self.previous_mask, self.smoothing, 0
+            )
+            mask[mask < self.alpha_threshold] = 0
+            rgba[:, :, 3] = mask
+        self.previous_mask = mask.copy()
+        self.previous_frame = frame
+        return Image.fromarray(rgba, mode="RGBA")
+
+
+# Handle Pillow versions that predate Image.Resampling.
+_RESAMPLING_BILINEAR = getattr(getattr(Image, "Resampling", Image), "BILINEAR")
+
+
+def _make_output_mask(result, output_size, alpha_threshold, min_region_area, keep_largest):
+    """Resize BEN2's sigmoid probability map without per-frame min/max scaling."""
+    probability = torch.squeeze(
+        F.interpolate(result, size=(1024, 1024), mode="bilinear", align_corners=False),
+        0,
+    )
+    alpha = (
+        probability.clamp(0.0, 1.0)
+        .mul(255.0)
+        .round()
+        .to(torch.uint8)
+        .squeeze()
+        .cpu()
+        .numpy()
+    )
+    alpha = _clean_mask(alpha, alpha_threshold, min_region_area, keep_largest)
+    return Image.fromarray(alpha, mode="L").resize(output_size, _RESAMPLING_BILINEAR)
 
 
 def parse_color(color_str):
@@ -94,10 +198,10 @@ def _as_frame_list(batch_results):
     return batch_results
 
 
-def _gpu_inference(model, pil_image, refine):
-    """Runs the network on GPU. With refine=False this is the whole job;
-    with refine=True it only produces the raw mask and the blur-fusion
-    refine pass runs later on a CPU worker."""
+def _gpu_inference(
+    model, pil_image, refine, alpha_threshold, min_region_area, keep_largest
+):
+    """Run BEN2 and apply mask cleanup before full-resolution upscaling."""
     image, h, w, original_image = rgb_loader_refiner(pil_image)
     if torch.cuda.is_available():
         img_tensor = img_transform(image).unsqueeze(0).to(next(model.parameters()).device)
@@ -107,16 +211,15 @@ def _gpu_inference(model, pil_image, refine):
     with torch.no_grad():
         res = model.forward(img_tensor)
 
+    mask = _make_output_mask(
+        res, original_image.size, alpha_threshold, min_region_area, keep_largest
+    )
     if not refine:
-        alpha = postprocess_image(res, im_size=[w, h])
-        pred_pil = transforms.ToPILImage()(alpha)
-        mask = pred_pil.resize(original_image.size)
         original_image.putalpha(mask)
         return original_image
 
-    # Deliver the full-res frame plus the mask to the refine stage.
-    pred_pil = transforms.ToPILImage()(res.squeeze())
-    return (original_image, pred_pil.resize(original_image.size))
+    # Refine foreground using the cleaned mask at full resolution.
+    return (original_image, mask)
 
 
 def _refine_on_cpu(item):
@@ -126,7 +229,16 @@ def _refine_on_cpu(item):
     return frame_idx, image_masked
 
 
-def _inference_worker(work_queue, refine_queue, result_queue, model, refine):
+def _inference_worker(
+    work_queue,
+    refine_queue,
+    result_queue,
+    model,
+    refine,
+    alpha_threshold,
+    min_region_area,
+    keep_largest,
+):
     out_queue = refine_queue if refine_queue is not None else result_queue
     while True:
         item = work_queue.get()
@@ -134,7 +246,19 @@ def _inference_worker(work_queue, refine_queue, result_queue, model, refine):
             if item is None:
                 return
             frame_idx, pil_image = item
-            out_queue.put((frame_idx, _gpu_inference(model, pil_image, refine)))
+            out_queue.put(
+                (
+                    frame_idx,
+                    _gpu_inference(
+                        model,
+                        pil_image,
+                        refine,
+                        alpha_threshold,
+                        min_region_area,
+                        keep_largest,
+                    ),
+                )
+            )
         except Exception as exc:
             # Bypass the pipeline so a dead GPU worker surfaces immediately.
             result_queue.put(exc)
@@ -158,11 +282,20 @@ def _refine_worker(refine_queue, result_queue):
 
 
 def _drain_results(
-    result_queue, writer, pending, next_write_idx, block, total_frames, progress
+    result_queue,
+    writer,
+    pending,
+    next_write_idx,
+    block,
+    total_frames,
+    progress,
+    stabilizer=None,
 ):
     while next_write_idx < total_frames:
         while next_write_idx in pending:
             for foreground in _as_frame_list(pending.pop(next_write_idx)):
+                if stabilizer is not None:
+                    foreground = stabilizer.apply(foreground)
                 writer.write(foreground)
             progress.update(1)
             next_write_idx += 1
@@ -268,6 +401,10 @@ def segment_video(
     batch=1,
     webm=False,
     rgb_value=(0, 255, 0),
+    alpha_threshold=0.5,
+    min_region_area=64,
+    keep_largest=True,
+    temporal_smoothing=0.2,
 ):
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
@@ -301,6 +438,7 @@ def segment_video(
     result_queue = queue.Queue()
     pending = {}
     next_write_idx = 0
+    stabilizer = TemporalMaskStabilizer(temporal_smoothing, alpha_threshold)
 
     # With --refine the blur-fusion pass is pure CPU work; run it in its own
     # workers so it never blocks a GPU worker between forward passes.
@@ -321,7 +459,16 @@ def segment_video(
     workers = [
         threading.Thread(
             target=_inference_worker,
-            args=(work_queue, refine_queue, result_queue, worker_model, refine_foreground),
+            args=(
+                work_queue,
+                refine_queue,
+                result_queue,
+                worker_model,
+                refine_foreground,
+                alpha_threshold,
+                min_region_area,
+                keep_largest,
+            ),
             daemon=True,
         )
         for worker_model in models
@@ -364,6 +511,7 @@ def segment_video(
                     block=False,
                     total_frames=frame_idx,
                     progress=progress,
+                    stabilizer=stabilizer,
                 )
             frame_idx += 1
             next_write_idx = _drain_results(
@@ -374,6 +522,7 @@ def segment_video(
                 block=False,
                 total_frames=frame_idx,
                 progress=progress,
+                stabilizer=stabilizer,
             )
 
         total_frames = frame_idx
@@ -392,6 +541,7 @@ def segment_video(
                 block=True,
                 total_frames=total_frames,
                 progress=progress,
+                stabilizer=stabilizer,
             )
 
         for _ in range(num_workers):
@@ -484,6 +634,10 @@ def main():
         batch=args.batch,
         webm=args.webm or expected_output.suffix.lower() == ".webm",
         rgb_value=rgb_color,
+        alpha_threshold=args.alpha_threshold,
+        min_region_area=args.min_region_area,
+        keep_largest=not args.all_regions,
+        temporal_smoothing=args.temporal_smoothing,
     )
 
     print("\nFertig! Ausgabedatei: {}".format(written))

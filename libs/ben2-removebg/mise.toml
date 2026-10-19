@@ -9,5 +9,4 @@ UV_PYTHON = { value = "{{ tools.python.path }}", tools = true }
 description = "Run the remove-bg script"
 dir = "{{ cwd }}"
 raw_args = true
-raw = true
-file = "remove-bg.py"
+run = "uv run {{ config_root }}/remove-bg.py"
