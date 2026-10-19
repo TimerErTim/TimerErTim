@@ -748,7 +748,7 @@
   tag => [
     #show: focus-slide.with(fill: white.transparentize(100%))
     #chapter-intro-slide(
-      description: [Benchmarks and #tag("live-demo")[Live Demo]],
+      description: [#tag("benchmarks")[Benchmarks] and #tag("live-demo")[Live Demo]],
     )[
       Results
     ]
@@ -757,7 +757,26 @@
     handout-index: 1,
   ),
   controls: (
-    (apply("live-demo")),
+    (apply("live-demo"), apply("benchmarks")),
+    once("benchmarks", it => box({
+      it
+      place(left + bottom, dx: -1cm, dy: 3cm, {
+        show: rotate.with(2.5deg, reflow: true)
+        set text(size: 32pt)
+        set strong(delta: 600)
+        [*Not*
+          #show: underline.with(
+            stroke: theme.colors.info + theme.layout.borderWidth.large,
+          )
+          all mouth and no trousers
+        ]
+        set text(size: 24pt, fill: theme.colors.border)
+        place(top + center, dy: -1.25cm, dx: -5cm, rotate(
+          -90deg,
+          sym.arrow.long.squiggly,
+        ))
+      })
+    })),
     apply("live-demo", it => box({
       // Live Demo
       it
