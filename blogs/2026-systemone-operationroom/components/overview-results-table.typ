@@ -86,11 +86,11 @@
       table.cell()[JevK5-2B 🖥️],
     ),
     table.hline(stroke: theme.colors.border + theme.layout.borderWidth.medium),
-    [_Field macro F1_],
+    [_Field-Level F1_],
     ..model-rows("jev-latest", "alibiserikbay/JevK5-2B", map: it => {
       it.field_macro_f1
     }),
-    [_Action Accuracy_],
+    [_Utterance-Level Accuracy_],
     ..model-rows("jev-latest", "alibiserikbay/JevK5-2B", map: it => {
       it.action_accuracy_fresh
     }),
@@ -125,3 +125,5 @@
     ),
   )
 }
+
+#overview-results-table()
