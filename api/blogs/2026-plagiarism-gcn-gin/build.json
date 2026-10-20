@@ -1,41 +1,41 @@
 {
   "slug": "2026-plagiarism-gcn-gin",
-  "contentHash": "9b8c5200c54690fd78cc8c3322a67c4da1e7c8c9cad550d6ca76a5efa2369be9",
+  "contentHash": "cf03aa239a4277941435a61181618038baa908917d80cce02272ddbee8d4c873",
   "variants": [
     {
       "filename": "main_light_320pt.svg",
       "theme": "light",
       "width_pt": 320,
       "compressedFilename": "main_light_320pt.svg.br",
-      "referenceVariant": "main_dark_320pt.svg"
+      "referenceVariant": "main_light_448pt.svg"
     },
     {
       "filename": "main_light_448pt.svg",
       "theme": "light",
       "width_pt": 448,
       "compressedFilename": "main_light_448pt.svg.br",
-      "referenceVariant": "main_light_320pt.svg"
+      "referenceVariant": "main_dark_448pt.svg"
     },
     {
       "filename": "main_light_576pt.svg",
       "theme": "light",
       "width_pt": 576,
       "compressedFilename": "main_light_576pt.svg.br",
-      "referenceVariant": "main_dark_576pt.svg"
+      "referenceVariant": "main_light_1088pt.svg"
     },
     {
       "filename": "main_light_704pt.svg",
       "theme": "light",
       "width_pt": 704,
       "compressedFilename": "main_light_704pt.svg.br",
-      "referenceVariant": "main_light_576pt.svg"
+      "referenceVariant": "main_light_832pt.svg"
     },
     {
       "filename": "main_light_832pt.svg",
       "theme": "light",
       "width_pt": 832,
       "compressedFilename": "main_light_832pt.svg.br",
-      "referenceVariant": "main_light_1088pt.svg"
+      "referenceVariant": "main_light_960pt.svg"
     },
     {
       "filename": "main_light_960pt.svg",
@@ -70,7 +70,7 @@
       "theme": "dark",
       "width_pt": 576,
       "compressedFilename": "main_dark_576pt.svg.br",
-      "referenceVariant": "main_dark_960pt.svg"
+      "referenceVariant": "main_dark_832pt.svg"
     },
     {
       "filename": "main_dark_704pt.svg",
@@ -84,7 +84,7 @@
       "theme": "dark",
       "width_pt": 832,
       "compressedFilename": "main_dark_832pt.svg.br",
-      "referenceVariant": "main_dark_1088pt.svg"
+      "referenceVariant": "main_dark_960pt.svg"
     },
     {
       "filename": "main_dark_960pt.svg",
