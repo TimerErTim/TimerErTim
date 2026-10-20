@@ -2,7 +2,8 @@
 #import "../look-and-feel/index.typ": themes
 // https://typst.app/universe/package/impressive-impression/
 #import "@preview/impressive-impression:0.2.1": (
-  cv as impression-cv, make-aside-grid, make-aside-persona, make-main-content-block-with-timeline, make-pill,
+  cv as impression-cv, make-aside-grid, make-aside-persona,
+  make-main-content-block-with-timeline, make-pill,
 )
 
 #let with-signature = eval(sys.inputs.at("with-signature", default: "false"))
@@ -12,7 +13,11 @@
 #show link: underline
 
 #let make-dot(cont) = [
-  #show: circle.with(fill: themes.light.surface, inset: -1pt, stroke: themes.light.info)
+  #show: circle.with(
+    fill: themes.light.surface,
+    inset: -1pt,
+    stroke: themes.light.info,
+  )
   #cont
 ]
 
@@ -52,12 +57,21 @@
     email: make-dot[📧],
     phone: make-dot[☎️],
     location: make-dot[📍],
-    website: make-dot(pad(1pt, image("../assets/identity/icon.png", height: 1.2em))),
-    linkedin: make-dot(box(radius: 100%, clip: true, outset: 1pt, pad(1pt, image(
-      "../assets/logos/linkedin-square.png",
+    website: make-dot(pad(1pt, image(
+      "../assets/identity/icon.png",
       height: 1.2em,
-    )))),
-    github: make-dot(pad(1pt, image("../assets/logos/github-invertocat.svg", height: 1.2em))),
+    ))),
+    linkedin: make-dot(box(radius: 100%, clip: true, outset: 1pt, pad(
+      1pt,
+      image(
+        "../assets/logos/linkedin-square.png",
+        height: 1.2em,
+      ),
+    ))),
+    github: make-dot(pad(1pt, image(
+      "../assets/logos/github-invertocat.svg",
+      height: 1.2em,
+    ))),
   )
 }
 
@@ -170,9 +184,13 @@
     theme: cv-theme,
     columns: (auto, 1fr),
     [#section-labels.email],
-    [#link("mailto:" + configuration.contacts.email)[#configuration.contacts.email]],
+    [#link(
+      "mailto:" + configuration.contacts.email,
+    )[#configuration.contacts.email]],
     [#section-labels.phone],
-    [#link("tel:" + configuration.contacts.phone)[#configuration.contacts.phone]],
+    [#link(
+      "tel:" + configuration.contacts.phone,
+    )[#configuration.contacts.phone]],
     [#section-labels.location],
     [#configuration.contacts.city, #configuration.contacts.homecountry],
     [#section-labels.linkedin],
@@ -186,8 +204,13 @@
   == #section-labels.skills
   #for skill in configuration.skills [
     #block(below: 0.55em)[
-      #text(weight: "bold", size: eval(settings.font.size.description))[#skill.category] \\
-      #text(size: eval(settings.font.size.tags), fill: themes.light.muted)[#skill.items.join(" · ")]
+      #text(weight: "bold", size: eval(
+        settings.font.size.description,
+      ))[#skill.category] \\
+      #text(
+        size: eval(settings.font.size.tags),
+        fill: themes.light.muted,
+      )[#skill.items.join(" · ")]
     ]
   ]
   #v(1em)
@@ -195,8 +218,13 @@
   == #section-labels.hobbies
   #for hobby in configuration.hobbies [
     #block(below: 0.55em)[
-      #text(weight: "bold", size: eval(settings.font.size.description))[#hobby.category] \\
-      #text(size: eval(settings.font.size.tags), fill: themes.light.muted)[#hobby.items.join(" · ")]
+      #text(weight: "bold", size: eval(
+        settings.font.size.description,
+      ))[#hobby.category] \\
+      #text(
+        size: eval(settings.font.size.tags),
+        fill: themes.light.muted,
+      )[#hobby.items.join(" · ")]
     ]
   ]
 ]
@@ -207,13 +235,21 @@
       align(top, layout(parent-dims => [
         #show: box
         #let dims = measure(box(width: parent-dims.width, item.to))
-        #place(box(width: dims.width, height: dims.height + 2mm, fill: themes.light.surface))
+        #place(box(
+          width: dims.width,
+          height: dims.height + 2mm,
+          fill: themes.light.surface,
+        ))
         #item.to
       ])),
       align(bottom, layout(parent-dims => [
         #show: box
         #let dims = measure(box(width: parent-dims.width, item.from))
-        #place(box(width: dims.width, height: dims.height + 2mm, fill: themes.light.surface))
+        #place(box(
+          width: dims.width,
+          height: dims.height + 2mm,
+          fill: themes.light.surface,
+        ))
         #item.from
       ])),
     )
@@ -231,10 +267,18 @@
     #set par(justify: true, leading: eval(settings.paragraph.leading))
     #grid(
       columns: (1fr, auto),
-      job.tags.map(tag => make-pill(text(tag, size: eval(settings.font.size.tags)), cv-theme)).join(h(0.35em)),
+      job
+        .tags
+        .map(tag => make-pill(
+          text(tag, size: eval(settings.font.size.tags)),
+          cv-theme,
+        ))
+        .join(h(0.35em)),
       if "location" in job [
         #show: pad.with(top: 2pt)
-        #text(fill: themes.light.muted, size: eval(settings.font.size.tags))[#job.location]],
+        #text(fill: themes.light.muted, size: eval(
+          settings.font.size.tags,
+        ))[#job.location]],
     )
     #v(-0.35em)
     #list(..job.description)
@@ -252,9 +296,14 @@
     let thesis-link = place.final_work.at("link", default: none)
     let thesis-name = place.final_work.name
     if thesis-link != none and type(thesis-link) == dictionary {
-      let thesis-url = thesis-link.at("url", default: thesis-link.at("link", default: none))
+      let thesis-url = thesis-link.at("url", default: thesis-link.at(
+        "link",
+        default: none,
+      ))
       if thesis-url != none {
-        details.push([*#section-labels.thesis:* #link(thesis-url)[#thesis-name]])
+        details.push(
+          [*#section-labels.thesis:* #link(thesis-url)[#thesis-name]],
+        )
       } else {
         details.push([*#section-labels.thesis:* #thesis-name])
       }
@@ -267,7 +316,9 @@
   if "location" in place {
     details.insert(0, [
       #h(1fr)
-      #show: text.with(fill: themes.light.muted, size: eval(settings.font.size.tags))
+      #show: text.with(fill: themes.light.muted, size: eval(
+        settings.font.size.tags,
+      ))
       #place.location
     ])
   }
@@ -324,11 +375,15 @@
 #let achievement-entry(achievement) = [
   #block(below: 1.6em)[
     #text(weight: "bold", fill: themes.light.foreground)[
-      #if "link" in achievement [#link(achievement.link)[#achievement.name]] else [#achievement.name]
+      #if "link" in achievement [#link(
+        achievement.link,
+      )[#achievement.name]] else [#achievement.name]
     ]
     #if "description" in achievement [
       #linebreak()
-      #text(fill: themes.light.muted, size: eval(settings.font.size.tags))[#achievement.description]
+      #text(fill: themes.light.muted, size: eval(
+        settings.font.size.tags,
+      ))[#achievement.description]
     ]
     #v(-0.4em)
     #grid(
@@ -347,7 +402,9 @@
 
 #let main-page-one = [
   == #section-labels.summary
-  #par(justify: true, leading: eval(settings.paragraph.leading))[#configuration.summary]
+  #par(justify: true, leading: eval(
+    settings.paragraph.leading,
+  ))[#configuration.summary]
 
   == #section-labels.experience
   #for job in configuration.jobs [#job-entry(job)]
@@ -358,7 +415,9 @@
 
 #let main-page-two = [
   == #section-labels.certifications
-  #for certificate in configuration.certifications [#certification-entry(certificate)]
+  #for certificate in configuration.certifications [#certification-entry(
+    certificate,
+  )]
 
   == #section-labels.achievements
   #for achievement in configuration.achievements [
