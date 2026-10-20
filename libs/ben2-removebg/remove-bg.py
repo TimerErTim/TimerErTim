@@ -46,6 +46,14 @@ def parse_args():
         help="Gibt ein transparentes WebM-Video (mit echtem Alpha-Kanal) statt MP4 aus",
     )
     parser.add_argument(
+        "--mask-only",
+        action="store_true",
+        help=(
+            "Gibt nur die Alpha-Maske als Graustufen-MP4 aus (weiß=Vordergrund, "
+            "schwarz=Hintergrund; Standarddatei: foreground-mask.mp4)"
+        ),
+    )
+    parser.add_argument(
         "--bg-color",
         type=str,
         default="0,255,0",
@@ -335,6 +343,25 @@ class Mp4FrameWriter:
         self._writer.release()
 
 
+class MaskVideoWriter:
+    """Write the alpha channel as a grayscale video (white foreground, black background)."""
+
+    def __init__(self, output_path, fps, size):
+        width, height = size
+        Path(output_path).parent.mkdir(parents=True, exist_ok=True)
+        fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+        self._writer = cv2.VideoWriter(str(output_path), fourcc, fps, (width, height), isColor=False)
+        if not self._writer.isOpened():
+            raise IOError("Cannot open mask video writer: {}".format(output_path))
+
+    def write(self, image):
+        alpha = np.asarray(image.convert("RGBA"))[:, :, 3]
+        self._writer.write(alpha)
+
+    def close(self):
+        self._writer.release()
+
+
 class WebmAlphaWriter:
     def __init__(self, output_path, fps, size):
         width, height = size
@@ -405,7 +432,10 @@ def segment_video(
     min_region_area=64,
     keep_largest=True,
     temporal_smoothing=0.2,
+    mask_only=False,
 ):
+    if mask_only and webm:
+        raise ValueError("Mask-only output is grayscale MP4; it cannot be combined with --webm.")
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
         raise IOError("Cannot open video: {}".format(video_path))
@@ -422,12 +452,17 @@ def segment_video(
     cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
 
     output_path = Path(output_path)
+    default_name = (
+        "foreground-mask.mp4"
+        if mask_only
+        else ("foreground.webm" if webm else "foreground.mp4")
+    )
     if output_path.is_dir() or str(output_path).endswith(("/", "\\")):
-        output_file = output_path / ("foreground.webm" if webm else "foreground.mp4")
+        output_file = output_path / default_name
     elif output_path.suffix.lower() in {".webm", ".mp4", ".mov", ".mkv"}:
-        output_file = output_path
+        output_file = output_path.with_suffix(".mp4") if mask_only else output_path
     else:
-        output_file = output_path / ("foreground.webm" if webm else "foreground.mp4")
+        output_file = output_path / default_name
 
     writer = None
     progress = None
@@ -475,7 +510,9 @@ def segment_video(
     ]
 
     try:
-        if webm:
+        if mask_only:
+            writer = MaskVideoWriter(output_file, fps, (width, height))
+        elif webm:
             writer = WebmAlphaWriter(output_file, fps, (width, height))
         else:
             writer = Mp4FrameWriter(output_file, fps, (width, height), rgb_value)
@@ -576,7 +613,7 @@ def segment_video(
         if writer is not None:
             writer.close()
 
-    if not webm:
+    if not webm and not mask_only:
         try:
             audio_output = output_file.with_name(
                 "{}_output_with_audio{}".format(output_file.stem, output_file.suffix)
@@ -596,13 +633,17 @@ def main():
     video_path = Path(args.input)
     output_dir = Path(args.output_dir).resolve() if args.output_dir else video_path.parent
     if output_dir.is_dir():
-        if args.webm:
+        if args.mask_only:
+            expected_output = output_dir / "foreground-mask.mp4"
+        elif args.webm:
             expected_output = output_dir / "foreground.webm"
         else:
             expected_output = output_dir / "foreground.mp4"
     else:
-        expected_output = output_dir
+        expected_output = output_dir.with_suffix(".mp4") if args.mask_only else output_dir
 
+    if args.mask_only and args.webm:
+        raise SystemExit("Fehler: --mask-only kann nicht mit --webm kombiniert werden.")
     if not video_path.exists():
         raise SystemExit("Fehler: Die Datei '{}' existiert nicht.".format(video_path))
 
@@ -619,9 +660,13 @@ def main():
     print("{} -> {}".format(video_path, expected_output))
     print(
         "Format: {}".format(
-            "Transparente WebM (Alpha-Kanal)"
-            if args.webm
-            else "MP4 mit Hintergrund {}".format(rgb_color)
+            "Graustufen-MP4 der Alpha-Maske (weiß=Vordergrund, schwarz=Hintergrund)"
+            if args.mask_only
+            else (
+                "Transparente WebM (Alpha-Kanal)"
+                if args.webm
+                else "MP4 mit Hintergrund {}".format(rgb_color)
+            )
         )
     )
 
@@ -638,6 +683,7 @@ def main():
         min_region_area=args.min_region_area,
         keep_largest=not args.all_regions,
         temporal_smoothing=args.temporal_smoothing,
+        mask_only=args.mask_only,
     )
 
     print("\nFertig! Ausgabedatei: {}".format(written))
