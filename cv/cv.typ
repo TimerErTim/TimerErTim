@@ -7,7 +7,7 @@
 )
 
 #let with-signature = eval(sys.inputs.at("with-signature", default: "false"))
-#let with-image = eval(sys.inputs.at("with-image", default: "true"))
+#let with-image = eval(sys.inputs.at("with-image", default: "false"))
 #set text(lang: lang)
 #show link: set text(fill: themes.light.accent)
 #show link: underline
@@ -21,7 +21,7 @@
   #cont
 ]
 
-#let configuration = add-sensitive-configuration(lang)
+#let configuration = get-configuration(lang)
 #let is-german = lang == "de"
 #let section-labels = if is-german {
   (
