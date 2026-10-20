@@ -1,411 +1,329 @@
 #import "common.typ": *
 #import "../look-and-feel/index.typ": themes
+#import "@preview/impressive-impression:0.2.1": (
+  cv as impression-cv,
+  make-aside-persona,
+  make-aside-grid,
+  make-main-content-block-with-timeline,
+  make-pill,
+)
 
-#show: base-configuration
 #let with-signature = eval(sys.inputs.at("with-signature", default: "false"))
 #let with-image = eval(sys.inputs.at("with-image", default: "false"))
+#set text(lang: lang)
+#show link: set text(fill: themes.light.accent.lighten(25%))
+#show link: underline
+#let configuration = add-sensitive-configuration(lang)
+#let is-german = lang == "de"
+#let section-labels = if is-german {
+  (
+    profile: "Profil",
+    hobbies: "Interessen",
+    summary: "Profil",
+    experience: "Berufserfahrung",
+    education: "Ausbildung",
+    skills: "Kenntnisse",
+    certifications: "Zertifikate",
+    achievements: "Auszeichnungen",
+    thesis: "Abschlussarbeit",
+    credential: "Nachweis",
+    declaration: "Ich erkläre, dass alle oben genannten Angaben nach bestem Wissen und Gewissen richtig sind.",
+    email: "E-Mail",
+    phone: "Telefon",
+    location: "Standort",
+    website: "Webseite",
+  )
+} else {
+  (
+    profile: "Profile",
+    hobbies: "Interests",
+    summary: "Summary",
+    experience: "Experience",
+    education: "Education",
+    skills: "Skills",
+    certifications: "Certifications",
+    achievements: "Achievements",
+    thesis: "Thesis",
+    credential: "Credential",
+    declaration: "I hereby declare that all the above information is correct to the best of my knowledge and belief.",
+    email: "Email",
+    phone: "Phone",
+    location: "Location",
+    website: "Website",
+  )
+}
 
-#let visit-me-on-section = [
-  Visit me on
-  #import "@preview/pinit:0.2.2": *
+#let cv-theme = (
+  name: "TimerErTim",
+  margin: 1.1cm,
+  main-text: (
+    font: themes.fonts.sans.family,
+    size: eval(settings.font.size.description),
+    style: "normal",
+    weight: "regular",
+    fill: themes.light.foreground,
+  ),
+  base-text: (
+    font: themes.fonts.sans.family,
+    size: eval(settings.font.size.description),
+    style: "normal",
+    weight: "regular",
+    fill: themes.light.foreground,
+  ),
+  main-heading-text: (
+    font: themes.fonts.sans.family,
+    size: eval(settings.font.size.heading),
+    weight: "bold",
+    fill: themes.light.accent,
+  ),
+  main-subheading-text: (
+    font: themes.fonts.sans.family,
+    size: eval(settings.font.size.description),
+    weight: "bold",
+    fill: themes.light.foreground,
+  ),
+  aside-side: "left",
+  primary-accent-color: themes.light.accent,
+  secondary-accent-color: themes.light.accent.darken(12%),
+  primary-text-color: themes.light.foreground,
+  secondary-text-color: themes.light.foreground,
+  faint-text-color: themes.light.muted,
+  profile-image-enabled: with-image,
+  profile-image-size: 80%,
+  profile-image-stroke: 1pt + themes.light.accent,
+  profile-image-radius: 8pt,
+  aside-width: 6.2cm,
+  aside-background-color: themes.light.base,
+  aside-name-text: (
+    font: themes.fonts.sans.family,
+    weight: "bold",
+    size: eval(settings.font.size.heading_huge),
+    style: "normal",
+    fill: themes.light.foreground,
+  ),
+  aside-pronouns-text: (
+    font: themes.fonts.sans.family,
+    weight: "regular",
+    size: eval(settings.font.size.tags),
+    style: "normal",
+    fill: themes.light.muted,
+  ),
+  aside-text: (
+    font: themes.fonts.sans.family,
+    weight: "regular",
+    size: eval(settings.font.size.contacts),
+    style: "normal",
+    fill: themes.light.foreground,
+  ),
+  aside-grid-first-column-width: 1.35cm,
+  aside-short-description-text: (
+    font: themes.fonts.sans.family,
+    weight: "medium",
+    size: eval(settings.font.size.description),
+    style: "normal",
+    fill: themes.light.muted,
+  ),
+  aside-heading-text: (
+    font: themes.fonts.sans.family,
+    weight: "bold",
+    size: eval(settings.font.size.description),
+    style: "normal",
+    fill: themes.light.accent,
+  ),
+  aside-heading-line-enable: true,
+  aside-heading-line-gap: 0.35em,
+  aside-heading-line-opposite-gap: 0pt,
+  aside-heading-line-thickness: 0.5pt,
+  aside-heading-line-cap: "butt",
+  aside-heading-line-opposite-cap: "butt",
+  aside-pill-box-inner: (
+    fill: themes.light.surface,
+    outset: 2pt,
+    radius: 3pt,
+    stroke: 0.5pt + themes.light.neutral,
+  ),
+  aside-pill-pad: (x: 4pt, y: 2pt),
+  gutter-stroke: none,
+  gutter-margin: 0.75cm,
+)
 
-  #let items = (
-    link(configuration.contacts.linkedin, image(
-      "../assets/logos/linkedin-square.png",
-      height: 12pt,
-    )),
-    link(configuration.contacts.github, image(
-      "../assets/logos/github-invertocat.svg",
-      height: 12pt,
-    )),
-    {
-      link(configuration.contacts.website, image(
-        "../assets/identity/icon.png",
-        height: 12pt,
-      ))
-      place(pin(1))
-    },
+#let aside-persona = make-aside-persona.with(
+  configuration.contacts.name,
+  short-description: configuration.contacts.title,
+  image: if with-image { image("src/sensitive/avatar.jpg") } else { none },
+  theme: cv-theme,
+)
+
+#let aside-content = [
+  #aside-persona
+
+  == #section-labels.profile
+  #make-aside-grid(
+    theme: cv-theme,
+    [#section-labels.email:], [#link("mailto:" + configuration.contacts.email)[#configuration.contacts.email]],
+    [#section-labels.phone:], [#link("tel:" + configuration.contacts.phone)[#configuration.contacts.phone]],
+    [#section-labels.location:], [#configuration.contacts.city, #configuration.contacts.homecountry],
+    [LinkedIn:], [#link(configuration.contacts.linkedin)[#configuration.contacts.linkedin]],
+    [GitHub:], [#link(configuration.contacts.github)[#configuration.contacts.github]],
+    [#section-labels.website:], [#link(configuration.contacts.website)[#configuration.contacts.website]],
   )
 
-  #items.map(box).join(h(1em))
-  #pinit-point-from(
-    1,
-    offset-dy: -1cm,
-    body-dy: -1em,
-    pin-dy: -4mm,
-    pin-dx: 6mm,
-  )[
-    #set text(size: 0.9em)
-    personal Website
+  == #section-labels.skills
+  #for skill in configuration.skills [
+    #block(below: 0.55em)[
+      #text(weight: "bold", size: eval(settings.font.size.description))[#skill.category] \\
+      #text(size: eval(settings.font.size.tags), fill: themes.light.muted)[#skill.items.join(" · ")]
+    ]
+  ]
+
+  == #section-labels.hobbies
+  #for hobby in configuration.hobbies [
+    #block(below: 0.55em)[
+      #text(weight: "bold", size: eval(settings.font.size.description))[#hobby.category] \\
+      #text(size: eval(settings.font.size.tags), fill: themes.light.muted)[#hobby.items.join(" · ")]
+    ]
   ]
 ]
 
-#let muted = text.with(fill: luma(100))
+#let periods(item) = {
+  if "from" in item and "to" in item {
+    ([#item.to], [#item.from])
+  } else if "year" in item {
+    [#item.year]
+  } else {
+    []
+  }
+}
 
-#let table-sans(size) = text.with(
-  size: size,
-  font: themes.fonts.sans.family,
+#let job-entry(job) = make-main-content-block-with-timeline(
+  periods(job),
+  job.position,
+  [
+    #set par(justify: true, leading: eval(settings.paragraph.leading))
+    #if "location" in job [#text(fill: themes.light.muted)[#job.location] #linebreak()]
+    #list(..job.description)
+    #v(0.35em)
+    #job.tags.map(tag => make-pill(tag, cv-theme)).join(h(0.35em))
+  ],
+  supplement: [#link(job.company.link)[#job.company.name]],
+  theme: cv-theme,
 )
 
-#let cv-table(rows) = {
-  let cells = ()
-  for row in rows {
-    let (period, body) = row
-    cells.push(period)
-    cells.push(body)
-  }
-  table(
-    columns: (1.5cm, 1fr),
-    column-gutter: 1.2em,
-    row-gutter: 1em,
-    stroke: none,
-    inset: 0pt,
-    align: (right + top, left + top),
-    ..cells,
-  )
-}
-
-#let period(place) = {
-  show: strong
-  show: block.with(breakable: false)
-  if "year" in place [
-    #place.year
-    #linebreak()
-  ]
-  if "to" in place and "from" in place [
-    #place.to
-    #pad(sym.arrow.t, right: 1em, y: -0.25em)
-    #place.from
-  ] else if "arbitrary_interval" in place [
-    #place.arbitrary_interval
-  ]
-}
-
-#let education-body(place) = {
-  let description-items = ()
-  let degree-and-major = none
-  if "degree" in place and "major" in place {
-    degree-and-major = strong[#place.degree~#place.major]
-  }
+#let education-entry(place) = {
+  let title = link(place.place.link)[#place.place.name]
+  let qualification = [#place.degree~#place.major]
+  if "track" in place { qualification += [, #place.track~track] }
+  let details = ()
   if "final_work" in place and "name" in place.final_work {
     let thesis-link = place.final_work.at("link", default: none)
-    let thesis-name = place.final_work.at("name")
-    if thesis-link != none and thesis-name != none {
-      description-items.push([*Thesis* #link(thesis-link)[#thesis-name]])
-    } else if thesis-name != none {
-      description-items.push([*Thesis* #thesis-name])
+    let thesis-name = place.final_work.name
+    if thesis-link != none and type(thesis-link) == dictionary {
+      let thesis-url = thesis-link.at("url", default: thesis-link.at("link", default: none))
+      if thesis-url != none {
+        details.push([*#section-labels.thesis:* #link(thesis-url)[#thesis-name]])
+      } else {
+        details.push([*#section-labels.thesis:* #thesis-name])
+      }
+    } else if thesis-link != none {
+      details.push([*#section-labels.thesis:* #link(thesis-link)[#thesis-name]])
+    } else {
+      details.push([*#section-labels.thesis:* #thesis-name])
     }
   }
-  if "location" in place {
-    description-items.push([📌 #place.location])
-  }
-  [
-    #{
-      set text(
-        size: eval(settings.font.size.heading),
-        font: themes.fonts.sans.family,
-      )
-      strong(link(place.place.link)[#place.place.name])
-      if degree-and-major != none [
-        #set text(
-          size: eval(settings.font.size.description),
-          font: themes.fonts.sans.family,
-        )
-        #sym.dash.em
-        #degree-and-major
-      ]
-      linebreak()
-    }
-    #{
-      set text(
-        size: eval(settings.font.size.education_description),
-        font: themes.fonts.sans.family,
-      )
-      if "track" in place [#place.track~track]
-      description-items.join(linebreak())
-    }
-  ]
+  if "location" in place { details.push([#place.location]) }
+  make-main-content-block-with-timeline(
+    periods(place),
+    title,
+    details.join(linebreak()),
+    supplement: qualification,
+    theme: cv-theme,
+  )
 }
 
-#let job-body(job) = [
-  #{
-    set text(
-      size: eval(settings.font.size.heading),
-      font: themes.fonts.sans.family,
-    )
-    [*#job.position* @
-      #link(job.company.link)[#job.company.name]]
+#let certification-entry(certificate) = {
+  let certificate-period = if "from" in certificate and "to" in certificate {
+    ([#certificate.from], [#certificate.to])
+  } else {
+    [#certificate.year]
   }
-  #set par(spacing: 0.75em)
-  #{
-    v(-0.25em)
-    set text(
-      size: eval(settings.font.size.description),
-      font: themes.fonts.sans.family,
-    )
-    if "location" in job [📌 #job.location]
-    list(..job.description)
+  let supplement = if "certificate_link" in certificate {
+    [#link(certificate.certificate_link)[#section-labels.credential]]
+  } else {
+    none
   }
-  #{
-    set text(
-      size: eval(settings.font.size.tags),
-      font: themes.fonts.sans.family,
-    )
-    job
-      .tags
-      .map(box.with(fill: themes.light.info, inset: 3pt, radius: 2pt))
-      .map(text.with(fill: themes.light.base))
-      .join("  ")
-  }
-]
-
-#let certificate-body(certificate) = [
-  #{
-    set text(
-      size: eval(settings.font.size.heading),
-      font: themes.fonts.sans.family,
-      weight: "bold",
-    )
+  make-main-content-block-with-timeline(
+    certificate-period,
+    certificate.venue.name,
     [
-      #link(certificate.venue.link)[#certificate.venue.name]
-      #if "certificate_link" in certificate [
-        #text(fill: luma(150))[ – ] #link(
-          certificate.certificate_link,
-        )[Credential]
-      ]
-    ]
-  }
-  #{
-    v(-0.25em)
-    set text(
-      size: eval(settings.font.size.description),
-      font: themes.fonts.sans.family,
-    )
-    set par(justify: true, leading: eval(settings.paragraph.leading))
-    list(certificate.description)
-  }
-]
-
-#let contacts-table = {
-  set text(
-    size: eval(settings.font.size.contacts),
-    font: themes.fonts.sans.family,
-  )
-  table(
-    columns: (auto, auto),
-    column-gutter: 0.8em,
-    row-gutter: 0.35em,
-    stroke: none,
-    inset: 0pt,
-    align: (left, left),
-    ..(
-      (
-        muted[Email],
-        link("mailto:" + configuration.contacts.email),
-        muted[Phone],
-        link("tel:" + configuration.contacts.phone),
-        muted[Location],
-        [
-          #configuration.contacts.city, #configuration.contacts.homecountry
-        ],
-      )
-    ),
+      #set par(justify: true, leading: eval(settings.paragraph.leading))
+      #list(certificate.description)
+    ],
+    supplement: supplement,
+    theme: cv-theme,
   )
 }
 
-#let skills-table = table(
-  columns: (2.5cm, 1fr),
-  column-gutter: 1em,
-  row-gutter: 0.6em,
-  stroke: none,
-  inset: 0pt,
-  align: (left + top, left + top),
-  ..configuration
-    .skills
-    .map(skill => (
-      [#set text(weight: "bold"); #{
-          show: table-sans(eval(settings.font.size.description))
-          skill.category
-        }],
-      [#set text(tracking: -0.01em); #{
-          show: table-sans(eval(settings.font.size.description))
-          skill.items.join(" • ")
-        }],
-    ))
-    .flatten(),
-)
-
-#grid(
-  columns: (1fr, auto),
-  gutter: 1em,
-  {
-    par[
-      #set text(
-        size: eval(settings.font.size.heading_huge),
-        font: themes.fonts.sans.family,
-      )
-      *#configuration.contacts.name*
+#let achievement-entry(achievement) = [
+  #block(below: 0.6em)[
+    #text(weight: "bold", fill: themes.light.foreground)[
+      #if "link" in achievement [#link(achievement.link)[#achievement.name]] else [#achievement.name]
     ]
-
-    par[
-      #set text(
-        size: eval(settings.font.size.heading),
-        font: themes.fonts.sans.family,
-        top-edge: 0pt,
-      )
-      #configuration.contacts.title
-    ]
-
-    {
-      set text(
-        size: eval(settings.font.size.contacts),
-        font: themes.fonts.sans.family,
-      )
-      grid(
-        columns: (auto, 1fr),
-        align: (left, center),
-        contacts-table, pad(visit-me-on-section, right: 2cm),
-      )
-    }
-
-    [= Summary]
-
-    {
-      set text(
-        size: eval(settings.font.size.education_description),
-        font: themes.fonts.sans.family,
-      )
-      par(justify: true)[#configuration.summary]
-    }
-  },
-  ..if with-image {
-    (
-      {
-        show: block.with(stroke: black, radius: 1em, clip: true)
-        image("../assets/picture/avatar.jpg", width: 4cm)
-      },
-    )
-  },
-)
-
-#line(length: 100%)
-
-= Experience
-
-#cv-table(configuration.jobs.map(job => (
-  muted(size: eval(settings.font.size.description), period(job)),
-  job-body(job),
-)))
-
-= Education
-
-#cv-table(configuration.education.map(place => (
-  muted(size: eval(settings.font.size.description), period(place)),
-  education-body(place),
-)))
-
-= Skills
-
-#skills-table
-
-= Certifications
-
-#cv-table(configuration.certifications.map(certificate => (
-  muted(size: eval(settings.font.size.description), period(certificate)),
-  certificate-body(certificate),
-)))
-
-= Achievements
-
-#for achievement in configuration.achievements [
-  #block(breakable: false, below: 1.2em)[
-    #set text(
-      size: eval(settings.font.size.heading),
-      font: themes.fonts.sans.family,
-      weight: "bold",
-    )
-    #if "link" in achievement [
-      #link(achievement.link)[#achievement.name]
-    ] else [
-      #achievement.name
-    ]
-
     #if "description" in achievement [
-      #v(-0.5em)
-      #set text(
-        size: eval(settings.font.size.description),
-        font: themes.fonts.sans.family,
-      )
-      #show: muted
-      #achievement.description
-      #v(1em)
+      #linebreak()
+      #text(fill: themes.light.muted)[#achievement.description]
     ]
-
-    #v(-0.5em)
-    #{
-      let wins-by-year = achievement.wins.fold((:), (acc, win) => {
-        if str(win.year) in acc { acc.at(str(win.year)).push(win) } else {
-          acc.insert(str(win.year), (win,))
-        }
-        acc
-      })
-
-      let sorted-years = wins-by-year.keys().sorted().rev()
-
-      table(
-        columns: (1.5cm, 1fr),
-        column-gutter: 1em,
-        row-gutter: 0.8em,
-        stroke: none,
-        inset: 0pt,
-        align: (right + top, left + top),
-        ..sorted-years
-          .map(year => (
-            muted(weight: "bold")[#year],
-            {
-              set text(
-                size: eval(settings.font.size.description),
-                font: themes.fonts.sans.family,
-                weight: "regular",
-              )
-              list(
-                ..wins-by-year
-                  .at(year)
-                  .map(((value)) => {
-                    if "placement" in value [ *#value.placement* – ]
-                    value.category
-                  }),
-                marker: _ => "",
-              )
-            },
-          ))
-          .flatten(),
+    #v(0.2em)
+    #for win in achievement.wins [
+      #grid(
+        columns: (1.25cm, 1fr),
+        column-gutter: 0.5em,
+        text(weight: "bold", fill: themes.light.accent)[#win.year],
+        [#if "placement" in win [*#win.placement* – ]#win.category],
       )
-    }
+    ]
   ]
 ]
 
-#if with-signature {
-  line(length: 100%, stroke: 0.5pt + luma(200))
-  v(0em)
+#let main-page-one = [
+  == #section-labels.summary
+  #par(justify: true, leading: eval(settings.paragraph.leading))[#configuration.summary]
 
-  grid(
-    columns: (1fr, auto),
-    align: (left, horizon),
-    [
-      #set text(
-        size: eval(settings.font.size.description),
-        font: themes.fonts.sans.family,
-        fill: themes.light.foreground,
-      )
-      I hereby declare that all the above information is correct to the best of my knowledge and belief.\
+  == #section-labels.experience
+  #for job in configuration.jobs [#job-entry(job)]
 
-      *#configuration.contacts.name*, #muted(size: 0.9em)[#datetime.today().display()]
-    ],
-    [
-      #box(image("src/sensitive/signature.svg", height: 3em), inset: (
-        right: 1em,
-      ))
-    ],
-  )
-}
+  == #section-labels.education
+  #for place in configuration.education [#education-entry(place)]
+]
+
+#let main-page-two = [
+  == #section-labels.certifications
+  #for certificate in configuration.certifications [#certification-entry(certificate)]
+
+  == #section-labels.achievements
+  #for achievement in configuration.achievements [#achievement-entry(achievement)]
+
+  #if with-signature [
+    #v(0.7em)
+    #line(length: 100%, stroke: 0.5pt + themes.light.neutral)
+    #v(0.5em)
+    #grid(
+      columns: (1fr, auto),
+      align: (left, horizon),
+      [
+        #set text(size: eval(settings.font.size.description))
+        #section-labels.declaration \
+        *#configuration.contacts.name*, #datetime.today().display()
+      ],
+      image("src/sensitive/signature.svg", height: 3em),
+    )
+  ]
+]
+
+#show: doc => impression-cv(
+  theme: cv-theme,
+  paper: "a4",
+  pages-content: (
+    ("left": aside-content, "main": main-page-one),
+    ("left": aside-content, "main": main-page-two),
+  ),
+)
