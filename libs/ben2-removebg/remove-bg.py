@@ -38,19 +38,14 @@ def parse_args():
         "-o",
         type=str,
         default=None,
-        help="Ausgabeordner (Standard: gleiches Verzeichnis wie das Eingabevideo)",
-    )
-    parser.add_argument(
-        "--webm",
-        action="store_true",
-        help="Gibt ein transparentes WebM-Video (mit echtem Alpha-Kanal) statt MP4 aus",
+        help="Ausgabeordner oder Zieldatei (Format wird aus der Dateiendung erkannt)",
     )
     parser.add_argument(
         "--mask-only",
         action="store_true",
         help=(
-            "Gibt nur die Alpha-Maske als Graustufen-MP4 aus (weiß=Vordergrund, "
-            "schwarz=Hintergrund; Standarddatei: foreground-mask.mp4)"
+            "Gibt nur die Alpha-Maske als Graustufen-Video aus (weiß=Vordergrund, "
+            "schwarz=Hintergrund; Format wird aus der Dateiendung erkannt)"
         ),
     )
     parser.add_argument(
@@ -362,11 +357,14 @@ class MaskVideoWriter:
         self._writer.release()
 
 
-class WebmAlphaWriter:
-    def __init__(self, output_path, fps, size):
+class WebmWriter:
+    def __init__(self, output_path, fps, size, mask_only=False):
         width, height = size
         Path(output_path).parent.mkdir(parents=True, exist_ok=True)
         self._output_path = str(output_path)
+        self._mask_only = mask_only
+        input_pixel_format = "gray" if mask_only else "rgba"
+        output_pixel_format = "yuv420p" if mask_only else "yuva420p"
         try:
             self._proc = subprocess.Popen(
                 [
@@ -378,7 +376,7 @@ class WebmAlphaWriter:
                     "-f",
                     "rawvideo",
                     "-pix_fmt",
-                    "rgba",
+                    input_pixel_format,
                     "-s",
                     "{}x{}".format(width, height),
                     "-r",
@@ -389,7 +387,7 @@ class WebmAlphaWriter:
                     "-c:v",
                     "libvpx-vp9",
                     "-pix_fmt",
-                    "yuva420p",
+                    output_pixel_format,
                     "-auto-alt-ref",
                     "0",
                     self._output_path,
@@ -399,13 +397,15 @@ class WebmAlphaWriter:
                 stderr=subprocess.PIPE,
             )
         except FileNotFoundError as exc:
-            raise RuntimeError("ffmpeg not found; required for WebM alpha output") from exc
+            raise RuntimeError("ffmpeg not found; required for WebM output") from exc
 
     def write(self, image):
-        if image.mode != "RGBA":
-            image = image.convert("RGBA")
+        if self._mask_only:
+            frame = np.asarray(image.convert("RGBA"))[:, :, 3]
+        else:
+            frame = np.asarray(image.convert("RGBA"))
         try:
-            self._proc.stdin.write(image.tobytes())
+            self._proc.stdin.write(frame.tobytes())
         except BrokenPipeError as exc:
             stderr = self._proc.stderr.read().decode("utf-8", errors="replace")
             raise RuntimeError("ffmpeg failed while writing WebM: {}".format(stderr)) from exc
@@ -417,7 +417,7 @@ class WebmAlphaWriter:
         return_code = self._proc.wait()
         if return_code != 0:
             raise RuntimeError("ffmpeg failed ({}): {}".format(return_code, stderr))
-        print("WebM with alpha saved to {}".format(self._output_path))
+        print("WebM saved to {}".format(self._output_path))
 
 def segment_video(
     model,
@@ -426,7 +426,6 @@ def segment_video(
     fps=0,
     refine_foreground=False,
     batch=1,
-    webm=False,
     rgb_value=(0, 255, 0),
     alpha_threshold=0.5,
     min_region_area=64,
@@ -434,8 +433,6 @@ def segment_video(
     temporal_smoothing=0.2,
     mask_only=False,
 ):
-    if mask_only and webm:
-        raise ValueError("Mask-only output is grayscale MP4; it cannot be combined with --webm.")
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
         raise IOError("Cannot open video: {}".format(video_path))
@@ -452,17 +449,16 @@ def segment_video(
     cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
 
     output_path = Path(output_path)
-    default_name = (
-        "foreground-mask.mp4"
-        if mask_only
-        else ("foreground.webm" if webm else "foreground.mp4")
-    )
+    default_name = "foreground-mask.mp4" if mask_only else "foreground.mp4"
     if output_path.is_dir() or str(output_path).endswith(("/", "\\")):
         output_file = output_path / default_name
-    elif output_path.suffix.lower() in {".webm", ".mp4", ".mov", ".mkv"}:
-        output_file = output_path.with_suffix(".mp4") if mask_only else output_path
+    elif output_path.suffix.lower() in {".mp4", ".webm"}:
+        output_file = output_path
+    elif output_path.suffix:
+        output_file = output_path.with_suffix(".mp4")
     else:
         output_file = output_path / default_name
+    webm = output_file.suffix.lower() == ".webm"
 
     writer = None
     progress = None
@@ -510,10 +506,10 @@ def segment_video(
     ]
 
     try:
-        if mask_only:
+        if webm:
+            writer = WebmWriter(output_file, fps, (width, height), mask_only=mask_only)
+        elif mask_only:
             writer = MaskVideoWriter(output_file, fps, (width, height))
-        elif webm:
-            writer = WebmAlphaWriter(output_file, fps, (width, height))
         else:
             writer = Mp4FrameWriter(output_file, fps, (width, height), rgb_value)
 
@@ -613,7 +609,7 @@ def segment_video(
         if writer is not None:
             writer.close()
 
-    if not webm and not mask_only:
+    if output_file.suffix.lower() != ".webm" and not mask_only:
         try:
             audio_output = output_file.with_name(
                 "{}_output_with_audio{}".format(output_file.stem, output_file.suffix)
@@ -631,19 +627,26 @@ def main():
     print("Python version:", sys.version)
     args = parse_args()
     video_path = Path(args.input)
-    output_dir = Path(args.output_dir).resolve() if args.output_dir else video_path.parent
-    if output_dir.is_dir():
-        if args.mask_only:
-            expected_output = output_dir / "foreground-mask.mp4"
-        elif args.webm:
-            expected_output = output_dir / "foreground.webm"
-        else:
-            expected_output = output_dir / "foreground.mp4"
+    output_path = Path(args.output_dir).resolve() if args.output_dir else video_path.parent
+    default_name = "foreground-mask.mp4" if args.mask_only else "foreground.mp4"
+    if output_path.is_dir() or str(output_path).endswith(("/", "\\")):
+        expected_output = output_path / default_name
+    elif output_path.suffix.lower() in {".mp4", ".webm"}:
+        expected_output = output_path
+    elif output_path.suffix:
+        expected_output = output_path.with_suffix(".mp4")
     else:
-        expected_output = output_dir.with_suffix(".mp4") if args.mask_only else output_dir
+        expected_output = output_path / default_name
 
-    if args.mask_only and args.webm:
-        raise SystemExit("Fehler: --mask-only kann nicht mit --webm kombiniert werden.")
+    webm = expected_output.suffix.lower() == ".webm"
+    if args.mask_only:
+        output_format = "Graustufen-WebM" if webm else "Graustufen-MP4"
+    else:
+        output_format = (
+            "Transparente WebM mit Alpha-Kanal"
+            if webm
+            else "MP4 mit Hintergrund {}".format(parse_color(args.bg_color))
+        )
     if not video_path.exists():
         raise SystemExit("Fehler: Die Datei '{}' existiert nicht.".format(video_path))
 
@@ -658,17 +661,7 @@ def main():
 
     print("Starte Video-Segmentierung...")
     print("{} -> {}".format(video_path, expected_output))
-    print(
-        "Format: {}".format(
-            "Graustufen-MP4 der Alpha-Maske (weiß=Vordergrund, schwarz=Hintergrund)"
-            if args.mask_only
-            else (
-                "Transparente WebM (Alpha-Kanal)"
-                if args.webm
-                else "MP4 mit Hintergrund {}".format(rgb_color)
-            )
-        )
-    )
+    print("Format: {}".format(output_format))
 
     written = segment_video(
         model,
@@ -677,7 +670,6 @@ def main():
         fps=0,
         refine_foreground=args.refine,
         batch=args.batch,
-        webm=args.webm or expected_output.suffix.lower() == ".webm",
         rgb_value=rgb_color,
         alpha_threshold=args.alpha_threshold,
         min_region_area=args.min_region_area,
