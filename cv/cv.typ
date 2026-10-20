@@ -31,12 +31,6 @@
     thesis: "Abschlussarbeit",
     credential: "Nachweis",
     declaration: "Ich erkläre, dass alle oben genannten Angaben nach bestem Wissen und Gewissen richtig sind.",
-    email: make-dot[📧],
-    phone: make-dot[☎️],
-    location: make-dot[📍],
-    website: make-dot[🌐],
-    linkedin: make-dot[🔗],
-    github: make-dot[🐙],
   )
 } else {
   (
@@ -51,12 +45,19 @@
     thesis: "Thesis",
     credential: "Credential",
     declaration: "I hereby declare that all the above information is correct to the best of my knowledge and belief.",
+  )
+}
+#{
+  section-labels += (
     email: make-dot[📧],
     phone: make-dot[☎️],
     location: make-dot[📍],
-    website: make-dot[🌐],
-    linkedin: make-dot[🔗],
-    github: make-dot[🐙],
+    website: make-dot(pad(1pt, image("../assets/identity/icon.png", height: 1.2em))),
+    linkedin: make-dot(box(radius: 100%, clip: true, outset: 1pt, pad(1pt, image(
+      "../assets/logos/linkedin-square.png",
+      height: 1.2em,
+    )))),
+    github: make-dot(pad(1pt, image("../assets/logos/github-invertocat.svg", height: 1.2em))),
   )
 }
 
