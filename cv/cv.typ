@@ -1,18 +1,21 @@
 #import "common.typ": *
 #import "../look-and-feel/index.typ": themes
+// https://typst.app/universe/package/impressive-impression/
 #import "@preview/impressive-impression:0.2.1": (
-  cv as impression-cv,
-  make-aside-persona,
-  make-aside-grid,
-  make-main-content-block-with-timeline,
-  make-pill,
+  cv as impression-cv, make-aside-grid, make-aside-persona, make-main-content-block-with-timeline, make-pill,
 )
 
 #let with-signature = eval(sys.inputs.at("with-signature", default: "false"))
-#let with-image = eval(sys.inputs.at("with-image", default: "false"))
+#let with-image = eval(sys.inputs.at("with-image", default: "true"))
 #set text(lang: lang)
-#show link: set text(fill: themes.light.accent.lighten(25%))
+#show link: set text(fill: themes.light.accent)
 #show link: underline
+
+#let make-dot(cont) = [
+  #show: circle.with(fill: themes.light.surface, inset: -1pt, stroke: themes.light.info)
+  #cont
+]
+
 #let configuration = add-sensitive-configuration(lang)
 #let is-german = lang == "de"
 #let section-labels = if is-german {
@@ -28,10 +31,12 @@
     thesis: "Abschlussarbeit",
     credential: "Nachweis",
     declaration: "Ich erkläre, dass alle oben genannten Angaben nach bestem Wissen und Gewissen richtig sind.",
-    email: "E-Mail",
-    phone: "Telefon",
-    location: "Standort",
-    website: "Webseite",
+    email: make-dot[📧],
+    phone: make-dot[☎️],
+    location: make-dot[📍],
+    website: image("../assets/identity/icon.png", height: 12pt),
+    linkedin: image("../assets/logos/linkedin-square.png", height: 12pt),
+    github: image("../assets/logos/github-invertocat.svg", height: 12pt),
   )
 } else {
   (
@@ -46,10 +51,12 @@
     thesis: "Thesis",
     credential: "Credential",
     declaration: "I hereby declare that all the above information is correct to the best of my knowledge and belief.",
-    email: "Email",
-    phone: "Phone",
-    location: "Location",
-    website: "Website",
+    email: make-dot[📧],
+    phone: make-dot[☎️],
+    location: make-dot[📍],
+    website: image("../assets/identity/icon.png", height: 12pt),
+    linkedin: image("../assets/logos/linkedin-square.png", height: 12pt),
+    github: image("../assets/logos/github-invertocat.svg", height: 12pt),
   )
 }
 
@@ -89,11 +96,11 @@
   secondary-text-color: themes.light.foreground,
   faint-text-color: themes.light.muted,
   profile-image-enabled: with-image,
-  profile-image-size: 80%,
-  profile-image-stroke: 1pt + themes.light.accent,
-  profile-image-radius: 8pt,
+  profile-image-size: 90%,
+  profile-image-stroke: themes.light.accent + themes.layout.borderWidth.small,
+  profile-image-radius: themes.layout.radius.large,
   aside-width: 6.2cm,
-  aside-background-color: themes.light.base,
+  aside-background-color: themes.light.overlay,
   aside-name-text: (
     font: themes.fonts.sans.family,
     weight: "bold",
@@ -121,51 +128,58 @@
     weight: "medium",
     size: eval(settings.font.size.description),
     style: "normal",
-    fill: themes.light.muted,
+    fill: themes.light.muted.mix(themes.light.foreground),
   ),
   aside-heading-text: (
     font: themes.fonts.sans.family,
     weight: "bold",
-    size: eval(settings.font.size.description),
+    size: eval(settings.font.size.heading),
     style: "normal",
     fill: themes.light.accent,
   ),
   aside-heading-line-enable: true,
   aside-heading-line-gap: 0.35em,
   aside-heading-line-opposite-gap: 0pt,
-  aside-heading-line-thickness: 0.5pt,
+  aside-heading-line-thickness: themes.layout.borderWidth.small,
   aside-heading-line-cap: "butt",
   aside-heading-line-opposite-cap: "butt",
   aside-pill-box-inner: (
-    fill: themes.light.surface,
-    outset: 2pt,
-    radius: 3pt,
-    stroke: 0.5pt + themes.light.neutral,
+    fill: themes.light.info,
+    outset: themes.layout.borderWidth.large,
+    radius: themes.layout.radius.small,
   ),
   aside-pill-pad: (x: 4pt, y: 2pt),
   gutter-stroke: none,
   gutter-margin: 0.75cm,
 )
 
-#let aside-persona = make-aside-persona.with(
+#let aside-persona = make-aside-persona(
   configuration.contacts.name,
   short-description: configuration.contacts.title,
-  image: if with-image { image("src/sensitive/avatar.jpg") } else { none },
+  image: pad(image("src/sensitive/avatar.jpg"), top: 2mm),
   theme: cv-theme,
 )
 
 #let aside-content = [
+  #show: pad.with(left: -2.5mm)
   #aside-persona
 
   == #section-labels.profile
   #make-aside-grid(
     theme: cv-theme,
-    [#section-labels.email:], [#link("mailto:" + configuration.contacts.email)[#configuration.contacts.email]],
-    [#section-labels.phone:], [#link("tel:" + configuration.contacts.phone)[#configuration.contacts.phone]],
-    [#section-labels.location:], [#configuration.contacts.city, #configuration.contacts.homecountry],
-    [LinkedIn:], [#link(configuration.contacts.linkedin)[#configuration.contacts.linkedin]],
-    [GitHub:], [#link(configuration.contacts.github)[#configuration.contacts.github]],
-    [#section-labels.website:], [#link(configuration.contacts.website)[#configuration.contacts.website]],
+    columns: (auto, 1fr),
+    [#section-labels.email],
+    [#link("mailto:" + configuration.contacts.email)[#configuration.contacts.email]],
+    [#section-labels.phone],
+    [#link("tel:" + configuration.contacts.phone)[#configuration.contacts.phone]],
+    [#section-labels.location],
+    [#configuration.contacts.city, #configuration.contacts.homecountry],
+    [#section-labels.linkedin],
+    [#link(configuration.contacts.linkedin)[#section-labels.linkedin]],
+    [#section-labels.github],
+    [#link(configuration.contacts.github)[#section-labels.github]],
+    [#section-labels.website],
+    [#link(configuration.contacts.website)[#section-labels.website]],
   )
 
   == #section-labels.skills
@@ -175,6 +189,7 @@
       #text(size: eval(settings.font.size.tags), fill: themes.light.muted)[#skill.items.join(" · ")]
     ]
   ]
+  #v(1em)
 
   == #section-labels.hobbies
   #for hobby in configuration.hobbies [
@@ -187,7 +202,20 @@
 
 #let periods(item) = {
   if "from" in item and "to" in item {
-    ([#item.to], [#item.from])
+    (
+      align(top, layout(parent-dims => [
+        #show: box
+        #let dims = measure(box(width: parent-dims.width, item.to))
+        #place(box(width: dims.width, height: dims.height + 2mm, fill: themes.light.surface))
+        #item.to
+      ])),
+      align(bottom, layout(parent-dims => [
+        #show: box
+        #let dims = measure(box(width: parent-dims.width, item.from))
+        #place(box(width: dims.width, height: dims.height + 2mm, fill: themes.light.surface))
+        #item.from
+      ])),
+    )
   } else if "year" in item {
     [#item.year]
   } else {
@@ -200,18 +228,23 @@
   job.position,
   [
     #set par(justify: true, leading: eval(settings.paragraph.leading))
-    #if "location" in job [#text(fill: themes.light.muted)[#job.location] #linebreak()]
+    #grid(
+      columns: (1fr, auto),
+      job.tags.map(tag => make-pill(text(tag, size: eval(settings.font.size.tags)), cv-theme)).join(h(0.35em)),
+      if "location" in job [
+        #show: pad.with(top: 2pt)
+        #text(fill: themes.light.muted, size: eval(settings.font.size.tags))[#job.location]],
+    )
+    #v(-0.35em)
     #list(..job.description)
-    #v(0.35em)
-    #job.tags.map(tag => make-pill(tag, cv-theme)).join(h(0.35em))
   ],
   supplement: [#link(job.company.link)[#job.company.name]],
   theme: cv-theme,
 )
 
 #let education-entry(place) = {
-  let title = link(place.place.link)[#place.place.name]
-  let qualification = [#place.degree~#place.major]
+  let institution = link(place.place.link)[#place.place.name]
+  let qualification = [#place.degree in #place.major]
   if "track" in place { qualification += [, #place.track~track] }
   let details = ()
   if "final_work" in place and "name" in place.final_work {
@@ -230,14 +263,38 @@
       details.push([*#section-labels.thesis:* #thesis-name])
     }
   }
-  if "location" in place { details.push([#place.location]) }
+  if "location" in place {
+    details.insert(0, [
+      #h(1fr)
+      #show: text.with(fill: themes.light.muted, size: eval(settings.font.size.tags))
+      #place.location
+    ])
+  }
   make-main-content-block-with-timeline(
     periods(place),
-    title,
+    qualification,
     details.join(linebreak()),
-    supplement: qualification,
+    supplement: institution,
     theme: cv-theme,
   )
+  //   make-main-content-block-with-timeline(
+  //   periods(job),
+  //   job.position,
+  //   [
+  //     #set par(justify: true, leading: eval(settings.paragraph.leading))
+  //     #grid(
+  //       columns: (1fr, auto),
+  //       job.tags.map(tag => make-pill(text(tag, size: eval(settings.font.size.tags)), cv-theme)).join(h(0.35em)),
+  //       if "location" in job [
+  //         #show: pad.with(top: 2pt)
+  //         #text(fill: themes.light.muted, size: eval(settings.font.size.tags))[#job.location]],
+  //     )
+  //     #v(-0.35em)
+  //     #list(..job.description)
+  //   ],
+  //   supplement: [#link(job.company.link)[#job.company.name]],
+  //   theme: cv-theme,
+  // )
 }
 
 #let certification-entry(certificate) = {
@@ -264,23 +321,26 @@
 }
 
 #let achievement-entry(achievement) = [
-  #block(below: 0.6em)[
+  #block(below: 1.6em)[
     #text(weight: "bold", fill: themes.light.foreground)[
       #if "link" in achievement [#link(achievement.link)[#achievement.name]] else [#achievement.name]
     ]
     #if "description" in achievement [
       #linebreak()
-      #text(fill: themes.light.muted)[#achievement.description]
+      #text(fill: themes.light.muted, size: eval(settings.font.size.tags))[#achievement.description]
     ]
-    #v(0.2em)
-    #for win in achievement.wins [
-      #grid(
-        columns: (1.25cm, 1fr),
-        column-gutter: 0.5em,
-        text(weight: "bold", fill: themes.light.accent)[#win.year],
-        [#if "placement" in win [*#win.placement* – ]#win.category],
-      )
-    ]
+    #v(-0.4em)
+    #grid(
+      columns: (1.25cm, 1fr),
+      row-gutter: 0.6em,
+      column-gutter: 0.5em,
+      ..for win in achievement.wins {
+        (
+          text(weight: "bold", fill: themes.light.accent)[#win.year],
+          [#if "placement" in win [*#win.placement* – ]#win.category],
+        )
+      }
+    )
   ]
 ]
 
@@ -300,7 +360,10 @@
   #for certificate in configuration.certifications [#certification-entry(certificate)]
 
   == #section-labels.achievements
-  #for achievement in configuration.achievements [#achievement-entry(achievement)]
+  #for achievement in configuration.achievements [
+
+    #achievement-entry(achievement)
+  ]
 
   #if with-signature [
     #v(0.7em)
@@ -319,11 +382,17 @@
   ]
 ]
 
-#show: doc => impression-cv(
+#impression-cv(
   theme: cv-theme,
   paper: "a4",
   pages-content: (
-    ("left": aside-content, "main": main-page-one),
-    ("left": aside-content, "main": main-page-two),
+    (
+      "left": aside-content,
+      "main": {
+        main-page-one
+        main-page-two
+      },
+    ),
+    //("left": aside-content, "main": main-page-two),
   ),
 )
