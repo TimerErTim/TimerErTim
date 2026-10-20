@@ -34,9 +34,9 @@
     email: make-dot[📧],
     phone: make-dot[☎️],
     location: make-dot[📍],
-    website: image("../assets/identity/icon.png", height: 12pt),
-    linkedin: image("../assets/logos/linkedin-square.png", height: 12pt),
-    github: image("../assets/logos/github-invertocat.svg", height: 12pt),
+    website: make-dot[🌐],
+    linkedin: make-dot[🔗],
+    github: make-dot[🐙],
   )
 } else {
   (
@@ -54,9 +54,9 @@
     email: make-dot[📧],
     phone: make-dot[☎️],
     location: make-dot[📍],
-    website: image("../assets/identity/icon.png", height: 12pt),
-    linkedin: image("../assets/logos/linkedin-square.png", height: 12pt),
-    github: image("../assets/logos/github-invertocat.svg", height: 12pt),
+    website: make-dot[🌐],
+    linkedin: make-dot[🔗],
+    github: make-dot[🐙],
   )
 }
 
@@ -175,11 +175,11 @@
     [#section-labels.location],
     [#configuration.contacts.city, #configuration.contacts.homecountry],
     [#section-labels.linkedin],
-    [#link(configuration.contacts.linkedin)[#section-labels.linkedin]],
+    [#link(configuration.contacts.linkedin)[#configuration.contacts.linkedin]],
     [#section-labels.github],
-    [#link(configuration.contacts.github)[#section-labels.github]],
+    [#link(configuration.contacts.github)[#configuration.contacts.github]],
     [#section-labels.website],
-    [#link(configuration.contacts.website)[#section-labels.website]],
+    [#link(configuration.contacts.website)[#configuration.contacts.website]],
   )
 
   == #section-labels.skills
