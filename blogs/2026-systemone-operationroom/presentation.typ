@@ -675,7 +675,8 @@
     #[
       #show: tag.with("utterance")
       #set text(size: 22pt)
-      "Turn up brightness by #tag("20-text")[twenty] percent, table should be #tag("95-text")[ninety five] centimeters."
+      "Turn up brightness by #tag("20-text")[twenty] percent, table should be
+      #tag("95-text")[ninety five] centimeters."
     ]
     #{
       show: tag.with("criteria-table")
@@ -748,7 +749,8 @@
   tag => [
     #show: focus-slide.with(fill: white.transparentize(100%))
     #chapter-intro-slide(
-      description: [#tag("benchmarks")[Benchmarks] and #tag("live-demo")[Live Demo]],
+      description: [#tag("benchmarks")[Benchmarks] and #tag("live-demo")[Live
+          Demo]],
     )[
       Results
     ]
@@ -898,7 +900,8 @@
                 - #label-box("noise") "Alright, the patient is sleeping tightly"
               ]
               #tag("case-2")[
-                - #label-box("real") "Lets start the insufflator. Put flow at 6 l/m"
+                - #label-box("real") "Lets start the insufflator.
+                  Put flow at 6 l/m"
                   - New State: `{"insufflator_flow": 6, ...}`
               ]
               #tag("case-further")[- #h(1mm) #sym.dots.v #h(5mm) #sym.times 10]

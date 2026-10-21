@@ -373,9 +373,13 @@
       font: themes.fonts.sans.family,
       fill: themes.light.muted,
     )
-    I hereby declare that all the above information is correct to the best of my knowledge and belief.\
+    I hereby declare that all the above information is correct to the best of my
+    knowledge and belief.
+    \
 
-    *#configuration.contacts.name*, #muted(size: 0.9em)[#datetime.today().display()]
+    *#configuration.contacts.name*, #muted(size: 0.9em)[#(
+      datetime.today().display()
+    )]
   ],
   [
     #box(image("src/sensitive/signature.svg", height: 3em), inset: (right: 1em))

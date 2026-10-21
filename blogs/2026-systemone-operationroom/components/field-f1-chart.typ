@@ -12,14 +12,15 @@
   interactive: false,
   tag: (label, it) => it,
 ) = {
-  let fields = model-comparison-raw
-    .models
-    .first()
-    .field_f1
-    .map(it => it.field)
-  let field-data(model-name) = model-comparison-raw.models.find(
-    it => it.model_name == model-name,
-  ).field_f1
+  let fields = model-comparison-raw.models.first().field_f1.map(it => it.field)
+  let field-data(model-name) = {
+    model-comparison-raw
+      .models
+      .find(
+        it => it.model_name == model-name,
+      )
+      .field_f1
+  }
   let total = if interactive { 2 } else { model-names.len() }
   let bar(model-name, index) = {
     let values = fields.map(field => {
@@ -74,8 +75,13 @@
       )(),
     )
   } else {
-    diagram(jevk5-data: model-names.slice(1).enumerate().map(
-      ((index, name)) => bar(name, index + 1),
-    ))
+    diagram(
+      jevk5-data: model-names
+        .slice(1)
+        .enumerate()
+        .map(
+          ((index, name)) => bar(name, index + 1),
+        ),
+    )
   }
 }

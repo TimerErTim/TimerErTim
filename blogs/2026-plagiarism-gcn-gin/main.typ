@@ -55,28 +55,59 @@ The finished project is available under @try-it-out-yourself.
 
 = What has already happened? <chapter-recap>
 
-The project was started by the simple idea of "How much can I overengineer plagiarism detection?", an open ended task given to my class by the professor of the Python scripting course. The solution can be as simple as comparing different tree similarity metrics, finding optimal metric weights for best accuracy, and submitting that as results.
+The project was started by the simple idea of "How much can I overengineer
+plagiarism detection?"
+, an open ended task given to my class by the professor of the Python scripting
+course.
+The solution can be as simple as comparing different tree similarity metrics,
+finding optimal metric weights for best accuracy, and submitting that as
+results.
 
-Or we apply a more complex machine learning approach, using a graph convolution network to learn the similarity of the source code's abstract syntax trees.
+Or we apply a more complex machine learning approach, using a graph convolution
+network to learn the similarity of the source code's abstract syntax trees.
 
 == Basic conditions <preconditions>
 
 *Given*:
-- Supported language: Either Python or #pin(1)*C++*#pin(2) #context pinit-point-from((2,), offset-dx: -20pt, offset-dy: -28pt, body-dx: -24pt, body-dy: -10pt, pin-dy: -text.size, pin-dx: -8pt, fill: theme.colors.info)[chosen language]
+- Supported language: Either Python or #pin(1)*C++*#pin(2)
+  #context pinit-point-from(
+    (2,),
+    offset-dx: -20pt,
+    offset-dy: -28pt,
+    body-dx: -24pt,
+    body-dy: -10pt,
+    pin-dy: -text.size,
+    pin-dx: -8pt,
+    fill: theme.colors.info,
+  )[chosen language]
 - GUI of some form
 - Comparing two files #sym.arrow Plagiarism chance percentage ($p in [0, 1]$).
 
 *Assumptions*:
 - The programming language can reliably be inferred from the file extension
-- Every assignment submission is a single file #sym.arrow multiple files per comparison side is not supported
+- Every assignment submission is a single file #sym.arrow multiple files per
+  comparison side is not supported
 
 == Used dataset <dataset-recap>
 
-We require some ground truth for training, and turns out high quality coding assignment plagiarism datasets are a surprisingly rare occurrence in the wild. I settled on the #link("https://ieee-dataport.org/open-access/programming-homework-dataset-plagiarism-detection")[Programming Homework Dataset for Plagiarism Detection | IEEE DataPort], which is a C and C++ dataset with 328 authentic and 120 plagiarized assignment submission pairs.
+We require some ground truth for training, and turns out high quality coding
+assignment plagiarism datasets are a surprisingly rare occurrence in the wild.
+I settled on the #link(
+  "https://ieee-dataport.org/open-access/programming-homework-dataset-plagiarism-detection",
+)[Programming Homework Dataset for Plagiarism Detection | IEEE DataPort], which
+is a C and C++ dataset with 328 authentic and 120 plagiarized assignment
+submission pairs.
 
 == High-level approach <high-level-approach-recap>
 
-@fig-high-level-approach shows the general idea behind comparing the different files. We employ a graph compression step, @fig-compress-graph, to extract most relevant features from the ASTs and then compare these feature maps with a distance gated exponential similarity output layer. As the graph is further compressed, nodes features are narrowed but deepened, until only a few or a single node with many aggregated features remains (similar to visual CNNs).
+@fig-high-level-approach shows the general idea behind comparing the different
+files.
+We employ a graph compression step, @fig-compress-graph, to extract most
+relevant features from the ASTs and then compare these feature maps with a
+distance gated exponential similarity output layer.
+As the graph is further compressed, nodes features are narrowed but deepened,
+until only a few or a single node with many aggregated features remains (similar
+to visual CNNs).
 
 For simplicity, layer normalization and dropout are not shown in the figure.
 
@@ -351,11 +382,15 @@ For simplicity, layer normalization and dropout are not shown in the figure.
 
 == Applied concepts
 
-You can skip this chapter if you are not interested in the detailed workings of @high-level-approach-recap.
+You can skip this chapter if you are not interested in the detailed workings of
+@high-level-approach-recap.
 
 === Abstract Syntax Trees <abstract-syntax-trees-recap>
 
-With #link("https://github.com/tree-sitter/tree-sitter")[Tree-sitter] we can parse the source code into an abstract syntax tree (AST). Because it supports many different languages, we can easily extend the same approach to a suitable Python dataset#footnote[If found in the future].
+With #link("https://github.com/tree-sitter/tree-sitter")[Tree-sitter] we can
+parse the source code into an abstract syntax tree (AST).
+Because it supports many different languages, we can easily extend the same
+approach to a suitable Python dataset#footnote[If found in the future].
 
 
 #let sample-cpp = ```cpp
@@ -540,7 +575,10 @@ int main() {
   )
 }
 
-By having a tree representation of the source code, we have a starting point for extracting features from the semantic relationships between the nodes. See the example in @fig-ast-example, with the corresponding node labels in @table-ast-labels.
+By having a tree representation of the source code, we have a starting point for
+extracting features from the semantic relationships between the nodes.
+See the example in @fig-ast-example, with the corresponding node labels in
+@table-ast-labels.
 
 #{
   show: figure.with(
@@ -580,7 +618,8 @@ By having a tree representation of the source code, we have a starting point for
   info-callout(heading: [
     AST Advantages 🫦
   ])[
-    AST representation is agnostic of symbolic names, it only cares about the structure of the code, which is harder to cover up when plagiarizing.
+    AST representation is agnostic of symbolic names, it only cares about the
+    structure of the code, which is harder to cover up when plagiarizing.
 
     #let right-content = synkit.garden(
       (
@@ -651,13 +690,16 @@ By having a tree representation of the source code, we have a starting point for
       )
     }
 
-    The above code samples lead to structurally equivalent ASTs, as indicated by the correspondents of the dashed lines.
+    The above code samples lead to structurally equivalent ASTs, as indicated by
+    the correspondents of the dashed lines.
   ]
 }
 
 === Node embeddings <node-embeddings-recap>
 
-Raw node labels and ids in the range of 0-65535 are barely useful as input features for the neural network. An embedding layer is used to transform the ids into 16-dimensional vectors.
+Raw node labels and ids in the range of 0-65535 are barely useful as input
+features for the neural network.
+An embedding layer is used to transform the ids into 16-dimensional vectors.
 
 #codly(
   highlights: (
@@ -726,7 +768,9 @@ impl<B: Backend> PlagiarismDecider<B> {
 ```
 
 #success-callout(heading: [Stable Node IDs])[
-  This only works because node types have stable associated ids across the same Tree-sitter and language spec version. A `Type` node will always have the same id and thus embedding vector.
+  This only works because node types have stable associated ids across the same
+  Tree-sitter and language spec version.
+  A `Type` node will always have the same id and thus embedding vector.
 ]
 
 #{
@@ -828,7 +872,9 @@ impl<B: Backend> PlagiarismDecider<B> {
 
 === Graph Convolution Networks <gcn-recap>
 
-Graphs are represented as a simple struct containg node features of size $n times d$ and adjacency matrix of size $n times n$ where $n$ is the number of nodes and $d$ is the number of features per node.
+Graphs are represented as a simple struct containg node features of size
+$n times d$ and adjacency matrix of size $n times n$ where $n$ is the number of
+nodes and $d$ is the number of features per node.
 
 ```rust
 #[derive(Debug, Clone)]
@@ -841,7 +887,8 @@ pub struct Graph<B: Backend, D: TensorKind<B> = Float> {
 }
 ```
 
-A graph convolution layer basically performs a feedforward step for each node's neighbors and averages the result into said node.
+A graph convolution layer basically performs a feedforward step for each node's
+neighbors and averages the result into said node.
 #{
   show: figure.with(
     caption: [Principle of the graph convolution layer],
@@ -857,7 +904,8 @@ A graph convolution layer basically performs a feedforward step for each node's 
   place(right + bottom, dx: -1em, dy: -1em)[
     #set text(fill: themes.light.foreground, size: theme.layout.fontSize.tiny)
     https://mbernste.github.io/posts/gcn/ \
-    (MIT License) Copyright (c) Matthew N. Bernstein
+    (MIT License) Copyright (c) Matthew N.
+    Bernstein
   ]
   show: pad.with(bottom: 2em)
   layout(((width, height)) => {
@@ -873,7 +921,10 @@ $
   "GCN"(N, A) = "SwiGLU"(A dot.o 1/sqrt(D) dot.o (1/sqrt(D))^upright(T) dot N)
 $ <eq-gcn>
 
-We use the SwiGLU activation function due to its ability for faster convergence. $"GCN"$ are the new node features for the graph, with the feature size being dependant on SwiGLU's output size. The above equation closely mirrors the implementation in burn-rs.
+We use the SwiGLU activation function due to its ability for faster convergence.
+$"GCN"$ are the new node features for the graph, with the feature size being
+dependant on SwiGLU's output size.
+The above equation closely mirrors the implementation in burn-rs.
 
 #codly(
   highlights: (
@@ -942,12 +993,24 @@ pub fn graph_convolution<B: Backend>(
 ```
 
 #warning-callout(heading: [Only one neighbor deep!], [
-  If you are exceptionally meticulous (or have preknowledge) you notice that per convolution layer we can only aggregate features from the direct neighbors. We can aggregate features from more distant neighbors by stacking multiple convolution layers. That's why in @fig-compress-graph we require multiple convolutions before pooling in order to consider meaningful AST macro structures.
+  If you are exceptionally meticulous (or have preknowledge) you notice that per
+  convolution layer we can only aggregate features from the direct neighbors.
+  We can aggregate features from more distant neighbors by stacking multiple
+  convolution layers.
+  That's why in @fig-compress-graph we require multiple convolutions before
+  pooling in order to consider meaningful AST macro structures.
 ])
 
 === Graph Diff Pooling
 
-Graph DiffPool is a technique to reduce the number of nodes in a graph by calculating an assignment matrix $S in R^(n times n')$ where $n$ is the number of nodes in the original graph and $n'$ is the number of supernodes in the pooled graph. $N in R^(n times d)$ is the node features of the original graph and $F in R^(n times d')$ is the embeded node features of the graph. Then $N' in R^(n' times d')$ is the node features of the pooled graph. Formally expressed in @eq-diff-pool:
+Graph DiffPool is a technique to reduce the number of nodes in a graph by
+calculating an assignment matrix $S in R^(n times n')$ where $n$ is the number
+of nodes in the original graph and $n'$ is the number of supernodes in the
+pooled graph.
+$N in R^(n times d)$ is the node features of the original graph and
+$F in R^(n times d')$ is the embeded node features of the graph.
+Then $N' in R^(n' times d')$ is the node features of the pooled graph.
+Formally expressed in @eq-diff-pool:
 
 $
    S & = "softmax"("GNN"_"Assigment" (N)) \
@@ -1041,10 +1104,15 @@ impl<B: Backend> GraphDiffPool<B> {
   - favor neighboring nodes to be assigned to the same supernode
   - and maximize heterogeneity of the assignment matrix.
 
-  The loss functions for this were never implemented. I did not find out about them until researching for this blog post. Since I am transitioning away from GCN approach, there is no appeal in implementing them right now.
+  The loss functions for this were never implemented.
+  I did not find out about them until researching for this blog post.
+  Since I am transitioning away from GCN approach, there is no appeal in
+  implementing them right now.
 ])
 
-Now all the building blocks for the @fig-compress-graph are available. With that, the architecture is similar to @fig-stepwise-graph-feature-condensation.
+Now all the building blocks for the @fig-compress-graph are available.
+With that, the architecture is similar to
+@fig-stepwise-graph-feature-condensation.
 
 #{
   show: figure.with(
@@ -1110,7 +1178,10 @@ Now all the building blocks for the @fig-compress-graph are available. With that
   it => it.at(1),
 ))
 
-@fig-roc-auc-gcn shows an AUC score of *#calc.round(digits: 2, gcn-roc-auc)*, which indicates very good classification performance of the GCN approach. @fig-pr-auc-gcn shows an AUC *#calc.round(digits: 2, gcn-pr-auc)*, which is not bad but nothing extraordinary.
+@fig-roc-auc-gcn shows an AUC score of *#calc.round(digits: 2, gcn-roc-auc)*,
+which indicates very good classification performance of the GCN approach.
+@fig-pr-auc-gcn shows an AUC *#calc.round(digits: 2, gcn-pr-auc)*, which is not
+bad but nothing extraordinary.
 
 #let gcn-roc-figure = {
   show: it => [#it <fig-roc-auc-gcn>]
@@ -1229,13 +1300,23 @@ Now all the building blocks for the @fig-compress-graph are available. With that
   )
 }
 
-With an F1-Score of *#calc.round(digits: 2, gcn-validation-data.unbiased_classification_statistic.f1_score)* at a threshold of #calc.round(digits: 2, gcn-validation-data.unbiased_classification_statistic.threshold), the GCN approach is not the best performing model. However, it is still a good baseline for the project and the next steps will focus on improving the accuracy of the model.
+With an F1-Score of *#calc.round(
+  digits: 2,
+  gcn-validation-data.unbiased_classification_statistic.f1_score,
+)* at a threshold of #calc.round(
+  digits: 2,
+  gcn-validation-data.unbiased_classification_statistic.threshold,
+), the GCN approach is not the best performing model.
+However, it is still a good baseline for the project and the next steps will
+focus on improving the accuracy of the model.
 
 = GIN and Cosine Similarity <gin-and-cosine-similarity>
 
 == Expanding the Data Variety
 
-One huge problem with the approach from the #link(<chapter-recap>)[recap] is the lackluster data variance in the used datasets. The amount of plagiarized assignments is significantly lower than expected.
+One huge problem with the approach from the #link(<chapter-recap>)[recap] is the
+lackluster data variance in the used datasets.
+The amount of plagiarized assignments is significantly lower than expected.
 
 #let custom-ds-tasks = 20
 #let custom-ds-auth-per-task = 8
@@ -1245,9 +1326,12 @@ So with Cursor Composer 2.5, we generated more data to train the model on:
 - $#calc.round(digits: 2, custom-ds-tasks * custom-ds-auth-per-task * (custom-ds-auth-per-task - 1) / 2) "Non-plagiarized pairs" = #custom-ds-tasks "Tasks" times (#custom-ds-auth-per-task "Authentic solutions" times #(custom-ds-auth-per-task - 1) "Other authentics") / 2$
 
 The model was instructed to
-+ Generate 20 task descriptions for C++ assignments, solvable in a single source code file of around \~100-ish lines of code.
-+ Generate 8 authentic solutions for each task, writing them independently and without any knowledge of the other solutions.
-+ For each authentic solution, generate 4 plagiarized solutions with different degrees of blatancy, employing same techniques as humans would.
++ Generate 20 task descriptions for C++ assignments, solvable in a single source
+  code file of around \~100-ish lines of code.
++ Generate 8 authentic solutions for each task, writing them independently and
+  without any knowledge of the other solutions.
++ For each authentic solution, generate 4 plagiarized solutions with different
+  degrees of blatancy, employing same techniques as humans would.
 
 #{
   table(
@@ -1255,12 +1339,15 @@ The model was instructed to
     table.header[*Variant*][*Typical edits*],
     [plag1],
     [
-      Include reorder, member renames (`data_` #sym.arrow `cells_`), `i++` vs `++i`, `'\n'` $arrow.l.r$ `std::endl`
+      Include reorder, member renames (`data_` #sym.arrow `cells_`), `i++` vs
+      `++i`, `'\n'` $arrow.l.r$ `std::endl`
     ],
 
     [plag2],
     [
-      Extract helpers (e.g. `dotRow()`), Allman braces, swap input loop order (column-major), accumulate into local before assign
+      Extract helpers (e.g.
+      `dotRow()`), Allman braces, swap input loop order (column-major),
+      accumulate into local before assign
     ],
 
     [plag3],
@@ -1270,7 +1357,8 @@ The model was instructed to
 
     [plag4],
     [
-      Lightest touch — still not copy-paste: a few renames + main variable renames],
+      Lightest touch — still not copy-paste: a few renames + main variable
+      renames],
   )
 }
 
@@ -1327,15 +1415,30 @@ The model was instructed to
 
 == Graph Isomorphism Networks <graph-isomorphism-networks-trials>
 
-Graph Isomorphism Networks (GINs) can be thought of pretty similar to GCNs, introduced in @gcn-recap, where the main difference is the aggregation function being a sum of the node's neighbors' embeddings instead of a mean. The single GIN passes are repeated in order to extend the aggregation reach to multiple hops. For further processing, the residuals (the individual passes) are summed up along all nodes in the graph and concatenated to form a final graph embedding in the shape of $"number of passes" times "embedding size"$.
+Graph Isomorphism Networks (GINs) can be thought of pretty similar to GCNs,
+introduced in @gcn-recap, where the main difference is the aggregation function
+being a sum of the node's neighbors' embeddings instead of a mean.
+The single GIN passes are repeated in order to extend the aggregation reach to
+multiple hops.
+For further processing, the residuals (the individual passes) are summed up
+along all nodes in the graph and concatenated to form a final graph embedding in
+the shape of $"number of passes" times "embedding size"$.
 
 #info-callout(heading: [GINs are injective])[
-  Assuming all hidden layers also use injective activation functions, the GIN as a whole is also injective. Put differently, every different input graph will have a different output embedding. This makes it great for classification tasks where we want to be able to distinguish between different graphs.
+  Assuming all hidden layers also use injective activation functions, the GIN as
+  a whole is also injective.
+  Put differently, every different input graph will have a different output
+  embedding.
+  This makes it great for classification tasks where we want to be able to
+  distinguish between different graphs.
 ]
 
 #{
   show: figure.with(
-    caption: [Illustration of the GIN principle. Source: #link("https://towardsdatascience.com/how-to-design-the-most-powerful-graph-neural-network-3d18b07a6e66/")[Towards Data Science, Maxime Labonne]],
+    caption: [Illustration of the GIN principle.
+      Source: #link(
+        "https://towardsdatascience.com/how-to-design-the-most-powerful-graph-neural-network-3d18b07a6e66/",
+      )[Towards Data Science, Maxime Labonne]],
     kind: image,
   )
   show: depth-shadow-block.with(inner-border: theme.layout.borderWidth.small)
@@ -1599,7 +1702,11 @@ With that, the new high level architecture becomes:
 
 == Cosine Similarity <cosine-similarity-chapter>
 
-After embedding the source files into a high-dimensional vector space, we can compute the cosine similarity between the vectors. The cosine similarity is a measure of how similar two vectors are, and is calculated as the dot product of the two vectors divided by the product of the magnitudes of the two vectors, as shown in @eq-cosine-similarity.
+After embedding the source files into a high-dimensional vector space, we can
+compute the cosine similarity between the vectors.
+The cosine similarity is a measure of how similar two vectors are, and is
+calculated as the dot product of the two vectors divided by the product of the
+magnitudes of the two vectors, as shown in @eq-cosine-similarity.
 
 $
   cos(theta) = (a dot b) / (||a|| times ||b||)
@@ -1613,13 +1720,20 @@ $ <eq-cosine-similarity>
     #{
       set figure(placement: none)
       show: figure.with(
-        caption: [Cosine similarity visualization. Source: #link("https://medium.com/@milana.shxanukova15/cosine-distance-and-cosine-similarity-a5da0e4d9ded")[Medium, Milana Shkhanukova]],
+        caption: [Cosine similarity visualization.
+          Source: #link(
+            "https://medium.com/@milana.shxanukova15/cosine-distance-and-cosine-similarity-a5da0e4d9ded",
+          )[Medium, Milana Shkhanukova]],
       )
       show: box.with(inset: 0pt, stroke: theme.colors.border, clip: true)
       image("assets/cosine-similarity.png")
     }
 
-    The GIN inherent property of being injective guarantees longer embedding vectors for bigger ASTs, which is not meaningful for similarity of the solution approach. Through cosine similarity, we can compare the "direction" of the encoded solutions independent of their length.
+    The GIN inherent property of being injective guarantees longer embedding
+    vectors for bigger ASTs, which is not meaningful for similarity of the
+    solution approach.
+    Through cosine similarity, we can compare the "direction" of the encoded
+    solutions independent of their length.
   ]
 }
 
@@ -1685,11 +1799,23 @@ $ <eq-cosine-similarity>
     .at(1)
 )
 
-After training for #gin_training_steps steps, the best performing model was at #gin_best_training_checkpoint, with an ideal threshold of #calc.round(digits: 2, gin_best_threshold) and an F1-Score (assuming 0.5 threshold) of *#calc.round(digits: 2, gin_best_f1_score)* on the validation set. This is significantly higher than our baseline of #calc.round(digits: 2, gcn-validation-data.unbiased_classification_statistic.f1_score) in the GCN approach.
+After training for #gin_training_steps steps, the best performing model was at
+#gin_best_training_checkpoint, with an ideal threshold of #calc.round(
+  digits: 2,
+  gin_best_threshold,
+) and an F1-Score (assuming 0.5 threshold) of *#calc.round(
+  digits: 2,
+  gin_best_f1_score,
+)* on the validation set.
+This is significantly higher than our baseline of #calc.round(
+  digits: 2,
+  gcn-validation-data.unbiased_classification_statistic.f1_score,
+) in the GCN approach.
 
 #{
   show: figure.with(
-    caption: [F1 Score and Best Threshold over Training Time for the GIN approach],
+    caption: [F1 Score and Best Threshold over Training Time for the GIN
+      approach],
   )
   show: depth-shadow-block.with(
     inner-border: theme.layout.borderWidth.small,
@@ -1801,9 +1927,20 @@ After training for #gin_training_steps steps, the best performing model was at #
 )
 #let gin-pr-auc = gin-validation-data.pr_auc
 
-@fig-roc-auc-gin shows an AUC score of *#calc.round(digits: 2, gin-roc-auc)*, which indicates very good classification performance of the GIN approach. However, @fig-pr-auc-gin shows a lower AUC of only *#calc.round(digits: 2, gin-pr-auc)*, indicating struggles with the precision in the minority cases (= plagiarism cases).
+@fig-roc-auc-gin shows an AUC score of *#calc.round(digits: 2, gin-roc-auc)*,
+which indicates very good classification performance of the GIN approach.
+However, @fig-pr-auc-gin shows a lower AUC of only *#calc.round(
+  digits: 2,
+  gin-pr-auc,
+)*, indicating struggles with the precision in the minority cases (= plagiarism
+cases).
 
-The sharp corner in these curves shows that the model is very good at differentiating between non-plagiarized and plagiarized solutions. Only a small change in the classification threshold is required in order to accurately predict all the cases. This indicates that nearly all positive cases are above a certain threshold and nearly all negative cases are below that same threshold.
+The sharp corner in these curves shows that the model is very good at
+differentiating between non-plagiarized and plagiarized solutions.
+Only a small change in the classification threshold is required in order to
+accurately predict all the cases.
+This indicates that nearly all positive cases are above a certain threshold and
+nearly all negative cases are below that same threshold.
 
 #let gin-roc-figure = {
   show: it => [#it <fig-roc-auc-gin>]
@@ -1947,7 +2084,13 @@ The sharp corner in these curves shows that the model is very good at differenti
   )
 }
 
-I love the idea of embeddings. There is something intriguing about encoding some object into a high-dimensional vector space and then being able to reason about it in that space. Naturally, I performed some dimensionality reduction on the embeddings to visualize the source file representations in 2D using #link("https://github.com/jean-pierreboth/annembed")[annembed], a crate inspired by t-SNE and UMAP.
+I love the idea of embeddings.
+There is something intriguing about encoding some object into a high-dimensional
+vector space and then being able to reason about it in that space.
+Naturally, I performed some dimensionality reduction on the embeddings to
+visualize the source file representations in 2D using #link(
+  "https://github.com/jean-pierreboth/annembed",
+)[annembed], a crate inspired by t-SNE and UMAP.
 
 
 #pdf.attach(
@@ -2059,14 +2202,19 @@ I love the idea of embeddings. There is something intriguing about encoding some
   })
 }
 
-@fig-embedding-gin colorizes every dot according the exercise the source file should solve. The green crosses mark a plagiarized group of source files. The embedding space clearly captures the similarity between high level task and low level implementation details, as evident by similarly colored clusters.
+@fig-embedding-gin colorizes every dot according the exercise the source file
+should solve.
+The green crosses mark a plagiarized group of source files.
+The embedding space clearly captures the similarity between high level task and
+low level implementation details, as evident by similarly colored clusters.
 
 = Shipping
 
 Making this whole thing ready as web application.
 
 #info-callout(heading: [burn-rs makes this easy])[
-  With burn and Rust's wasm32 target, we can easily compile the model to a self contained binary executable by the browser.
+  With burn and Rust's wasm32 target, we can easily compile the model to a self
+  contained binary executable by the browser.
   #{
     show: box
     no-codly(```rust
@@ -2077,17 +2225,21 @@ Making this whole thing ready as web application.
 
 == Mass plagiarism detection
 
-The separation between heavy embedding computation and performant similarity calculation allows for efficient mass cross-file plagiarism detection. This becomes a two step process:
+The separation between heavy embedding computation and performant similarity
+calculation allows for efficient mass cross-file plagiarism detection.
+This becomes a two step process:
 
 + Compute the embeddings for all source files in the dataset
 + Compute the similarity of every embedding with every other embedding
 
-@fig-mass-time-behavior illustrates the exponential savings in compute power with increasing number of source files.
+@fig-mass-time-behavior illustrates the exponential savings in compute power
+with increasing number of source files.
 
 #{
   show: it => [#it <fig-mass-time-behavior>]
   show: figure.with(
-    caption: [Time behavior comparison between full pipeline and stage separation],
+    caption: [Time behavior comparison between full pipeline and stage
+      separation],
     kind: image,
   )
   show: depth-shadow-block.with(
@@ -2133,12 +2285,18 @@ The separation between heavy embedding computation and performant similarity cal
 
 == Node decision importance
 
-Backpropagation is great! Using the gradients for a single forward pass, we get a lot of nice information. Mainly, the importance of each node in the graph for the final decision. Every embedded AST node has a gradient vector $G in R^"embedding_size"$. The node importance is simply the magnitude of the gradient vector $||G||$.
+Backpropagation is great!
+Using the gradients for a single forward pass, we get a lot of nice information.
+Mainly, the importance of each node in the graph for the final decision.
+Every embedded AST node has a gradient vector $G in R^"embedding_size"$.
+The node importance is simply the magnitude of the gradient vector $||G||$.
 
 #callout()[
-  #strike[You can try this out yourself in the interactive demo just down below.]
+  #strike[You can try this out yourself in the interactive demo just down
+    below.]
   #set text(fill: theme.colors.danger)
-  Currently, you can't, because burn-rs has problems with autodifferentiation on web.
+  Currently, you can't, because burn-rs has problems with autodifferentiation on
+  web.
 ]
 
 == Try it out yourself <try-it-out-yourself>

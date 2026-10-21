@@ -33,16 +33,21 @@
 
 #let youtube-link = "https://www.youtube.com/watch?v=GS978MRbqqo"
 
-If you're primarily interested in the workshop recording (German language only), you'll find the video #web-or(
+If you're primarily interested in the workshop recording (German language only),
+you'll find the video #web-or(
   [
     just down below:
 
     #layout(((width, height)) => {
       let outer-width = width
       let outer-height = width / 16 * 9
-      let iframe = strfmt(```html
-      <iframe id="youtube-iframe" width="{outer-width}" height="{outer-height}" src="https://www.youtube.com/embed/GS978MRbqqo?si=KJ6Y-WodSd6uAKVz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true" ></iframe>
-      ```.text, outer-width: outer-width.pt(), outer-height: outer-height.pt())
+      let iframe = strfmt(
+        ```html
+        <iframe id="youtube-iframe" width="{outer-width}" height="{outer-height}" src="https://www.youtube.com/embed/GS978MRbqqo?si=KJ6Y-WodSd6uAKVz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true" ></iframe>
+        ```.text,
+        outer-width: outer-width.pt(),
+        outer-height: outer-height.pt(),
+      )
       xhtml(iframe, outer-width: outer-width, outer-height: outer-height)
     })
   ],
@@ -54,9 +59,14 @@ If you're primarily interested in the workshop recording (German language only),
 #{
   show: box.with(fill: light-or(none, white), outset: 1pt, radius: 1pt)
   image("assets/fg_lug_logo.png", height: 1em)
-} is the #link("https://fhlug.at/")[Linux User Group FH Hagenberg]. They host talks, workshops or simple get togethers roughly once a month to discuss Linux and topics from the open software world.
+} is the #link("https://fhlug.at/")[Linux User Group FH Hagenberg].
+They host talks, workshops or simple get togethers roughly once a month to
+discuss Linux and topics from the open software world.
 
-Daniel Knittl-Frank is the main organizer and head of the group. His support and hassle-free organization allowed me to focus on the content of the workshop. Thank you, Daniel!
+Daniel Knittl-Frank is the main organizer and head of the group.
+His support and hassle-free organization allowed me to focus on the content of
+the workshop.
+Thank you, Daniel!
 
 = The Workshop
 
@@ -68,11 +78,14 @@ Daniel Knittl-Frank is the main organizer and head of the group. His support and
   image("assets/base-thumbnail.png", width: 80%)
 }
 
-Before jumping into action, we started with a high level overview of document writing and why #link("https://typst.app/")[Typst] stands out. Did you know that you can categorize tools in two categories?
+Before jumping into action, we started with a high level overview of document
+writing and why #link("https://typst.app/")[Typst] stands out.
+Did you know that you can categorize tools in two categories?
 
 #{
   show: figure.with(
-    caption: [Two types of categories: Word Processors and Typesetting Systems.],
+    caption: [Two types of categories: Word Processors and Typesetting
+      Systems.],
   )
   layout(((width, height)) => {
     show: box.with(
@@ -93,10 +106,15 @@ Before jumping into action, we started with a high level overview of document wr
   })
 }
 
-The greatest advantage of typesetting is the separation between content and presentation. This allows for a lot of flexibility and reusability. It is literally what powers this blog website in its dark and light theme, as well as making blog posts available for download in a PDF optimized format.
+The greatest advantage of typesetting is the separation between content and
+presentation.
+This allows for a lot of flexibility and reusability.
+It is literally what powers this blog website in its dark and light theme, as
+well as making blog posts available for download in a PDF optimized format.
 
 #let cubic-count = 4
-Typst enables us to write documents programmatically. For example, let's generate the first #cubic-count cubic numbers:
+Typst enables us to write documents programmatically.
+For example, let's generate the first #cubic-count cubic numbers:
 
 #{
   set math.equation(numbering: none)
@@ -130,7 +148,9 @@ Typst enables us to write documents programmatically. For example, let's generat
   )
 }
 
-See that?! We have the power of a full turing complete programming language at our fingertips.
+See that?!
+We have the power of a full turing complete programming language at our
+fingertips.
 
 == About Typst
 
@@ -138,10 +158,16 @@ See that?! We have the power of a full turing complete programming language at o
   columns: (1fr, auto, auto),
   gutter: 1em,
   [
-    The #link("https://github.com/typst/typst")[Typst GitHub Repository] has about *54.1k* stars and *441* Contributors, which is no small achievement at all. Development was initiated by *Martin Haug* and *Laurenz Mädje* in 2019. After 4 years of development they founded an organization in *Berlin*.
+    The #link("https://github.com/typst/typst")[Typst GitHub Repository] has
+    about *54.1k* stars and *441* Contributors, which is no small achievement at
+    all.
+    Development was initiated by *Martin Haug* and *Laurenz Mädje* in 2019.
+    After 4 years of development they founded an organization in *Berlin*.
 
     #quote(block: true, attribution: [Typst `README.md`])[
-      There are two ways to make something flexible: Have a knob for everything or have a few knobs that you can combine in many ways. Typst is designed with the second way in mind.
+      There are two ways to make something flexible: Have a knob for everything
+      or have a few knobs that you can combine in many ways.
+      Typst is designed with the second way in mind.
     ]
   ],
   {
@@ -158,7 +184,8 @@ See that?! We have the power of a full turing complete programming language at o
   },
 )
 
-The above quote perfectly captures the philosophy of Typst and lays the foundation for its expressive power.
+The above quote perfectly captures the philosophy of Typst and lays the
+foundation for its expressive power.
 
 == Deep Dive
 
@@ -284,13 +311,15 @@ The above quote perfectly captures the philosophy of Typst and lays the foundati
       {
         show: box.with(width: 19em)
         show: figure.with(
-          caption: [The three modes of Typst: _Markup_, _Math_, and _Code_. Arrows indicate syntax to switch between modes.],
+          caption: [The three modes of Typst: _Markup_, _Math_, and _Code_.
+            Arrows indicate syntax to switch between modes.],
         )
         holy-trinity-diagram()
       },
       {
         show: figure.with(
-          caption: [The markdown related _Markup_ mode, switching to _Code_ mode for `rect` drawing and _Math_ mode for the equation.],
+          caption: [The markdown related _Markup_ mode, switching to _Code_ mode
+            for `rect` drawing and _Math_ mode for the equation.],
         )
         let code = ```typ
         == A Title
@@ -320,9 +349,13 @@ The above quote perfectly captures the philosophy of Typst and lays the foundati
   })
 }
 
-The official #link("https://typst.app/docs/")[Typst Documentation] is a great resource to learn more about the syntax and features of Typst. You can directly jump into #link("https://typst.app/docs/tutorial/")[the tutorial] for a step-by-step introduction to Typst's features.
+The official #link("https://typst.app/docs/")[Typst Documentation] is a great
+resource to learn more about the syntax and features of Typst.
+You can directly jump into #link("https://typst.app/docs/tutorial/")[the
+  tutorial] for a step-by-step introduction to Typst's features.
 
-Arguably the most powerful styling tools are the `#set`- and `#show`-Rules. You can already tell that they are invoked in _Code_ mode.
+Arguably the most powerful styling tools are the `#set`- and `#show`-Rules.
+You can already tell that they are invoked in _Code_ mode.
 
 === `#set`-Rules
 
@@ -333,7 +366,11 @@ Arguably the most powerful styling tools are the `#set`- and `#show`-Rules. You 
   gutter: 1em,
   [
     Turns out, everything you see in Typst is a function.
-    `= Topic` is really just syntactic sugar for an invocation of the `#heading("Topic")` function. `*Bold*` is just `#strong("Bold")`. This holds true for all of Typst and is the second foundation for its flexibility.
+    `= Topic` is really just syntactic sugar for an invocation of the
+    `#heading("Topic")` function.
+    `*Bold*` is just `#strong("Bold")`.
+    This holds true for all of Typst and is the second foundation for its
+    flexibility.
   ],
   grid.cell(align: horizon, {
     show: pad.with(
@@ -345,18 +382,26 @@ Arguably the most powerful styling tools are the `#set`- and `#show`-Rules. You 
   }),
 ))
 
-Let's say we wanted to change the text font for the rest of this document. I will just quickly insert `#set text(font: "Source Code Pro")`...
+Let's say we wanted to change the text font for the rest of this document.
+I will just quickly insert `#set text(font: "Source Code Pro")`...
 
 #set text(font: "Source Code Pro")
 
-Ah, there it is. Perfect! Neat huh?
+Ah, there it is.
+Perfect!
+Neat huh?
 
-Revert back with #raw(strfmt("#set text(font: {theme-fonts-sans-family:?})", theme-fonts-sans-family: theme.fonts.sans.family))
+Revert back with #raw(strfmt(
+  "#set text(font: {theme-fonts-sans-family:?})",
+  theme-fonts-sans-family: theme.fonts.sans.family,
+))
 
 #set text(font: theme.fonts.sans.family)
 
 #danger-callout(heading: [Mind the scope!])[
-  `#set` (and `#show`) -Rules are effective for the whole scope they are defined in. If you have a block
+  `#set` (and `#show`) -Rules are effective for the whole scope they are defined
+  in.
+  If you have a block
   #let code = ```typ
   #[
     #set text(fill: red)
@@ -381,7 +426,8 @@ Revert back with #raw(strfmt("#set text(font: {theme-fonts-sans-family:?})", the
     },
   )
 
-  you can observe the red text `#set`-Rule only effects the _Markup_ block. Had we left out the block:
+  you can observe the red text `#set`-Rule only effects the _Markup_ block.
+  Had we left out the block:
 
   #let code = ```typ
   #set text(fill: red)
@@ -410,7 +456,9 @@ Revert back with #raw(strfmt("#set text(font: {theme-fonts-sans-family:?})", the
 
 === `#show`-Rules
 
-Whereas we saw `#set`-Rules to set default parameters for the following functions, `#show`-Rules are used to transform elements. For the rest of this document, I want "Typst" to show up in blue and in italic.
+Whereas we saw `#set`-Rules to set default parameters for the following
+functions, `#show`-Rules are used to transform elements.
+For the rest of this document, I want "Typst" to show up in blue and in italic.
 
 ```typ
 #show "Typst": set text(fill: blue)
@@ -427,11 +475,14 @@ Let's also try out putting the headings inside a green rectangle:
 #show "Typst": it => [_#(it)_]
 #show heading: it => rect(stroke: catppuccin-accents.green, it)
 
-If you continue on reading this blog post, you should notice all our intended `#show`-Rules are in place and working as expected.
+If you continue on reading this blog post, you should notice all our intended
+`#show`-Rules are in place and working as expected.
 
 === Packages
 
-This serves only as demonstration purpose about the power of the already promising package ecosystem: We will use the "conch" package for emulating a whole terminal right in our document:
+This serves only as demonstration purpose about the power of the already
+promising package ecosystem: We will use the "conch" package for emulating a
+whole terminal right in our document:
 
 #let code = strfmt(
   ```typ
@@ -460,13 +511,17 @@ This serves only as demonstration purpose about the power of the already promisi
 
 #eval(code, mode: "markup")
 
-Very nice, looking like a real terminal! Can you believe that all of that is just #code.split("\n").len() lines of code?
+Very nice, looking like a real terminal!
+Can you believe that all of that is just #code.split("\n").len() lines of code?
 
 #raw(code, block: true, lang: "typst")
 
 = Conclusion
 
-Thanks for reading this far! I hope you enjoyed the very brief overview of Typst and the incredibly steep deep dive. You can find a few resources below in order to dive deeper into Typst:
+Thanks for reading this far!
+I hope you enjoyed the very brief overview of Typst and the incredibly steep
+deep dive.
+You can find a few resources below in order to dive deeper into Typst:
 
 - #link("https://typst.app/docs/")[Typst Documentation]
 - #link("https://typst.app/docs/tutorial/")[Typst Tutorial]

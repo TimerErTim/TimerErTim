@@ -44,9 +44,17 @@
 
 #align(center)[
   #set text(size: 12pt)
-  Early-Adopter *Rustacean* #box(baseline: 15%, image("assets/Ferris.svg", width: 16pt)) |
-  *Typst* #box(baseline: 15%, image("assets/typst.jpeg", width: 14pt)) Enthusiast |
-  *FH Hagenberg* #box(baseline: 15%, stroke: 1pt + themed(black, white), radius: 3pt, fill: white, image("assets/fhooe-logo.svg", width: 20pt)) Student
+  Early-Adopter *Rustacean* #box(baseline: 15%, image(
+    "assets/Ferris.svg",
+    width: 16pt,
+  )) | *Typst* #box(baseline: 15%, image("assets/typst.jpeg", width: 14pt))
+  Enthusiast | *FH Hagenberg* #box(
+    baseline: 15%,
+    stroke: 1pt + themed(black, white),
+    radius: 3pt,
+    fill: white,
+    image("assets/fhooe-logo.svg", width: 20pt),
+  ) Student
   #line(length: 98%, stroke: (
     paint: gradient.linear(
       color.rgb("#B7410E"),
@@ -59,7 +67,9 @@
 ]
 
 #v(1em)
-I specialize in writing code that is safe, concurrent, and occasionally panics. I program mainly for fun and learning. Exploring ideas and finding solutions to non-existent problems is my passion.
+I specialize in writing code that is safe, concurrent, and occasionally panics.
+I program mainly for fun and learning.
+Exploring ideas and finding solutions to non-existent problems is my passion.
 
 = Overview
 
@@ -161,7 +171,10 @@ I specialize in writing code that is safe, concurrent, and occasionally panics. 
 
 = How this README works
 
-Using `typst-ts-cli` with the `svg_html` format, we can inline SVG `#image(...)` elements directly into the exported SVG document. A post-processing step extracts the root `<svg>` and decodes nested base64 embeds.
+Using `typst-ts-cli` with the `svg_html` format, we can inline SVG `#image(...)`
+elements directly into the exported SVG document.
+A post-processing step extracts the root `<svg>` and decodes nested base64
+embeds.
 
 #let titled-content-card(
   title: [],
@@ -254,5 +267,6 @@ This effectively allows us to have animated SVGs in the README.
 #v(1em)
 #align(center)[
   #set text(size: 10pt, fill: theme.colors.foreground.transparentize(25%))
-  Last compilation: *#now.display()* | Typst version: *#sys.version* | Deployed to: *GitHub*
+  Last compilation: *#now.display()* | Typst version: *#sys.version* | Deployed
+  to: *GitHub*
 ]

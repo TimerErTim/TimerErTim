@@ -8,9 +8,9 @@
 )
 
 // ── Constants ────────────────────────────────────────────────────────────────
-#let _leaf-w = 1.0        // horizontal width per leaf
-#let _v-gap = 1.2         // vertical gap between levels
-#let _loff = 0.25         // label offset for anchor connections
+#let _leaf-w = 1.0 // horizontal width per leaf
+#let _v-gap = 1.2 // vertical gap between levels
+#let _loff = 0.25 // label offset for anchor connections
 
 
 // ── Tokenizer ────────────────────────────────────────────────────────────────

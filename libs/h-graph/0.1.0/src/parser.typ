@@ -404,7 +404,9 @@
       if not is-ok {
         return (
           false,
-          [Error when processing line #{ index + 1 }: #highlight(sentences.at(index))],
+          [Error when processing line #{ index + 1 }: #highlight(
+              sentences.at(index),
+            )],
         )
       }
     } else if (st.trim().at(0) == "#") {
@@ -420,7 +422,9 @@
       if (type(res) == bool) {
         return (
           false,
-          [Error when processing line #{ index + 1 }: #highlight(sentences.at(index))],
+          [Error when processing line #{ index + 1 }: #highlight(
+              sentences.at(index),
+            )],
         )
       } else {
         (nodes, edges) = res

@@ -28,7 +28,9 @@
       [
         #set text(fill: themes.light.muted)
         #configuration.contacts.address, #configuration.contacts.homecountry\
-        #link("mailto:" + configuration.contacts.email)[#configuration.contacts.email], #configuration.contacts.phone
+        #link(
+          "mailto:" + configuration.contacts.email,
+        )[#configuration.contacts.email], #configuration.contacts.phone
       ]
 
       {

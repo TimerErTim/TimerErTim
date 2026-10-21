@@ -40,4 +40,5 @@
 #line(length: 100%, stroke: black)
 #set text(size: 16pt)
 #v(6pt)
-Here you will find all that coverns my internet identity. Interesting projects, a little bit about myself and cursed misuse of technology.
+Here you will find all that coverns my internet identity.
+Interesting projects, a little bit about myself and cursed misuse of technology.

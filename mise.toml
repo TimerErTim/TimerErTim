@@ -47,7 +47,7 @@ jujutsu = "latest"
 description = "Format all Typst files in the repository"
 tools.typstyle = "0.15"
 run = [
-  "typstyle -i ./ --timing",
+  "typstyle -i ./ --timing --wrap-text=fill-sentence",
 ]
 
 [tasks."tokei"]

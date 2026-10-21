@@ -40,22 +40,45 @@
 
 = Introduction
 
-Ever since I started programming at around 14 years old I have been fascinated by interactively exploring ideas and finding problems with my mediocre solutions. The projects coming out of that were slowly but almost always for sure forgotten over time, even by myself. In the last few weeks I figured that to be a real shame and that I should start writing down my ideas and solutions to them, especially because technical writing is a skill I enjoy and want to improve.
+Ever since I started programming at around 14 years old I have been fascinated
+by interactively exploring ideas and finding problems with my mediocre
+solutions.
+The projects coming out of that were slowly but almost always for sure forgotten
+over time, even by myself.
+In the last few weeks I figured that to be a real shame and that I should start
+writing down my ideas and solutions to them, especially because technical
+writing is a skill I enjoy and want to improve.
 
-Because I don't do things by halves, I intend to reignite my online persona *TimerErTim* and use it to cover all these technical/semi-professional aspects of my life. It shall be used as a central point of reference for myself, including videos on #link("https://www.youtube.com/@TimerErTim")[YouTube], career and professional information, as well as (probably very irregular) blog posts on #link("https://timerertim.eu/blog")[my website].
+Because I don't do things by halves, I intend to reignite my online persona
+*TimerErTim* and use it to cover all these technical/semi-professional aspects
+of my life.
+It shall be used as a central point of reference for myself, including videos on
+#link("https://www.youtube.com/@TimerErTim")[YouTube], career and professional
+information, as well as (probably very irregular) blog posts on #link(
+  "https://timerertim.eu/blog",
+)[my website].
 
-Now, there is one problem: The website does not yet exist. So let's go build it. Let's use #link("https://typst.app/")[Typst] for writing the blog posts.
+Now, there is one problem: The website does not yet exist.
+So let's go build it.
+Let's use #link("https://typst.app/")[Typst] for writing the blog posts.
 
 = Why Typst?
 
 #quote(block: true, attribution: "You probably")[
-  *But why not use Markdown or some of the 1000 static site generators out there?*
+  *But why not use Markdown or some of the 1000 static site generators out
+  there?*
 ]
 
-Very good question. There are a few reasons for that, most importantly: *it's boring*.\
-Writing code is fun, and with our custom implementation only our imagination#footnote[Unfortunately artistic creativity is none of my strengths] is the limit.
+Very good question.
+There are a few reasons for that, most importantly: *it's boring*.
+\
+Writing code is fun, and with our custom implementation only our
+imagination#footnote[Unfortunately artistic creativity is none of my strengths]
+is the limit.
 
-Furthermore, I really enjoy Typst for its capabilities and its simplicity. It is a joy to write, and the results are beautiful. Show me where Markdown can do this:
+Furthermore, I really enjoy Typst for its capabilities and its simplicity.
+It is a joy to write, and the results are beautiful.
+Show me where Markdown can do this:
 
 $ z_(n+1) = z_n^2 + c $ <mandelbrot-equation>
 
@@ -116,7 +139,8 @@ iterations
   ),
 ))
 
-The above Mandelbrot set is generated entirely in Typst during document compilation with the following code:
+The above Mandelbrot set is generated entirely in Typst during document
+compilation with the following code:
 
 ```typ
 #lq.diagram(
@@ -140,11 +164,19 @@ The above Mandelbrot set is generated entirely in Typst during document compilat
 )
 ```
 
-It is very easy to style, and with correct abuse, it can be used to represent the central source of truth for the whole website's look and feel. More on that in @lookandfeel-section.
+It is very easy to style, and with correct abuse, it can be used to represent
+the central source of truth for the whole website's look and feel.
+More on that in @lookandfeel-section.
 
 = The naive approach
 
-With the tool choice being made, my first idea was to use the #link("https://myriad-dreamin.github.io/typst.ts/")[typst-ts] project of the fantastic #link("https://github.com/Myriad-Dreamin")[Myriad-Dreamin] to create a React component that would render the blog post. It is a fantastic tool specifically designed for responsive embedding of Typst documents in web applications.
+With the tool choice being made, my first idea was to use the #link(
+  "https://myriad-dreamin.github.io/typst.ts/",
+)[typst-ts] project of the fantastic #link(
+  "https://github.com/Myriad-Dreamin",
+)[Myriad-Dreamin] to create a React component that would render the blog post.
+It is a fantastic tool specifically designed for responsive embedding of Typst
+documents in web applications.
 
 #{
   show: figure.with(
@@ -226,19 +258,34 @@ With the tool choice being made, my first idea was to use the #link("https://myr
   )
 }
 
-The document is then rendered on the client side by the browser using the `typst-ts` wasm binary... or so I thought.
+The document is then rendered on the client side by the browser using the
+`typst-ts` wasm binary... or so I thought.
 
 #image("assets/you-dont-say.png", width: 20%, alt: "You don't say!?!")
 
-Turns out we have problems embedding HTML content in Typst and responsiveness is not really responding. HTML content is important because it allows us to do things like#web-or[:
-  #xhtml(```html
-  <iframe data-testid="embed-iframe" src="https://open.spotify.com/embed/track/7mixpZVqU8AWHvSqOL0wKy?utm_source=generator&amp;si=156c406b2fff4d4a" width="512" height="352" frameBorder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-  ```, outer-width: 50%, inner-height: 352pt, inner-width: 512pt)
+Turns out we have problems embedding HTML content in Typst and responsiveness is
+not really responding.
+HTML content is important because it allows us to do things like#web-or[:
+  #xhtml(
+    ```html
+    <iframe data-testid="embed-iframe" src="https://open.spotify.com/embed/track/7mixpZVqU8AWHvSqOL0wKy?utm_source=generator&amp;si=156c406b2fff4d4a" width="512" height="352" frameBorder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    ```,
+    outer-width: 50%,
+    inner-height: 352pt,
+    inner-width: 512pt,
+  )
 ][
   embedding an iframe of a totally unrelated Spotify track.
 ]
 
-So naturally continuing the search, I dug into #link("https://github.com/Myriad-Dreamin/shiroa")[shiroa]'s source code, because as a static site generator using only Typst it was exactly covering my use case. Probably a skill issue, but I could not figure out why the _typst-ts_ integration worked beautifully there but not in my own project. It used a similar precompilation process, but the browser rendering was way more low-level and, for me, read like
+So naturally continuing the search, I dug into #link(
+  "https://github.com/Myriad-Dreamin/shiroa",
+)[shiroa]'s source code, because as a static site generator using only Typst it
+was exactly covering my use case.
+Probably a skill issue, but I could not figure out why the _typst-ts_
+integration worked beautifully there but not in my own project.
+It used a similar precompilation process, but the browser rendering was way more
+low-level and, for me, read like
 
 #{
   show raw: set text(font: "minecraft enchantment")
@@ -273,7 +320,10 @@ So, without further ado, a custom implementation it is.
 
 == Create embeddable SVG documents
 
-Fortunately, the `typst-ts-cli` CLI has a `--format` option that allows us to export the document as an *HTML* page with the whole content rendered as a single *interactive*#footnote[Text selection, navigation to headings, etc.] SVG. A script simply yoinks that out for us.
+Fortunately, the `typst-ts-cli` CLI has a `--format` option that allows us to
+export the document as an *HTML* page with the whole content rendered as a
+single *interactive*#footnote[Text selection, navigation to headings, etc.] SVG.
+A script simply yoinks that out for us.
 
 #codly(
   ranges: ((none, 5), (30, none)),
@@ -328,7 +378,8 @@ Fortunately, the `typst-ts-cli` CLI has a `--format` option that allows us to ex
 </html>
 ```
 
-Inspecting this extracted SVG reveals how `typst-ts-cli` embeds SVG images in the document #box({
+Inspecting this extracted SVG reveals how `typst-ts-cli` embeds SVG images in
+the document #box({
   show raw: it => box(it.lines.at(0).body)
   codly(enabled: false)
   ```typ
@@ -358,11 +409,23 @@ Inspecting this extracted SVG reveals how `typst-ts-cli` embeds SVG images in th
   ```
 }
 
-Here, #box(baseline: 2pt, inset: 2pt, stroke: catppuccin-accents.blue, fill: catppuccin-accents.blue.lighten(50%).mix((theme.colors.base, 80%)), radius: theme.layout.radius.small)[svg] is the base64 encoded SVG content. Decoding it reveals our original SVG content: `<svg>Hello, world!</svg>`. Amazing!
+Here, #box(
+  baseline: 2pt,
+  inset: 2pt,
+  stroke: catppuccin-accents.blue,
+  fill: catppuccin-accents.blue.lighten(50%).mix((theme.colors.base, 80%)),
+  radius: theme.layout.radius.small,
+)[svg] is the base64 encoded SVG content.
+Decoding it reveals our original SVG content: `<svg>Hello, world!</svg>`.
+Amazing!
 
-A second pass script replaces all occurrences of the `<image>` tag with a specific `alt="!typst-embed-command"` with the base64 decoded SVG content. Now we can precisely control the XML (and by extension HTML) content in our document, ready to embed in the website as normal SVG.
+A second pass script replaces all occurrences of the `<image>` tag with a
+specific `alt="!typst-embed-command"` with the base64 decoded SVG content.
+Now we can precisely control the XML (and by extension HTML) content in our
+document, ready to embed in the website as normal SVG.
 
-For example #web-or[the spotify embed above was][embedding the totally unrelated Spotify track mentioned earlier could be] accomplished by this code:
+For example #web-or[the spotify embed above was][embedding the totally unrelated
+  Spotify track mentioned earlier could be] accomplished by this code:
 
 #raw(block: true, lang: "typ", strfmt(
   ```typ
@@ -373,15 +436,20 @@ For example #web-or[the spotify embed above was][embedding the totally unrelated
   triplequote: "```",
 ))
 
-where `xhtml` is a helper function handling conversion to SVG's `foreignObject` tag, sizing, etc.
+where `xhtml` is a helper function handling conversion to SVG's `foreignObject`
+tag, sizing, etc.
 
 == Embed in website responsively <responsive-embedding>
 
-How to embed fixed size content in a variable width container, like the web browser? Easy fix: Generate multiple width variants of the same document, distribute them and have the browser decide which one to display.
+How to embed fixed size content in a variable width container, like the web
+browser?
+Easy fix: Generate multiple width variants of the same document, distribute them
+and have the browser decide which one to display.
 
 #{
   show: figure.with(
-    caption: [Bundling multiple variants of the blog post with differing widths; the client side browser decides which one to display],
+    caption: [Bundling multiple variants of the blog post with differing widths;
+      the client side browser decides which one to display],
   )
   show: depth-shadow-block.with(
     color: theme.colors.border,
@@ -452,7 +520,8 @@ How to embed fixed size content in a variable width container, like the web brow
   )
 }
 
-We can use the exact same concept for light and dark variants. Now, informing Typst about the target width is as easy as
+We can use the exact same concept for light and dark variants.
+Now, informing Typst about the target width is as easy as
 
 #codly(header: [blog/main.typ])
 ```typ
@@ -466,7 +535,8 @@ We can use the exact same concept for light and dark variants. Now, informing Ty
 )
 ```
 
-and compiling the document with `typst-ts-cli --input "x-page-width=456pt" main.typ` for a width of 456pt.
+and compiling the document with
+`typst-ts-cli --input "x-page-width=456pt" main.typ` for a width of 456pt.
 
 == Squeeze the bytes out of the payload <payload-compression>
 
@@ -484,36 +554,57 @@ and compiling the document with `typst-ts-cli --input "x-page-width=456pt" main.
     }
   ) "content SVG size" = underline(bold(#calc.round(total-payload-size_mb) "MB" "bundle payload"))$],
 )[
-  Hell NO! Every user has to download this payload *for every visit*!
+  Hell NO!
+  Every user has to download this payload *for every visit*!
   We need to heavily compress this ASAP.
 
   Luckily, since the content of all variants stays the same, we can heavily rely
-  on *delta compression* by choosing a single reference variant and for all others
-  calculating the difference to the reference and transmitting that instead.
+  on *delta compression* by choosing a single reference variant and for all
+  others calculating the difference to the reference and transmitting that
+  instead.
 ]
 
-We will heavily utilize *Brotli* compression because it has great compression ratios, is very fast to decompress and works directly in the browser. It is also easily available with bindings for many programming languages we will require during the build process.
+We will heavily utilize *Brotli* compression because it has great compression
+ratios, is very fast to decompress and works directly in the browser.
+It is also easily available with bindings for many programming languages we will
+require during the build process.
 
 #info-callout(heading: [*Brotli* supports delta compression!])[
   #{
     show: figure.with(
-      caption: [Dictionary compression in *Brotli* \[#link("https://www.annalytic.com/")[Anna Monus], #link("https://www.debugbear.com/blog/shared-compression-dictionaries")\]],
+      caption: [Dictionary compression in *Brotli* \[#link(
+          "https://www.annalytic.com/",
+        )[Anna Monus], #link(
+          "https://www.debugbear.com/blog/shared-compression-dictionaries",
+        )\]],
     )
     image("assets/dictionary_compression.png")
   }
 
-  Modern versions of *Brotli* support dictionary compression, which is a technique that can greatly improve the compression ratio of the compressed data by providing a shared dictionary of common data to compress against.
+  Modern versions of *Brotli* support dictionary compression, which is a
+  technique that can greatly improve the compression ratio of the compressed
+  data by providing a shared dictionary of common data to compress against.
 
-  ...or in other words: *A reference variant very similar to the other variants!*
+  ...or in other words: *A reference variant very similar to the other
+  variants!*
 
-  Our reference variant is the dictionary we use for compression and require for decompression.
+  Our reference variant is the dictionary we use for compression and require for
+  decompression.
 ]
 
-The reference variant is compressed without any delta compression: 2.4 MB #sym.arrow *866 KB*. Not that bad! A simple build script using NodeJS's *zlib* should handle all the delta compression for us. And indeed, compression ratios are insane now, with delta compressed variants only taking up *2 KB* each.
+The reference variant is compressed without any delta compression: 2.4 MB
+#sym.arrow *866 KB*.
+Not that bad!
+A simple build script using NodeJS's *zlib* should handle all the delta
+compression for us.
+And indeed, compression ratios are insane now, with delta compressed variants
+only taking up *2 KB* each.
 
 == Not so fast young man!
 
-Let's go ahead and implement decompression and DOM node ingestion on the browser side. Simple enough, add a corresponding package, implement variant selection and...
+Let's go ahead and implement decompression and DOM node ingestion on the browser
+side.
+Simple enough, add a corresponding package, implement variant selection and...
 
 #{
   show: depth-shadow-block.with(
@@ -541,20 +632,28 @@ Let's go ahead and implement decompression and DOM node ingestion on the browser
 #warning-callout(
   heading: [Browser-side *Brotli* dictionary support is limited],
 )[
-  I am sure this is partially a user error, but it turns out *zlib*'s dictionary support is more flexible than the browser-side *Brotli* decoder.
+  I am sure this is partially a user error, but it turns out *zlib*'s dictionary
+  support is more flexible than the browser-side *Brotli* decoder.
 
   Using the _cleartext_ reference SVG variant as dictionary
-  - in *zlib* for compression #text(fill: theme.colors.success)[#sym.checkmark works]
-  - in the browser-side *Brotli* decoder #text(fill: theme.colors.danger)[#sym.crossmark does not]
+  - in *zlib* for compression #text(fill: theme.colors.success)[#sym.checkmark
+      works]
+  - in the browser-side *Brotli* decoder #text(
+      fill: theme.colors.danger,
+    )[#sym.crossmark does not]
 
   We'd need to preprocess the dict for browser usage somehow.
 ]
 
-After not figuring it out for one day, I abandoned this concrete approach. I already have a backup idea in mind: Use the same delta compression algorithm as *Git*... *VCDIFF*!
+After not figuring it out for one day, I abandoned this concrete approach.
+I already have a backup idea in mind: Use the same delta compression algorithm
+as *Git*... *VCDIFF*!
 
 == VCDIFF to the rescue!
 
-Instead of relying on *Brotli*'s dictionary support, we can use *VCDIFF* to create delta patches between the reference variant and the other variants, and then use *Brotli* to compress the delta patches.
+Instead of relying on *Brotli*'s dictionary support, we can use *VCDIFF* to
+create delta patches between the reference variant and the other variants, and
+then use *Brotli* to compress the delta patches.
 
 #grid(
   columns: broader-than(560pt, (2fr, auto, 3fr), 1),
@@ -604,15 +703,21 @@ Instead of relying on *Brotli*'s dictionary support, we can use *VCDIFF* to crea
   },
 )
 
-*VCDIFF* is also great, because there are reliable pure browser-side implementations for decoding it.
+*VCDIFF* is also great, because there are reliable pure browser-side
+implementations for decoding it.
 
 #warning-callout(heading: [
   We use *Python* with *uv* in the build scripts for easily reproducible builds.
 ])[
-  Both *open-vcdiff* (Google) and *xdelta3* have Python bindings, but they don't work with the latest Python versions, only at most _3.8_. But getting the latest *uv* version to support Python 3.8 was impossible for me. Sigh...
+  Both *open-vcdiff* (Google) and *xdelta3* have Python bindings, but they don't
+  work with the latest Python versions, only at most _3.8_.
+  But getting the latest *uv* version to support Python 3.8 was impossible for
+  me.
+  Sigh...
 ]
 
-Fortunately, there are up-to-date *xdelta3* bindings for *Rust*, so we quickly write a *PyO3* wrapper around it and use *Maturin* for installing in the script:
+Fortunately, there are up-to-date *xdelta3* bindings for *Rust*, so we quickly
+write a *PyO3* wrapper around it and use *Maturin* for installing in the script:
 
 #codly(header: [libs/xdelta3/src/lib.rs])
 ```rs
@@ -641,7 +746,8 @@ fn xdelta3(m: &Bound<'_, PyModule>) -> PyResult<()> {
 }
 ```
 
-That's all there is to it. We can set this required dependency in *uv* scripts using the frontmatter:
+That's all there is to it.
+We can set this required dependency in *uv* scripts using the frontmatter:
 
 #codly(skips: ((12, 10), (17, 1)))
 ```py
@@ -664,7 +770,9 @@ delta_bytes = xdelta3.encode(reference_bytes, file_bytes)
 
 ```
 
-And now, finally, after almost no hassle at all, the build process is complete! The client side decompression and rendering works as evidenced by you reading this.
+And now, finally, after almost no hassle at all, the build process is complete!
+The client side decompression and rendering works as evidenced by you reading
+this.
 
 #block(sticky: true)[*Stats*]
 #conch.terminal-frame(
@@ -681,10 +789,13 @@ And now, finally, after almost no hassle at all, the build process is complete! 
   )
 ]
 
-We managed to squeeze all variants, content, scripts, ... into a single *3 MB* HTML payload!
+We managed to squeeze all variants, content, scripts, ... into a single *3 MB*
+HTML payload!
 
 #info-callout(heading: [What this *3 MB* includes])[
-  While still quite a lot for a single webpage, it is one hell of an improvement over the original #total-payload-size_mb MB we would need uncompressed. And remember, this single HTML payload delivers everything for
+  While still quite a lot for a single webpage, it is one hell of an improvement
+  over the original #total-payload-size_mb MB we would need uncompressed.
+  And remember, this single HTML payload delivers everything for
   - every theme variant
   - every size variant
   - every script needed for interactivity
@@ -695,11 +806,13 @@ We managed to squeeze all variants, content, scripts, ... into a single *3 MB* H
 
 = How does ... work?
 
-If that question is floating around in your head, you can look around this chapter for answers.
+If that question is floating around in your head, you can look around this
+chapter for answers.
 
 == PDF download
 
-When you click the "download" button on the website, the browser fetches a precompiled PDF version of this blog post.
+When you click the "download" button on the website, the browser fetches a
+precompiled PDF version of this blog post.
 
 #codly(header: [Blogpost Styling: Either web optimized or PDF optimized])
 ```typ
@@ -720,11 +833,13 @@ When you click the "download" button on the website, the browser fetches a preco
 )
 ```
 
-The build process injects the correct `#sys.inputs` for the correct artifact type, same as in @responsive-embedding.
+The build process injects the correct `#sys.inputs` for the correct artifact
+type, same as in @responsive-embedding.
 
 == Centralized look and feel <lookandfeel-section>
 
-Because everything is organized as a monorepo, we can define a central file for the colors of our look and feel:
+Because everything is organized as a monorepo, we can define a central file for
+the colors of our look and feel:
 
 #codly(header: [colors.typ])
 ```typ
@@ -758,7 +873,8 @@ Because everything is organized as a monorepo, we can define a central file for 
 )
 ```
 
-These are combined with layout and font definitions into `themes`, which in turn is imported by this very blog entry.
+These are combined with layout and font definitions into `themes`, which in turn
+is imported by this very blog entry.
 
 #info-callout(heading: [Exporting for third party consumption])[
   #codly(header: [export.typ])
@@ -768,7 +884,8 @@ These are combined with layout and font definitions into `themes`, which in turn
   ) <themes>
   ```
 
-  This metadata field converts all units in our data structure to standard units and exposes them to third-party tools, such as our build tool:
+  This metadata field converts all units in our data structure to standard units
+  and exposes them to third-party tools, such as our build tool:
 
   #codly(enabled: false)
   ```bash
@@ -777,7 +894,8 @@ These are combined with layout and font definitions into `themes`, which in turn
   #codly(enabled: true)
 ]
 
-The website build pipeline takes these theme values and generates a CSS file, defining the whole look and feel of the website:
+The website build pipeline takes these theme values and generates a CSS file,
+defining the whole look and feel of the website:
 
 #codly(header: [website/tasks/scripts/generate-theme.mjs])
 #codly(skips: ((17, 8),))
@@ -816,15 +934,19 @@ writeFileSync("src/app/theme.generated.css", css);
 
   ```
 
-  Tailwind registers the generated CSS file and uses the theme variables in its config.
+  Tailwind registers the generated CSS file and uses the theme variables in its
+  config.
 ]
 
 = Potential improvements
 
-The solution is not yet perfect. While pretty much fully functional, there are things left to improve.
+The solution is not yet perfect.
+While pretty much fully functional, there are things left to improve.
 
 == Remove iframe reloading upon resize
-Because we actually insert a new DOM child and remove the previous one upon resize, the iframe is considered to be different by the browser, which causes a reset of its state, effectively canceling any ongoing playback.
+Because we actually insert a new DOM child and remove the previous one upon
+resize, the iframe is considered to be different by the browser, which causes a
+reset of its state, effectively canceling any ongoing playback.
 
 #grid(
   columns: broader-than(560pt, (1fr, auto, 1fr), 1),
@@ -857,7 +979,8 @@ Because we actually insert a new DOM child and remove the previous one upon resi
 )
 
 == More Website integration
-The current solution only writes the following metadata to the filesystem during the export process:
+The current solution only writes the following metadata to the filesystem during
+the export process:
 
 #codly(skips: ((9, 5),))
 ```json
@@ -875,14 +998,22 @@ The current solution only writes the following metadata to the filesystem during
 }
 ```
 
-NextJS is therefore unable to include any complex content in the description of the blog post, such as images or videos.
+NextJS is therefore unable to include any complex content in the description of
+the blog post, such as images or videos.
 
 == Better compression
-Even though the current solution is already pretty efficient, there is still room for improvement. We could, for example, search for the best reference variant for each possible target variant and then store what reference was used for every individual target variant. This is not trivial, because we need to prevent cyclic references. Imagine the following situation:
+Even though the current solution is already pretty efficient, there is still
+room for improvement.
+We could, for example, search for the best reference variant for each possible
+target variant and then store what reference was used for every individual
+target variant.
+This is not trivial, because we need to prevent cyclic references.
+Imagine the following situation:
 
 #{
   show: figure.with(
-    caption: [Cyclic delta compression references: Files represent delta patches, cylinders represent only brotli compressed full variants.],
+    caption: [Cyclic delta compression references: Files represent delta
+      patches, cylinders represent only brotli compressed full variants.],
   )
   show: box.with(width: 60%)
   ```show-pikchr
@@ -903,14 +1034,33 @@ Even though the current solution is already pretty efficient, there is still roo
   ```
 }
 
-Here a primitive algorithm would see #text(fill: catppuccin-accents.sky)[variant 1] has the best compression ratio delta compressing against #text(fill: catppuccin-accents.mauve)[variant 2] as reference, and #text(fill: catppuccin-accents.mauve)[variant 2] with #text(fill: catppuccin-accents.sky)[variant 1] as reference. It would compress them both against each other's cleartext, uncompressed format. But now, we can never decompress them again because we have no way to restore the original uncompressed reference for one of these two. #text(fill: catppuccin-accents.red)[variant 3] and #text(fill: catppuccin-accents.rosewater)[variant 4] would work fine since we can trace back the reference hierarchy to #text(fill: theme.colors.accent)[variant 0].
+Here a primitive algorithm would see #text(fill: catppuccin-accents.sky)[variant
+  1] has the best compression ratio delta compressing against #text(
+  fill: catppuccin-accents.mauve,
+)[variant 2] as reference, and #text(fill: catppuccin-accents.mauve)[variant 2]
+with #text(fill: catppuccin-accents.sky)[variant 1] as reference.
+It would compress them both against each other's cleartext, uncompressed format.
+But now, we can never decompress them again because we have no way to restore
+the original uncompressed reference for one of these two.
+#text(
+  fill: catppuccin-accents.red,
+)[variant 3] and #text(fill: catppuccin-accents.rosewater)[variant 4] would work
+fine since we can trace back the reference hierarchy to #text(
+  fill: theme.colors.accent,
+)[variant 0].
 
 #success-callout(heading: [Let's exploit XML's strict structure])[
   Now we are in Min-Maxing territory.
-  We could also utilize an XML optimized compression algorithm like *EXI* to compress the SVG instead of general-purpose compression algorithms like *Brotli*.
-  #link("https://svgo.dev/")[SVGO] is a tool that can optimize SVGs for size and performance and could be used in the compression pipeline.
+  We could also utilize an XML optimized compression algorithm like *EXI* to
+  compress the SVG instead of general-purpose compression algorithms like
+  *Brotli*.
+  #link(
+    "https://svgo.dev/",
+  )[SVGO] is a tool that can optimize SVGs for size and performance and could be
+  used in the compression pipeline.
 
   #danger-callout[
-    Our SVGs are currently incompatible with SVGO, so further investigation is necessary.
+    Our SVGs are currently incompatible with SVGO, so further investigation is
+    necessary.
   ]
 ]
