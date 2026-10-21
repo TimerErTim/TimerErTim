@@ -94,7 +94,7 @@ Despite Jev just being released on September 15th, open-weight alternatives have
 Some notable contenders are:
 - #link("https://github.com/allebee/jevk5")[JevK5] - 4B params, the open-weight benchmark leader when I started this experiment
 - #link("https://github.com/jaredpalmer/kev")[Kev] - Similar design to JevK5
-- #link("https://huggingface.co/google/diffusiongemma-26B-A4B-it")[DiffusionGemma] - ~26B params, based on diffusion
+- #link("https://huggingface.co/google/diffusiongemma-26B-A4B-it")[DiffusionGemma] - \~26B params, based on diffusion
 - #link("https://github.com/NandhaKishorM/laya")[Laya] - \~500MB size, less than 50ms latency even on CPU, often requires fine-tuning
 
 = Project introduction
