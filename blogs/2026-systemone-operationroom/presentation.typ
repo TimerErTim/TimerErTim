@@ -968,7 +968,8 @@
   ),
 )
 
-#import "results.typ" as results
+#import "components/field-f1-chart.typ": field-f1-chart
+
 // Latency and Overall Accuracy
 #scene(
   tag => [
@@ -1017,66 +1018,11 @@
     ]
     #z.set-num(round: (precision: 3))
     #v(1fr)
-    #{
-      let fields = results
-        .model-comparison-raw
-        .models
-        .first()
-        .field_f1
-        .map(it => it.field)
-      let field-f1s-for-model(model-name) = {
-        let data = results
-          .model-comparison-raw
-          .models
-          .find(it => it.model_name == model-name)
-          .field_f1
-        fields.map(field => data.find(it => it.field == field).f1)
-      }
-      let bar-plot(model-name, idx: 0, total: 1, label: auto) = lq.bar(
-        range(fields.len()),
-        field-f1s-for-model(model-name),
-        width: 0.8 / total,
-        offset: (idx - (total - 1) / 2) * (0.8 / total),
-        label: if label == auto { model-name } else { label },
-      )
-
-      set rect(radius: (rest: theme.layout.radius.small, bottom: 0pt))
-      let diagram(jevk5-data: ()) = lq.diagram(
-        width: 100%,
-        height: 85%,
-        xlim: (-1, fields.len()),
-        xaxis: (
-          ticks: fields
-            .map(rotate.with(-45deg, reflow: true))
-            .map(move.with(dx: -1.5em))
-            .enumerate(),
-          subticks: none,
-        ),
-        yaxis: (
-          format-ticks: (ticks, ..) => {
-            lq.tick-format.linear(ticks.map(it => it * 100), suffix: $%$)
-          },
-        ),
-        bar-plot("jev-latest", idx: 0, total: 2, label: "Jev"),
-        ..jevk5-data,
-      )
-      let diagram = object(
-        diagram,
-        with-jevk5: case(jevk5-data: (
-          bar-plot(
-            "alibiserikbay/JevK5-2B",
-            idx: 1,
-            total: 2,
-            label: "JevK5-2B",
-          ),
-        )),
-      )
-      tag("diagram", diagram())
-    }
+    #field-f1-chart(interactive: true, tag: tag)
   ],
   controls: (
-    (apply("diagram")),
-    (apply("diagram", "with-jevk5")),
+    apply("diagram"),
+    apply("diagram", "with-jevk5"),
   ),
 )
 

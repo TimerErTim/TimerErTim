@@ -86,13 +86,13 @@
       table.cell()[JevK5-2B 🖥️],
     ),
     table.hline(stroke: theme.colors.border + theme.layout.borderWidth.medium),
-    [_Field-Level F1_],
+    [_Field Macro-F1_],
     ..model-rows("jev-latest", "alibiserikbay/JevK5-2B", map: it => {
       it.field_macro_f1
     }),
-    [_Utterance-Level Accuracy_],
+    [_Fresh Accuracy_],
     ..model-rows("jev-latest", "alibiserikbay/JevK5-2B", map: it => {
-      it.action_accuracy_fresh
+      it.accuracy_fresh
     }),
     [_Hallucination Rate_],
     ..model-rows(
@@ -104,7 +104,7 @@
       format-num: z.zi.percent,
       highlight: bottom,
     ),
-    [_Latency p50 / p95_],
+    [_Fresh Latency p50 / p95_],
     ..latency-rows(
       "jev-latest",
       "alibiserikbay/JevK5-2B",
@@ -116,7 +116,7 @@
       },
       highlight: bottom,
     ),
-    [_Calibration ECE_],
+    [_Fresh Calibration ECE_],
     ..model-rows(
       "jev-latest",
       "alibiserikbay/JevK5-2B",
