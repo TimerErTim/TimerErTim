@@ -270,7 +270,7 @@
       job
         .tags
         .map(tag => make-pill(
-          text(tag, size: eval(settings.font.size.tags)),
+          text(tag, size: eval(settings.font.size.tags), fill: themes.light.surface),
           cv-theme,
         ))
         .join(h(0.35em)),
