@@ -14,8 +14,8 @@
 
 #set text(lang: "en")
 #set document(
-  title: "How local System-One models compare to Typesafe's Jev when assisting in the Operating Room",
-  description: "Can a local 2B System-One model control virtual operating-room equipment quickly and accurately? I compare JevK5-2B on an RTX 2080 with TypeSafe's Jev. Local hosting works, but this setup falls behind on accuracy and latency.",
+  title: "How local System-One models compare to TypeSafe's Jev when assisting in the Operating Room",
+  description: "Can a local 2B System-One model control virtual operating-room equipment quickly and accurately? I compare JevK5-2B on an RTX 2080 with TypeSafe's Jev. Hosting it locally is feasible, but this setup falls behind on accuracy and latency.",
   author: "Tim Peko (TimerErTim)",
   keywords: (
     "System One",
@@ -65,29 +65,28 @@
 
 = System-One and Jev
 
-If the term is unfamiliar to you, it probably makes most sense to start with a
-short differentiation between System 1 and System 2.
-System 1 is the fast, intuitive, and emotional system, while System 2 is the
-slow, more deliberative, and more logical system.
-This term was coined by Daniel Kahneman, a Nobel Prize laureate in Economics for
-his seminal work in psychology that challenged the rational model of judgment
-and decision making.
+If the term is unfamiliar to you, here is the short version: System 1 is the
+fast, intuitive, and emotional system, while System 2 is the slow, deliberate,
+and logical one.
+Daniel Kahneman, Nobel Prize laureate in Economics, coined this term in his
+psychology work on judgment and decision making, which challenged the idea that
+humans are rational decision makers.
 @src:kahnemann-thinking-fast-and-slow
 
-As a homage TypeSafe decided to name their new type of classification models
-"System-One Models", reflecting the contrast to text generating Large Language
-Models (LLMs), which are more similar to System 2.
-Jev is their first release of a System-One model.
+TypeSafe leaned into this and named their new type of classification models
+"System-One Models", in contrast to text-generating Large Language Models
+(LLMs), which are more like System 2.
+Jev is their first System-One model release.
 @src:typesafe-systemone
 
 == How do they compare to LLMs?
 
-LLMs work by predicting the most probable next token step by step.
-Particularly in machine-machine communication, there have been efforts to
-conform LLM output to a certain schema.
-While there are techniques to achieve this, they limit the model in its
-reasoning capabilities @src:typesafe-systemone, and are nowhere near efficient
-enough to be used in realtime applications at a feasible cost.
+LLMs work by predicting the most probable next token, step by step.
+Especially for machine-to-machine communication, people have tried to squeeze
+LLM output into a schema.
+There are techniques for that, but they limit the model in its reasoning
+capabilities @src:typesafe-systemone, and they are nowhere near efficient enough
+for realtime applications at a feasible cost.
 
 So what does Jev do differently?
 It takes the same input as basic LLMs (which is plain text) and a set of
@@ -95,8 +94,8 @@ questions with their answer candidates.
 Its output is then a set of probabilities for each question.
 The model fundamentally does not generate text and therefore cannot return an
 answer outside the supplied schema.
-#footnote[Which does *not* mean it cannot pick an incorrect answer.] This schema
-reliability and gained efficiency makes it a good fit for realtime applications.
+#footnote[Which does *not* mean it cannot pick an incorrect answer.]
+That reliability and efficiency make it a good fit for realtime applications.
 @src:typesafe-systemone
 
 #{
@@ -114,12 +113,11 @@ TypeSafe attributes this price to the massive parallelism of its decision heads.
 
 == Local Open-Weight alternatives
 
-Despite Jev just being released on September 15th, open-weight alternatives have
-sprouted up like mushrooms in a forest.
+Despite Jev having been released only on September 15th, open-weight
+alternatives have sprouted up like mushrooms.
 They mostly work by architecturally modifying and fine-tuning a pre-trained
 model on a specific dataset.
-Because of the increased problem efficiency, way smaller models can be used for
-acceptable results.
+Since the problem is so much easier, way smaller models get acceptable results.
 
 #success-callout(heading: [Open weights #sym.arrow Great news for privacy])[
   TypeSafe AI claims not to train on your data @src:typesafe-systemone, which
@@ -128,7 +126,7 @@ acceptable results.
   enough.
   Open-weight models can be self-hosted, which gives the operator more control
   over where inference data goes.
-  It does not guarantee that an entire application keeps no data off-premises.
+  It does not guarantee that the whole application keeps no data off-premises.
 ]
 
 Some notable contenders are:
@@ -146,8 +144,7 @@ Some notable contenders are:
 == The virtual operating room
 
 Operating rooms have lots of equipment, and each device brings its own controls.
-A voice assistant could reduce the amount of time spent reaching for knobs and
-menus.
+A voice assistant could save you the constant reaching for knobs and menus.
 But a natural command is not enough on its own.
 The system has to identify which device and setting the speaker means, handle
 values precisely, and avoid changing anything the speaker did not ask to change.
@@ -159,25 +156,24 @@ Each object maps to a handful of state fields, such as gas flow, light
 brightness, table tilt, or endoscope zoom.
 Here is the room and the set of actions for each object.
 
-#image(
-  "assets/operating_room.png",
-  width: 100%,
-  alt: "Virtual operating room used for the benchmark",
-)
+#{
+  show: figure.with(
+    caption: [
+      The virtual operating room with the controlled equipment highlighted in
+      color: insufflator, light, table, and endoscope.
+    ],
+  )
+  import "components/room-overview.typ": annotated-room
+  annotated-room()
+}
 
-#figure(
-  table(
-    columns: 2,
-    table.header([Object], [Example fields]),
-    [Insufflator],
-    [`gas_flow_l_min`, `target_pressure_mmhg`, `insufflator_active`],
-
-    [Light], [`light_brightness`, `light_mode`],
-    [Table], [`table_tilt_degrees`, `table_height_cm`],
-    [Endoscope], [`zoom_level`, `white_balance_locked`, `irrigation_active`],
-  ),
-  caption: [Equipment fields represented in the virtual room.],
-)
+#{
+  show: figure.with(
+    caption: [Equipment fields represented in the virtual room.],
+  )
+  import "components/room-overview.typ": room-fields-table
+  room-fields-table()
+}
 
 No patient, physical device, or clinical workflow is part of this experiment.
 I focus on the narrow question of whether a System-One model can turn short
@@ -196,7 +192,7 @@ Application logic still has to map it to a target and enforce allowed bounds.
 The example also asks about the light, where `null` means no requested change.
 
 There are three kinds of questions in the API.
-The table from the presentation shows each one in context.
+The table below shows each one in context.
 
 #{
   show: figure.with(
@@ -231,15 +227,15 @@ the requested change, then choose a supported target.
 unless the application defines that mapping.
 
 The criteria table shows candidate language for light brightness and table tilt.
-It is useful context for what the classifier sees, not a complete specification
-of device safety limits.
+It shows what the classifier sees, not a complete specification of device safety
+limits.
 
 #{
   show: figure.with(
     caption: [Illustrative candidate criteria for two numeric room fields.],
   )
   import "components/criteria-table.typ": criteria-table
-  criteria-table()
+  criteria-table(columns: (auto, 1fr, 1fr, 1fr))
 }
 
 // TODO: Document exactly how numeric phrases map to candidate targets, including current-state handling and bounds.
@@ -259,8 +255,8 @@ the environment setup, but not the whole benchmark pipeline.
 
 I start the server with
 `uv run jevk5-serve --model alibiserikbay/JevK5-2B --port 8090 --host 0.0.0.0`.
-This host option binds beyond localhost, so do not expose the service to an
-untrusted network without adding appropriate access controls.
+The host option binds beyond localhost, so do not put this on an untrusted
+network without access controls.
 
 == What “local” does and does not mean
 
@@ -276,10 +272,10 @@ the hospital’s existing rules for data access and handling.
 
 I use five virtual surgery scenarios: appendectomy, hernia repair,
 fundoplication, cholecystectomy, and sleeve gastrectomy.
-The presentation describes 1,000 generated cases with 12 utterances each,
+The benchmark setup uses 1,000 generated cases with 12 utterances each,
 including small talk that should not change room state.
-It names `inclusionai/ling-3.0-flash-vl` as the generator for cases and expected
-output states.
+The benchmark uses `inclusionai/ling-3.0-flash-vl` as the generator for cases
+and expected output states.
 That makes a large test set quickly, but generated labels are not the same thing
 as expert-reviewed clinical ground truth.
 
@@ -325,12 +321,12 @@ For the full comparison, the field accuracy is #format-percent(
 ) for Jev and #format-percent(jevk5-data.accuracy_fresh) for JevK5-2B.
 In rolling mode, it is #format-percent(jev-data.accuracy_rolling) and
 #format-percent(jevk5-data.accuracy_rolling), respectively.
-This points in the same direction as the paired comparison above.
+The paired comparison above says the same.
 
 The table’s field macro-F1 averages per-field F1 scores, so a field with many
 examples does not drown out one with poor performance.
-The models do not have the same coverage in every sample set; read this as a
-summary of the supplied measurements, not as a controlled clinical comparison.
+The models do not have the same coverage in every sample set, so treat this as a
+summary of the supplied measurements, not a controlled clinical comparison.
 
 == It depends on the field
 
@@ -356,8 +352,8 @@ JevK5-2B does even worse on that field, with F1 of #format-f1(
   "safety_interlock_active",
 ) and recall of #format-recall(jevk5-data, "safety_interlock_active").
 Both models miss nearly all positive interlock cases.
-For a control system, that is a hard stop on any idea of letting a model own
-safety decisions.
+For a control system, that alone kills any idea of letting a model own safety
+decisions.
 Table tilt is another weaker field for Jev, at F1 #format-f1(
   jev-data,
   "table_tilt_degrees",
@@ -368,8 +364,8 @@ For example, an utterance like “tilt table by 5 degrees” could have an expec
 state of `table_tilt: -5`, depending on how direction was interpreted.
 If expected signs are inconsistent with the utterance, that would lower the
 score without being a model error.
-I have not verified that this explains the table-tilt result, so it needs
-checking against the cases before drawing conclusions.
+I have not verified this explains the table-tilt result, so it needs checking
+against the cases before drawing conclusions.
 
 // TODO: Audit generated table-tilt labels for direction and sign mismatches. Compare examples like “tilt table by 5 degrees” with their expected values.
 
@@ -396,21 +392,20 @@ Jev.
 It shows the opposite for this task and setup: lower accuracy, a very weak
 safety-interlock field, and much higher latency.
 
-// TODO: Add the video of the presentation here, or link to it if embedding does not work on the web. Add links to the GitHub project and general references.
+// TODO: Add links to the GitHub project and general references.
 
 This is a virtual benchmark built from generated cases.
-It does not establish safety, clinical usefulness, or performance with real
+It says nothing about safety, clinical usefulness, or performance with real
 operating-room speech.
-A production design would need independent safety controls, careful handling of
-uncertainty, and validation with domain experts before a model could affect
-equipment.
+Before a model could touch real equipment, a production design would need
+independent safety controls, proper handling of uncertainty, and validation with
+domain experts.
 
 // TODO: Test calibrated confidence thresholds and abstention policies per field; measure the accuracy/coverage/silent-failure trade-off.
 // TODO: Investigate why safety-interlock recall is so low; do not treat confidence gating as a replacement for a deterministic safety interlock.
 // TODO: Compare a faster local setup, the full JevK5 model, and fine-tuned alternatives such as Laya on identical paired examples.
-// TODO: Embed the talk video where the web format allows it. Otherwise link to the YouTube recording and add links to the GitHub project and general reference materials.
+// TODO: Embed the demo video where the web format allows it. Otherwise link to the YouTube recording and add links to the GitHub project and general reference materials.
 // TODO: Add human-reviewed utterances and labels, including accents, interruptions, ambiguous commands, and noisy room audio.
-// TODO: Explore broader System-One tasks beyond room control, while keeping each task’s action boundary explicit.
 // TODO: Link the benchmark generator, runner, and raw result artifacts so readers can reproduce every table and chart.
 
 The next step is not to let an LLM near the operating-room switches.
