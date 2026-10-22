@@ -36,6 +36,9 @@
 #import "components/comparison.typ": llm-decision-model-comparison-table
 #import "components/systemone-choices.typ": systemone-choices
 #import "components/field-f1-chart.typ": field-f1-chart
+#import "components/room-overview.typ": (
+  annotated-room, object-colors, room-fields-table,
+)
 #import "results.typ": latency-raw, model-comparison-raw
 #import "deps.typ": z
 
@@ -62,6 +65,8 @@
   " / "
   z.zi.ms(report.report.fresh.utterance.p95_ms)
 }
+
+#cite(form: none, <src:yt-video>)
 
 = System-One and Jev
 
@@ -111,13 +116,14 @@ free.
 TypeSafe attributes this price to the massive parallelism of its decision heads.
 @src:typesafe-systemone
 
-== Local Open-Weight alternatives
+== Local Open-Weight alternatives <chp:local-open-weight-alternatives>
 
 Despite Jev having been released only on September 15th, open-weight
 alternatives have sprouted up like mushrooms.
 They mostly work by architecturally modifying and fine-tuning a pre-trained
-model on a specific dataset.
-Since the problem is so much easier, way smaller models get acceptable results.
+language model on a specific dataset.
+Since the problem space is less fragmented, way smaller models get acceptable
+results.
 
 #success-callout(heading: [Open weights #sym.arrow Great news for privacy])[
   TypeSafe AI claims not to train on your data @src:typesafe-systemone, which
@@ -149,135 +155,197 @@ But a natural command is not enough on its own.
 The system has to identify which device and setting the speaker means, handle
 values precisely, and avoid changing anything the speaker did not ask to change.
 
-For this experiment, I use a virtual room rather than actual equipment or a
-clinical workflow.
-It has an insufflator, an operating light, a surgical table, and an endoscope.
+So let me quickly cook up a beautiful virtual room for this experiment.
+This room has an #text(
+  object-colors.insufflator,
+)[insufflator], an operating #text(object-colors.light)[light], a surgical
+#text(object-colors.table)[table], and an #text(
+  object-colors.endoscope,
+)[endoscope].
 Each object maps to a handful of state fields, such as gas flow, light
 brightness, table tilt, or endoscope zoom.
-Here is the room and the set of actions for each object.
+@fig:annotated-room shows the room and @tbl:room-fields-table shows the set of
+actions for each object.
 
 #{
+  show: it => [#it <fig:annotated-room>]
   show: figure.with(
     caption: [
       The virtual operating room with the controlled equipment highlighted in
       color: insufflator, light, table, and endoscope.
     ],
   )
-  import "components/room-overview.typ": annotated-room
   annotated-room()
 }
 
 #{
+  show: it => [#it <tbl:room-fields-table>]
   show: figure.with(
     caption: [Equipment fields represented in the virtual room.],
   )
-  import "components/room-overview.typ": room-fields-table
   room-fields-table()
 }
 
-No patient, physical device, or clinical workflow is part of this experiment.
-I focus on the narrow question of whether a System-One model can turn short
-utterances into those room-state fields.
+There are a lot of complex components involved to make this work reliably in the
+real world.
+Luckily, the virtual room simplifies things greatly and allows us to focus on
+the narrow question of whether a System-One model can turn short utterances into
+actionable commands we can automatically apply to the objects in the room.
 
 == From utterance to room state
 
 The API gives the model the current state, the utterance, and questions about
-possible field values.
-The choices are defined by the application.
-For example, a question could ask which of several light modes the speaker
-requested or what brightness value they want.
-Here is a request for “Zoom the camera in.”
-The response score of 3.79 is not a defined “one step in” command.
-Application logic still has to map it to a target and enforce allowed bounds.
-The example also asks about the light, where `null` means no requested change.
-
-There are three kinds of questions in the API.
-The table below shows each one in context.
+possible actions to modify the fields/attributes of the objects in the room.
+@tbl:systemone-choices shows the three kinds of questions in the API.
+The possible answers are predetermined by the application, read more on that
+in <chp:defining-the-choices>.
 
 #{
+  show: it => [#it <tbl:systemone-choices>]
   show: figure.with(
     caption: [System-One question types and example outputs.],
   )
   systemone-choices()
 }
 
+For example, a question could ask which of several light modes the speaker
+requested or what brightness value they want.
+@raw:systemone_input.json shows a request for “Zoom the camera in.”
+The response score of 3.79 is not a defined “one step in” command.
+Application logic still has to map it to a target and enforce allowed bounds.
+#footnote[The JSON example is not representative for the actual application
+  choice schema.] The example also asks about the light, where `null` means no
+requested change.
+
 #{
-  show: figure.with(
-    caption: [A single utterance becomes typed field answers.
-      The camera score is a prediction, not a command sent to equipment.],
-  )
-  raw(read("assets/systemone_input.json").trim(), block: true, lang: "json")
-  raw(read("assets/systemone_output.json").trim(), block: true, lang: "json")
+  show: block.with(breakable: true)
+  {
+    show: it => [#it <raw:systemone_input.json>]
+    show: figure.with(
+      caption: [A System-One model input: an utterance and current room state in
+        JSON.],
+      kind: raw,
+    )
+    show: block.with(breakable: false)
+    show: zebraw.with(indentation: 2)
+    raw(read("assets/systemone_input.json").trim(), block: true, lang: "json")
+  }
+  {
+    show: it => [#it <raw:systemone_output.json>]
+    show: figure.with(
+      caption: [The model's prediction: typed field outputs per equipment, not
+        direct hardware commands.],
+      kind: raw,
+    )
+    show: block.with(breakable: false)
+    show: zebraw.with(indentation: 2)
+    raw(read("assets/systemone_output.json").trim(), block: true, lang: "json")
+  }
 }
 
-The model output is not the room state itself.
+In @raw:systemone_output.json the model output is not the room state itself.
 Application code still has to interpret the answer, apply limits, and decide
-whether to act.
-That boundary matters: a valid `choice` cannot name an option outside its
-schema, but it can still choose the wrong option.
+whether to act based on confidence thresholds.
+The confidence score of a valid `choice` is very important, as it cannot name an
+option outside its criteria answer space, but it can still choose an incorrect
+option.
+So that is our only way to know how much to trust that confined answer.
 
-== Defining the choices
+== Defining the choices <chp:defining-the-choices>
 
-For the benchmark, I describe possible values for each field and ask the model
-to select among them.
-Numeric commands need a little care.
-If someone says “turn the brightness up by twenty percent,” the model must infer
-the requested change, then choose a supported target.
-“Up” is relative to current state; `20` is not automatically the correct answer
-unless the application defines that mapping.
-
-The criteria table shows candidate language for light brightness and table tilt.
-It shows what the classifier sees, not a complete specification of device safety
-limits.
+In some cases the answer space is trivial, like for the light mode, which is
+either `Normal`, `AmbientRed`, `CavityFocus`, or `null` if no change is
+requested.
+But what about other continuous fields like the brightness?
 
 #{
+  show: it => [#it <tbl:criteria-table>]
   show: figure.with(
     caption: [Illustrative candidate criteria for two numeric room fields.],
   )
   import "components/criteria-table.typ": criteria-table
-  criteria-table(columns: (auto, 1fr, 1fr, 1fr))
+  criteria-table(
+    columns: (auto, 1fr, 1fr, 1fr),
+    headers: (
+      [
+        #set text(fill: catppuccin-accents.red)
+        20
+      ],
+      [
+        #set text(fill: catppuccin-accents.red)
+        95
+      ],
+    ),
+  )
 }
+
+Let's take a look at the utterance "_Turn up the brightness by #text(
+  catppuccin-accents.red,
+)[twenty] percent and set the table tilt to #text(catppuccin-accents.red)[ninety
+  five] degrees._"
+.
+Here the highlighted numbers are added as candidates to the criteria table for
+every actionable field, as shown in @tbl:criteria-table.
+By isolating the numeric values, we delegate the task of associating concrete
+values to actionable deltas to the model.
+This is the heavy lifting part of the task.
+
 
 // TODO: Document exactly how numeric phrases map to candidate targets, including current-state handling and bounds.
 
-= Running locally
+== Running locally
 
-JevK5 includes a 2B-parameter model that runs on my RTX 2080.
+// TODO: mention why this is important for hospitals
+
+As mentioned in @chp:local-open-weight-alternatives, running the model locally
+is important for GDPR compliance.
+The less hardware is required, the easier it is to set up for institutions,
+especially hospitals.
+So naturally I wanted to try out how far we can get with one.
+
+JevK5 has a model version with 2B parameters that can somehow run on my
+RTX 2080.
 The server exposes a System-One-compatible API, so the surrounding request
 format stays close to the hosted Jev example.
-I use the model and package revision shown below; this is enough to reproduce
-the environment setup, but not the whole benchmark pipeline.
+I use the model and package revision shown in @fig:pyproject_jevk5, which is
+enough to reproduce the environment setup with #link(
+  "https://docs.astral.sh/uv/",
+)[uv].
 
 #{
+  show: it => [#it <fig:pyproject_jevk5>]
+  show: figure.with(
+    caption: [The pyproject.toml file for the JevK5-2B model used.],
+    kind: raw,
+    placement: none,
+  )
+  show: block.with(breakable: false)
   show: zebraw.with(header: [pyproject.toml])
   raw(read("assets/pyproject_jevk5.toml").trim(), block: true, lang: "toml")
 }
 
-I start the server with
-`uv run jevk5-serve --model alibiserikbay/JevK5-2B --port 8090 --host 0.0.0.0`.
-The host option binds beyond localhost, so do not put this on an untrusted
-network without access controls.
-
-== What “local” does and does not mean
-
-Running inference on hardware the hospital controls means the request does not
-need to be sent to a hosted model provider.
-That matters for sensitive health data.
-Local hosting is one important piece of a privacy-conscious system, alongside
-the hospital’s existing rules for data access and handling.
+I start the server with `uv run jevk5-serve --model alibiserikbay/JevK5-2B`.
 
 = Evaluation
 
 == Dataset and procedure
 
-I use five virtual surgery scenarios: appendectomy, hernia repair,
-fundoplication, cholecystectomy, and sleeve gastrectomy.
+I use five virtual surgery scenarios:
+- appendectomy,
+- hernia repair,
+- fundoplication,
+- cholecystectomy, and
+- sleeve gastrectomy.
+
 The benchmark setup uses 1,000 generated cases with 12 utterances each,
 including small talk that should not change room state.
 The benchmark uses `inclusionai/ling-3.0-flash-vl` as the generator for cases
 and expected output states.
-That makes a large test set quickly, but generated labels are not the same thing
-as expert-reviewed clinical ground truth.
+That makes a large test set quickly, but generated labels are not
+expert-reviewed ground truth.
+You can find the benchmark in the #link(
+  "https://github.com/TimerErTim/stop",
+)[TimerErTim/stop] repository.
 
 I evaluate each utterance on its own and count the predicted field values that
 match the expected values.
@@ -299,9 +367,10 @@ Jev is correct where JevK5-2B is not on #format-count(
 == Overall results
 
 #{
+  show: it => [#it <tbl:overview-results-table>]
   show: figure.with(
-    caption: [Recorded utterance-level accuracy and other metrics for Jev and
-      JevK5-2B.],
+    caption: [Overall metrics for Jev and JevK5-2B benchmark results.],
+    placement: none,
   )
   import "components/overview-results-table.typ": overview-results-table
   overview-results-table()
@@ -313,24 +382,25 @@ Jev also performs better in the rolling evaluation, where predictions are
 applied through an utterance sequence and earlier mistakes can affect later
 state.
 I keep these measurements separate because JevK5-2B has fewer evaluated cases.
-The paired comparison uses the same cases for both models and points in the same
-direction.
+The paired comparison in @tbl:overview-results-table uses the same cases for
+both models and points in the same direction.
 
 For the full comparison, the field accuracy is #format-percent(
   jev-data.accuracy_fresh,
 ) for Jev and #format-percent(jevk5-data.accuracy_fresh) for JevK5-2B.
-In rolling mode, it is #format-percent(jev-data.accuracy_rolling) and
-#format-percent(jevk5-data.accuracy_rolling), respectively.
-The paired comparison above says the same.
+In rolling mode, it is #format-percent(
+  jev-data.accuracy_rolling,
+) and #format-percent(jevk5-data.accuracy_rolling), respectively.
 
-The table’s field macro-F1 averages per-field F1 scores, so a field with many
+The table's field macro-F1 averages per-field F1 scores, so a field with many
 examples does not drown out one with poor performance.
 The models do not have the same coverage in every sample set, so treat this as a
-summary of the supplied measurements, not a controlled clinical comparison.
+summary of the supplied measurements rather than a like-for-like benchmark.
 
 == It depends on the field
 
 #{
+  show: it => [#it <fig:field-f1-chart>]
   show: figure.with(
     caption: [Field-level F1 scores from the recorded comparison data.
       Each bar measures classification quality for one state field.],
@@ -342,8 +412,9 @@ summary of the supplied measurements, not a controlled clinical comparison.
   )
 }
 
-Jev handles several fields well in this generated set, but safety interlock
-activation is a glaring exception: its F1 is #format-f1(
+Analyzing @fig:field-f1-chart, Jev handles several fields well in this generated
+set, but safety interlock activation is a glaring exception: its F1 is
+#format-f1(
   jev-data,
   "safety_interlock_active",
 ), with recall of #format-recall(jev-data, "safety_interlock_active").
@@ -360,54 +431,80 @@ Table tilt is another weaker field for Jev, at F1 #format-f1(
 ).
 
 There may be a dataset issue here too.
-For example, an utterance like “tilt table by 5 degrees” could have an expected
-state of `table_tilt: -5`, depending on how direction was interpreted.
-If expected signs are inconsistent with the utterance, that would lower the
-score without being a model error.
-I have not verified this explains the table-tilt result, so it needs checking
-against the cases before drawing conclusions.
+I discovered cases where an utterance like “tilt table by 5 degrees” has an
+expected state of `table_tilt: -5`, which goes against my intuition and also
+against Jev's as it seems.
 
 // TODO: Audit generated table-tilt labels for direction and sign mismatches. Compare examples like “tilt table by 5 degrees” with their expected values.
 
-Aggregate scores can hide exactly these failures.
 
 == Fast enough, on which machine?
 
-Jev’s recorded fresh p50/p95 latency is #format-latency("jev-latest") per
-utterance.
-JevK5-2B’s is #format-latency("alibiserikbay/JevK5-2B").
-So the local model ran on my RTX 2080, but this particular 2B configuration was
-not fast enough for the near-real-time interaction I had in mind.
-“It runs locally” and “it is useful locally” are different claims.
+Jev's recorded p50/p95 latency is #format-latency("jev-latest") per utterance.
+That is more than enough to count as real-time interaction.
+The average human response time is around 200ms, which is excluding the time to
+physically execute the command, so Jev does not lag behind.
+
+
+#warning-callout(heading: [
+  “It runs locally” and “it is useful locally” are two different pairs of shoes.
+])[
+  #show strong: math.bold
+  JevK5-2B's latency is *#format-latency(
+    "alibiserikbay/JevK5-2B",
+  )*.
+  So the local model ran on my RTX 2080, but this particular 2B configuration
+  was not fast enough for the near-real-time interaction I had in mind.
+]
 
 // TODO: Add a latency figure with hardware details, warm-up policy, and whether timing includes network or API overhead.
 
 = Conclusion
 
-System-One’s constrained outputs are an appealing interface for
-equipment-control software: the schema narrows what the model can return, and
-the supplied API can score multiple fields directly.
-My experiment does not show that JevK5-2B is a practical local substitute for
-Jev.
-It shows the opposite for this task and setup: lower accuracy, a very weak
-safety-interlock field, and much higher latency.
+System-One's constrained outputs are an appealing interface for
+equipment-control software.
+The schema narrows what the model can return, and the API scores each field
+directly.
+That is a much better contract than parsing free-form text.
 
-// TODO: Add links to the GitHub project and general references.
+JevK5-2B did not turn out to be a practical local substitute for Jev in this
+setup.
+It was less accurate and much slower, and both models missed nearly every
+positive safety-interlock case.
+If privacy is the reason to run locally, it currently costs more accuracy and
+latency than I would accept.
 
-This is a virtual benchmark built from generated cases.
-It says nothing about safety, clinical usefulness, or performance with real
-operating-room speech.
-Before a model could touch real equipment, a production design would need
-independent safety controls, proper handling of uncertainty, and validation with
-domain experts.
+So no, local System-One control is not ready.
+But the failure modes I saw could be explained by sub-optimal data and
+instruction setup.
+Next steps are to investigate whether better data and more guardrails can close
+the gap without moving the safety boundary.
+
+== Potential improvements
+
+- *Better data, better training.*
+  JevK5-2B runs the default checkpoint.
+  I did not tune it, I just pointed the server at it.
+  My bet is that fine-tuning on messier utterances, ambiguous phrasing, field
+  boundary cases and background noise buys more than swapping architectures.
+  That needs human-reviewed labels instead of the generated ones I used, which
+  would also make the benchmark mean more than “it works on my generated test
+  set”.
+- *A faster box.*
+  The RTX 2080 is what I had, not what I would buy for this.
+  A newer card, or a smaller or quantized checkpoint, would probably bring
+  latency into a comfortable range.
+  Whether that gets below the \~200 ms human response time on hardware a
+  hospital would actually buy, I have not tested.
+- *Better guardrails and guidance.*
+  Rule-based field validation and abstention on low confidence were cheap to
+  add, and they catch the errors the schema lets through on its own.
+  That being said, corrective measures could make a lot of sense in addition to
+  those.
+
+
 
 // TODO: Test calibrated confidence thresholds and abstention policies per field; measure the accuracy/coverage/silent-failure trade-off.
-// TODO: Investigate why safety-interlock recall is so low; do not treat confidence gating as a replacement for a deterministic safety interlock.
-// TODO: Compare a faster local setup, the full JevK5 model, and fine-tuned alternatives such as Laya on identical paired examples.
+// TODO: Investigate why safety-interlock recall is so low.
 // TODO: Embed the demo video where the web format allows it. Otherwise link to the YouTube recording and add links to the GitHub project and general reference materials.
-// TODO: Add human-reviewed utterances and labels, including accents, interruptions, ambiguous commands, and noisy room audio.
-// TODO: Link the benchmark generator, runner, and raw result artifacts so readers can reproduce every table and chart.
 
-The next step is not to let an LLM near the operating-room switches.
-It is to find out whether better data, tighter task definitions, and a faster
-local model can close the gap without weakening the safety boundary.

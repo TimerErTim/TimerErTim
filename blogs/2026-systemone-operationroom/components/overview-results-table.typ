@@ -90,7 +90,7 @@
     ..model-rows("jev-latest", "alibiserikbay/JevK5-2B", map: it => {
       it.field_macro_f1
     }),
-    [_Fresh Accuracy_],
+    [_Utterance-level Accuracy_],
     ..model-rows("jev-latest", "alibiserikbay/JevK5-2B", map: it => {
       it.accuracy_fresh
     }),
@@ -104,7 +104,7 @@
       format-num: z.zi.percent,
       highlight: bottom,
     ),
-    [_Fresh Latency p50 / p95_],
+    [_Latency p50 / p95_],
     ..latency-rows(
       "jev-latest",
       "alibiserikbay/JevK5-2B",
@@ -116,7 +116,7 @@
       },
       highlight: bottom,
     ),
-    [_Fresh Calibration ECE_],
+    [_Calibration ECE_],
     ..model-rows(
       "jev-latest",
       "alibiserikbay/JevK5-2B",

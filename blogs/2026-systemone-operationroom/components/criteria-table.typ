@@ -1,4 +1,5 @@
 #import "../../common/theming.typ": catppuccin-accents, theme
+#import "../../common/variants.typ": broader-than
 
 
 #let criteria-table(
@@ -19,7 +20,7 @@
       ..headers,
     ),
     table.hline(stroke: theme.colors.border + theme.layout.borderWidth.large),
-    [_light_brightness_], [
+    [_light#broader-than(480pt, none, linebreak())\_brightness_], [
       `null`\
       `increase:1`\
       `decrease:1`\
@@ -35,7 +36,7 @@
       `decrease:95`\
     ],
     table.hline(stroke: theme.colors.border + theme.layout.borderWidth.small),
-    [_table_tilt_], [
+    [_table#broader-than(480pt, none, linebreak())\_tilt_], [
       `null`\
       `increase:1`\
       `decrease:1`\

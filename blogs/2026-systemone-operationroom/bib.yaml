@@ -1,5 +1,14 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mkdjr/hayagriva/refs/heads/main/hayagriva.schema.json
 
+
+src:yt-video:
+  type: video
+  title: "TBH"
+  author: Peko, Tim
+  date: 2026-10-23
+  url:
+    value: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+
 src:typesafe-systemone:
   type: web
   url:

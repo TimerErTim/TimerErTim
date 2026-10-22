@@ -5,31 +5,38 @@
 #let canvas-width = 841.88976378pt
 #let canvas-height = 473.562992126pt
 
+#let object-colors = (
+  insufflator: catppuccin-accents.red,
+  light: catppuccin-accents.yellow,
+  table: catppuccin-accents.blue,
+  endoscope: catppuccin-accents.green,
+)
+
 #let room-objects = (
   (
     label: [Insufflator],
-    color: catppuccin-accents.red,
+    color: object-colors.insufflator,
     pos: (1cm, 2cm),
     dims: (3cm, 8cm),
     fields: [`gas_flow_l_min`, `target_pressure_mmhg`, `insufflator_active`],
   ),
   (
     label: [Light],
-    color: catppuccin-accents.yellow,
+    color: object-colors.light,
     pos: (12cm, 0.5cm),
     dims: (5.5cm, 2cm),
     fields: [`light_brightness`, `light_mode`],
   ),
   (
     label: [Table],
-    color: catppuccin-accents.blue,
+    color: object-colors.table,
     pos: (10cm, 11cm),
     dims: (9.5cm, 4.5cm),
     fields: [`table_tilt_degrees`, `table_height_cm`],
   ),
   (
     label: [Endoscope],
-    color: catppuccin-accents.green,
+    color: object-colors.endoscope,
     pos: (19.5cm, 2.25cm),
     dims: (9cm, 6cm),
     fields: [`zoom_level`, `white_balance_locked`, `irrigation_active`],
@@ -45,7 +52,7 @@
   block(
     width: full,
     height: height,
-    clip: true,
+    clip: false,
     breakable: false,
     {
       image(
@@ -68,7 +75,7 @@
             place(
               left + bottom,
               dy: 1.25em,
-              strong(text(fill: obj.color, obj.label)),
+              box(width: 10cm, strong(text(fill: obj.color, obj.label))),
             ),
           ),
         )

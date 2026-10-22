@@ -10,4 +10,7 @@
     "debug.javascript.defaultRuntimeExecutable": {
         "pwa-node": "${workspaceFolder}/.vscode/mise-tools/node"
     },
+    "tinymist.formatterMode": "typstyle",
+    "tinymist.formatterIndent": "2",
+    "tinymist.formatterProseWrap": "fill"
 }
