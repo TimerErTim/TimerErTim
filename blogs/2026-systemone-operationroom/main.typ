@@ -15,7 +15,7 @@
 #set text(lang: "en")
 #set document(
   title: "How local System-One models compare to TypeSafe's Jev when assisting in the Operating Room",
-  description: "Operating rooms are full of equipment controls, and a voice assistant could make them easier to use. But reliable room control is hard: the system has to map short utterances to specific device fields without changing anything else. I test whether JevK5-2B, an open-weight 2B model, can run locally on an RTX 2080 and control a virtual operating room, comparing it with TypeSafe's Jev. In my recorded scenarios, Jev is more accurate and faster; JevK5-2B does not look like a practical local replacement for this task and setup. This is a virtual-room experiment, not a clinical evaluation.",
+  description: "Operating rooms are full of equipment controls, and a voice assistant could make them easier to use. I test whether JevK5-2B, an open-weight 2B model, can run locally on an RTX 2080 and control a virtual operating room. Compared with TypeSafe's Jev, it falls behind on both accuracy and speed.",
   author: "Tim Peko (TimerErTim)",
   keywords: (
     "System One",
