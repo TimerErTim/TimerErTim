@@ -1,0 +1,13 @@
+[project]
+name = "ben2-removebg"
+version = "0.1.0"
+description = "Video background removal with BEN2"
+requires-python = ">=3.8"
+dependencies = [
+    "ben2 @ git+https://github.com/PramaLLC/BEN2.git",
+    "torch>=2.1.0,<2.4",
+    "opencv-python>=4.10.0",
+    "numpy",
+    "pillow",
+    "tqdm",
+]
