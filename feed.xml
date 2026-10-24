@@ -7,6 +7,21 @@
     <language>en</language>
     <atom:link href="https://timerertim.eu/feed.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>How local System-One models compare to TypeSafe&apos;s Jev when assisting in the Operating Room</title>
+      <link>https://timerertim.eu/blog/2026-systemone-operationroom/</link>
+      <description>Operating rooms have lots of knobs and levers to turn. Voice assistants are already common in smart homes, but reliable, real-time control is a different challenge in an operating room. I test JevK5-2B, an open-weight 2B model, running locally on my RTX 2080, and compare it with TypeSafe&apos;s Jev on a virtual operating room task. Jev is more accurate and faster in my tests, so this JevK5-2B setup doesn&apos;t yet look like a practical local alternative.</description>
+      <pubDate>Sun, 11 Oct 2026 00:00:00 GMT</pubDate>
+      <atom:updated>2026-10-21T00:00:00.000Z</atom:updated>
+      <guid isPermaLink="true">https://timerertim.eu/blog/2026-systemone-operationroom/</guid>
+      <author>Tim Peko (TimerErTim)</author>
+      <category>System One</category>
+      <category>Jev</category>
+      <category>JevK5</category>
+      <category>Medicine</category>
+      <category>Rust</category>
+      <category>Analysis</category>
+    </item>
+    <item>
       <title>Publishing a Typst Template Package on Typst Universe</title>
       <link>https://timerertim.eu/blog/2026-publishing-typst-package/</link>
       <description>As part of my current bachelor&apos;s thesis writing and efforts to establish Typst at my university, I recently published the ready-to-use easy-hgb-thesis package for usage at Campus Hagenberg. The package can be found on the official Typst Universe, and I am going to show how easy that process was. This can be thought of as a tutorial with my personal tone and choice of tools: mise, jujutsu and Typst CLI.</description>

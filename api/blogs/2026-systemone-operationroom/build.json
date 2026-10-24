@@ -1,0 +1,119 @@
+{
+  "slug": "2026-systemone-operationroom",
+  "contentHash": "a14911edc70a2b80ec70b4140dabbc161490fad27b50f210d25a7b0f0466ed35",
+  "variants": [
+    {
+      "filename": "main_light_320pt.svg",
+      "theme": "light",
+      "width_pt": 320,
+      "compressedFilename": "main_light_320pt.svg.br",
+      "referenceVariant": "main_light_832pt.svg"
+    },
+    {
+      "filename": "main_light_448pt.svg",
+      "theme": "light",
+      "width_pt": 448,
+      "compressedFilename": "main_light_448pt.svg.br",
+      "referenceVariant": "main_light_832pt.svg"
+    },
+    {
+      "filename": "main_light_576pt.svg",
+      "theme": "light",
+      "width_pt": 576,
+      "compressedFilename": "main_light_576pt.svg.br",
+      "referenceVariant": "main_light_832pt.svg"
+    },
+    {
+      "filename": "main_light_704pt.svg",
+      "theme": "light",
+      "width_pt": 704,
+      "compressedFilename": "main_light_704pt.svg.br",
+      "referenceVariant": "main_light_832pt.svg"
+    },
+    {
+      "filename": "main_light_832pt.svg",
+      "theme": "light",
+      "width_pt": 832,
+      "compressedFilename": "main_light_832pt.svg.br",
+      "referenceVariant": "main_dark_832pt.svg"
+    },
+    {
+      "filename": "main_light_960pt.svg",
+      "theme": "light",
+      "width_pt": 960,
+      "compressedFilename": "main_light_960pt.svg.br",
+      "referenceVariant": "main_dark_960pt.svg"
+    },
+    {
+      "filename": "main_light_1088pt.svg",
+      "theme": "light",
+      "width_pt": 1088,
+      "compressedFilename": "main_light_1088pt.svg.br",
+      "referenceVariant": "main_dark_1088pt.svg"
+    },
+    {
+      "filename": "main_dark_320pt.svg",
+      "theme": "dark",
+      "width_pt": 320,
+      "compressedFilename": "main_dark_320pt.svg.br",
+      "referenceVariant": "main_light_320pt.svg"
+    },
+    {
+      "filename": "main_dark_448pt.svg",
+      "theme": "dark",
+      "width_pt": 448,
+      "compressedFilename": "main_dark_448pt.svg.br",
+      "referenceVariant": "main_light_448pt.svg"
+    },
+    {
+      "filename": "main_dark_576pt.svg",
+      "theme": "dark",
+      "width_pt": 576,
+      "compressedFilename": "main_dark_576pt.svg.br",
+      "referenceVariant": "main_light_576pt.svg"
+    },
+    {
+      "filename": "main_dark_704pt.svg",
+      "theme": "dark",
+      "width_pt": 704,
+      "compressedFilename": "main_dark_704pt.svg.br",
+      "referenceVariant": "main_light_704pt.svg"
+    },
+    {
+      "filename": "main_dark_832pt.svg",
+      "theme": "dark",
+      "width_pt": 832,
+      "compressedFilename": "main_dark_832pt.svg.br",
+      "referenceVariant": null
+    },
+    {
+      "filename": "main_dark_960pt.svg",
+      "theme": "dark",
+      "width_pt": 960,
+      "compressedFilename": "main_dark_960pt.svg.br",
+      "referenceVariant": "main_dark_832pt.svg"
+    },
+    {
+      "filename": "main_dark_1088pt.svg",
+      "theme": "dark",
+      "width_pt": 1088,
+      "compressedFilename": "main_dark_1088pt.svg.br",
+      "referenceVariant": "main_dark_832pt.svg"
+    }
+  ],
+  "author": [
+    "Tim Peko (TimerErTim)"
+  ],
+  "title": "How local System-One models compare to TypeSafe's Jev when assisting in the Operating Room",
+  "description": "Operating rooms have lots of knobs and levers to turn. Voice assistants are already common in smart homes, but reliable, real-time control is a different challenge in an operating room. I test JevK5-2B, an open-weight 2B model, running locally on my RTX 2080, and compare it with TypeSafe's Jev on a virtual operating room task. Jev is more accurate and faster in my tests, so this JevK5-2B setup doesn't yet look like a practical local alternative.",
+  "keywords": [
+    "System One",
+    "Jev",
+    "JevK5",
+    "Medicine",
+    "Rust",
+    "Analysis"
+  ],
+  "createdAt": 1791676800,
+  "updatedAt": 1792540800
+}

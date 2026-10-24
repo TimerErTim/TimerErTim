@@ -1,13 +1,13 @@
 {
   "slug": "2026-plagiarism-gcn-gin",
-  "contentHash": "cf03aa239a4277941435a61181618038baa908917d80cce02272ddbee8d4c873",
+  "contentHash": "8953113ec4cbdfead009860bfe509505635fefead5ed89a79b44e3f694edfab4",
   "variants": [
     {
       "filename": "main_light_320pt.svg",
       "theme": "light",
       "width_pt": 320,
       "compressedFilename": "main_light_320pt.svg.br",
-      "referenceVariant": "main_light_448pt.svg"
+      "referenceVariant": "main_dark_320pt.svg"
     },
     {
       "filename": "main_light_448pt.svg",
@@ -21,28 +21,28 @@
       "theme": "light",
       "width_pt": 576,
       "compressedFilename": "main_light_576pt.svg.br",
-      "referenceVariant": "main_light_1088pt.svg"
+      "referenceVariant": "main_light_448pt.svg"
     },
     {
       "filename": "main_light_704pt.svg",
       "theme": "light",
       "width_pt": 704,
       "compressedFilename": "main_light_704pt.svg.br",
-      "referenceVariant": "main_light_832pt.svg"
+      "referenceVariant": "main_light_576pt.svg"
     },
     {
       "filename": "main_light_832pt.svg",
       "theme": "light",
       "width_pt": 832,
       "compressedFilename": "main_light_832pt.svg.br",
-      "referenceVariant": "main_light_960pt.svg"
+      "referenceVariant": "main_dark_832pt.svg"
     },
     {
       "filename": "main_light_960pt.svg",
       "theme": "light",
       "width_pt": 960,
       "compressedFilename": "main_light_960pt.svg.br",
-      "referenceVariant": "main_dark_960pt.svg"
+      "referenceVariant": "main_light_832pt.svg"
     },
     {
       "filename": "main_light_1088pt.svg",
@@ -63,7 +63,7 @@
       "theme": "dark",
       "width_pt": 448,
       "compressedFilename": "main_dark_448pt.svg.br",
-      "referenceVariant": "main_dark_704pt.svg"
+      "referenceVariant": "main_dark_576pt.svg"
     },
     {
       "filename": "main_dark_576pt.svg",
@@ -77,21 +77,21 @@
       "theme": "dark",
       "width_pt": 704,
       "compressedFilename": "main_dark_704pt.svg.br",
-      "referenceVariant": "main_dark_960pt.svg"
+      "referenceVariant": "main_dark_1088pt.svg"
     },
     {
       "filename": "main_dark_832pt.svg",
       "theme": "dark",
       "width_pt": 832,
       "compressedFilename": "main_dark_832pt.svg.br",
-      "referenceVariant": "main_dark_960pt.svg"
+      "referenceVariant": null
     },
     {
       "filename": "main_dark_960pt.svg",
       "theme": "dark",
       "width_pt": 960,
       "compressedFilename": "main_dark_960pt.svg.br",
-      "referenceVariant": null
+      "referenceVariant": "main_dark_832pt.svg"
     },
     {
       "filename": "main_dark_1088pt.svg",
