@@ -3,11 +3,11 @@
 
 src:yt-video:
   type: video
-  title: "TBH"
+  title: "STOP - System One Operating Room"
   author: Peko, Tim
   date: 2026-10-23
   url:
-    value: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+    value: https://youtu.be/oXlpMOBAwdg
 
 src:typesafe-systemone:
   type: web
