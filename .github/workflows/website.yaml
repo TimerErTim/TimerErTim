@@ -43,6 +43,13 @@ jobs:
           ref: gh-pages
           path: dist/website/
 
+      - name: Install libclang for xdelta3 bindgen
+        # The `xdelta3` crate builds bindgen v0.52 at build time, which needs the
+        # libclang shared library. The runner image does not ship it.
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libclang-dev
+
       - name: Build the website
         run: cd website && mise deps && mise run :export
 
