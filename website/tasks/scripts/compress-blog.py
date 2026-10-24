@@ -3,7 +3,7 @@
 # Runs inside the website embedding directory
 #
 # /// script
-# requires-python = ">=3.8"
+# requires-python = "==3.8"  # pyo3 0.23.5 in libs/xdelta3 caps out at CPython 3.13
 # dependencies = [
 #     "xdelta3",
 #     "brotli==1.2.0"
