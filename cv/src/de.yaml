@@ -1,2 +1,195 @@
+summary: >
+  Engagierter Softwareentwickler und leidenschaftlicher Hobbyprogrammierer auf der Suche nach anspruchsvollen Aufgaben zur Entwicklung wirkungsvoller Software. Schwerpunkt auf effizientem, sicherem und zuverlässigem Code, ergänzt durch eigenständige Weiterbildung und vertiefte akademische Kenntnisse in Datenanalyse und Biologie.
+
 contacts:
+  title: Softwareentwickler und Bioinformatikstudent
+  city: Linz
+  # Geburtsort -> sensibel
+  # Geburtsdatum -> sensibel
+  # Adresse -> sensibel
+  # Familienstand -> sensibel
+  # Religion -> sensibel
   homecountry: Österreich
+  nationality: Österreichisch
+  gender: Männlich
+
+skills:
+  - category: Sprachen
+    items:
+      - Deutsch (Muttersprache)
+      - Englisch (fließend)
+  - category: Mathematik
+    items:
+      - Statistik
+      - Lineare Algebra
+      - Analysis
+      - Wahrscheinlichkeitstheorie
+  - category: Informatik
+    items:
+      - Deep Learning
+      - Netzwerktechnik
+      - Betriebssysteme
+      - Infrastrukturarchitektur
+      - Systementwurf
+  - category: Programmiersprachen
+    items:
+      - Rust
+      - Python
+      - Java
+      - Kotlin
+      - C# (Grundkenntnisse)
+      - C++
+      - JavaScript
+      - TypeScript
+      - PHP (Grundkenntnisse)
+  - category: Biologie
+    items:
+      - Genomik
+      - Biochemie
+      - Sequenzierung
+      - Datenanalyse
+  - category: KI-Agenten und -Tools
+    items:
+      - Cursor
+      - OpenHuman
+      - MCP
+      - OpenRouter
+  - category: Soziale Kompetenzen
+    items:
+      - Ausgeprägte Lernbereitschaft und Eigeninitiative
+      - Sehr gute Problemlösungsfähigkeit
+      - Ausgeprägte Kommunikations- und Teamfähigkeit
+      - Selbstständige Arbeitsweise
+
+
+hobbies:
+  - category: Sport
+    items:
+      - Sporttauchen
+      - Krafttraining
+      - Schießsport
+  - category: Computer
+    items:
+      - Computerspiele
+      - Programmieren
+      - Inhalte erstellen
+  - category: Sonstiges
+    items:
+      - Kochen
+      - Reisen
+      - Neue Fähigkeiten entdecken
+
+jobs:
+  - position: Softwareentwickler
+    company:
+      name: opta data Österreich GmbH
+      link: https://www.optadata.at/
+    location: Linz, Oberösterreich
+    description:
+      - Als einer von drei Kernentwicklern eine Diabetes-Bestellplattform von Grund auf konzipiert und umgesetzt
+      - An der Planung und Vorbereitung der Ablösung des bestehenden Kernsystems sowie an der Umsetzung der neuen Plattform mitgewirkt
+      - Zentrale Komponenten wie Autorisierung, Observability und Analytik aufgebaut
+    from: "2024 Jun."
+    to: "heute"
+    tags:
+      - Systementwurf
+      - Domain-Driven Design
+      - Zusammenarbeit im Scrum-Team
+
+  - position: Praktikum
+    company:
+      name: opta data Österreich GmbH
+      link: https://www.optadata.at/
+    location: Linz, Oberösterreich
+    description:
+      - Ein Berichtswerkzeug entwickelt, um Veränderungen und Qualitätsverluste des unternehmensinternen KI-Modells zur Texterkennung im Produktivbetrieb zu erkennen
+      - Auf Grundlage der Modellarchitektur einen Autoencoder zur Dokumentenklassifizierung trainiert
+      - Die Ergebnisse den Stakeholdern vorgestellt
+    from: "2022 Jul."
+    to: "2022 Aug."
+    tags:
+      - Datenanalyse
+      - Datenvisualisierung
+      - Berichtserstellung
+      - Deep Learning
+
+education:
+  - place:
+      name: FH Oberösterreich
+      link: "https://fh-ooe.at/campus-hagenberg"
+    degree: "Bachelor of Science"
+    major: "Medizin- und Bioinformatik"
+    #track: "Bioinformatik"
+    # final_work:
+    #   link:
+    #     name: "Datenoptimierungstechniken"
+    #location: Hagenberg, Österreich
+    from: "2025"
+    to: "heute"
+    location: Hagenberg, Oberösterreich
+  - place:
+      name: Höhere Technische Lehranstalt Grieskirchen
+      link: "https://www.htl-grieskirchen.at/wp/"
+    degree: "Matura"
+    major: "Medizininformatik"
+    final_work:
+      name: "Synde - Document Dataset Synthesizer"
+    location: Grieskirchen, Oberösterreich
+    from: "2018"
+    to: "2023"
+
+certifications:
+  - venue:
+      name: FILL Hackathon 2022
+      link: https://www.fill.co.at/de/news-und-events/news/fill-hackathon-2022
+    #certificate_link: "https://techinnovatorshackathon.com/certificates/johndoe"
+    description: >
+      In der Kategorie Softwareentwicklung gewonnen: Entwicklung einer Plattform zur Echtzeitverwaltung von Bestellungen und Lieferungen für eine kleine 3D-Druck-Montageanlage.
+    year: 2022
+    from: "14. Dez."
+    to: "16. Dez."
+  - venue:
+      name: Project Award - HTL Leonding 
+      link: https://www.htl-leonding.at/2023/04/22/project-award-2023-2/
+    certificate_link: https://www.youtube.com/watch?v=pX3kJ07VnNI
+    description: >
+      Diplomarbeitsauszeichnung für das insgesamt beste innovative Projekt.
+    year: 2023
+  - venue:
+      name: Jugend Innovativ
+      link: https://www.jugend-innovativ.at/
+    certificate_link: https://www.jugendinnovativ.at/projekt/document-dataset-synthesizer
+    description: >
+      3. Platz beim österreichweiten Diplomarbeitswettbewerb in der Kategorie „ICT & Digital“.
+    year: 2023
+
+
+achievements:
+  - name: "Känguru der Mathematik"
+    description: >
+      Österreichischer Mathematikwettbewerb für Schülerinnen und Schüler im Alter von 10 bis 14 Jahren.
+    link: https://www.kaenguru.at/
+    wins:
+      - category: "Oberösterreich"
+        year: 2015
+        placement: 8. Platz
+      - category: "Oberösterreich"
+        year: 2016
+        placement: 3. Platz
+      - category: "Österreich"
+        year: 2016
+        placement: 9. Platz
+  - name: "Biber der Informatik"
+    description: >
+      Österreichischer Informatikwettbewerb für Schülerinnen und Schüler im Alter von 10 bis 14 Jahren.
+    link: https://wettbewerb.biber.ocg.at/
+    wins:
+      - category: "Österreich"
+        year: 2016
+        placement: 2. Platz
+  - name: "Schulvertretung"
+    wins:
+      - category: "Stellvertretender Schulsprecher"
+        year: 2021
+      - category: "Stellvertretender Abteilungssprecher"
+        year: 2021

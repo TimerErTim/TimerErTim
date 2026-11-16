@@ -28,7 +28,7 @@
     }
 
     if type(a-value) == array {
-      merged.insert(key, a-value + b-value)
+      merged.insert(key, b-value)
     } else if type(a-value) == dictionary {
       merged.insert(key, _merge_dicts(a-value, b-value))
     } else {
